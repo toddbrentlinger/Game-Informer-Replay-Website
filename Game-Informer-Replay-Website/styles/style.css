@@ -1,0 +1,259 @@
+﻿/* ---------------------------------------------------- */
+/* ---------- General Page Styles ---------- */
+/* ---------------------------------------------------- */
+/* 
+What's the font used for Game Informer logo?
+
+The closest font we can find for Game Informer logo is Softrobo Pro, which is a geometric sans serif font designed by Aliaksei Koval and published by Koval TF.
+
+Sources & Links:
+Softrobo Pro Font on myfonts.com
+Softrobo Pro Font on fonts.com
+
+*/
+
+/* Varbiables */
+:root {
+    --main-bg-color: #0077a2;
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: Roboto, Arial, sans-serif; /* Helvetica */
+    font-size: 16px; /* 100%, 10px */
+    /*
+    Avoid problems with adjusted text size in older browser versions 
+    when using em/rem units for font-size in other html elements 
+    (1em/rem = 16px depending on parent element(em) or root element(rem)
+    size font
+    */
+    line-height: 1.2;
+    background-color: var(--main-bg-color);
+}
+
+body {
+    background-color: white;
+    color: var(--main-bg-color);
+    margin: 3%; /* default: 8px */
+}
+
+/* Set default values for margin, padding, font-size */
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin: 0.83em 0;
+}
+
+h3 {
+    font-size: 1.17em;
+    margin: 1em 0;
+}
+
+h4 {
+    font-size: 1em;
+    margin: 1.33em 0;
+}
+
+h5 {
+    font-size: .83em;
+    margin: 1.67em 0;
+}
+
+h6 {
+    font-size: .67em;
+    margin: 2.33em 0;
+}
+
+ol {
+    margin: 1em 0;
+    padding-left: 40px;
+}
+
+p {
+    margin: 1em 0;
+}
+
+ul {
+    margin: 1em 0;
+    padding-left: 40px;
+}
+
+/* Hide h1 temporarily */
+h1 {
+    display: none;
+}
+
+h1, h2, footer {
+    text-align: center;
+}
+
+main > img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    border: 0; /* prevent IE9 (and earlier) from displaying a border around the edges */
+}
+
+/* ---------- Header ---------- */
+
+/* ---------- Footer ---------- */
+
+/* ---------- Top Nav ---------- */
+#topnav ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: var(--main-bg-color);
+}
+
+#topnav ul li {
+    float: left;
+}
+
+#topnav ul li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 1em;
+    text-decoration: none;
+}
+
+#topnav ul li a:hover {
+    background-color: hsl(196, 100%, 15%);
+}
+
+/* ---------- Side Nav ---------- */
+#sidenav ul {
+    list-style-type: none;
+}
+
+/* ---------- Episode ---------- */
+.episode {
+    /*padding: 1em;*/
+    margin: .6em;
+}
+
+/* Episode Header */
+
+.episodeHeader {
+    background-color: var(--main-bg-color);
+    color: #fff;
+    padding: 1em;
+    border-radius: 1em 1em 0 0;
+}
+/*
+.episodeHeader > * {
+    margin: 0;
+}*/
+
+/* Episode Title */
+.episodeTitle {
+    float: left;
+    width: 80%;
+    margin: 0;
+}
+
+/* Episode Number */
+.episodeNumber {
+    float: right;
+    width: 20%;
+    text-align: right;
+}
+
+/* Clear-fix */
+.episodeHeader::after, .episodeMain::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+/* Episode Main */
+
+.episodeMain {
+    border-style: none solid;
+    border-width: .2em;
+    border-color: var(--main-bg-color);
+}
+
+/* Thumbnail */
+.episodeThumbnail {
+    float: left;
+    position: relative;
+    width: 35%;
+    margin: 0;
+}
+
+.episodeThumbnail::after {
+    content: "";
+    clear: both;
+    display: block;
+}
+
+.episodeThumbnail img {
+    width: 100%;
+    height: auto;
+    display: block;
+    margin: 0;
+    border: 0; /* prevent IE9 (and earlier) from displaying a border around the edges */
+}
+
+/* Episode Length */
+.episodeLength {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 4px;
+    padding: 2px 4px;
+    border-radius: 2px;
+    color: #fff;
+    background-color: rgba(0,0,0,0.8);
+}
+
+/* Episode Description */
+.episodeDescription {
+    float: right;
+    width: 65%;
+    padding: 0 .6em;
+}
+
+/* Episode Details */
+
+.episodeDetails {
+    padding: 1em;
+    border-style: none solid solid solid;
+    border-width: .2em;
+    border-color: var(--main-bg-color);
+    border-radius: 0 0 1em 1em;
+}
+
+/* Thematic Break hr */
+.episodeDetails > hr {
+    border: 0;
+    height: 2px;
+    background-image: linear-gradient(to right, rgba(0,0,0,0), var(--main-bg-color) 20%, var(--main-bg-color) 80%, rgba(0,0,0,0));
+}
+
+.episodeDetails > hr {
+    border: 0;
+    height: .8em;
+    box-shadow: inset 0 .8em .8em -.8em var(--main-bg-color);
+    background-image: none;
+}
+
+main > iframe {
+    display: block;
+    margin: 0 auto;
+}

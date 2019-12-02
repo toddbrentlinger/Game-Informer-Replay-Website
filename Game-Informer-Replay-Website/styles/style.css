@@ -39,7 +39,7 @@ html {
 }
 
 body {
-    background-color: white;
+    background-color: #f6f6f6;
     color: var(--main-bg-color);
     margin: 3%; /* default: 8px */
 }
@@ -194,6 +194,9 @@ main > img {
     position: relative;
     width: 35%;
     margin: 0;
+}
+.episodeThumbnail:hover {
+    background-color: var(--main-bg-color);
 }
 
 .episodeThumbnail::after {

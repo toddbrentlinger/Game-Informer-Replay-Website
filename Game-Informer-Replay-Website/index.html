@@ -37,6 +37,7 @@
 
     <!-- Top Navigation -->
     <nav id="topnav">
+        <!--<img src="/images/logo.svg" alt="Game Informer logo" /> -->
         <ul>
             <li><a href="#replay">Replay</a></li>
             <li><a href="#superReplay">Super Replay</a></li>
@@ -56,7 +57,7 @@
         <!-- Middle Column -->
         <main class="column middle" id="main">
             <img src="images/Game_Informer_logo_(2010-present).png" alt="Game Informer Logo" width="2028" height="371" />
-            <img src="/images/replay-logo.jpg" alt="Game Informer Replay Logo" width="610" height="214" />
+            <img src="/images/replay-logo-alpha.png" alt="Game Informer Replay Logo" width="610" height="214" />
 
             <section class="episode" id="baselineEpisode" style="display:none">
                 <div class="episodeHeader">
@@ -86,21 +87,23 @@
                 </div>
             </section>
 
-            <h2>Season 0</h2>
+            <h2>Example Episode Format</h2>
 
             <section class="episode">
-                <div class="episodeHeader">
-                    <h3 class="episodeTitle">Replay: The 2018 Halloween Spooktacular</h3>
-                    <div class="episodeNumber">S5:E16 (#458)</div>
-                </div>
                 <div class="episodeMain">
+                    <div class="episodeHeader">
+                        <h3 class="episodeTitle">Replay: The 2018 Halloween Spooktacular</h3>
+                        <div class="episodeNumber">S5:E16 (#458)</div>
+                    </div>
                     <div class="episodeThumbnail">
                         <a title="" href="https://vignette.wikia.nocookie.net/replay/images/0/0e/Replay_The2018HalloweenSpooktacular.jpg/revision/latest?cb=20181030171306">
                             <img class="episodeImage" alt="" width="300" height="169" src="https://vignette.wikia.nocookie.net/replay/images/0/0e/Replay_The2018HalloweenSpooktacular.jpg/revision/latest?cb=20181030171306" srcset="https://vignette.wikia.nocookie.net/replay/images/0/0e/Replay_The2018HalloweenSpooktacular.jpg/revision/latest?cb=20181030171306 1x, https://vignette.wikia.nocookie.net/replay/images/0/0e/Replay_The2018HalloweenSpooktacular.jpg/revision/latest?cb=20181030171306 2x" />
                             <time class="episodeLength" datetime="PT1H1M45S">1:01:45</time>
+                            <div class="playOverlay">PLAY</div>
                         </a>
                     </div>
                     <div class="episodeDescription">
+                        <p>Quisque maximus eget leo vel hendrerit. Curabitur sit amet iaculis eros. Suspendisse nunc mauris, faucibus at blandit nec, tincidunt bibendum nulla. Donec a nisl in ligula accumsan tincidunt. Vestibulum tempor condimentum lacus, a porttitor est sodales id. Vestibulum vehicula fringilla neque, fringilla scelerisque nisl tempus eget. Vivamus scelerisque nunc nec feugiat varius. Aenean id felis a tellus fermentum volutpat nec et risus. Morbi eu ex tempor, ullamcorper velit non, porta ligula. Phasellus dignissim enim vitae felis sagittis, eu pharetra purus finibus. Aliquam ornare pellentesque lorem ut efficitur. Sed tristique mi mauris, at porttitor lorem semper id. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc blandit ligula et dolor rhoncus egestas.</p>
                         <p>The 458th episode of Replay is The 2018 Halloween Spooktacular, featuring Fatal Frame II: Crimson Butterfly.</p>
                         <p>
                             This episode is hosted by <a title="Andrew Reiner" href="https://replay.fandom.com/wiki/Andrew_Reiner">Andrew Reiner</a> and features
@@ -146,6 +149,7 @@
     </footer>
 
     <script src="/data/gameInformerReplayFandomWikiDataJS.js"></script>
+    <script src="scripts/replayEpisode.js"></script>
     <script src="scripts/displayReplayEpisodes.js"></script>
     <script src="/scripts/main.js"></script>
 </body>

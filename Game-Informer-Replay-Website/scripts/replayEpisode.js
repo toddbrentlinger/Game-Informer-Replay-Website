@@ -72,13 +72,16 @@ class ReplayEpisode {
             this.description = ReplayEpisode.createCustomDescription(this);
 
         // Host(s)
-        this.host = replayEpisode.details.host;
+        if (replayEpisode.details.hasOwnProperty('host'))
+            this.host = replayEpisode.details.host;
 
         // Featuring
-        this.featuring = replayEpisode.details.featuring;
+        if (replayEpisode.details.hasOwnProperty('featuring'))
+            this.featuring = replayEpisode.details.featuring;
 
         // External Links
-        this.external_links = replayEpisode.details.external_links;
+        if (replayEpisode.details.hasOwnProperty('external_links'))
+            this.external_links = replayEpisode.details.external_links;
 
         // YouTube video ID
         if (replayEpisode.hasOwnProperty('details') && replayEpisode.details.hasOwnProperty('external_links')) {
@@ -103,7 +106,7 @@ class ReplayEpisode {
         */
 
         // Create HTML element to add episode data and reference as property
-        this.episodeSection = createElementAdv('section', 'episode');
+        this.episodeSection = ReplayEpisode.createElementAdv('section', 'episode');
 
         // Populate HTML element with episode data
         ReplayEpisode.populateEpisodeSection(this);
@@ -121,22 +124,31 @@ class ReplayEpisode {
         const replaySeasonStartEpisodes = [107, 268, 385, 443, 499]; // [S2, S3, S4, S5, S6]
 
         // Season
-        for (index = 0; index < replaySeasonStartEpisodes.length; index++) {
+        let season = 0;
+        for (let index = 0; index < replaySeasonStartEpisodes.length; index++) {
             if (this.episodeNumber < replaySeasonStartEpisodes[index]) {
                 season = index + 1;
                 break;
             }
             // If reached end of loop, assign last season
-            if (index == replaySeasonStartEpisodes.length - 1)
+            if (index == replaySeasonStartEpisodes.length - 1) {
                 season = replaySeasonStartEpisodes.length + 1;
+            }
         }
 
         // Season Episode
-        seasonEpisode = (season == 1) ? this.episodeNumber
+        let seasonEpisode = (season == 1) ? this.episodeNumber
             : this.episodeNumber - replaySeasonStartEpisodes[season - 2] + 1;
 
         // Return both season and seasonEpisode number
         return [season, seasonEpisode];
+    }
+
+    getDateString() {
+        let months = ["January", "February", "March", "April", "May", "June", "July",
+            "August", "September", "October", "November", "December"];
+        return months[this.airdate.getMonth()] + ' ' + this.airdate.getDate() +
+            ', ' + this.airdate.getFullYear();
     }
 
     // --------------------------------------
@@ -146,6 +158,119 @@ class ReplayEpisode {
     // Function: Populate HTML element with episode data and formatting
     // Return reference to completed HTML section
     static populateEpisodeSection(replayEpisode) {
+
+        // Main Section
+
+        // Create new element and append as child to episode section element
+        let episodeMainElement = replayEpisode.episodeSection.appendChild(this.createElementAdv('div', 'episodeMain'));
+        replayEpisode.episodeSection.appendChild(document.createElement('hr'));
+
+        // Episode Header
+        // Create new header and append as child to main element
+        let episodeHeaderElement = episodeMainElement.appendChild(this.createElementAdv('div', 'episodeHeader'));
+
+        // Episode Title
+        // Create new title and append as child to header element
+        let episodeTitleElement = episodeHeaderElement.appendChild(this.createElementAdv('h3', 'episodeTitle', replayEpisode.episodeTitle));
+
+        // Episode Number
+        // Create new element and append as child to header element
+        let episodeNumberElement = episodeHeaderElement.appendChild(this.createElementAdv('div', 'episodeNumber'));
+        let seasonEpisode = replayEpisode.getReplaySeason();
+        episodeNumberElement.innerHTML = 'S' + seasonEpisode[0]
+            + ':E' + seasonEpisode[1] + ' (#' + replayEpisode.episodeNumber + ')';
+
+        // Episode Thumbnail
+        // Create thumbnail element and append as child to episodeMain element
+        let episodeThumbnailElement = episodeMainElement.appendChild(this.createElementAdv('div', 'episodeThumbnail'));
+        // Thumbnail Link
+        // Create thumbnail anchor link and append as child to episode thumbnail element
+        let thumbnailLinkElement = episodeThumbnailElement.appendChild(document.createElement('a'));
+        thumbnailLinkElement.setAttribute('title', '');
+        thumbnailLinkElement.setAttribute('href', 'https://www.youtube.com/watch?v=' + replayEpisode.youtubeVideoID);
+        thumbnailLinkElement.setAttribute('target', '_blank');
+        // Episode img
+        // Create img element and append as child to thumbnail anchor link element
+        let episodeImageElement = thumbnailLinkElement.appendChild(this.createElementAdv('img', 'episodeImage'));
+        episodeImageElement.setAttribute('alt', '');
+        episodeImageElement.setAttribute('width', replayEpisode.image.width);
+        episodeImageElement.setAttribute('height', replayEpisode.image.height);
+        episodeImageElement.setAttribute('src', replayEpisode.image.srcset[0]);
+        // Source Set
+        let srcsetStr = '';
+        for (let i = 0, arrLength = replayEpisode.image.srcset.length;
+            i < arrLength; i++) {
+            srcsetStr += replayEpisode.image.srcset[i];
+            // Add characters between values in array
+            srcsetStr += (i == arrLength - 1) ? ''
+                : (i == 1) ? ', '
+                    : ' ';
+        }
+        episodeImageElement.setAttribute('srcset', srcsetStr);
+
+        // Episode Time
+        // Create time element and append as child to thumbnail anchor link element
+        thumbnailLinkElement.appendChild(this.createElementAdv('time', 'episodeLength', replayEpisode.videoLength));
+
+        // Play Overlay
+        // Create element for play button overlay that appears when hover
+        thumbnailLinkElement.appendChild(this.createElementAdv('div', 'playOverlay'));
+
+        // Episode Description
+        // Create description element and append as child to episodeMain element
+        let episodeDescriptionElement = episodeMainElement.appendChild(this.createElementAdv('div', 'episodeDescription'));
+        
+        for (const descriptionTextValue of replayEpisode.description) {
+            // If value is an array, add ul list of values
+            if (Array.isArray(descriptionTextValue)) {
+                // Create ul element and append as child to description element
+                let listElement = episodeDescriptionElement.appendChild(document.createElement('ul'));
+                // Loop through each value of array of list values
+                for (const arrayValueText of descriptionTextValue) {
+                    // Create li element and append as child to ul element
+                    listElement.appendChild(this.createElementAdv('li', undefined, arrayValueText));
+                }
+            } else { // Else create p element and append as child to description element
+                episodeDescriptionElement.appendChild(this.createElementAdv('p', undefined, descriptionTextValue));
+            }
+        }
+        
+        // Episode Air Date
+        // Create element and append as child to episode description element
+        let episodeAirDateElement = episodeDescriptionElement.appendChild(this.createElementAdv('p', 'episodeAirDate'));
+        // Create bold element and append as child of episode air date element
+        episodeAirDateElement.appendChild(this.createElementAdv('b', undefined, 'Original Air Date: '));
+        // Create text node and append as child of episode air date element
+        episodeAirDateElement.appendChild(document.createTextNode(replayEpisode.getDateString()));
+
+        // ---------------
+        // Episode Details
+        // ---------------
+
+        // Create episode details element and append as child to episode section element
+        let episodeDetailsElement = replayEpisode.episodeSection.appendChild(this.createElementAdv('div', 'episodeDetails'));
+
+        // Episode Hosts
+        if (replayEpisode.hasOwnProperty('host')) {
+            // Create episode hosts element and append as child to episode details element
+            let episodeHostsElement = episodeDetailsElement.appendChild(this.createElementAdv('div', 'episodeHosts'));
+            // Create bold element and append as child of episode hosts element
+            episodeHostsElement.appendChild(this.createElementAdv('b', undefined, 'Host: '));
+            // Create text node and append as child of episode hosts element
+            episodeHostsElement.appendChild(document.createTextNode(this.listArrayAsString(replayEpisode.host)));
+        }
+
+        // Episode Featuring
+        if (replayEpisode.hasOwnProperty('featuring')) {
+            // Create episode featuring element and append as child to episode details element
+            let episodeFeaturingElement = episodeDetailsElement.appendChild(this.createElementAdv('div', 'episodeFeaturing'));
+            // Create bold element and append as child of episode featuring element
+            episodeFeaturingElement.appendChild(this.createElementAdv('b', undefined, 'Featuring: '));
+            // Create text node and append as child of episode featuring element
+            episodeFeaturingElement.appendChild(document.createTextNode(this.listArrayAsString(replayEpisode.featuring)));
+        }
+
+        // Return reference to created episodeSection
         return replayEpisode.episodeSection;
     }
 
@@ -155,7 +280,7 @@ class ReplayEpisode {
         // If only first argument is provided, recommend using document.createElement instead
         if (typeof elementClass === 'undefined' && typeof elementInnerHTML === 'undefined')
             console.log("Use document.createElement() instead");
-        var element = document.createElement(elementTag);
+        let element = document.createElement(elementTag);
         if (typeof elementClass !== 'undefined')
             element.setAttribute('class', elementClass);
         if (typeof elementInnerHTML !== 'undefined')
@@ -227,38 +352,45 @@ class ReplayEpisode {
 
     // Function: Create custom description for replay episode in case there is none from scraping
     static createCustomDescription(replayEpisode) {
-        let firstPara = 'CUSTOM: ';
-        let secondPara = '';
-        let thirdPara = '';
-        // First Para
+        let descriptionArr = ['Custom'];
+        // Main Segment
         // If only one game in main segment
         if (replayEpisode.mainSegmentGamesAdv.length == 1) {
-            firstPara += replayEpisode.mainSegmentGamesAdv[0].title + ' is the featured game in the '
-                + this.numOrdinalSuffix(replayEpisode.episodeNumber) + ' episode of Replay.';
+            descriptionArr.push(replayEpisode.mainSegmentGamesAdv[0].title + ' is the featured game in the '
+                + this.numOrdinalSuffix(replayEpisode.episodeNumber) + ' episode of Replay.');
         }
         else { // Else more than one game in main segment
             let mainSegmentGamesTitleArray = [];
             replayEpisode.mainSegmentGamesAdv.forEach(function (item, index, arr) {
                 mainSegmentGamesTitleArray.push(item.title);
             });
-            firstPara += 'The ' + this.numOrdinalSuffix(replayEpisode.episodeNumber) + ' episode of Replay is '
+            descriptionArr.push('The ' + this.numOrdinalSuffix(replayEpisode.episodeNumber) + ' episode of Replay is '
                 + replayEpisode.episodeTitle.replace('Replay: ', '') + ', featuring '
-                + this.listArrayAsString(mainSegmentGamesTitleArray);
+                + this.listArrayAsString(mainSegmentGamesTitleArray) + '.');
         }
-        // Second Para
-        if (replayEpisode.secondSegment) {
+        // Middle Segment
+        if (replayEpisode.hasOwnProperty('middleSegment') && replayEpisode.middleSegment.length) {
+            descriptionArr.push('The middle segment is an installment of ' + this.getSegmentTitle(replayEpisode.middleSegment) +
+                ' featuring ' + this.listArrayAsString(replayEpisode.middleSegmentContent) + '.');
+        }
+        // Second Segment
+        if (replayEpisode.hasOwnProperty('secondSegment') && replayEpisode.secondSegment.length) {
             if (replayEpisode.secondSegment == 'RR')
-                secondPara += 'The Replay Roulette for this episode features ' + this.listArrayAsString(replayEpisode.secondSegmentGames);
-            else
-                secondPara += 'The second segment for this episode is an installment of ' + replayEpisode.secondSegment + ' featuring ' + this.listArrayAsString(replayEpisode.secondSegmentGames);
+                descriptionArr.push('The Replay Roulette for this episode features ' +
+                    this.listArrayAsString(replayEpisode.secondSegmentGames) + '.');
+            else {
+                descriptionArr.push('The second segment for this episode is an installment of ' +
+                    this.getSegmentTitle(replayEpisode.secondSegment) + ' featuring ' +
+                    this.listArrayAsString(replayEpisode.secondSegmentGames) + '.');
+            }
         }
-        // Third Para
-        if (replayEpisode.host && replayEpisode.featuring) {
-            thirdPara = 'This episode is hosted by ' + this.listArrayAsString(replayEpisode.host)
-                + ' and features ' + this.listArrayAsString(replayEpisode.featuring) + '.';
+        // Host/Featuring
+        if (replayEpisode.hasOwnProperty('host')) {
+            descriptionArr.push('This episode is hosted by ' + this.listArrayAsString(replayEpisode.host)
+                + ' and features ' + this.listArrayAsString(replayEpisode.featuring) + '.');
         }
         // Return array of strings
-        return [firstPara, secondPara, thirdPara];
+        return descriptionArr;
 
         /*
          * Ex. 1 (if one game and one Replay Roulette)

@@ -1,20 +1,40 @@
 ﻿// TEMP
 // displayReplayEpisodes();
 
-var replayEpisodeObjectArray = []
-for (let i = 0; i < replayEpisodeArray.length; i++) {
+let totalTimeSeconds = 0;
+
+let mainElement = document.getElementById('main');
+
+let replayEpisodeObjectArray = [];
+for (let i = 0; i < 150; i++) {
     const replayEpisode = replayEpisodeArray[i];
     replayEpisodeObject = new ReplayEpisode(replayEpisode);
+
+    mainElement.appendChild(replayEpisodeObject.episodeSection);
+
     replayEpisodeObjectArray.push(replayEpisodeObject);
 
-    // TEMP
-    tempStr = replayEpisodeObject.episodeNumber + ' __ ';
-    if (replayEpisodeObject.hasOwnProperty('middleSegment'))
-        tempStr += ReplayEpisode.getSegmentTitle(replayEpisodeObject.middleSegment) + ' __ ';
-    if (replayEpisodeObject.hasOwnProperty('secondSegment'))
-        tempStr += ReplayEpisode.getSegmentTitle(replayEpisodeObject.secondSegment);
-    console.log(tempStr);
+    // Increase total time of episodes
+    let timeArr = replayEpisodeObject.videoLength.split(':');
+    timeArr.forEach(function (item, index, arr) {
+        arr[index] = parseInt(item, 10);
+    });
+    totalTimeSeconds += timeArr[timeArr.length - 1] + timeArr[timeArr.length - 2] * 60
+        + (timeArr.length == 3 ? timeArr[timeArr.length - 3] * 3600 : 0);
+
 }
+console.log('Finished replay episode assignment');
+
+// Show total time of episodes
+let seconds, minutes, hours, days = 0;
+days = Math.floor(totalTimeSeconds / 86400)
+hours = Math.floor((totalTimeSeconds - days * 86400) / 3600);
+minutes = Math.floor((totalTimeSeconds - days * 86400 - hours * 3600) / 60);
+seconds = totalTimeSeconds - (days * 86400) - (hours * 3600) - (minutes * 60);
+let totalTimePara = document.createElement('p');
+totalTimePara.textContent = "Total length of all replay episodes: " + days + " days, " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds!";
+totalTimePara.textContent += "\nTotal seconds: " + totalTimeSeconds;
+mainElement.appendChild(totalTimePara);
 
 // Set date the document was last modified at the bottom of the page
 document.getElementById('lastModifiedDate').innerHTML = new Date(document.lastModified).toDateString();

@@ -15,6 +15,7 @@ Softrobo Pro Font on fonts.com
 /* Varbiables */
 :root {
     --main-bg-color: #0077a2;
+    --main-text-color: #3a3a3a;
 }
 
 *, *:before, *:after {
@@ -91,13 +92,9 @@ ul {
 }
 
 /* Hide h1 temporarily */
-h1 {
-    display: none;
-}
+h1 { display: none; }
 
-h1, h2, footer {
-    text-align: center;
-}
+h1, h2, footer { text-align: center; }
 
 main > img {
     max-width: 80%;
@@ -112,27 +109,38 @@ main > img {
 /* ---------- Footer ---------- */
 
 /* ---------- Top Nav ---------- */
-#topnav ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
+#topnav {
+    text-align: center; /* center inline elements */
     background-color: var(--main-bg-color);
 }
-
+/* Style the top navigation bar, unordered list */
+#topnav ul {
+    list-style-type: none;
+    overflow: hidden;
+    padding: 0; /* remove default padding for ul elements */
+    margin: 0; /* remove default margin for ul elements */
+    font-size: 0; /* to prevent space between inline-block elements in li element;
+        Can also remove the closing </li> tags instead. Which is better? */
+}
+/* Style the top navigation list element */
 #topnav ul li {
-    float: left;
+    display: inline; /* center links in combination with text-align: center; */
 }
-
-#topnav ul li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 1em;
+/* Style the top navigation links */
+#topnav li a {
+    display: inline-block;
+    font-size: 1rem; /* 16px: reset font-size after setting to zero in #topnav ul {} to
+        prevent space between inline-block elements */
+    padding: 0.875em 1em; /* 14px 16px (1em=16px) */
     text-decoration: none;
+    color: #fff;
 }
+/* Set color on default link and active pseudo-classes */
+#topnav a:link, #topnav a:visited {
 
-#topnav ul li a:hover {
+}
+/* Change the color on hover */
+#topnav a:hover, #topnav a:active {
     background-color: hsl(196, 100%, 15%);
 }
 
@@ -193,29 +201,33 @@ main > img {
     float: left;
     width: 35%;
     position: relative;
-    margin: 0 1em .6em 0;
+    margin-right: 1em;
 }
 
+/* Play Video Overlay */
 .episodeThumbnail .playOverlay {
     position: absolute;
     width: 20%;
-    height: 20%;
-    top: 40%;
+    top: 30%;
     left: 40%;
-    background-color: var(--main-bg-color);
-    opacity: .8;
     display: none;
 }
 .episodeThumbnail:hover .playOverlay {
     display: block;
 }
+.playOverlay img {
+    width: 100%;
+    height: auto;
+}
 
+/* Clear-fix */
 .episodeThumbnail::after {
     content: "";
     clear: both;
     display: table;
 }
 
+/* Thumnail Image */
 .episodeThumbnail img {
     width: 100%;
     height: auto;
@@ -234,27 +246,24 @@ main > img {
     border-radius: 2px;
     color: #fff;
     background-color: rgba(0,0,0,0.8);
-}
-
-/* Episode Description */
-.episodeDescription {
-    /*float: right;
-    width: 65%;*/
-    padding: 0 .6em;
+    font-size: .8em;
 }
 
 /* Episode Details */
 
 .episodeDetails {
-    display: flex;
+    padding: 0 .6em;
+    font-size: .9em;
+}
+
+/* Episode More Info (Button to dropdown display) */
+.episodeMoreInfo {
+    padding: 0 .6em;
+    font-size: .9em;
     border-style: none solid solid solid;
     border-width: .2em;
     border-color: var(--main-bg-color);
     border-radius: 0 0 1em 1em;
-}
-
-.episodeDetails > * {
-    padding: 1em;
 }
 
 /* Thematic Break hr */
@@ -263,6 +272,7 @@ main > img {
     height: 2px;
     /*background-color: var(--main-bg-color);*/
     background-image: linear-gradient(to right, rgba(0,0,0,0), var(--main-bg-color) 20%, var(--main-bg-color) 80%, rgba(0,0,0,0));
+    margin: 0 1em;
 }
 /*
 .episode > hr {
@@ -272,9 +282,40 @@ main > img {
     background-image: none;
 }*/
 
-/* ---------- Misc ---------- */
+/* ------------------------------------ */
+/* ---------- YouTube Player ---------- */
+/* ------------------------------------ */
 
-main > iframe {
-    display: block;
+#videoPlayer {
+    /*position: fixed;*/
+    top: 0;
+    left: 0;
+    width: 100%;
+    border: 5px solid black;
+    z-index: 100;
+}
+#videoPlayer .iframeWrapper {
+    position: relative;
+    width: 100%;
+    height: calc(56.25vw);
+    max-height: calc(-169px + 100vh);
+    min-height: 480px;
+    padding-top: 56.25%;
     margin: 0 auto;
+    background: #000;
+}
+#videoPlayer .iframeWrapper iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* Dark Mode */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --main-bg-color: #000;
+    }
 }

@@ -1,0 +1,24 @@
+﻿TO-DO:
+
+- When youtube video starts, move episode list so the episode
+description/details is directly below the video player allowing
+the viewer immediate access to all the relevant information about
+the episode.
+
+- Show a portion of the description at the bottom of each main
+section of each episode. Right below is a button to expand the
+tab to reveal all the information available about the episode.
+Have option to expand/close all episode sections at once.
+
+- YouTube API:
+As an extra security measure, you should also include the origin 
+parameter to the URL, specifying the URL scheme (http:// or https://) 
+and full domain of your host page as the parameter value. 
+While origin is optional, including it protects against malicious 
+third-party JavaScript being injected into your page and hijacking 
+control of your YouTube player.
+
+- ISSUE: Square thumbnail images are too big
+Fix thumbnail images to display in constant image ratio for
+more current widescreen ration. If older square ratios, shrink
+to appropriate height and fill side gaps with black bars.

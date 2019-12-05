@@ -1,12 +1,12 @@
 ﻿// TEMP
 // displayReplayEpisodes();
-
+/*
 let totalTimeSeconds = 0;
 
 let mainElement = document.getElementById('main');
 
-let replayEpisodeObjectArray = [];
-for (let i = 0; i < 150; i++) {
+var replayEpisodeObjectArray = [];
+for (let i = 0; i < replayEpisodeArray.length; i++) {
     const replayEpisode = replayEpisodeArray[i];
     replayEpisodeObject = new ReplayEpisode(replayEpisode);
 
@@ -24,7 +24,35 @@ for (let i = 0; i < 150; i++) {
 
 }
 console.log('Finished replay episode assignment');
+*/
+/*
+// YouTube Playlist URL: Add to youtube playlist URL
+let playlistSrcString = ''
+for (const replayEpisode of replayEpisodeObjectArray) {
+    // If replay episode has YouTube video id
+    if (replayEpisode.youtubeVideoID.length) {
+        if (playlistSrcString.length) {
+            playlistSrcString += ',' + replayEpisode.youtubeVideoID;
+        } else {
+            playlistSrcString = 'https://www.youtube.com/embed/' + replayEpisode.youtubeVideoID
+                + '?playlist=';
+        }
+    }
+}
+document.getElementById('videoPlayer').getElementsByTagName('iframe')[0].setAttribute('src', playlistSrcString);
+*/
 
+// Populate replay episode object array in episode collection object
+replayEpisodeCollection.populateEpisodeObjectArray();
+replayEpisodeCollection.populateMainElement();
+
+var videoIdArray = [];
+for (const replayEpisode of replayEpisodeCollection.replayEpisodeObjectArray) {
+    if (replayEpisode.youtubeVideoID.length) {
+        videoIdArray.push(replayEpisode.youtubeVideoID);
+    }
+}
+/*
 // Show total time of episodes
 let seconds, minutes, hours, days = 0;
 days = Math.floor(totalTimeSeconds / 86400)
@@ -35,7 +63,7 @@ let totalTimePara = document.createElement('p');
 totalTimePara.textContent = "Total length of all replay episodes: " + days + " days, " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds!";
 totalTimePara.textContent += "\nTotal seconds: " + totalTimeSeconds;
 mainElement.appendChild(totalTimePara);
-
+*/
 // Set date the document was last modified at the bottom of the page
 document.getElementById('lastModifiedDate').innerHTML = new Date(document.lastModified).toDateString();
 document.getElementById('lastModifiedReplayList').innerHTML = lastModifiedReplayList;

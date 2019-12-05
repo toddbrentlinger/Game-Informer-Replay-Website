@@ -35,6 +35,15 @@
         <h1>Game Informer Replay</h1>
     </header>
 
+    <div id="videoPlayer">
+        <div class="iframeWrapper">
+            <div id="youtubePlayerPlaceholder"></div>
+            <!--
+            <iframe id="youtubePlayer" width="640" height="360" src="https://www.youtube.com/embed/jsEIcUHPz5M?enablejsapi=1" frameborder="0"></iframe>
+            -->
+        </div>
+    </div>
+
     <!-- Top Navigation -->
     <nav id="topnav">
         <!--<img src="/images/logo.svg" alt="Game Informer logo" /> -->
@@ -44,6 +53,9 @@
             <li><a href="#magazineCovers">Magazine Covers</a></li>
             <li><a href="#giCrew">GI Crew</a></li>
         </ul>
+        <button type="button" id="button-darkMode">Dark Mode: On/Off</button>
+        <button type="button" id="button-toggleVideoPlayer">Toggle YT Player</button>
+        <button type="button" id="button-sortArray">Sort Episodes</button>
     </nav>
 
     <div class="row">
@@ -64,16 +76,36 @@
             <section class="episode">
                 <div class="episodeMain">
                     <div class="episodeHeader">
-                        <h3 class="episodeTitle">Replay: The 2018 Halloween Spooktacular</h3>
-                        <div class="episodeNumber">S5:E16 (#458)</div>
+                        <h3 class="episodeTitle">Replay: Shadow of the Colossus</h3>
+                        <div class="episodeNumber">S3:E-- (#318)</div>
                     </div>
                     <div class="episodeThumbnail">
-                        <a title="" href="https://vignette.wikia.nocookie.net/replay/images/0/0e/Replay_The2018HalloweenSpooktacular.jpg/revision/latest?cb=20181030171306">
-                            <img class="episodeImage" alt="" width="300" height="169" src="https://vignette.wikia.nocookie.net/replay/images/0/0e/Replay_The2018HalloweenSpooktacular.jpg/revision/latest?cb=20181030171306" srcset="https://vignette.wikia.nocookie.net/replay/images/0/0e/Replay_The2018HalloweenSpooktacular.jpg/revision/latest?cb=20181030171306 1x, https://vignette.wikia.nocookie.net/replay/images/0/0e/Replay_The2018HalloweenSpooktacular.jpg/revision/latest?cb=20181030171306 2x" />
-                            <time class="episodeLength" datetime="PT1H1M45S">1:01:45</time>
-                            <div class="playOverlay"><i class="fas fa-play-circle">PLAY</i></div>
+                        <a title="" href="https://www.youtube.com/watch?v=Nsr1EjNIba0">
+                            <img class="episodeImage" alt="" width="300" height="169" src="https://vignette.wikia.nocookie.net/replay/images/a/a2/Replay_TheRingTerrorsRealm.jpg/revision/latest/scale-to-width-down/310?cb=20180715190859" srcset="https://vignette.wikia.nocookie.net/replay/images/a/a2/Replay_TheRingTerrorsRealm.jpg/revision/latest/scale-to-width-down/310?cb=20180715190859 1x, https://vignette.wikia.nocookie.net/replay/images/a/a2/Replay_TheRingTerrorsRealm.jpg/revision/latest?cb=20180715190859 2x" />
+                            <time class="episodeLength" datetime="PT1H9M43S">1:09:43</time>
+                            <div class="playOverlay">
+                                <img alt="" width="256" height="256" src="\images/play-button-icon-gi-256.png" />
+                            </div>
                         </a>
                     </div>
+                    <div class="episodeDetails">
+                        <p class="episodeAirDate"><b>Original Air Date: </b><time datetime="2016-1-22">January 22, 2016</time></p>
+                        <p class="mainSegment"><b>Main Segment Games: </b></p>
+                        <p class="middleSegment"><b>Middle Segment: </b></p>
+                        <p class="secondSegment"><b>Second Segment: </b></p>
+                        <p class="episodeHosts">
+                            <b>Host: </b>
+                            <a title="Andrew Reiner" href="https://replay.fandom.com/wiki/Andrew_Reiner">Andrew Reiner</a>
+                        </p>
+                        <p class="episodeFeaturing">
+                            <b>Featuring: </b>
+                            <a title="Ben Reeves" href="https://replay.fandom.com/wiki/Ben_Reeves">Jeff Cork</a>
+                            , <a title="Joe Juba" href="https://replay.fandom.com/wiki/Joe_Juba">Tim Turi</a>
+                            , and <a title="Leo Vader" href="https://replay.fandom.com/wiki/Leo_Vader">Kyle Hilliard</a>
+                        </p>
+                    </div>
+                </div>
+                <div class="episodeMoreInfo">
                     <hr />
                     <div class="episodeDescription">
                         <p>Quisque maximus eget leo vel hendrerit. Curabitur sit amet iaculis eros. Suspendisse nunc mauris, faucibus at blandit nec, tincidunt bibendum nulla. Donec a nisl in ligula accumsan tincidunt. Vestibulum tempor condimentum lacus, a porttitor est sodales id. Vestibulum vehicula fringilla neque, fringilla scelerisque nisl tempus eget. Vivamus scelerisque nunc nec feugiat varius. Aenean id felis a tellus fermentum volutpat nec et risus. Morbi eu ex tempor, ullamcorper velit non, porta ligula. Phasellus dignissim enim vitae felis sagittis, eu pharetra purus finibus. Aliquam ornare pellentesque lorem ut efficitur. Sed tristique mi mauris, at porttitor lorem semper id. Interdum et malesuada fames ac ante ipsum primis in faucibus. Nunc blandit ligula et dolor rhoncus egestas.</p>
@@ -84,30 +116,13 @@
                             , <a title="Joe Juba" href="https://replay.fandom.com/wiki/Joe_Juba">Joe Juba</a>
                             , and <a title="Leo Vader" href="https://replay.fandom.com/wiki/Leo_Vader">Leo Vader</a>
                         </p>
-                        <p class="episodeAirDate"><b>Original Air Date: </b><time datetime="2018-10-26">October 26, 2018</time></p>
-                    </div>
-                </div>
-                <div class="episodeDetails">
-                    <hr />
-                    <div class="episodeHosts">
-                        <a title="Andrew Reiner" href="https://replay.fandom.com/wiki/Andrew_Reiner">Andrew Reiner</a>
-                    </div>
-                    <div class="episodeFeaturing">
-                        <a title="Ben Reeves" href="https://replay.fandom.com/wiki/Ben_Reeves">Ben Reeves</a>
-                        , <a title="Joe Juba" href="https://replay.fandom.com/wiki/Joe_Juba">Joe Juba</a>
-                        , and <a title="Leo Vader" href="https://replay.fandom.com/wiki/Leo_Vader">Leo Vader</a>
                     </div>
                 </div>
             </section>
-            <!--
-            <iframe width="640" height="360" frameborder="0" allowfullscreen src="https://www.youtube.com/embed/4CVZzgnVadk?start=2506&playlist=RlqTywDdCco"></iframe>
-            -->
         </main>
 
         <!-- Right Column -->
-        <aside class="column right">
-
-        </aside>
+        <aside class="column right"></aside>
     </div>
 
     <!-- Footer -->
@@ -120,10 +135,13 @@
         <p>Website last modified on <time id="lastModifiedDate"></time></p>
         <p>Replay list last modified on <time id="lastModifiedReplayList"></time></p>
     </footer>
-
+    <!--
+    <script src="https://www.youtube.com/iframe_api"></script>
+        -->
     <script src="/data/gameInformerReplayFandomWikiDataJS.js"></script>
-    <script src="scripts/replayEpisode.js"></script>
-    <script src="scripts/displayReplayEpisodes.js"></script>
+    <script src="/scripts/replayEpisode.js"></script>
+    <script src="scripts/replayEpisodeCollection.js"></script>
     <script src="/scripts/main.js"></script>
+    <script src="/scripts/youtubePlayerController.js"></script>
 </body>
 </html>

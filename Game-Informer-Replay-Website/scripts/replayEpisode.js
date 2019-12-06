@@ -227,7 +227,7 @@ class ReplayEpisode {
         videoOverlayElement.setAttribute('alt', '');
         videoOverlayElement.setAttribute('width', '256');
         videoOverlayElement.setAttribute('height', '256');
-        videoOverlayElement.setAttribute('src', '\images/play-button-icon-gi-256.png');
+        videoOverlayElement.setAttribute('src', '/images/play-button-icon-gi(1)-256.png');
 
         // -------------------------------------
         // ---------- Episode Details ----------

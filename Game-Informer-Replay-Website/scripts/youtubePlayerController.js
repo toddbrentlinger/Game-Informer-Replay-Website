@@ -32,9 +32,9 @@ function onYouTubePlayerAPIReady() {
             //'origin': specify domain
         },
         events: {
-            'onReady': onPlayerReady,
-            'onStateChange': onPlayerStateChange,
-            'onError': onPlayerError
+            onReady: onPlayerReady,
+            onStateChange: onPlayerStateChange,
+            onError: onPlayerError
         }
     });
     console.log('onYouTubePlayerAPIReady has finished');

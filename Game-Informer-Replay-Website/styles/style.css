@@ -15,6 +15,8 @@ Softrobo Pro Font on fonts.com
 /* Varbiables */
 :root {
     --main-bg-color: #0077a2;
+    --main-bg-select-color: hsl(196, 100%, 15%); 
+    --second-bg-color: #f6f6f6;
     --main-text-color: #3a3a3a;
 }
 
@@ -40,7 +42,7 @@ html {
 }
 
 body {
-    background-color: #f6f6f6;
+    background-color: var(--second-bg-color);
     color: var(--main-bg-color);
     margin: 3%; /* default: 8px */
     margin-top: 0;
@@ -82,9 +84,7 @@ ol {
     padding-left: 40px;
 }
 
-p {
-    margin: 1em 0;
-}
+p { margin: 1em 0; }
 
 ul {
     margin: 1em 0;
@@ -133,7 +133,7 @@ main > img {
         prevent space between inline-block elements */
     padding: 0.875em 1em; /* 14px 16px (1em=16px) */
     text-decoration: none;
-    color: #fff;
+    color: var(--second-bg-color);
 }
 /* Set color on default link and active pseudo-classes */
 #topnav a:link, #topnav a:visited {
@@ -141,13 +141,11 @@ main > img {
 }
 /* Change the color on hover */
 #topnav a:hover, #topnav a:active {
-    background-color: hsl(196, 100%, 15%);
+    background-color: var(--main-bg-select-color);
 }
 
 /* ---------- Side Nav ---------- */
-#sidenav ul {
-    list-style-type: none;
-}
+#sidenav ul { list-style-type: none; }
 
 /* ---------- Episode ---------- */
 .episode {
@@ -170,7 +168,7 @@ main > img {
 /* Episode Header */
 .episodeHeader {
     background-color: var(--main-bg-color);
-    color: #fff;
+    color: var(--second-bg-color);
     padding: 1em;
     border-radius: 1em 1em 0 0;
 }
@@ -312,10 +310,78 @@ main > img {
     height: 100%;
 }
 
-/* Dark Mode */
+/* --------------------------------- */
+/* ---------- Filter Form ---------- */
+/* --------------------------------- */
+
+#filterForm > fieldset { 
+    display: inline-block;
+    text-align: center;
+}
+
+#filterForm > fieldset > div > label {
+}
+
+/* ------------------------------- */
+/* ---------- Dark Mode ---------- */
+/* ------------------------------- */
 
 @media (prefers-color-scheme: dark) {
     :root {
         --main-bg-color: #000;
     }
 }
+
+/* ----------------------------------------------- */
+/* ---------- Dark Mode - Toggle Switch ---------- */
+/* ----------------------------------------------- */
+
+[data-theme="dark"] {
+    --main-bg-color: black;
+    --main-bg-select-color: blue;
+    --second-bg-color: grey;
+    --main-text-color: #f6f6f6;
+}
+
+.switch-container {
+    display: inline-block;
+    color: var(--second-bg-color);
+}
+
+.switch-container > em { display: block; }
+
+.switch {
+  display: inline-block;
+  height: 34px;
+  position: relative;
+  width: 60px;
+}
+
+.switch input { display:none; }
+
+.slider {
+  background-color: #ccc;
+  bottom: 0;
+  cursor: pointer;
+  left: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  transition: .4s;
+}
+
+.slider:before {
+  background-color: #fff;
+  bottom: 4px;
+  content: "";
+  height: 26px;
+  left: 4px;
+  position: absolute;
+  transition: .4s;
+  width: 26px;
+}
+
+input:checked + .slider { background-color: var(--main-bg-select-color); }
+input:checked + .slider:before { transform: translateX(26px); }
+.slider.round { border-radius: 34px; }
+.slider.round:before { border-radius: 50%; }

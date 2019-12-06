@@ -1,5 +1,14 @@
 ﻿TO-DO:
 
+12/6/19
+
+- Display game titles in details with limit. For episodes with long
+lists of games played, show first number of characters in the game
+title list string ending with ellipsis. By clicking on the ellipsis,
+the rest of the game title string is displayed.
+
+PRE - 12/6/19
+
 - When youtube video starts, move episode list so the episode
 description/details is directly below the video player allowing
 the viewer immediate access to all the relevant information about

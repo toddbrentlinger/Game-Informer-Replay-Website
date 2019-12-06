@@ -53,7 +53,14 @@
             <li><a href="#magazineCovers">Magazine Covers</a></li>
             <li><a href="#giCrew">GI Crew</a></li>
         </ul>
-        <button type="button" id="button-darkMode">Dark Mode: On/Off</button>
+        <div class="switch-container">
+            <em>Enable Dark Mode</em>
+            <label class="switch" for="dark-mode-checkbox">
+                <input type="checkbox" id="dark-mode-checkbox" />
+                <div class="slider round"></div>
+            </label>
+        </div>
+
         <button type="button" id="button-toggleVideoPlayer">Toggle YT Player</button>
         <button type="button" id="button-sortArray">Sort Episodes</button>
     </nav>
@@ -71,7 +78,55 @@
             <img src="images/Game_Informer_logo_(2010-present).png" alt="Game Informer Logo" width="2028" height="371" />
             <img src="/images/replay-logo-alpha.png" alt="Game Informer Replay Logo" width="610" height="214" />
 
-            <h2>Example Episode Format</h2>
+            <label>Enter search:</label>
+            <input type="search" />
+            <button type="submit">Search</button>
+            <!-- Filter Form -->
+            <form id="filterForm">
+                <fieldset form="filterForm" id="seasonField">
+                    <legend>Season: </legend>
+                    <div>
+                        <input type="checkbox" id="s6" name="season" value="s6" checked />
+                        <label for="s6">6</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="s5" name="season" value="s5" checked />
+                        <label for="s5">5</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="s4" name="season" value="s4" checked />
+                        <label for="s4">4</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="s3" name="season" value="s3" checked />
+                        <label for="s3">3</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="s2" name="season" value="s2" checked />
+                        <label for="s2">2</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="s1" name="season" value="s1" checked />
+                        <label for="s1">1</label>
+                    </div>
+                </fieldset>
+                <div id="filterSubmitButton">
+                    <button type="submit">Filter</button>
+                    <input type="reset" />
+                </div>
+            </form>
+
+            <em>Sort by: </em>
+            <select name="sort">
+                <option value="airdate">Air Date</option>
+                <option value="most-viewed">Most Viewed</option>
+                <option value="most-liked">Most Liked</option>
+                <option value="shuffle">Shuffle</option>
+            </select>
+            <select name="sort-order">
+                <option value="descending">Descending</option>
+                <option value="ascending">Ascending</option>
+            </select>
 
             <section class="episode">
                 <div class="episodeMain">

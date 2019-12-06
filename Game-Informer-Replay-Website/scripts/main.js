@@ -1,46 +1,23 @@
-﻿// TEMP
-// displayReplayEpisodes();
-/*
-let totalTimeSeconds = 0;
+﻿// Dark Mode Switch
+var darkModeSwitch = document.getElementById('dark-mode-checkbox');
+const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
 
-let mainElement = document.getElementById('main');
-
-var replayEpisodeObjectArray = [];
-for (let i = 0; i < replayEpisodeArray.length; i++) {
-    const replayEpisode = replayEpisodeArray[i];
-    replayEpisodeObject = new ReplayEpisode(replayEpisode);
-
-    mainElement.appendChild(replayEpisodeObject.episodeSection);
-
-    replayEpisodeObjectArray.push(replayEpisodeObject);
-
-    // Increase total time of episodes
-    let timeArr = replayEpisodeObject.videoLength.split(':');
-    timeArr.forEach(function (item, index, arr) {
-        arr[index] = parseInt(item, 10);
-    });
-    totalTimeSeconds += timeArr[timeArr.length - 1] + timeArr[timeArr.length - 2] * 60
-        + (timeArr.length == 3 ? timeArr[timeArr.length - 3] * 3600 : 0);
-
-}
-console.log('Finished replay episode assignment');
-*/
-/*
-// YouTube Playlist URL: Add to youtube playlist URL
-let playlistSrcString = ''
-for (const replayEpisode of replayEpisodeObjectArray) {
-    // If replay episode has YouTube video id
-    if (replayEpisode.youtubeVideoID.length) {
-        if (playlistSrcString.length) {
-            playlistSrcString += ',' + replayEpisode.youtubeVideoID;
-        } else {
-            playlistSrcString = 'https://www.youtube.com/embed/' + replayEpisode.youtubeVideoID
-                + '?playlist=';
-        }
+if (currentTheme) {
+    document.documentElement.setAttribute('data-theme', currentTheme);
+    if (currentTheme == 'dark') {
+        darkModeSwitch.checked = 'true';
+        console.log(darkModeSwitch.checked);
     }
 }
-document.getElementById('videoPlayer').getElementsByTagName('iframe')[0].setAttribute('src', playlistSrcString);
-*/
+darkModeSwitch.addEventListener('click', function (event) {
+    if (event.target.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        document.documentElement.setAttribute('data-theme', 'light');
+        localStorage.setItem('theme', 'light');
+    }
+});
 
 // Populate replay episode object array in episode collection object
 replayEpisodeCollection.populateEpisodeObjectArray();
@@ -52,18 +29,7 @@ for (const replayEpisode of replayEpisodeCollection.replayEpisodeObjectArray) {
         videoIdArray.push(replayEpisode.youtubeVideoID);
     }
 }
-/*
-// Show total time of episodes
-let seconds, minutes, hours, days = 0;
-days = Math.floor(totalTimeSeconds / 86400)
-hours = Math.floor((totalTimeSeconds - days * 86400) / 3600);
-minutes = Math.floor((totalTimeSeconds - days * 86400 - hours * 3600) / 60);
-seconds = totalTimeSeconds - (days * 86400) - (hours * 3600) - (minutes * 60);
-let totalTimePara = document.createElement('p');
-totalTimePara.textContent = "Total length of all replay episodes: " + days + " days, " + hours + " hours, " + minutes + " minutes, " + seconds + " seconds!";
-totalTimePara.textContent += "\nTotal seconds: " + totalTimeSeconds;
-mainElement.appendChild(totalTimePara);
-*/
+
 // Set date the document was last modified at the bottom of the page
 document.getElementById('lastModifiedDate').innerHTML = new Date(document.lastModified).toDateString();
 document.getElementById('lastModifiedReplayList').innerHTML = lastModifiedReplayList;

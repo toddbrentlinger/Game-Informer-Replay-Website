@@ -1,7 +1,6 @@
 ﻿// Dark Mode Switch
 var darkModeSwitch = document.getElementById('dark-mode-checkbox');
 const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
-
 if (currentTheme) {
     document.documentElement.setAttribute('data-theme', currentTheme);
     if (currentTheme == 'dark') {
@@ -19,9 +18,22 @@ darkModeSwitch.addEventListener('click', function (event) {
     }
 });
 
-// Populate replay episode object array in episode collection object
-replayEpisodeCollection.populateEpisodeObjectArray();
-replayEpisodeCollection.populateMainElement();
+// Sort Order - Event Listener
+document.querySelector('#sort > select[name = "sort-order"]')
+    .addEventListener("change", function () {
+
+    });
+
+// Shuffle Button
+document.getElementById('button-shuffle')
+    .addEventListener(
+    "click",
+    replayEpisodeCollection.shuffleSelectedEpisodes
+        .bind(replayEpisodeCollection)
+    );
+
+// Replay Episode Collection
+replayEpisodeCollection.init(replayEpisodeArray);
 
 var videoIdArray = [];
 for (const replayEpisode of replayEpisodeCollection.replayEpisodeObjectArray) {

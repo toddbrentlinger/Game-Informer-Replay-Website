@@ -53,7 +53,7 @@ class ReplayEpisode {
 
         // Middle Segment Content (only 3rd season)
         if (replayEpisode.hasOwnProperty('middleSegmentContent')
-            && replayEpisode.secondSegment.replace(/-/gi, '').length)
+            && replayEpisode.middleSegmentContent.replace(/-/gi, '').length)
                 this.middleSegmentContent = replayEpisode.middleSegmentContent;
 
         // Second Segment
@@ -61,9 +61,9 @@ class ReplayEpisode {
             this.secondSegment = replayEpisode.secondSegment;
 
         // Second Segment Games
-        if (Array.isArray(replayEpisode.secondSegmentGames) &&
-            replayEpisode.secondSegmentGames.length &&
-            replayEpisode.secondSegmentGames[0].replace(/-/gi).length) {
+        if (Array.isArray(replayEpisode.secondSegmentGames)
+            && replayEpisode.secondSegmentGames.length
+            && replayEpisode.secondSegmentGames[0].replace(/-/gi, '').length) {
             this.secondSegmentGames = replayEpisode.secondSegmentGames;
         }
 
@@ -147,6 +147,7 @@ class ReplayEpisode {
         return [season, seasonEpisode];
     }
 
+    // Function: getDateString
     getDateString() {
         let months = ["January", "February", "March", "April", "May", "June", "July",
             "August", "September", "October", "November", "December"];
@@ -238,7 +239,7 @@ class ReplayEpisode {
 
         // Episode Air Date
         // Create element and append as child to episode details element
-        let episodeAirDateElement = episodeDetailsElement.appendChild(ReplayEpisode.createElementAdv('p', 'episodeAirDate'));
+        let episodeAirDateElement = episodeDetailsElement.appendChild(ReplayEpisode.createElementAdv('div', 'episodeAirDate'));
         // Create bold element and append as child of episode air date element
         episodeAirDateElement.appendChild(ReplayEpisode.createElementAdv('b', undefined, 'Original Air Date: '));
         // Create text node and append as child of episode air date element
@@ -265,10 +266,57 @@ class ReplayEpisode {
         }
 
         // Main Segment Games
+        // Create element and append as child to episode details element
+        const mainGamesElement = episodeDetailsElement.appendChild(ReplayEpisode.createElementAdv('div', 'mainSegment'));
+        // Create bold element and append as child of main games element
+        mainGamesElement.appendChild(ReplayEpisode.createElementAdv(
+            'b', undefined,
+            'Main Segment Game' + (this.mainSegmentGamesAdv.length > 1 ? 's' : '') 
+            + ': '
+        ));
+        // Create array of main games titles
+        let mainGameTitles = [];
+        this.mainSegmentGamesAdv.forEach(game => mainGameTitles.push(game.title));
+        // Create text node and append as child of main games element
+        mainGamesElement.appendChild(document.createTextNode(ReplayEpisode.listArrayAsString(mainGameTitles)));
 
         // Middle Segment (only 3rd season)
+        // If episode has middle segment name or content
+        if (this.hasOwnProperty('middleSegment') || this.hasOwnProperty('middleSegmentContent')) {
+            // Create element and append as child to episode details element
+            let middleSegmentElement = episodeDetailsElement.appendChild(ReplayEpisode.createElementAdv('div', 'middleSegment'));
+            // Create bold element and append as child of middle segment element
+            middleSegmentElement.appendChild(ReplayEpisode.createElementAdv('b', undefined, 'Middle Segment: '))
+            // Create text node and append as child of middle segment element
+            middleSegmentElement.appendChild(document.createTextNode(
+                (this.hasOwnProperty('middleSegment')
+                    ? ReplayEpisode.getSegmentTitle(this.middleSegment)
+                    + (this.hasOwnProperty('middleSegmentContent') ? ' - ' : '')
+                    : '')
+                + (this.hasOwnProperty('middleSegmentContent')
+                    ? ReplayEpisode.listArrayAsString(this.middleSegmentContent)
+                    : '')
+            ));
+        }
 
         // Second Segment
+        // If episode has second segment name or games
+        if (this.hasOwnProperty('secondSegment') || this.hasOwnProperty('secondSegmentGames')) {
+            // Create element and append as child to episode details element
+            let secondSegmentElement = episodeDetailsElement.appendChild(ReplayEpisode.createElementAdv('div', 'secondSegment'));
+            // Create bold element and append as child of second segment element
+            secondSegmentElement.appendChild(ReplayEpisode.createElementAdv('b', undefined, 'Second Segment: '))
+            // Create text node and append as child of second segment element
+            secondSegmentElement.appendChild(document.createTextNode(
+                (this.hasOwnProperty('secondSegment')
+                    ? ReplayEpisode.getSegmentTitle(this.secondSegment)
+                    + (this.hasOwnProperty('secondSegmentGames') ? ' - ' : '')
+                    : '')
+                + (this.hasOwnProperty('secondSegmentGames')
+                    ? ReplayEpisode.listArrayAsString(this.secondSegmentGames)
+                    : '')
+            ));
+        }
 
         // -------------------------------
         // ---------- More Info ----------
@@ -292,6 +340,48 @@ class ReplayEpisode {
             } else { // Else create p element and append as child to more info element
                 episodeMoreInfoElement.appendChild(ReplayEpisode.createElementAdv('p', undefined, descriptionTextValue));
             }
+        }
+
+        // External Links
+        if (this.hasOwnProperty('external_links')) {
+            // Create element and append as child to more info element
+            let externalLinksElement = episodeMoreInfoElement.appendChild(ReplayEpisode.createElementAdv('div', 'external-links'));
+            externalLinksElement.appendChild(ReplayEpisode.createElementAdv('h4', undefined, 'External Links:'));
+            // Create ul element and append as child to external links element
+            let listElement = externalLinksElement.appendChild(document.createElement('ul'));
+            // Loop through each value of array of list values
+            for (const linkObj of this.external_links) {
+                // Create li element and append as child to ul element
+                let listItemElement = listElement.appendChild(document.createElement('li'));
+                // Create i element and append as child to li list element
+                // then create anchor element and append as child to i element
+                let anchorElement = listItemElement.appendChild(document.createElement('i'))
+                    .appendChild(ReplayEpisode.createElementAdv('a', undefined, linkObj.title));
+                anchorElement.setAttribute('href', linkObj.href);
+                anchorElement.setAttribute('target', '_blank');
+                // Add text listing source of link
+                const linkSourceOptions = [
+                    ['gameinformer', 'Game Informer'],
+                    ['youtube', 'YouTube'],
+                    ['wikipedia', 'Wikipedia'],
+                    ['gamespot', 'GameSpot'],
+                    ['steampowered', 'Steam']
+                ];
+                let linkSource = '';
+                let linkURL = linkObj.href;
+                // Find matching link source
+                for (let i = 0; i < linkSourceOptions.length; i++) {
+                    if (linkURL.includes(linkSourceOptions[i][0])) {
+                        linkSource = linkSourceOptions[i][1];
+                        break;
+                    }
+                }
+                // If no match was found don't include anything
+                if (linkSource)
+                    listItemElement.appendChild(document.createTextNode(' on '
+                        + linkSource));
+            }
+            // Add link to Fandom page for episode
         }
 
         // Return episode section HTML
@@ -398,10 +488,20 @@ class ReplayEpisode {
                 + this.listArrayAsString(mainSegmentGamesTitleArray) + '.');
         }
         // Middle Segment
+        // If episode has segment name
         if (replayEpisode.hasOwnProperty('middleSegment') && replayEpisode.middleSegment.length) {
-            descriptionArr.push('The middle segment is an installment of ' + this.getSegmentTitle(replayEpisode.middleSegment) +
-                ' featuring ' + this.listArrayAsString(replayEpisode.middleSegmentContent) + '.');
+            let str = 'The middle segment is an installment of ' + this.getSegmentTitle(replayEpisode.middleSegment);
+            // If episode has segment content
+            if (replayEpisode.hasOwnProperty('middleSegmentContent') && replayEpisode.middleSegmentContent.length)
+                str += ' featuring ' + this.listArrayAsString(replayEpisode.middleSegmentContent);
+            descriptionArr.push(str + '.');
         }
+        // Else If episode has segment content (should NOT have segment name)
+        else if (replayEpisode.hasOwnProperty('middleSegmentContent')) {
+            descriptionArr.push('The middle segment features '
+                + this.listArrayAsString(replayEpisode.middleSegmentContent + '.'));
+        }
+
         // Second Segment
         if (replayEpisode.hasOwnProperty('secondSegment') && replayEpisode.secondSegment.length) {
             if (replayEpisode.secondSegment == 'RR')
@@ -454,14 +554,4 @@ class ReplayEpisode {
         totalTimeSeconds += timeArr[timeArr.length - 1] + timeArr[timeArr.length - 2] * 60
             + (timeArr.length == 3 ? timeArr[timeArr.length - 3] * 3600 : 0);
     }
-
-    // Static function and data member to track number of ReplayEpisode objects
-    static totalEpisodesNumber() {
-
-    }
 }
-
-// Static(class- side) data properties and prototype data properties must 
-// be defined outside of the ClassBody declaration
-
-ReplayEpisode.totalTimeSeconds = 0;

@@ -253,6 +253,7 @@ main > img {
     padding: 0 .6em;
     font-size: .9em;
 }
+.episodeDetails > * { padding: .5em 0; }
 
 /* Episode More Info (Button to dropdown display) */
 .episodeMoreInfo {
@@ -317,9 +318,23 @@ main > img {
 #filterForm > fieldset { 
     display: inline-block;
     text-align: center;
+    padding: 0 .3em;
 }
 
 #filterForm > fieldset > div > label {
+}
+
+/* -------------------------- */
+/* ---------- Sort ---------- */
+/* -------------------------- */
+
+#sort > * {
+}
+
+#sort::after {
+    content: "";
+    clear: both;
+    display: table;
 }
 
 /* ------------------------------- */

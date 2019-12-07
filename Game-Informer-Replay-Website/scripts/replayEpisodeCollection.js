@@ -13,8 +13,10 @@ const filter = Object.freeze({
 
 // Sort enum
 const sort = Object.freeze({
-    default: 0,
-    episodeNumber: 1 // same as airdate
+    airdate: 0,
+    views: 1,
+    likes: 2,
+    shuffle: 3
 });
 
 // Object: Collection of all replay episodes
@@ -27,10 +29,11 @@ var replayEpisodeCollection = {
     // then get the episode object by index instead of creating separate
     // array of ReplayEpisode objects
     selectedEpisodes: [],
-    maxDisplayedEpisodes: 100, // If 0, show all. Increments [0, 10, 25, 50, 100, 200]
+    maxDisplayedEpisodes: 50, // Increments [10, 25, 50, 100, 200]
+    pageDisplayed: 1, // Page number of selected episodes list depending on maxDisplayedEpisodes
     sort: sort.default, // initialize to sort.episodeNumber
     ascending: false, // whether to sort in ascending/descending order
-    shuffle: false,
+    //shuffle: false,
     filter: filter.none
 };
 
@@ -38,7 +41,24 @@ var replayEpisodeCollection = {
 // ---------- Methods ----------
 // -----------------------------
 
-replayEpisodeCollection.populateEpisodeObjectArray = function () {
+// Function: init()
+replayEpisodeCollection.init = function (replayEpisodeArray) {
+    // Populate replay episode object array in episode collection object
+    this.populateEpisodeObjectArray(replayEpisodeArray);
+
+    // Initialize selected episodes array to same order of base episode object array
+    this.selectedEpisodes = this.replayEpisodeObjectArray.slice();
+
+    // Clone episode section template to use for episode data
+    this.episodeTemplate = document.querySelector('section.episode')
+        .cloneNode(true);
+
+    // Populate main element with initialized selected episodes array
+    this.populateMainElement();
+};
+
+// Function: populateEpisodeObjectArray()
+replayEpisodeCollection.populateEpisodeObjectArray = function (replayEpisodeArray) {
     for (const replayEpisode of replayEpisodeArray) {
         const replayEpisodeObject = new ReplayEpisode(replayEpisode);
 
@@ -52,12 +72,13 @@ replayEpisodeCollection.populateEpisodeObjectArray = function () {
     }
 
     // Initialize displayed episodes array to same order of base episode object array
-    this.updateSelectedEpisodes(sort.default);
+    //this.updateSelectedEpisodes(sort.default);
 
     // Success Message
     console.log('Finished replay episode assignment');
 };
 
+// Function: clearMainElement()
 replayEpisodeCollection.clearMainElement = function () {
     let currentEpisodeElements = this.mainElement.getElementsByClassName('episode');
     // Make sure there are no episode elements already in place
@@ -67,7 +88,7 @@ replayEpisodeCollection.clearMainElement = function () {
     }
 }
 
-/* Function: populateMainElement
+/* Function: populateMainElement(begin, end)
  * Populate main HTML element with episode HTML from displayed episodes array
  * A negative index can be used, indicating an offset from the end of the sequence. 
  * If end is omitted, extracts through the end of the sequence(arr.length).
@@ -92,6 +113,7 @@ replayEpisodeCollection.populateMainElement = function (begin = 0, end = this.ma
         this.mainElement.appendChild(this.selectedEpisodes[i].episodeSection);
 };
 
+// Function: showTotalTime()
 replayEpisodeCollection.showTotalTime = function () {
     // Show total time of episodes
     let seconds, minutes, hours, days = 0;
@@ -107,6 +129,7 @@ replayEpisodeCollection.showTotalTime = function () {
     this.mainElement.appendChild(totalTimePara);
 };
 
+// Function: getEpisodeByNumber(num)
 replayEpisodeCollection.getEpisodeByNumber = function (num) {
     for (const episode of this.replayEpisodeObjectArray) {
         if (episode.episodeNumber == num)
@@ -116,10 +139,10 @@ replayEpisodeCollection.getEpisodeByNumber = function (num) {
     return 0;
 };
 
-// Function: updateSelectedEpisodeArray
+// Function: updateSelectedEpisodes()
 replayEpisodeCollection.updateSelectedEpisodes = function (sortType, filterType) {
-    switch (sortType) {
-        case sort.default:
+    switch (filterType) {
+        case filter.none:
             this.selectedEpisodes = this.replayEpisodeObjectArray.slice();
             break;
         default:
@@ -152,7 +175,7 @@ replayEpisodeCollection.filterBySeason = function (seasonToFilter) {
     }
 };
 
-// Function: shuffleArray
+// Function: shuffleArray(arr)
 // Accepts array as argument to shuffle
 replayEpisodeCollection.shuffleArray = function (arr) {
 
@@ -165,7 +188,12 @@ replayEpisodeCollection.shuffleArray = function (arr) {
         arr[i] = arr[j];
         arr[j] = temp;
     }
-
     // Use a different seed value so don't get same result each time 
     // srand(time(NULL));
+};
+
+// Function: shuffleSelectedEpisodes()
+replayEpisodeCollection.shuffleSelectedEpisodes = function () {
+    this.shuffleArray(this.selectedEpisodes);
+    this.updateSelectedEpisodes();
 };

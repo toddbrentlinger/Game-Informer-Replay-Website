@@ -18,18 +18,33 @@ darkModeSwitch.addEventListener('click', function (event) {
     }
 });
 
-// Sort Order - Event Listener
-document.querySelector('#sort > select[name = "sort-order"]')
-    .addEventListener("change", function () {
+// Sort - Event Listeners
+document.querySelector('#sort > select[name="sort-direction"]')
+    .addEventListener("change",
+    replayEpisodeCollection.sortSelectedEpisodes
+    .bind(replayEpisodeCollection),
+    false);
+document.querySelector('#sort > select[name="max-displayed"]')
+    .addEventListener("change",
+    replayEpisodeCollection.sortSelectedEpisodes
+        .bind(replayEpisodeCollection),
+    false);
 
-    });
+// Filter - Event Listeners
+
+// Seach - Event Listeners
+document.querySelector('#search-container button')
+    .addEventListener("click",
+    replayEpisodeCollection.search.bind(replayEpisodeCollection),
+    false);
 
 // Shuffle Button
 document.getElementById('button-shuffle')
     .addEventListener(
     "click",
     replayEpisodeCollection.shuffleSelectedEpisodes
-        .bind(replayEpisodeCollection)
+        .bind(replayEpisodeCollection),
+    false
     );
 
 // Replay Episode Collection

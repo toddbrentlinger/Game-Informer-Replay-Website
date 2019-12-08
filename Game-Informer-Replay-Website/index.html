@@ -52,6 +52,7 @@
             <li><a href="#superReplay">Super Replay</a></li>
             <li><a href="https://www.gameinformer.com/index.php/covergallery" target="_blank">Magazine Covers</a></li>
             <li><a href="https://replay.fandom.com/wiki/Category:Game_Informer_staff" target="_blank">GI Crew</a></li>
+            <li><a href="/debug/episodeSection.html">Episode Section</a></li>
         </ul>
         <div class="switch-container">
             <em>Enable Dark Mode</em>
@@ -75,9 +76,13 @@
             <img src="images/Game_Informer_logo_(2010-present).png" alt="Game Informer Logo" width="2028" height="371" />
             <img src="/images/replay-logo-alpha.png" alt="Game Informer Replay Logo" width="610" height="214" />
 
-            <label>Enter search:</label>
-            <input type="search" />
-            <button type="button">Search</button>
+            <!-- Search -->
+            <div id="search-container">
+                <label>Search: </label>
+                <input type="search" placeholder="Enter search..." required />
+                <button type="button">Search</button>
+            </div>
+
             <!-- Filter Form -->
             <form id="filterForm">
                 <fieldset form="filterForm" id="seasonField">
@@ -119,17 +124,21 @@
 
             <div id="sort">
                 <label for="sort-select">Sort:</label>
-                <select name="sort" id="sort-select">
+                <select name="sort-type" id="sort-type-select">
+                    <option value="">-- Sort By --</option>
                     <option value="airdate">Air Date</option>
                     <option value="most-viewed">Most Viewed</option>
                     <option value="most-liked">Most Liked</option>
+                    <option value="search-relevance">Search Relevance</option>
                     <option value="shuffle">Shuffle</option>
                 </select>
-                <label for="sort-order-select">Order:</label>
-                <select name="sort-order" id="sort-order-select">
-                    <option value="descending">Descending</option>
+
+                <label for="sort-direction-select">Direction:</label>
+                <select name="sort-direction" id="sort-direction-select">
+                    <option value="descending" selected>Descending</option>
                     <option value="ascending">Ascending</option>
                 </select>
+
                 <label for="max-displayed-select">Max Displayed:</label>
                 <select name="max-displayed" id="max-displayed-select">
                     <option>10</option>
@@ -137,6 +146,7 @@
                     <option selected>50</option>
                     <option>100</option>
                     <option>200</option>
+                    <option value="show-all">All</option>
                 </select>
             </div>
 

@@ -381,7 +381,13 @@ class ReplayEpisode {
                     listItemElement.appendChild(document.createTextNode(' on '
                         + linkSource));
             }
+            /*
             // Add link to Fandom page for episode
+            let linkElement = listElement.appendChild(document.createElement('li'))
+                .appendChild(ReplayEpisode.createElementAdv('a', undefined, 'Fandom Episode Link'))
+                .setAttribute('href', 'https://replay.fandom.com' + this.fandomWikiURL);
+            linkElement.setAttribute('target', '_blank');
+            */
         }
 
         // Return episode section HTML

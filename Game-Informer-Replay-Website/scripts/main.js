@@ -19,16 +19,18 @@ darkModeSwitch.addEventListener('click', function (event) {
 });
 
 // Sort - Event Listeners
-document.querySelector('#sort > select[name="sort-direction"]')
+document.querySelector(
+    '#sort-container > select[name="sort-direction"]')
     .addEventListener("change",
-    replayEpisodeCollection.sortSelectedEpisodes
+    replayEpisodeCollection.setSortByEvent
     .bind(replayEpisodeCollection),
     false);
-document.querySelector('#sort > select[name="max-displayed"]')
+document.querySelector(
+    '#sort-container > select[name = "max-displayed"]')
     .addEventListener("change",
-    replayEpisodeCollection.sortSelectedEpisodes
-        .bind(replayEpisodeCollection),
-    false);
+        replayEpisodeCollection.setSortByEvent
+            .bind(replayEpisodeCollection),
+        false);
 
 // Filter - Event Listeners
 

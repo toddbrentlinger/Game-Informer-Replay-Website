@@ -30,20 +30,6 @@
     <meta name="keywords" content="game informer, replay, super replay" />
 </head>
 <body>
-    <!-- Header -->
-    <header>
-        <h1>Game Informer Replay</h1>
-    </header>
-
-    <div style="display: none;" id="videoPlayer">
-        <div class="iframeWrapper">
-            <div id="youtubePlayerPlaceholder"></div>
-            <!--
-            <iframe id="youtubePlayer" width="640" height="360" src="https://www.youtube.com/embed/jsEIcUHPz5M?enablejsapi=1" frameborder="0"></iframe>
-            -->
-        </div>
-    </div>
-
     <!-- Top Navigation -->
     <nav id="topnav">
         <!--<img src="/images/logo.svg" alt="Game Informer logo" /> -->
@@ -63,7 +49,24 @@
         </div>
     </nav>
 
-    <div class="row">
+    <!-- Header -->
+    <header>
+        <h1>Game Informer Replay</h1>
+        <img src="images/Game_Informer_logo_(2010-present).png" alt="Game Informer Logo" width="2028" height="371" />
+        <img src="/images/replay-logo-alpha.png" alt="Game Informer Replay Logo" width="610" height="214" />
+
+    </header>
+
+    <div style="display: none;" id="videoPlayer">
+        <div class="iframeWrapper">
+            <div id="youtubePlayerPlaceholder"></div>
+            <!--
+            <iframe id="youtubePlayer" width="640" height="360" src="https://www.youtube.com/embed/jsEIcUHPz5M?enablejsapi=1" frameborder="0"></iframe>
+            -->
+        </div>
+    </div>
+
+    <div class="row" id="top-page">
         <!-- Left Column -->
         <nav id="sidenav" class="column left">
             <ul>
@@ -73,9 +76,6 @@
 
         <!-- Middle Column -->
         <main class="column middle" id="main">
-            <img src="images/Game_Informer_logo_(2010-present).png" alt="Game Informer Logo" width="2028" height="371" />
-            <img src="/images/replay-logo-alpha.png" alt="Game Informer Replay Logo" width="610" height="214" />
-
             <!-- Search -->
             <div id="search-container">
                 <label>Search: </label>
@@ -118,36 +118,40 @@
                 </div>
             </form>
 
-            <button type="button" id="button-toggleVideoPlayer">Toggle YT Player</button>
-            <button type="button" id="button-shuffle">Shuffle</button>
-            <button type="button" id="button-reset-list">Reset List</button>
+            <div>
+                <div id="misc-buttons-container">
+                    <button type="button" id="button-toggleVideoPlayer">Toggle YT Player</button>
+                    <button type="button" id="button-shuffle">Shuffle</button>
+                    <button type="button" id="button-reset-list">Reset List</button>
+                </div>
 
-            <div id="sort">
-                <label for="sort-select">Sort:</label>
-                <select name="sort-type" id="sort-type-select">
-                    <option value="">-- Sort By --</option>
-                    <option value="airdate">Air Date</option>
-                    <option value="most-viewed">Most Viewed</option>
-                    <option value="most-liked">Most Liked</option>
-                    <option value="search-relevance">Search Relevance</option>
-                    <option value="shuffle">Shuffle</option>
-                </select>
+                <div id="sort-container">
+                    <label for="sort-select">Sort:</label>
+                    <select name="sort-type" id="sort-type-select">
+                        <option value="">-- Sort By --</option>
+                        <option value="airdate">Air Date</option>
+                        <option value="most-viewed">Most Viewed</option>
+                        <option value="most-liked">Most Liked</option>
+                        <option value="search-relevance">Search Relevance</option>
+                        <option value="shuffle">Shuffle</option>
+                    </select>
 
-                <label for="sort-direction-select">Direction:</label>
-                <select name="sort-direction" id="sort-direction-select">
-                    <option value="descending" selected>Descending</option>
-                    <option value="ascending">Ascending</option>
-                </select>
+                    <label for="sort-direction-select">Direction:</label>
+                    <select name="sort-direction" id="sort-direction-select">
+                        <option value="descending" selected>Descending</option>
+                        <option value="ascending">Ascending</option>
+                    </select>
 
-                <label for="max-displayed-select">Max Displayed:</label>
-                <select name="max-displayed" id="max-displayed-select">
-                    <option>10</option>
-                    <option>25</option>
-                    <option selected>50</option>
-                    <option>100</option>
-                    <option>200</option>
-                    <option value="show-all">All</option>
-                </select>
+                    <label for="max-displayed-select">Max Displayed:</label>
+                    <select name="max-displayed" id="max-displayed-select">
+                        <option>10</option>
+                        <option>25</option>
+                        <option selected>50</option>
+                        <option>100</option>
+                        <option>200</option>
+                        <option value="show-all">All</option>
+                    </select>
+                </div>
             </div>
 
             <section class="episode">
@@ -209,6 +213,13 @@
 
         <!-- Right Column -->
         <aside class="column right"></aside>
+    </div>
+
+    <!-- Jump To Top Of Page -->
+    <div id="jump-top-page-container">
+        <a href="#main">
+            <i class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+        </a>
     </div>
 
     <!-- Footer -->

@@ -32,16 +32,58 @@ var replayEpisodeCollection = {
     // array of ReplayEpisode objects
     selectedEpisodes: [],
 
-    maxDisplayedEpisodes: 50, // Increments [10, 25, 50, 100, 200]
+    // Max Displayed Episdoes
+    _maxDisplayedEpisodes: 50, // Increments [10, 25, 50, 100, 200]
+    get maxDisplayedEpisodes() { return this._maxDisplayedEpisodes; },
+    set maxDisplayedEpisodes(num) {
+        // If string, try to convert to int, assigns NaN if cannot
+        if (typeof num == 'string')
+            num = parseInt(num, 10);
+        // If argument is a number and greater than zero, assign the value
+        // of the argument. Else assign value of 0.
+        this._maxDisplayedEpisodes = (!isNaN(num) && num > 0) ? num : 0;
+    },
+
     pageDisplayed: 1, // Page number of selected episodes list depending on maxDisplayedEpisodes
 
-    sortType: sort.default,
+    // Sort
+    _sortType: sort.default,
+    get sortType() { return this._sortType; },
+    set sortType(input) {
+        let tempSortType; // Initialized to undefined
+        // If arg is a string type, compare to properties of sort enum
+        if (typeof input === 'string') {
+            for (const property in sort) {
+                if (property == input) {
+                    tempSortType = sort[property];
+                    break;
+                }
+            }
+        }
+        // Else If arg is a number type, compare to values of sort enum
+        else if (typeof input === 'number') {
+            for (const property in sort) {
+                if (sort[property] == input) {
+                    tempSortType = input;
+                    break;
+                }
+            }
+        }
+        // If tempSortType is still undefined, do NOT assign sortType and throw error
+        if (typeof tempSortType === 'undefined') {
+            console.log('Could NOT assign sortType to value: ' + input);
+            this.sortType = sort.default;
+        }
+        else // Else assign tempSortType to sortType
+            this.sortType = tempSortType;
+    },
+
     ascending: false, // whether to sort in ascending/descending order
     filter: filter.none,
     isShuffled: false,
 
     sortTypeElement: document.getElementById('sort-type-select'),
-    sortDirectionElement: document.getElementById('sort-order-select'),
+    sortDirectionElement: document.getElementById('sort-direction-select'),
     maxDisplayedElement: document.getElementById('max-displayed-select'),
 
     searchInputElement: document.querySelector('#search-container input[type = "search"]')
@@ -51,7 +93,8 @@ var replayEpisodeCollection = {
 // ---------- Methods ----------
 // -----------------------------
 
-// Function: init(replayEpisodeArray)
+// Function: 
+// init(replayEpisodeArray)
 replayEpisodeCollection.init = function (replayEpisodeArray) {
     // Populate replay episode object array in episode collection object
     this.populateEpisodeObjectArray(replayEpisodeArray);
@@ -65,14 +108,17 @@ replayEpisodeCollection.init = function (replayEpisodeArray) {
     this.episodeTemplate = document.querySelector('section.episode')
         .cloneNode(true);
 
-    // Make sure sort/filter values match this object properties
-
+    // Initialize sort/filter properties based on selected input elements
+    this.ascending = this.sortDirectionElement.value == 'ascending';
+    this.maxDisplayedEpisodes = this.maxDisplayedElement.value;
+    console.log(this.maxDisplayedElement.value + '__' + this.sortDirectionElement.value);
 
     // Populate main element with initialized selected episodes array
     this.populateMainElement();
 };
 
-// Function: populateEpisodeObjectArray()
+// Function: 
+// populateEpisodeObjectArray()
 replayEpisodeCollection.populateEpisodeObjectArray = function (replayEpisodeArray) {
     for (const replayEpisode of replayEpisodeArray) {
         const replayEpisodeObject = new ReplayEpisode(replayEpisode);
@@ -93,7 +139,8 @@ replayEpisodeCollection.populateEpisodeObjectArray = function (replayEpisodeArra
     console.log('Finished replay episode assignment');
 };
 
-// Function: clearMainElement()
+// Function: 
+// clearMainElement()
 replayEpisodeCollection.clearMainElement = function () {
     let currentEpisodeElements = this.mainElement.getElementsByClassName('episode');
     // Make sure there are no episode elements already in place
@@ -103,7 +150,8 @@ replayEpisodeCollection.clearMainElement = function () {
     }
 }
 
-/* Function: populateMainElement(begin, end)
+/* Function: 
+ * populateMainElement(begin, end)
  * Populate main HTML element with episode HTML from displayed episodes array
  * A negative index can be used, indicating an offset from the end of the sequence. 
  * If end is omitted, extracts through the end of the sequence(arr.length).
@@ -128,7 +176,8 @@ replayEpisodeCollection.populateMainElement = function (begin = 0, end = this.ma
         this.mainElement.appendChild(this.selectedEpisodes[i].episodeSection);
 };
 
-// Function: showTotalTime()
+// Function: 
+// showTotalTime()
 replayEpisodeCollection.showTotalTime = function () {
     // Show total time of episodes
     let seconds, minutes, hours, days = 0;
@@ -144,7 +193,8 @@ replayEpisodeCollection.showTotalTime = function () {
     this.mainElement.appendChild(totalTimePara);
 };
 
-// Function: getEpisodeByNumber(num)
+// Function: 
+// getEpisodeByNumber(num)
 replayEpisodeCollection.getEpisodeByNumber = function (num) {
     for (const episode of this.replayEpisodeObjectArray) {
         if (episode.episodeNumber == num)
@@ -154,7 +204,8 @@ replayEpisodeCollection.getEpisodeByNumber = function (num) {
     return 0;
 };
 
-// Function: updateSelectedEpisodes()
+// Function: 
+// updateSelectedEpisodes()
 // IN PROGRESS
 replayEpisodeCollection.updateSelectedEpisodes = function (filterType) {
 
@@ -169,7 +220,8 @@ replayEpisodeCollection.updateSelectedEpisodes = function (filterType) {
     this.populateMainElement();
 };
 
-// Function: shuffleArray(arr)
+// Function: 
+// shuffleArray(arr)
 // Accepts array as argument to shuffle
 replayEpisodeCollection.shuffleArray = function (arr) {
 
@@ -182,26 +234,21 @@ replayEpisodeCollection.shuffleArray = function (arr) {
         arr[i] = arr[j];
         arr[j] = temp;
     }
-    // Use a different seed value so don't get same result each time 
-    // srand(time(NULL));
 };
 
-// Function: shuffleSelectedEpisodes()
+// Function: 
+// shuffleSelectedEpisodes()
 replayEpisodeCollection.shuffleSelectedEpisodes = function () {
+    this.isShuffled = true;
+    // Shuffle selectedEpisodes
     this.shuffleArray(this.selectedEpisodes);
+    // Update displayed episodes
     this.populateMainElement();
 };
 
-// Function: filterSelectedEpisodes()
-replayEpisodeCollection.filterSelectedEpisodes = function () {
-    switch (this.filter) {
-        case filter.text: break;
-        case filter.none:
-        default:
-    }
-};
-
-// Function: filterBySearch(searchTerms)
+// Function: 
+// filterBySearch(searchTerms)
+// IN-PROGRESS
 replayEpisodeCollection.search = function () {
     let searchTerms = this.searchInputElement.value;
 
@@ -236,7 +283,19 @@ replayEpisodeCollection.search = function () {
     }
 };
 
-// Function: filterBySeason
+// Function: 
+// filterSelectedEpisodes()
+// IN-PROGRESS
+replayEpisodeCollection.filterSelectedEpisodes = function () {
+    switch (this.filter) {
+        case filter.text: break;
+        case filter.none:
+        default:
+    }
+};
+
+// Function: 
+// filterBySeason
 // Filters the current array of filtered episodes by season
 // Argument can be number or array of numbers
 replayEpisodeCollection.filterBySeason = function (seasonToFilter) {
@@ -252,42 +311,36 @@ replayEpisodeCollection.filterBySeason = function (seasonToFilter) {
     }
 };
 
-// Function: sortSelectedEpisodes(event)
+// ------------------------------------
+// --------------- Sort ---------------
+// ------------------------------------
+
+// Function: 
+// sortSelectedEpisodes(event)
 // Event Listener
 // TODO - Can remove some const variables by putting them directly into
 // the later assignment but may have to use them like sortTypeSelect
 // TODO - Could combine two switchs in case 'sort-type'
-replayEpisodeCollection.sortSelectedEpisodes = function (event) {
+replayEpisodeCollection.setSortByEvent = function (event) {
     switch (event.currentTarget.name) {
+        // Sort Type
         case 'sort-type':
-            // Sort Type - Assign this.sortType
+            this.sortType = event.currentTarget.value;
+            /*
+            // Assign sortType
             switch (event.currentTarget.value) {
                 case 'airdate': this.sortType = sort.airdate; break;
                 case 'most-viewed': this.sortType = sort.views; break;
                 case 'most-liked': this.sortType = sort.likes; break;
                 default: this.sortType = sort.default;
-            }
-            // Change sort type of selectedEpisodes
-            switch (this.sortType) {
-                case sort.airdate:
-                    // Sorts in ascending order
-                    this.selectedEpisodes.sort(function (firstEl, seconEl) {
-                        return firstEl.airdate - secondEl.airdate;
-                    });
-                    // Reverse array if this.ascending is false
-                    if (!this.ascending)
-                        this.selectedEpisodes.reverse();
-                    break;
-                case sort.default:
-                default:
-                    // Default in descending order
-                    this.selectedEpisodes = this.replayEpisodeObjectArray.slice();
-                    if (this.ascending)
-                        this.selectedEpisodes.reverse();
-            }
+            }*/
+            // Sort selectedEpisodes by sortType
+            this.sortByType();
             break;
+
+        // Sort Direction
         case 'sort-direction':
-            // Sort direction - Assign this.ascending
+            // Assign ascending bool
             if (event.currentTarget.value == 'ascending') {
                 if (!this.ascending) {
                     this.ascending = true;
@@ -300,11 +353,14 @@ replayEpisodeCollection.sortSelectedEpisodes = function (event) {
                 }
             }
             break;
+
+        // Max Displayed
         case 'max-displayed':
             // Max Displayed Episodes - Assign this.maxDisplayedEpisodes
-            this.maxDisplayedEpisodes = (event.currentTarget.value == 'show-all')
-                    ? 0 : parseInt(event.currentTarget.value, 10);
+            this.maxDisplayedEpisodes = event.currentTarget.value;
             break;
+
+        // Default
         default:
     }
 
@@ -312,13 +368,46 @@ replayEpisodeCollection.sortSelectedEpisodes = function (event) {
     this.populateMainElement();
 };
 
-replayEpisodeCollection.setSelectedSortOptionElements = function () {
+// Function:
+// setSortByInput()
+replayEpisodeCollection.setSortByInput = function () {
     // Sort Type
-    this.sortTypeElement;
+    const sortTypeInput = this.sortTypeElement.value;
+    switch (sortTypeInput) {
+        case 'airdate': this.sortType = sort.airdate; break;
+        case 'most-viewed': this.sortType = sort.views; break;
+        case 'most-liked': this.sortType = sort.likes; break;
+        default: this.sortType = sort.default;
+    }
+    this.sortType
 
-    // Sort Order
-    this.sortDirectionElement;
+    this.ascending = this.sortDirectionElement.value == 'ascending';
+    this.maxDisplayedEpisodes = this.maxDisplayedElement.value;
 
-    // Max Displayed
-    this.maxDisplayedElement;
+    console.log(this.maxDisplayedElement.value + '__' + this.sortDirectionElement.value);
+
+};
+
+// sortByType
+replayEpisodeCollection.sortByType = function () {
+    // Sort selectedEpisodes by sortType
+    switch (this.sortType) {
+        // Air Date
+        case sort.airdate:
+            // Sorts in ascending order
+            this.selectedEpisodes.sort(function (firstEl, seconEl) {
+                return firstEl.airdate - secondEl.airdate;
+            });
+            // Reverse array if this.ascending is false
+            if (!this.ascending)
+                this.selectedEpisodes.reverse();
+            break;
+        // Default
+        case sort.default:
+        default:
+            // Default in descending order
+            this.selectedEpisodes = this.replayEpisodeObjectArray.slice();
+            if (this.ascending)
+                this.selectedEpisodes.reverse();
+    }
 };

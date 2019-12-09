@@ -1,5 +1,15 @@
 ﻿TO-DO:
 
+12/8/19
+
+- ISSUE: Alex Kidd Enchanted Castle
+Editor Antics paragraph not added from we scrape
+
+- ISSUE: When changing maxDisplayedEpisodes, entire list is 
+removed from display before adding new list. 
+SOLUTION: Add/remove only required episodes from display, leaving
+other episode sections alone.
+
 12/6/19
 
 - Display game titles in details with limit. For episodes with long

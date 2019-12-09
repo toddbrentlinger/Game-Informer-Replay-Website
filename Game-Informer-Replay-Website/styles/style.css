@@ -14,10 +14,15 @@ Softrobo Pro Font on fonts.com
 
 /* Varbiables */
 :root {
-    --main-bg-color: #0077a2;
-    --main-bg-select-color: hsl(196, 100%, 15%); 
-    --second-bg-color: #f6f6f6;
-    --main-text-color: #3a3a3a;
+    --main-text-color: #f6f6f6; /* nearly pure white */
+    --main-bg-color: #0077a2; /* gi blue */
+    --main-bg-select-color: hsl(196, 100%, 15%); /* dark gi blue */
+
+    --second-text-color: #0077a2; /* gi blue */
+    --second-bg-color: #f6f6f6; /* nearly pure white */
+
+    --third-text-color: #3a3a3a; /* nearly pure black */
+    --third-bg-color: #f6f6f6; /* nearly pure white */
 }
 
 *, *:before, *:after {
@@ -43,7 +48,7 @@ html {
 
 body {
     background-color: var(--second-bg-color);
-    color: var(--main-bg-color);
+    color: var(--second-text-color);
     margin: 3%; /* default: 8px */
     margin-top: 0;
 }
@@ -96,7 +101,7 @@ h1 { display: none; }
 
 h1, h2, footer { text-align: center; }
 
-main > img {
+header > img {
     max-width: 80%;
     height: auto;
     display: block;
@@ -133,7 +138,7 @@ main > img {
         prevent space between inline-block elements */
     padding: 0.875em 1em; /* 14px 16px (1em=16px) */
     text-decoration: none;
-    color: var(--second-bg-color);
+    color: var(--main-text-color);
 }
 /* Set color on default link and active pseudo-classes */
 #topnav a:link, #topnav a:visited {
@@ -168,7 +173,7 @@ main > img {
 /* Episode Header */
 .episodeHeader {
     background-color: var(--main-bg-color);
-    color: var(--second-bg-color);
+    color: var(--main-text-color);
     padding: 1em;
     border-radius: 1em 1em 0 0;
 }
@@ -337,13 +342,38 @@ main > img {
     display: table;
 }
 
+/* ----------------------------------------- */
+/* ---------- Jump To Top of Page ---------- */
+/* ----------------------------------------- */
+
+#jump-top-page-container {
+    position: fixed;
+    right: .5em;
+    bottom: .5em;
+}
+#jump-top-page-container > a {
+    display: block;
+    background-color: var(--second-bg-color);
+    border-radius: 50%;
+}
+#jump-top-page-container > a > i {
+    color: var(--second-text-color);
+    font-size: 2em;
+    padding: .05em;
+}
+
 /* ------------------------------- */
 /* ---------- Dark Mode ---------- */
 /* ------------------------------- */
 
 @media (prefers-color-scheme: dark) {
     :root {
+        --main-text-color: ;
         --main-bg-color: #000;
+        --main-bg-select-color:;
+
+        --second-text-color: ;
+        --second-bg-color: ;
     }
 }
 
@@ -352,15 +382,17 @@ main > img {
 /* ----------------------------------------------- */
 
 [data-theme="dark"] {
-    --main-bg-color: black;
-    --main-bg-select-color: blue;
-    --second-bg-color: grey;
-    --main-text-color: #f6f6f6;
+    --main-text-color: hsl(0, 0%, 96%);
+    --main-bg-color: hsl(0, 0%, 30%);
+    --main-bg-select-color: hsl(0, 0%, 24%);
+    --second-text-color: hsl(0, 0%, 56%);
+    --second-bg-color: hsl(0, 0%, 10%);
+    --third-bg-color: hsl(0, 0%, 0%);
 }
 
 .switch-container {
     display: inline-block;
-    color: var(--second-bg-color);
+    color: var(--main-text-color);
 }
 
 .switch-container > em { display: block; }
@@ -400,3 +432,11 @@ input:checked + .slider { background-color: var(--main-bg-select-color); }
 input:checked + .slider:before { transform: translateX(26px); }
 .slider.round { border-radius: 34px; }
 .slider.round:before { border-radius: 50%; }
+
+/* -------------------------- */
+/* ---------- Misc ---------- */
+/* -------------------------- */
+
+/* Episode Anchor Links */
+.external-links a { color: #1f64e3; }
+.external-links a:visited { color: #ff008f; }

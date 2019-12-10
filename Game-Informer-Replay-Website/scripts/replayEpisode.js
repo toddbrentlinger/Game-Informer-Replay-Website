@@ -189,9 +189,11 @@ class ReplayEpisode {
         // ---------- Thumbnail ----------
         // -------------------------------
 
-        // Main - Episode Thumbnail
-        // Create thumbnail element and append as child to episodeMain element
-        let episodeThumbnailElement = episodeMainElement.appendChild(ReplayEpisode.createElementAdv('div', 'episodeThumbnail'));
+        // Main - Episode Thumbnail Container
+        // Create thumbnail container and append as child to episodeMain element
+        let thumbnailContainerElement = episodeMainElement.appendChild(ReplayEpisode.createElementAdv('div', 'thumbnail-container'));
+        // Create thumbnail element and append as child to thumbnail container element
+        let episodeThumbnailElement = thumbnailContainerElement.appendChild(ReplayEpisode.createElementAdv('div', 'episodeThumbnail'));
         // Main - Episode Thumbnail - Thumbnail Link
         // Create thumbnail anchor link and append as child to episode thumbnail element
         let thumbnailLinkElement = episodeThumbnailElement.appendChild(document.createElement('a'));

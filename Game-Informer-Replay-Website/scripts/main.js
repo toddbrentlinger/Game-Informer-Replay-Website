@@ -37,27 +37,26 @@ document.querySelector(
 // Seach - Event Listeners
 document.querySelector('#search-container button')
     .addEventListener("click",
-    replayEpisodeCollection.search.bind(replayEpisodeCollection),
-    false);
+        replayEpisodeCollection.search
+            .bind(replayEpisodeCollection),
+        false);
 
 // Shuffle Button
 document.getElementById('button-shuffle')
-    .addEventListener(
-    "click",
-    replayEpisodeCollection.shuffleSelectedEpisodes
-        .bind(replayEpisodeCollection),
-    false
-    );
+    .addEventListener("click",
+        replayEpisodeCollection.shuffleSelectedEpisodes
+            .bind(replayEpisodeCollection),
+        false);
+
+// Reset Button
+document.getElementById('button-reset-list')
+    .addEventListener("click", 
+        replayEpisodeCollection.resetSelectedEpisodes
+            .bind(replayEpisodeCollection),
+        false);
 
 // Replay Episode Collection
 replayEpisodeCollection.init(replayEpisodeArray);
-
-var videoIdArray = [];
-for (const replayEpisode of replayEpisodeCollection.replayEpisodeObjectArray) {
-    if (replayEpisode.youtubeVideoID.length) {
-        videoIdArray.push(replayEpisode.youtubeVideoID);
-    }
-}
 
 // Set date the document was last modified at the bottom of the page
 document.getElementById('lastModifiedDate').innerHTML = new Date(document.lastModified).toDateString();

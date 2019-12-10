@@ -52,11 +52,14 @@
     <!-- Header -->
     <header>
         <h1>Game Informer Replay</h1>
+        <!--
         <img src="images/Game_Informer_logo_(2010-present).png" alt="Game Informer Logo" width="2028" height="371" />
-        <img src="/images/replay-logo-alpha.png" alt="Game Informer Replay Logo" width="610" height="214" />
-
+        -->
     </header>
 
+    <img src="/images/replay-logo-alpha.png" alt="Game Informer Replay Logo" width="610" height="214" />
+
+    <!-- YouTube Video Player -->
     <div style="display: none;" id="videoPlayer">
         <div class="iframeWrapper">
             <div id="youtubePlayerPlaceholder"></div>
@@ -154,20 +157,26 @@
                 </div>
             </div>
 
+            <div id="number-displayed-container">
+                Displaying XX out of XXX replay episodes
+            </div>
+
             <section class="episode">
                 <div class="episodeMain">
                     <div class="episodeHeader">
                         <h3 class="episodeTitle">Replay: Shadow of the Colossus</h3>
                         <div class="episodeNumber">S3:E-- (#318)</div>
                     </div>
-                    <div class="episodeThumbnail">
-                        <a title="" href="https://www.youtube.com/watch?v=Nsr1EjNIba0">
-                            <img class="episodeImage" alt="" width="300" height="169" src="https://vignette.wikia.nocookie.net/replay/images/a/a2/Replay_TheRingTerrorsRealm.jpg/revision/latest/scale-to-width-down/310?cb=20180715190859" srcset="https://vignette.wikia.nocookie.net/replay/images/a/a2/Replay_TheRingTerrorsRealm.jpg/revision/latest/scale-to-width-down/310?cb=20180715190859 1x, https://vignette.wikia.nocookie.net/replay/images/a/a2/Replay_TheRingTerrorsRealm.jpg/revision/latest?cb=20180715190859 2x" />
-                            <time class="episodeLength" datetime="PT1H9M43S">1:09:43</time>
-                            <div class="playOverlay">
-                                <img alt="" width="256" height="256" src="\images/play-button-icon-gi-256.png" />
-                            </div>
-                        </a>
+                    <div class="thumbnail-container">
+                        <div class="episodeThumbnail">
+                            <a title="" href="https://www.youtube.com/watch?v=Nsr1EjNIba0">
+                                <img class="episodeImage" alt="" width="300" height="169" src="https://vignette.wikia.nocookie.net/replay/images/a/a2/Replay_TheRingTerrorsRealm.jpg/revision/latest/scale-to-width-down/310?cb=20180715190859" srcset="https://vignette.wikia.nocookie.net/replay/images/a/a2/Replay_TheRingTerrorsRealm.jpg/revision/latest/scale-to-width-down/310?cb=20180715190859 1x, https://vignette.wikia.nocookie.net/replay/images/a/a2/Replay_TheRingTerrorsRealm.jpg/revision/latest?cb=20180715190859 2x" />
+                                <time class="episodeLength" datetime="PT1H9M43S">1:09:43</time>
+                                <div class="playOverlay">
+                                    <img alt="" width="256" height="256" src="\images/play-button-icon-gi-256.png" />
+                                </div>
+                            </a>
+                        </div>
                     </div>
                     <div class="episodeDetails">
                         <p class="episodeAirDate"><b>Original Air Date: </b><time datetime="2016-1-22">January 22, 2016</time></p>
@@ -232,9 +241,8 @@
         <p>Website last modified on <time id="lastModifiedDate"></time></p>
         <p>Replay list last modified on <time id="lastModifiedReplayList"></time></p>
     </footer>
-    <!--
+
     <script src="https://www.youtube.com/iframe_api"></script>
-        -->
     <script src="/data/gameInformerReplayFandomWikiDataJS.js"></script>
     <script src="/scripts/replayEpisode.js"></script>
     <script src="scripts/replayEpisodeCollection.js"></script>

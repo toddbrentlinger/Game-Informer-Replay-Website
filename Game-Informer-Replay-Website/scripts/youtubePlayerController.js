@@ -6,12 +6,13 @@
  * order to leave 50 episodes in playlist to view what is next. Similar
  * function to display 
  */
-
+/*
 // Load the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
 tag.src = "https://www.youtube.com/iframe_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+*/
 
 // This function creates an <iframe> (and YouTube player)
 // after the API code downloads.
@@ -40,6 +41,15 @@ function onYouTubePlayerAPIReady() {
     console.log('onYouTubePlayerAPIReady has finished');
 }
 
+// TEMP
+var videoIdArray = [];
+for (const replayEpisode of replayEpisodeCollection.replayEpisodeObjectArray) {
+    if (replayEpisode.youtubeVideoID.length) {
+        videoIdArray.push(replayEpisode.youtubeVideoID);
+    }
+}
+
+// onPlayerReady(event)
 // The API will call this function when the video player is ready.
 function onPlayerReady(event) {
     event.target.cuePlaylist({

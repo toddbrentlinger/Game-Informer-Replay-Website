@@ -3,6 +3,14 @@
  * and reason for FLAG (ex. air dates from two sources do NOT match)
  */
 
+const linkSourceOptions = [
+    ['gameinformer', 'Game Informer'],
+    ['youtube', 'YouTube'],
+    ['wikipedia', 'Wikipedia'],
+    ['gamespot', 'GameSpot'],
+    ['steampowered', 'Steam']
+];
+
 class ReplayEpisode {
     // -----------
     // Constructor
@@ -53,8 +61,13 @@ class ReplayEpisode {
 
         // Middle Segment Content (only 3rd season)
         if (replayEpisode.hasOwnProperty('middleSegmentContent')
-            && replayEpisode.middleSegmentContent.replace(/-/gi, '').length)
-                this.middleSegmentContent = replayEpisode.middleSegmentContent;
+            && replayEpisode.middleSegmentContent.replace(/-/gi, '').length) {
+            // If content ends with 'Ad' and segment has no provided name, assign name of 'Ad'
+            //if (replayEpisode.middleSegmentContent.endsWith('Ad') && !this.hasOwnProperty('middleSegment'))
+            //    this.middleSegment = 'Ad';
+            // Assign middleSegmentContent
+            this.middleSegmentContent = replayEpisode.middleSegmentContent;
+        }
 
         // Second Segment
         if (replayEpisode.secondSegment.replace(/-/gi, '').length)
@@ -101,15 +114,19 @@ class ReplayEpisode {
         // Image
         this.image = replayEpisode.details.image;
 
-        /*
-        // Increase static totalTimeSeconds for each Replay episode
-        let timeArr = this.videoLength.split(':')
-        timeArr.forEach(function (item, index, arr) {
-            arr[index] = parseInt(item, 10);
-        });
-        totalTimeSeconds += timeArr[timeArr.length - 1] + timeArr[timeArr.length - 2] * 60
-            + (timeArr.length == 3 ? timeArr[timeArr.length - 3] * 3600 : 0);
-        */
+        // Other Headings
+        const propsToIgnore = [
+            'description', 'external_links', 'image', 'system', 'gamedate', 'airdate', 'runtime', 'host', 'featuring'
+        ];
+        let tempHeadingsObj = {};
+        for (const prop in replayEpisode.details) {
+            // If prop is NOT in a prop to ignore, add to tempHeadingsObj
+            if (!propsToIgnore.includes(prop))
+                tempHeadingsObj[prop] = replayEpisode.details[prop];
+        }
+        // If tempHeadingsObj is NOT empty, assign to this.otherHeadingsObj
+        if (!ReplayEpisode.isEmptyObject(tempHeadingsObj))
+            this.otherHeadingsObj = tempHeadingsObj;
 
         // Create HTML element and add episode data
         this.episodeSection = this.populateEpisodeSection();
@@ -362,13 +379,6 @@ class ReplayEpisode {
                 anchorElement.setAttribute('href', linkObj.href);
                 anchorElement.setAttribute('target', '_blank');
                 // Add text listing source of link
-                const linkSourceOptions = [
-                    ['gameinformer', 'Game Informer'],
-                    ['youtube', 'YouTube'],
-                    ['wikipedia', 'Wikipedia'],
-                    ['gamespot', 'GameSpot'],
-                    ['steampowered', 'Steam']
-                ];
                 let linkSource = '';
                 let linkURL = linkObj.href;
                 // Find matching link source
@@ -561,5 +571,15 @@ class ReplayEpisode {
         });
         totalTimeSeconds += timeArr[timeArr.length - 1] + timeArr[timeArr.length - 2] * 60
             + (timeArr.length == 3 ? timeArr[timeArr.length - 3] * 3600 : 0);
+    }
+
+    // Test if object is empty (supported by older browsers)
+    static isEmptyObject(object) {
+        for (const key in object) {
+            if (object.hasOwnProperty(key)) {
+                return false;
+            }
+        }
+        return true;
     }
 }

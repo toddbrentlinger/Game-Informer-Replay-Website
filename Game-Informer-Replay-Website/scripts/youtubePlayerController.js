@@ -21,7 +21,7 @@ function onYouTubePlayerAPIReady() {
     videoPlayer = new YT.Player('youtubePlayerPlaceholder', {
         height: 360,
         width: 640,
-        //videoId: videoIdArray[0],
+        videoId: '0ZtEkX8m6yg',
         playerVars: {
             //listType: 'playlist',
             //playlist: videoIdArray.slice(0, 10),
@@ -57,6 +57,7 @@ function onPlayerReady(event) {
     });
 }
 
+// onPlayerStateChange(event)
 // The API calls this function when the player's state changes.
 var done = false;
 function onPlayerStateChange(event) {
@@ -67,6 +68,7 @@ function onPlayerStateChange(event) {
     }
 }
 
+// onPlayerError(event)
 function onPlayerError(event) {
     console.log('Error: ' + event.data);
 }

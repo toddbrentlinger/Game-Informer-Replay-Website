@@ -35,25 +35,47 @@ document.querySelector(
 // Filter - Event Listeners
 
 // Seach - Event Listeners
+// Search is button is clicked
 document.querySelector('#search-container button')
     .addEventListener("click",
         replayEpisodeCollection.search
             .bind(replayEpisodeCollection),
-        false);
+    false);
+// Search if press enter inside input field by making button click
+document.querySelector('#search-container input[type="search"]')
+    .addEventListener("keyup", function (event) {
+        if (event.keyCode === 13) { // No. 13 is 'enter' key
+            // Cancel default action, if needed
+            event.preventDefault();
+            // Trigger button element with a click
+            document.querySelector('#search-container button')
+                .click();
+        }
+    },
+    false);
 
 // Shuffle Button
 document.getElementById('button-shuffle')
     .addEventListener("click",
         replayEpisodeCollection.shuffleSelectedEpisodes
             .bind(replayEpisodeCollection),
-        false);
+    false);
 
 // Reset Button
 document.getElementById('button-reset-list')
     .addEventListener("click", 
         replayEpisodeCollection.resetSelectedEpisodes
             .bind(replayEpisodeCollection),
-        false);
+    false);
+
+// Jump To Top Page
+var jumpToTopPageElement = document.getElementById('jump-top-page-container');
+window.addEventListener("scroll", function () {
+    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20)
+        jumpToTopPageElement.style.display = "block";
+    else
+        jumpToTopPageElement.style.display = "none";
+}, false);
 
 // Replay Episode Collection
 replayEpisodeCollection.init(replayEpisodeArray);

@@ -12,7 +12,6 @@
     <!-- Font Awesome (choice of script or local files) -->
     <link rel="stylesheet" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
     <!--<script src="https://kit.fontawesome.com/f8c32451ce.js" crossorigin="anonymous"></script>-->
-
     <!-- Favicon -->
     <link href="/images/gi_logo_favicon_64x64.ico" rel="shortcut icon" type="image/x-icon" />
 
@@ -28,6 +27,9 @@
         keywords relating to the webpage to optimize Search Engine Optimization (SEO) -->
     <meta name="description" content="Game Informer Replay" />
     <meta name="keywords" content="game informer, replay, super replay" />
+
+    <!-- Scripts -->
+    <script src="/scripts/darkMode.js"></script>
 </head>
 <body>
     <!-- Top Navigation -->
@@ -131,12 +133,10 @@
                 <div id="sort-container">
                     <label for="sort-select">Sort:</label>
                     <select name="sort-type" id="sort-type-select">
-                        <option value="">-- Sort By --</option>
-                        <option value="airdate">Air Date</option>
+                        <option value="none">-- Sort By --</option>
+                        <option value="airdate" selected>Air Date</option>
                         <option value="most-viewed">Most Viewed</option>
                         <option value="most-liked">Most Liked</option>
-                        <option value="search-relevance">Search Relevance</option>
-                        <option value="shuffle">Shuffle</option>
                     </select>
 
                     <label for="sort-direction-select">Direction:</label>
@@ -169,8 +169,8 @@
                     </div>
                     <div class="thumbnail-container">
                         <div class="episodeThumbnail">
-                            <a title="" href="https://www.youtube.com/watch?v=Nsr1EjNIba0" target="_blank">
-                                <img class="episodeImage" alt="" width="300" height="169" src="https://vignette.wikia.nocookie.net/replay/images/a/a2/Replay_TheRingTerrorsRealm.jpg/revision/latest/scale-to-width-down/310?cb=20180715190859" srcset="https://vignette.wikia.nocookie.net/replay/images/a/a2/Replay_TheRingTerrorsRealm.jpg/revision/latest/scale-to-width-down/310?cb=20180715190859 1x, https://vignette.wikia.nocookie.net/replay/images/a/a2/Replay_TheRingTerrorsRealm.jpg/revision/latest?cb=20180715190859 2x" />
+                            <a title="" href="" target="_blank">
+                                <img class="episodeImage" alt="" width="300" height="169" src="" srcset="" />
                                 <time class="episodeLength" datetime=""></time>
                                 <div class="playOverlay">
                                     <img alt="" width="256" height="256" src="/images/play-button-icon-gi(1)-256.png" />
@@ -193,18 +193,6 @@
                 </div>
                 <hr />
                 <div class="episodeMoreInfo">
-                    <div class="episodeDescription">
-                        <p></p>
-                    </div>
-                    <div class="external-links">
-                        <h4>External Links:</h4>
-                        <ul>
-                            <li>
-                                <i><a href="" target="_blank">Title</a></i>
-                                on Game Informer
-                            </li>
-                        </ul>
-                    </div>
                 </div>
             </section>
         </main>

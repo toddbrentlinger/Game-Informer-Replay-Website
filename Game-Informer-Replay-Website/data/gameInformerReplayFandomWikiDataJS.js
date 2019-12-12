@@ -8877,7 +8877,7 @@ var replayEpisodeArray = [
             "gamedate": [
                 "September 7, 2010"
             ],
-            "airdate": "March 9, 2004",
+            "airdate": "August 4, 2017",
             "runtime": "1:04:43",
             "host": [
                 "Andrew Reiner"

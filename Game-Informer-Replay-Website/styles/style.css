@@ -287,12 +287,15 @@ header h1 { display: none; }
 
 /* Episode More Info (Button to dropdown display) */
 .episodeMoreInfo {
-    padding: 0 .6em;
+    padding: 0 1.5em;
     font-size: .9em;
     border-style: none solid solid solid;
     border-width: .2em;
     border-color: var(--main-bg-color);
     border-radius: 0 0 1em 1em;
+}
+.episodeMoreInfo h4 {
+    text-transform: capitalize;
 }
 
 /* Thematic Break hr */
@@ -390,18 +393,13 @@ header h1 { display: none; }
 /* ------------------------------- */
 /* ---------- Dark Mode ---------- */
 /* ------------------------------- */
-
+/*
 @media (prefers-color-scheme: dark) {
     :root {
-        --main-text-color: ;
-        --main-bg-color: #000;
-        --main-bg-select-color:;
-
-        --second-text-color: ;
-        --second-bg-color: ;
+        
     }
 }
-
+*/
 /* ----------------------------------------------- */
 /* ---------- Dark Mode - Toggle Switch ---------- */
 /* ----------------------------------------------- */
@@ -413,6 +411,8 @@ header h1 { display: none; }
     --second-text-color: hsl(0, 0%, 66%);
     --second-bg-color: hsl(0, 0%, 10%);
     --third-bg-color: hsl(0, 0%, 0%);
+
+    background-color: hsl(0, 0%, 20%);
 }
 [data-theme="dark"] header {
     background-image: url("/images/Game_Informer_logo_(2010-present)(dark_mode).png");

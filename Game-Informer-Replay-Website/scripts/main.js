@@ -1,26 +1,35 @@
-﻿// Dark Mode Switch
+﻿/*
+// Dark Mode Switch
 var darkModeSwitch = document.getElementById('dark-mode-checkbox');
-const currentTheme = localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+//const currentTheme = window.localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
 if (currentTheme) {
-    document.documentElement.setAttribute('data-theme', currentTheme);
+    //document.documentElement.setAttribute('data-theme', currentTheme);
     if (currentTheme == 'dark') {
         darkModeSwitch.checked = 'true';
-        console.log(darkModeSwitch.checked);
     }
 }
 darkModeSwitch.addEventListener('click', function (event) {
     if (event.target.checked) {
         document.documentElement.setAttribute('data-theme', 'dark');
-        localStorage.setItem('theme', 'dark');
+        window.localStorage.setItem('theme', 'dark');
     } else {
         document.documentElement.setAttribute('data-theme', 'light');
-        localStorage.setItem('theme', 'light');
+        window.localStorage.setItem('theme', 'light');
     }
-});
+}, false);
+*/
+// Replay Episode Collection
+replayEpisodeCollection.init(replayEpisodeArray);
 
 // Sort - Event Listeners
 document.querySelector(
-    '#sort-container > select[name="sort-direction"]')
+    '#sort-container > select[name = "sort-type"]')
+    .addEventListener("change",
+        replayEpisodeCollection.setSortByEvent
+            .bind(replayEpisodeCollection),
+        false);
+document.querySelector(
+    '#sort-container > select[name = "sort-direction"]')
     .addEventListener("change",
     replayEpisodeCollection.setSortByEvent
     .bind(replayEpisodeCollection),
@@ -76,9 +85,6 @@ window.addEventListener("scroll", function () {
     else
         jumpToTopPageElement.style.display = "none";
 }, false);
-
-// Replay Episode Collection
-replayEpisodeCollection.init(replayEpisodeArray);
 
 // Set date the document was last modified at the bottom of the page
 document.getElementById('lastModifiedDate').innerHTML = new Date(document.lastModified).toDateString();

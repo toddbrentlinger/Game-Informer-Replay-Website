@@ -134,7 +134,17 @@ var replayEpisodeCollection = {
         this.sortDirectionElement.value = this.ascending ? 'ascending' : 'descending';
     },
     filter: filter.none,
-    isShuffled: false
+    isShuffled: false,
+
+    // Video Player
+    get selectedVideoIdArray() {
+        const videoIdArray = [];
+        for (const episode of replayEpisodeCollection.selectedEpisodes) {
+            if (episode.youtubeVideoID)
+                videoIdArray.push(episode.youtubeVideoID);
+        }
+        return videoIdArray;
+    }
 };
 
 // -----------------------------
@@ -146,12 +156,9 @@ replayEpisodeCollection.init = function (replayEpisodeArray) {
     // Initialize sort/filter properties based on selected input elements
     //this.ascending = this.sortDirectionElement.value == 'ascending';
     //this.maxDisplayedEpisodes = this.maxDisplayedElement.value;
-    console.log(this.maxDisplayedElement.value + '__' + this.sortDirectionElement.value);
     this.sortTypeElement.value = this.getSortTypeStringValue();
     this.sortDirectionElement.value = this.ascending ? 'ascending' : 'descending';
     this.maxDisplayedElement.value = this.maxDisplayedEpisodes;
-    console.log(this.maxDisplayedElement.value + '__' + this.sortDirectionElement.value);
-
     // Clone episode section template to use for episode data
     // Initialize each replay episode object by sending this template
     // as an argument to ReplayEpisode constructor
@@ -231,21 +238,25 @@ replayEpisodeCollection.updateDisplayedEpisodes = function (begin = 0, end = thi
         ? Math.min(this.maxDisplayedEpisodes, this.selectedEpisodes.length)
         : this.selectedEpisodes.length)
         + ' out of ' + this.selectedEpisodes.length + ' replay episodes';
+
+    // Update video player to match selectedEpisodes
+    if (this.videoPlayer)
+        this.videoPlayer.cuePlaylist({ playlist: this.selectedVideoIdArray.slice(0, 200) });
 };
 
 // showTotalTime()
 replayEpisodeCollection.showTotalTime = function () {
-    // Show total time of episodes
-    let seconds, minutes, hours, days = 0;
-    days = Math.floor(this.totalTimeSeconds / 86400)
-    hours = Math.floor((this.totalTimeSeconds - days * 86400) / 3600);
-    minutes = Math.floor((this.totalTimeSeconds - days * 86400 - hours * 3600) / 60);
-    seconds = this.totalTimeSeconds - (days * 86400) - (hours * 3600) - (minutes * 60);
-    let totalTimePara = document.createElement('p');
+    const days = Math.floor(this.totalTimeSeconds / 86400)
+    const hours = Math.floor((this.totalTimeSeconds - days * 86400) / 3600);
+    const minutes = Math.floor((this.totalTimeSeconds - days * 86400 - hours * 3600) / 60);
+    const seconds = this.totalTimeSeconds - (days * 86400) - (hours * 3600) - (minutes * 60);
+    
+    const totalTimePara = document.createElement('p');
     totalTimePara.textContent = "Total length of all replay episodes: "
         + days + " days, " + hours + " hours, " + minutes + " minutes, "
         + seconds + " seconds!";
     totalTimePara.textContent += "\nTotal seconds: " + this.totalTimeSeconds;
+    
     this.mainElement.appendChild(totalTimePara);
 };
 
@@ -255,11 +266,13 @@ replayEpisodeCollection.getEpisodeByNumber = function (num) {
         if (episode.episodeNumber == num)
             return episode;
     }
-    // If for loop finishes without return, could NOT find episode
-    return 0;
+    // If for loop finishes without return, could NOT find episode,
+    // return undefined
 };
 /*
 // updateSelectedEpisodes()
+// Starts with default selectedEpisodes and changes it based on
+// search, filter, sort, etc.
 // IN PROGRESS
 replayEpisodeCollection.updateSelectedEpisodes = function (filterType) {
 
@@ -496,4 +509,33 @@ replayEpisodeCollection.resetSortFilterSearch = function() {
     //this.sortDirectionElement.value = 'descending';
     this.ascending = false;
     this.searchInputElement.value = '';
+};
+
+// ------------------------------------------------
+// ---------- Video Player - YouTube API ----------
+// ------------------------------------------------
+
+// onPlayerReady(event)
+// The API will call this function when the video player is ready.
+replayEpisodeCollection.onPlayerReady = function (event) {
+    event.target.cuePlaylist({
+        playlist: this.selectedVideoIdArray.slice(0, 200)
+    });
+};
+
+// onPlayerStateChange(event)
+// The API calls this function when the player's state changes.
+replayEpisodeCollection.onPlayerStateChange = function (event) {
+    /*
+    if (event.data == YT.PlayerState.PLAYING && !done) {
+        // done = true;
+    } else if (event.data == YT.PlayerState.ENDED) {
+        // location.reload();
+    }
+    */
+};
+
+// onPlayerError(event)
+replayEpisodeCollection.onPlayerError = function (event) {
+    console.log('Error: ' + event.data);
 };

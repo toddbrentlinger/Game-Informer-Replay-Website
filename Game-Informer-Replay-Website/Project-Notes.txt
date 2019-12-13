@@ -1,14 +1,47 @@
 ﻿TO-DO:
 
+12/12/19
+
+- Filter Options: Air Date (Year)
+
+- Add gameData section that details the games played in the episode.
+On larger screens, float section to the right inside moreInfo and
+the other content floats around it. On smaller screens, add to
+bottom of moreInfo as a block section NOT floated. Use scroll
+wheel for overflow. Use game scraper to get data about games
+including small thumbnail image.
+
+- Web Scraper: Scrape each game informer article for title, author,
+date posted, array of strings for article content.
+
+- Web Scraper: Use JS YouTube API to get view count, likes, 
+dislikes.
+
+- Filter: Add fieldsets for each filter type and fill those with
+options found with functions (ex. host/featuring function that
+lists each host/guest and counts their appearances). Sort order
+of each fieldset is the number of appearances.
+
+- Add overflow:hidden properties for moreInfo so only first part
+of description is shown before clicking a bar underneath to display
+rest of moreInfo.
+
+- VideoPlayer: load playlist of selectedEpisodes youTube ID's
+whenever it changes.
+
+- Pages: Add pages functionality to display multiple pages
+depending on maxDislayedEpisodes.
+
 12/8/19
 
 - ISSUE: Alex Kidd Enchanted Castle
-Editor Antics paragraph not added from we scrape
+Editor Antics paragraph not added from web scrape
 
 - ISSUE: When changing maxDisplayedEpisodes, entire list is 
 removed from display before adding new list. 
 SOLUTION: Add/remove only required episodes from display, leaving
-other episode sections alone.
+other episode sections alone. OR current solution is quick enough
+and avoids potential problems from proposed solution.
 
 12/6/19
 

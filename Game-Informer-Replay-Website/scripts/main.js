@@ -1,23 +1,4 @@
-﻿/*
-// Dark Mode Switch
-var darkModeSwitch = document.getElementById('dark-mode-checkbox');
-//const currentTheme = window.localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
-if (currentTheme) {
-    //document.documentElement.setAttribute('data-theme', currentTheme);
-    if (currentTheme == 'dark') {
-        darkModeSwitch.checked = 'true';
-    }
-}
-darkModeSwitch.addEventListener('click', function (event) {
-    if (event.target.checked) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        window.localStorage.setItem('theme', 'dark');
-    } else {
-        document.documentElement.setAttribute('data-theme', 'light');
-        window.localStorage.setItem('theme', 'light');
-    }
-}, false);
-*/
+﻿
 // Replay Episode Collection
 replayEpisodeCollection.init(replayEpisodeArray);
 
@@ -90,7 +71,7 @@ window.addEventListener("scroll", function () {
 document.getElementById('lastModifiedDate').innerHTML = new Date(document.lastModified).toDateString();
 document.getElementById('lastModifiedReplayList').innerHTML = lastModifiedReplayList;
 
-/*
+/* JSON
 let requestURL = 'https://github.com/toddbrentlinger/Game-Informer-Scraper/blob/master/Game%20Informer%20Scraper/gameInformerReplayFandomWikiData.json';
 let request = new XMLHttpRequest();
 request.open('GET', requestURL);

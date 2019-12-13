@@ -6,49 +6,43 @@
  * order to leave 50 episodes in playlist to view what is next. Similar
  * function to display 
  */
-/*
+
 // Load the IFrame Player API code asynchronously.
 var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/iframe_api";
+tag.src = "https://www.youtube.com/player_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
-*/
+
 
 // This function creates an <iframe> (and YouTube player)
 // after the API code downloads.
 var videoPlayer;
-function onYouTubePlayerAPIReady() {
+window.onYouTubePlayerAPIReady = function () {
+    console.log('window.onYouTubePlayerAPIReady has started with this = ' + this);
+
     videoPlayer = new YT.Player('youtubePlayerPlaceholder', {
         height: 360,
         width: 640,
-        videoId: '0ZtEkX8m6yg',
+        videoId: '0ZtEkX8m6yg', // default video: Replay Highlights
         playerVars: {
-            //listType: 'playlist',
-            //playlist: videoIdArray.slice(0, 10),
-            controls: 1,
-            //'showinfo': 0,
             iv_load_policy: 3, // default: 1
             modestbranding: 1,
             enablejsapi: 1
             //'origin': specify domain
         },
         events: {
-            onReady: onPlayerReady,
-            onStateChange: onPlayerStateChange,
-            onError: onPlayerError
+            onReady: replayEpisodeCollection.onPlayerReady.bind(replayEpisodeCollection),
+            onStateChange: replayEpisodeCollection.onPlayerStateChange.bind(replayEpisodeCollection),
+            onError: replayEpisodeCollection.onPlayerError.bind(replayEpisodeCollection)
         }
     });
-    console.log('onYouTubePlayerAPIReady has finished');
-}
 
-// TEMP
-var videoIdArray = [];
-for (const replayEpisode of replayEpisodeCollection.replayEpisodeObjectArray) {
-    if (replayEpisode.youtubeVideoID.length) {
-        videoIdArray.push(replayEpisode.youtubeVideoID);
-    }
-}
+    // Assign reference to videoPlayer in replayEpisodeCollection
+    replayEpisodeCollection.videoPlayer = videoPlayer;
 
+    console.log('window.onYouTubePlayerAPIReady has finished');
+};
+/*
 // onPlayerReady(event)
 // The API will call this function when the video player is ready.
 function onPlayerReady(event) {
@@ -72,4 +66,5 @@ function onPlayerStateChange(event) {
 function onPlayerError(event) {
     console.log('Error: ' + event.data);
 }
+*/
 

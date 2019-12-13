@@ -30,6 +30,7 @@
 
     <!-- Scripts -->
     <script src="/scripts/darkMode.js"></script>
+
 </head>
 <body>
     <!-- Top Navigation -->
@@ -62,7 +63,7 @@
     <img src="/images/replay-logo-alpha.png" alt="Game Informer Replay Logo" width="610" height="214" />
 
     <!-- YouTube Video Player -->
-    <div style="display: none;" id="videoPlayer">
+    <div style="display: block;" id="videoPlayer">
         <div class="iframeWrapper">
             <div id="youtubePlayerPlaceholder"></div>
             <!--
@@ -92,30 +93,28 @@
             <form id="filterForm">
                 <fieldset form="filterForm" id="seasonField">
                     <legend>Season: </legend>
-                    <div>
-                        <input type="checkbox" id="s6" name="season" value="s6" checked />
-                        <label for="s6">6</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="s5" name="season" value="s5" checked />
-                        <label for="s5">5</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="s4" name="season" value="s4" checked />
-                        <label for="s4">4</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="s3" name="season" value="s3" checked />
-                        <label for="s3">3</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="s2" name="season" value="s2" checked />
-                        <label for="s2">2</label>
-                    </div>
-                    <div>
-                        <input type="checkbox" id="s1" name="season" value="s1" checked />
-                        <label for="s1">1</label>
-                    </div>
+                    <input type="checkbox" id="s6" name="season" value="s6" checked />
+                    <label for="s6">6</label>
+                    <input type="checkbox" id="s5" name="season" value="s5" checked />
+                    <label for="s5">5</label>
+                    <input type="checkbox" id="s4" name="season" value="s4" checked />
+                    <label for="s4">4</label>
+                    <input type="checkbox" id="s3" name="season" value="s3" checked />
+                    <label for="s3">3</label>
+                    <input type="checkbox" id="s2" name="season" value="s2" checked />
+                    <label for="s2">2</label>
+                    <input type="checkbox" id="s1" name="season" value="s1" checked />
+                    <label for="s1">1</label>
+                </fieldset>
+                <fieldset form="filterForm" id="gi-crew-field">
+                    <legend>GI Crew: </legend>
+                    <input type="checkbox" id="crew01" name="giCrew" value="crew01" checked />
+                    <label for="crew01">Crew 01</label>
+                </fieldset>
+                <fieldset form="filterForm" id="segment-field">
+                    <legend>Segment: </legend>
+                    <input type="checkbox" id="segment01" name="segment" value="segment01" checked />
+                    <label for="segment01">Segment 01</label>
                 </fieldset>
                 <div id="filterSubmitButton">
                     <button type="button">Filter</button>
@@ -219,12 +218,11 @@
         <p>Replay list last modified on <time id="lastModifiedReplayList"></time></p>
     </footer>
 
-    <script src="https://www.youtube.com/iframe_api"></script>
-    <script src="/data/gameInformerReplayFandomWikiDataJS.js"></script>
-    <script src="/scripts/replayEpisode.js"></script>
+    <script src="data/gameInformerReplayFandomWikiDataJS.js"></script>
+    <script src="scripts/replayEpisode.js"></script>
     <script src="scripts/replayEpisodeCollection.js"></script>
-    <script src="/scripts/main.js"></script>
-    <script src="/scripts/youtubePlayerController.js"></script>
+    <script src="scripts/youtubePlayerController.js"></script>
+    <script src="scripts/main.js"></script>
     <script src="scripts/debug.js"></script>
 </body>
 </html>

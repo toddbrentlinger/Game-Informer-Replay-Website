@@ -1,6 +1,6 @@
-﻿var lastModifiedReplayList = document.lastModified;
+﻿const lastModifiedReplayList = document.lastModified;
 
-var replayEpisodeArray = [
+const replayEpisodeArray = [
     {
         "episodeNumber": 515,
         "episodeTitle": "Replay: Br\u00fctal Legend and The Turkey of Christmas Past",

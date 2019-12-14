@@ -2,6 +2,74 @@
 
 const replayEpisodeArray = [
     {
+        "episodeNumber": 516,
+        "episodeTitle": "Replay: Metal Wolf Chaos XD",
+        "fandomWikiURL": "/wiki/Replay:_Metal_Wolf_Chaos_XD",
+        "mainSegmentGamesAdv": [
+            {
+                "title": "Metal Wolf Chaos XD",
+                "system": "PC",
+                "yearReleased": "2019"
+            }
+        ],
+        "airDate": "12/6/19",
+        "videoLength": "1:16:17",
+        "secondSegment": "RR",
+        "secondSegmentGames": [
+            "Fracture"
+        ],
+        "season": 6,
+        "details": {
+            "description": [
+                "Metal Wolf Chaos XD is the featured game in the 516th episode of Replay. This episode is hosted by Andrew Reiner and features Joe Juba, Jeff Cork, and Alex Stadnik. The roulette for this episode is Fracture."
+            ],
+            "external_links": [
+                {
+                    "href": "https://www.gameinformer.com/replay/replay/2019/12/06/replay-metal-wolf-chaos-xd",
+                    "title": "Replay: Metal Wolf Chaos XD"
+                },
+                {
+                    "href": "https://www.youtube.com/watch?v=BtEL7fHyU1o",
+                    "title": "Replay: Metal Wolf Chaos XD"
+                },
+                {
+                    "href": "https://en.wikipedia.org/wiki/Metal_Wolf_Chaos",
+                    "title": "Metal Wolf Chaos XD"
+                },
+                {
+                    "href": "https://en.wikipedia.org/wiki/Fracture_(video_game)",
+                    "title": "Fracture"
+                }
+            ],
+            "image": {
+                "width": "300",
+                "height": "169",
+                "srcset": [
+                    "https://vignette.wikia.nocookie.net/replay/images/b/b9/MetalWolf.jpg/revision/latest/scale-to-width-down/310?cb=20191207022618",
+                    "1x",
+                    "https://vignette.wikia.nocookie.net/replay/images/b/b9/MetalWolf.jpg/revision/latest/scale-to-width-down/619?cb=20191207022618",
+                    "2x"
+                ]
+            },
+            "system": [
+                "PC"
+            ],
+            "gamedate": [
+                "August 6, 2019"
+            ],
+            "airdate": "December 6, 2019",
+            "runtime": "1:16:17",
+            "host": [
+                "Andrew Reiner"
+            ],
+            "featuring": [
+                "Jeff Cork",
+                "Joe Juba",
+                "Alex Stadnik"
+            ]
+        }
+    },
+    {
         "episodeNumber": 515,
         "episodeTitle": "Replay: Br\u00fctal Legend and The Turkey of Christmas Past",
         "fandomWikiURL": "/wiki/Replay:_Br%C3%BCtal_Legend_and_The_Turkey_of_Christmas_Past",

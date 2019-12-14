@@ -7,22 +7,27 @@ document.querySelector(
     '#sort-container > select[name = "sort-type"]')
     .addEventListener("change",
         replayEpisodeCollection.setSortByEvent
-            .bind(replayEpisodeCollection),
-        false);
+        .bind(replayEpisodeCollection),
+    false);
 document.querySelector(
     '#sort-container > select[name = "sort-direction"]')
     .addEventListener("change",
-    replayEpisodeCollection.setSortByEvent
-    .bind(replayEpisodeCollection),
+        replayEpisodeCollection.setSortByEvent
+        .bind(replayEpisodeCollection),
     false);
 document.querySelector(
     '#sort-container > select[name = "max-displayed"]')
     .addEventListener("change",
         replayEpisodeCollection.setSortByEvent
-            .bind(replayEpisodeCollection),
-        false);
+        .bind(replayEpisodeCollection),
+    false);
 
 // Filter - Event Listeners
+document.querySelector('#filterForm button')
+    .addEventListener("click",
+        replayEpisodeCollection.filterSelectedEpisodes
+        .bind(replayEpisodeCollection),
+    false);
 
 // Seach - Event Listeners
 // Search is button is clicked
@@ -66,6 +71,18 @@ window.addEventListener("scroll", function () {
     else
         jumpToTopPageElement.style.display = "none";
 }, false);
+
+// Toggle Video Player
+var isVideoPlayerDisplayed = true;
+const videoPlayerContainer = document.getElementById('videoPlayer');
+document.getElementById('button-toggleVideoPlayer')
+    .addEventListener("click", 
+    function () {
+        // Toggle videoPlayerDisplayed
+        isVideoPlayerDisplayed = !isVideoPlayerDisplayed;
+        // Hide/Display video player
+        videoPlayerContainer.style.display = (isVideoPlayerDisplayed) ? 'block' : 'none';
+    }, false);
 
 // Set date the document was last modified at the bottom of the page
 document.getElementById('lastModifiedDate').innerHTML = new Date(document.lastModified).toDateString();

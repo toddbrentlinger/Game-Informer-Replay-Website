@@ -17,7 +17,8 @@ const sort = Object.freeze({
     number: 1,
     airdate: 2,
     views: 3,
-    likes: 4
+    likes: 4,
+    length: 5
 });
 
 // Object: Collection of all replay episodes
@@ -25,13 +26,14 @@ var replayEpisodeCollection = {
     // Properties
     totalTimeSeconds: 0,
     mainElement: document.getElementById('main'),
-
+    // Sort
     sortTypeElement: document.getElementById('sort-type-select'),
     sortDirectionElement: document.getElementById('sort-direction-select'),
-
     maxDisplayedElement: document.getElementById('max-displayed-select'),
-
+    // Search
     searchInputElement: document.querySelector('#search-container input[type = "search"]'),
+    // Filter
+    filterElement: document.querySelector('#filterForm'),
 
     currentDisplayedEpisodesMessageElement: document.getElementById('number-displayed-container'),
 
@@ -66,15 +68,14 @@ var replayEpisodeCollection = {
     _sortType: window.sessionStorage.getItem('sortType') || sort.airdate,
     get sortType() { return this._sortType; },
     set sortType(input) {
-        console.log('sortType is set equal to: ' + input + '(' + typeof input + ')');
         let tempSortType; // Initialized to undefined
         // If arg is a string type, compare to properties of sort enum
         if (typeof input === 'string') {
-            console.log('sortType input is string');
             switch (input) {
                 case 'airdate': tempSortType = sort.airdate; break;
                 case 'most-viewed': tempSortType = sort.views; break;
                 case 'most-liked': tempSortType = sort.likes; break;
+                case 'video-length': tempSortType = sort.length; break;
                 case 'none': tempSortType = sort.none; break;
                 case 'number':
                 default: tempSortType = sort.number;
@@ -82,7 +83,6 @@ var replayEpisodeCollection = {
         }
         // Else If arg is a number type, compare to values of sort enum
         else if (typeof input === 'number') {
-            console.log('sortType input is number');
             for (const property in sort) {
                 if (sort[property] == input) {
                     tempSortType = input;
@@ -106,9 +106,23 @@ var replayEpisodeCollection = {
             case sort.airdate: this.sortTypeElement.value = 'airdate'; break;
             case sort.views: this.sortTypeElement.value = 'most-viewed'; break;
             case sort.likes: this.sortTypeElement.value = 'most-liked'; break;
+            case sort.length: this.sortTypeElement.value = 'video-length'; break;
             case sort.number:
             case sort.none:
             default: this.sortTypeElement.value = 'none';
+        }
+    },
+
+    // Converts number type to string for value attribute of select option element
+    get sortTypeString() {
+        switch (this.sortType) {
+            case sort.airdate: return 'airdate'; break;
+            case sort.views: return 'most-viewed'; break;
+            case sort.likes: return 'most-liked'; break;
+            case sort.length: return 'video-length'; break;
+            case sort.number: return 'episode-number'; break;
+            case sort.none:
+            default: return 'none';
         }
     },
 
@@ -156,7 +170,7 @@ replayEpisodeCollection.init = function (replayEpisodeArray) {
     // Initialize sort/filter properties based on selected input elements
     //this.ascending = this.sortDirectionElement.value == 'ascending';
     //this.maxDisplayedEpisodes = this.maxDisplayedElement.value;
-    this.sortTypeElement.value = this.getSortTypeStringValue();
+    this.sortTypeElement.value = this.sortTypeString;
     this.sortDirectionElement.value = this.ascending ? 'ascending' : 'descending';
     this.maxDisplayedElement.value = this.maxDisplayedEpisodes;
     // Clone episode section template to use for episode data
@@ -187,10 +201,13 @@ replayEpisodeCollection.populateEpisodeObjectArray = function (replayEpisodeArra
         this.replayEpisodeObjectArray.push(replayEpisodeObject);
 
         // Increase total time of episodes
+        /*
         let timeArr = replayEpisodeObject.videoLength.split(':');
         timeArr.forEach((item, index, arr) => { arr[index] = parseInt(item, 10);});
         this.totalTimeSeconds += timeArr[timeArr.length - 1] + timeArr[timeArr.length - 2] * 60
             + (timeArr.length == 3 ? timeArr[timeArr.length - 3] * 3600 : 0);
+            */
+        this.totalTimeSeconds += replayEpisodeObject.videoLengthInSeconds;
     }
     // Success Message
     console.log('Finished replay episode assignment');
@@ -274,15 +291,9 @@ replayEpisodeCollection.getEpisodeByNumber = function (num) {
 // Starts with default selectedEpisodes and changes it based on
 // search, filter, sort, etc.
 // IN PROGRESS
-replayEpisodeCollection.updateSelectedEpisodes = function (filterType) {
-
-    if (this.shuffle) {
-        this.shuffleArray(this.selectedEpisodes);
-        // After selectedEpisodes is shuffled, set shuffle back to false
-        this.shuffle = false;
-    } else if (this.ascending)
-        this.selectedEpisodes.reverse();
-
+replayEpisodeCollection.updateSelectedEpisodes = function () {
+    // Filter
+    // Sort
     // Populate main element with new selected objects
     this.updateDisplayedEpisodes();
 };
@@ -342,6 +353,10 @@ replayEpisodeCollection.search = function () {
                 return re.test(episode.episodeSection
                     .textContent.toLowerCase());
             });
+
+        // Sort selected episodes
+        this.sortByType();
+
         // Update displayed episodes with filtered episodes
         this.updateDisplayedEpisodes();
     };
@@ -350,14 +365,49 @@ replayEpisodeCollection.search = function () {
 // filterSelectedEpisodes()
 // IN-PROGRESS
 replayEpisodeCollection.filterSelectedEpisodes = function () {
-    switch (this.filter) {
-        case filter.text: break;
-        case filter.none:
-        default:
+    // Create filter object of properties corresponding to input
+    // name and values of arrays with values of checked inputs
+    let filterObj = {};
+    // For each input element in the filter form
+    for (const input of this.filterElement.getElementsByTagName('input')) {
+        if (input.checked) {
+            // If filterObj already has input.name as a property, add value to property array
+            if (filterObj.hasOwnProperty(input.name))
+                filterObj[input.name].push(input.value);
+            // Else add filterObj as property and add value as first element
+            else
+                filterObj[input.name] = [ input.value ];
+        }
     }
+
+    // Fill selectedEpisodes with references to replayEpisodeObjectArray objects
+    this.selectedEpisodes = [];
+    this.replayEpisodeObjectArray
+        .forEach(episode => this.selectedEpisodes.push(episode));
+
+    // Season
+    if (filterObj.hasOwnProperty('season')) {
+        // Convert array of strings to array of numbers
+        filterObj.season.forEach(function (item, index, arr) {
+            arr[index] = parseInt(item, 10);
+        });
+        this.filterBySeason(filterObj.season);
+    }
+
+    // GI Crew
+
+    // Segment
+
+    // Year
+
+    // Sort selected episodes
+    this.sortByType();
+
+    // Update displayed episodes with filtered episodes
+    this.updateDisplayedEpisodes();
 };
  
-// filterBySeason
+// filterBySeason(seasons)
 // Filters the current array of filtered episodes by season
 // Argument can be number or array of numbers
 replayEpisodeCollection.filterBySeason = function (seasonToFilter) {
@@ -373,6 +423,50 @@ replayEpisodeCollection.filterBySeason = function (seasonToFilter) {
     }
 };
 
+// populateFilterForm()
+replayEpisodeCollection.populateFilterForm = function () {
+    // Variables
+    //let giCrewArr = [];
+    let labelElement;
+    let inputElement;
+    let parentElement;
+
+    // Season
+
+    // GI Crew
+    parentElement = document.getElementById('gi-crew-field');
+    // getGICrew() returns: 
+    // [tempHostArr, tempGuestArr, tempTotalAppearancesArr, noHostEpisodes, noGuestEpisodes]
+    //giCrewArr = getGICrew();
+    for (const person of getGICrew()[2]) {
+        // Create input element
+        inputElement = document.createElement('input');
+        inputElement.setAttribute('type', 'checkbox');
+        inputElement.setAttribute('name', 'giCrew');
+        inputElement.setAttribute('value', person.name);
+        inputElement.checked = true;
+        // Append input element to label, then append the label to the fieldset
+        labelElement = ReplayEpisode.createElementAdv('label', undefined, `${person.name} (${person.count})`);
+        labelElement.appendChild(inputElement);
+        parentElement.append(labelElement);
+    }
+
+    // Segment
+    parentElement = document.getElementById('segment-field');
+    for (const segment of getMiddleSegments()) {
+        // Create input element
+        inputElement = document.createElement('input');
+        inputElement.setAttribute('type', 'checkbox');
+        inputElement.setAttribute('name', 'segment');
+        inputElement.setAttribute('value', segment.name);
+        inputElement.checked = true;
+        // Append input element to label, then append the label to the fieldset
+        labelElement = ReplayEpisode.createElementAdv('label', undefined, `${segment.name} (${segment.count})`);
+        labelElement.appendChild(inputElement);
+        parentElement.append(labelElement);
+    }
+};
+
 // ------------------------------------
 // --------------- Sort ---------------
 // ------------------------------------
@@ -383,7 +477,6 @@ replayEpisodeCollection.filterBySeason = function (seasonToFilter) {
 // the later assignment but may have to use them like sortTypeSelect
 // TODO - Could combine two switchs in case 'sort-type'
 replayEpisodeCollection.setSortByEvent = function (event) {
-    console.log('setSortByEvent called with event: ' + event.currentTarget.name);
     switch (event.currentTarget.name) {
         // Sort Type
         case 'sort-type':
@@ -459,6 +552,14 @@ replayEpisodeCollection.sortByType = function () {
             // Reverse array if this.ascending is false
             if (!this.ascending) this.selectedEpisodes.reverse();
             break;
+        case sort.length:
+            // Sorts in ascending order
+            this.selectedEpisodes.sort(function (first, second) {
+                return first.videoLengthInSeconds - second.videoLengthInSeconds;
+            });
+            // Reverse array if this.ascending is false
+            if (!this.ascending) this.selectedEpisodes.reverse();
+            break;
         // None (No sort such as for shuffled list)
         case sort.none: break;
         // Default (episodeNumber)
@@ -470,19 +571,6 @@ replayEpisodeCollection.sortByType = function () {
             });
             // Reverse if ascending is true
             if (this.ascending) this.selectedEpisodes.reverse();
-    }
-};
-
-// getSortTypeStringValue()
-// Converts number type to string for value attribute of select option element
-replayEpisodeCollection.getSortTypeStringValue = function () {
-    switch (this.sortType) {
-        case sort.airdate: return 'airdate'; break;
-        case sort.views: return 'most-viewed'; break;
-        case sort.likes: return 'most-liked'; break;
-        case sort.number: return 'episode-number'; break;
-        case sort.none:
-        default: return 'none';
     }
 };
 
@@ -539,3 +627,196 @@ replayEpisodeCollection.onPlayerStateChange = function (event) {
 replayEpisodeCollection.onPlayerError = function (event) {
     console.log('Error: ' + event.data);
 };
+
+// -------------------------------------------------
+// ---------- Utility Functions (Static?) ----------
+// -------------------------------------------------
+
+// isEmpty(obj)
+// Test if object is empty
+function isEmpty(obj) {
+    for (const key in obj) {
+        if (obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
+
+// --------------------------------
+// ---------- Debug/Flag ----------
+// --------------------------------
+
+// Find episode numbers with no provided YouTube URL
+function findEpisodesWithNoYouTubeURL(replayEpisodes) {
+    let episodesFlagged = [];
+    replayEpisodes.forEach(function (episode) {
+        if (!episode.hasOwnProperty('youtubeVideoID')
+            || !episode.youtubeVideoID)
+            episodesFlagged.push(episode.episodeNumber);
+    });
+    console.log(episodesFlagged);
+}
+
+// Get list of host/featuring with no duplicates
+function getGICrew() {
+    let tempHostArr = [];
+    let tempGuestArr = [];
+    let tempTotalAppearancesArr = [];
+    let noHostEpisodes = [];
+    let noGuestEpisodes = [];
+    let isIncluded = false;
+
+    for (const episode of replayEpisodeCollection.replayEpisodeObjectArray) {
+        // Host
+        if (episode.hasOwnProperty('host')) {
+            // For each host in episode host array
+            for (const host of episode.host) {
+                // Check if host already listed
+                isIncluded = false;
+                for (const hostObj of tempHostArr) {
+                    // If host matches, increment count, move to next host
+                    if (hostObj.name == host) {
+                        isIncluded = true;
+                        hostObj.count++;
+                        break;
+                    }
+                }
+                // If host is NOT included, add to list
+                if (!isIncluded) {
+                    tempHostArr.push({
+                        name: host,
+                        count: 1
+                    });
+                }
+            }
+        } else // No hosts property, add flagged episode
+            noHostEpisodes.push(episode.episodeNumber);
+
+        // Featuring
+        if (episode.hasOwnProperty('featuring')) {
+            // For each guest in the episode featuring array
+            for (const guest of episode.featuring) {
+                // Check if guest already listed
+                isIncluded = false;
+                for (const guestObj of tempGuestArr) {
+                    // If guest matches, increment count, move to next guest
+                    if (guestObj.name == guest) {
+                        isIncluded = true;
+                        guestObj.count++;
+                        break;
+                    }
+                }
+                // If guest is NOT included, add to list
+                if (!isIncluded) {
+                    tempGuestArr.push({
+                        name: guest,
+                        count: 1
+                    });
+                }
+            }
+        }
+        else // No featuring property, add flagged episode
+            noGuestEpisodes.push(episode.episodeNumber);
+    }
+
+    // Combine host/guest to get total episode appearances by GI crew
+    // Initialize total appearances array to guest array
+    tempTotalAppearancesArr = tempGuestArr.slice();
+    // For each host in host array
+    for (const hostObj of tempHostArr) {
+        isIncluded = false;
+        for (const totalAppearanceObj of tempTotalAppearancesArr) {
+            // If total appearances name matches the host name, add count, break to get next host
+            if (totalAppearanceObj.name === hostObj.name) {
+                totalAppearanceObj.count += hostObj.count;
+                isIncluded = true;
+                break;
+            }
+        }
+        // If NOT included, push to total appearances array
+        if (!isIncluded) tempTotalAppearancesArr.push(hostObj);
+    }
+
+    // Sort arrays by count
+    tempHostArr.sort(function (first, second) {
+        return second.count - first.count;
+    });
+    tempGuestArr.sort(function (first, second) {
+        return second.count - first.count;
+    });
+    tempTotalAppearancesArr.sort(function (first, second) {
+        return second.count - first.count;
+    });
+
+    return [tempHostArr, tempGuestArr, tempTotalAppearancesArr, noHostEpisodes, noGuestEpisodes];
+}
+
+// Get all extra headings from details property
+function getEpisodeHeadings() {
+    let extraHeadingsArr = [];
+    let isIncluded = false;
+    replayEpisodeCollection.replayEpisodeObjectArray.forEach(function (episode) {
+        if (episode.hasOwnProperty('otherHeadingsObj')) {
+            for (const key in episode.otherHeadingsObj) {
+                // If key is already on list, increment count
+                isIncluded = false;
+                for (const extraHeading of extraHeadingsArr) {
+                    if (extraHeading.heading === key) {
+                        isIncluded = true;
+                        extraHeading.count++;
+                        break;
+                    }
+                }
+                // If NOT included, add heading to list
+                if (!isIncluded) {
+                    extraHeadingsArr.push({
+                        heading: key,
+                        count: 1
+                    });
+                }
+            }
+        }
+    });
+
+    // Sort array by heading count in descending order
+    extraHeadingsArr.sort(function (first, second) {
+        return second.count - first.count;
+    });
+
+    return extraHeadingsArr;
+}
+
+function getMiddleSegments() {
+    let middleSegmentArr = [];
+    let isIncluded = false;
+    replayEpisodeCollection.replayEpisodeObjectArray.forEach(function (episode) {
+        if (episode.hasOwnProperty('middleSegment') || episode.hasOwnProperty('middleSegmentContent')) {
+            let tempMiddleSegment = episode.middleSegment || episode.middleSegmentContent;
+            // Check if Ad (string.endsWith())
+            if (tempMiddleSegment.endsWith('Ad'))
+                tempMiddleSegment = 'Ad';
+            isIncluded = false;
+            for (const segment of middleSegmentArr) {
+                if (segment.name === tempMiddleSegment) {
+                    isIncluded = true;
+                    segment.count++;
+                    break;
+                }
+            }
+            // If NOT included, add to list
+            if (!isIncluded) {
+                middleSegmentArr.push({
+                    name: tempMiddleSegment,
+                    count: 1
+                });
+            }
+        }
+    });
+
+    // Sort array by count in descending order
+    middleSegmentArr.sort(function (first, second) {
+        return second.count - first.count;
+    });
+
+    return middleSegmentArr;
+}

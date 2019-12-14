@@ -368,6 +368,10 @@ header h1 { display: none; }
     padding: 0 .3em;
 }
 
+#filterForm label {
+    display: block;
+}
+
 #filterForm > fieldset > div > label {
 }
 

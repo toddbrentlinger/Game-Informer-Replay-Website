@@ -118,7 +118,7 @@ header {
 }
 
 header + img {
-    max-width: 80%;
+    width: 50%;
     height: auto;
     display: block;
     margin: 0 auto;
@@ -294,7 +294,7 @@ header h1 { display: none; }
 /* Episode Details */
 
 .episodeDetails {
-    padding: 0 .6em;
+    padding: 0 1.5em;
     font-size: .9em;
 }
 .episodeDetails > * { padding: .5em 0; }
@@ -310,6 +310,15 @@ header h1 { display: none; }
 }
 .episodeMoreInfo h4 {
     text-transform: capitalize;
+    font-size: 1.1em;
+}
+
+/* GI Article */
+.article-title {
+    margin-bottom: 0;
+}
+.article-author {
+    font-size: .9em;
 }
 
 /* Thematic Break hr */
@@ -369,7 +378,7 @@ header h1 { display: none; }
 }
 
 #filterForm label {
-    display: block;
+    /*display: block;*/
 }
 
 #filterForm > fieldset > div > label {
@@ -379,13 +388,16 @@ header h1 { display: none; }
 /* ---------- Sort ---------- */
 /* -------------------------- */
 
-#sort > * {
+#sort-main {
+    display: flex;
 }
 
-#sort::after {
-    content: "";
-    clear: both;
-    display: table;
+#misc-buttons-container {
+    flex: 2;
+}
+
+#sort-container {
+    flex: 3;
 }
 
 /* ----------------------------------------- */
@@ -440,7 +452,7 @@ header h1 { display: none; }
 [data-theme="dark"] header {
     background-image: url("/images/Game_Informer_logo_(2010-present)(dark_mode).png");
 }
-[data-theme="dark"] .episodeDetails b {
+[data-theme="dark"] .episodeDetails b, [data-theme="dark"] .episodeMoreInfo h4 {
     color: var(--main-text-color);
 }
 

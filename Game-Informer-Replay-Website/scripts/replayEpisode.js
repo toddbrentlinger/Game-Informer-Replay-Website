@@ -28,7 +28,7 @@ class ReplayEpisode {
         this.episodeTitle = replayEpisode.episodeTitle;
 
         // Fandom Wiki URL
-        //this.fandomWikiURL = replayEpisode.fandomWikiURL;
+        this.fandomWikiURL = replayEpisode.fandomWikiURL;
 
         // Main Segment Games
         this.mainSegmentGamesAdv = replayEpisode.mainSegmentGamesAdv;
@@ -133,7 +133,14 @@ class ReplayEpisode {
         // If tempHeadingsObj is NOT empty, assign to this.otherHeadingsObj
         if (!ReplayEpisode.isEmptyObject(tempHeadingsObj))
             this.otherHeadingsObj = tempHeadingsObj;
-
+        
+        // Game Informer article
+        if (replayEpisode.hasOwnProperty('article')) {
+            this.replayArticle = {};
+            for (const prop in replayEpisode.article)
+                this.replayArticle[prop] = replayEpisode.article[prop];
+        }
+        
         // Create HTML element and add episode data
         this.populateEpisodeSection(episodeTemplate);
     }
@@ -282,7 +289,23 @@ class ReplayEpisode {
 
         // Description
         ReplayEpisode.addContentArrToNode(parentNode, this.description);
-
+        
+        // Article
+        if (this.hasOwnProperty('replayArticle')) {
+            console.log("Start --- " + this.replayArticle)
+            // Add title as header element to episodeMoreInfo element
+            parentNode.appendChild(ReplayEpisode.createElementAdv(
+                'h4', 'article-title', this.replayArticle.title));
+            // Add author and date posted
+            parentNode.appendChild(ReplayEpisode.createElementAdv(
+                'div', 'article-author', `by ${this.replayArticle.author}${this.replayArticle.date}`));
+            // Add article content
+            if (this.replayArticle.hasOwnProperty('content')) {
+                for (const para of this.replayArticle.content)
+                    parentNode.appendChild(ReplayEpisode.createElementAdv('p', undefined, para));
+            }
+        }
+        
         // Other Headings (External Links should go last)
         if (this.hasOwnProperty('otherHeadingsObj')) {
             for (const heading in this.otherHeadingsObj) {

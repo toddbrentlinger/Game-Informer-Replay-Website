@@ -292,7 +292,6 @@ class ReplayEpisode {
         
         // Article
         if (this.hasOwnProperty('replayArticle')) {
-            console.log("Start --- " + this.replayArticle)
             // Add title as header element to episodeMoreInfo element
             parentNode.appendChild(ReplayEpisode.createElementAdv(
                 'h4', 'article-title', this.replayArticle.title));
@@ -493,7 +492,7 @@ class ReplayEpisode {
 
     // Function: Create custom description for replay episode in case there is none from scraping
     static createCustomDescription(replayEpisode) {
-        let descriptionArr = ['Custom'];
+        let descriptionArr = [];
         // Main Segment
         // If only one game in main segment
         if (replayEpisode.mainSegmentGamesAdv.length == 1) {

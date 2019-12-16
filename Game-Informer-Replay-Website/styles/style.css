@@ -23,7 +23,7 @@ Softrobo Pro Font on fonts.com
     --third-bg-color: #f6f6f6; /* nearly pure white */
 
     background-color: var(--main-bg-color);
-    background-image: url("/images/replay_bg_gi_blue.png");
+    background-image: url("/images/replay_bg_gi_blue(3).png");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center top;
@@ -54,7 +54,7 @@ html {
 body {
     background-color: var(--second-bg-color);
     color: var(--second-text-color);
-    max-width: 800px;
+    max-width: 850px;
     width: 88%;
     margin: 0 auto; /* default: 8px */
     margin-top: 0;
@@ -342,29 +342,39 @@ header h1 { display: none; }
 /* ------------------------------------ */
 
 #videoPlayer {
-    /*position: fixed;*/
+    /*position: fixed;
     top: 0;
-    left: 0;
+    left: 0;*/
+    position: relative;
     width: 100%;
-    border: 5px solid black;
+    padding-top: 56.25%;
+    background-color: #000;
+    /*border: 5px solid black;*/
     z-index: 100;
 }
 #videoPlayer .iframeWrapper {
-    position: relative;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
-    height: calc(56.25vw);
-    max-height: calc(-169px + 100vh);
+    height: 100%; /* calc(56.25vw) */
+    /*max-height: calc(-169px + 100vh);
     min-height: 480px;
     padding-top: 56.25%;
     margin: 0 auto;
-    background: #000;
+    background: #000;*/
 }
 #videoPlayer .iframeWrapper iframe {
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+    /*
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
+    */
 }
 
 /* --------------------------------- */
@@ -387,17 +397,51 @@ header h1 { display: none; }
 /* -------------------------- */
 /* ---------- Sort ---------- */
 /* -------------------------- */
-
 #sort-main {
-    display: flex;
+    font-size: .9em;
 }
+#sort-container {
+    float: right;
+    width: 50%;
+}
+
+#number-displayed-container {
+    float: left;
+    width: 50%;
+}
+#sort-main::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* ---------------------------------- */
+/* ---------- Misc Buttons ---------- */
+/* ---------------------------------- */
 
 #misc-buttons-container {
-    flex: 2;
+    display: flex;
+}
+#misc-buttons-container button {
+    flex: 1;
 }
 
-#sort-container {
-    flex: 3;
+/* --------------------------------- */
+/* ---------- Page Select ---------- */
+/* --------------------------------- */
+
+.page-number-container {
+    display: flex;
+    flex-wrap: wrap;
+
+}
+.page-number-container button {
+    display: inline-block;
+    flex: 2em;
+}
+.page-number-container .active {
+    background-color: black;
+    color: white;
 }
 
 /* ----------------------------------------- */

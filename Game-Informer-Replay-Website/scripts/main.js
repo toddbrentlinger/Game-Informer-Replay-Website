@@ -63,13 +63,24 @@ document.getElementById('button-reset-list')
             .bind(replayEpisodeCollection),
     false);
 
+// Page Select
+replayEpisodeCollection.prevButton.addEventListener("click",
+    function () {
+        replayEpisodeCollection.setPageNumber('prev');
+    }.bind(replayEpisodeCollection), false
+);
+replayEpisodeCollection.nextButton.addEventListener("click",
+    function () {
+        replayEpisodeCollection.setPageNumber('next');
+    }.bind(replayEpisodeCollection), false
+);
+
 // Jump To Top Page
-var jumpToTopPageElement = document.getElementById('jump-top-page-container');
+const jumpToTopPageElement = document.getElementById('jump-top-page-container');
+const mainElement = document.querySelector('main');
 window.addEventListener("scroll", function () {
-    if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20)
-        jumpToTopPageElement.style.display = "block";
-    else
-        jumpToTopPageElement.style.display = "none";
+    jumpToTopPageElement.style.display =
+        (mainElement.getBoundingClientRect().top < 0) ? "block" : "none";
 }, false);
 
 // Toggle Video Player

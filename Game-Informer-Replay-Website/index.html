@@ -17,12 +17,6 @@
 
     <meta name="author" content="Todd Brentlinger" />
 
-    <!-- Google CDN for jQuery
-    Many users already have downloaded jQuery from Google or Microsoft when visiting another site.
-    As a result, it will be loaded from cache when they visit your site, which leads to faster
-    loading time. Also, most CDN's will make sure that once a user requests a file from it, it
-    will be served from the server closest to them, which also leads to faster loading time.--
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
     <!-- Note: Attribute name="description" is used for search engines. Include
         keywords relating to the webpage to optimize Search Engine Optimization (SEO) -->
     <meta name="description" content="Game Informer Replay" />
@@ -41,7 +35,9 @@
             <li><a href="https://replay.fandom.com/wiki/List_of_Super_Replay_installments">Super Replay</a></li>
             <li><a href="https://www.gameinformer.com/index.php/covergallery" target="_blank">Magazine Covers</a></li>
             <li><a href="https://replay.fandom.com/wiki/Category:Game_Informer_staff" target="_blank">GI Crew</a></li>
+            <!--
             <li><a href="/debug/episodeSection.html">Episode Section</a></li>
+            -->
         </ul>
         <div class="switch-container">
             <em>Enable Dark Mode</em>
@@ -93,36 +89,44 @@
             <form id="filterForm">
                 <fieldset form="filterForm" id="seasonField">
                     <legend>Season: </legend>
-                    <label>6
+                    <label>
+                        6
                         <input type="checkbox" name="season" value="6" checked />
                     </label>
-                    <label>5
+                    <label>
+                        5
                         <input type="checkbox" name="season" value="5" checked />
                     </label>
-                    <label>4
+                    <label>
+                        4
                         <input type="checkbox" name="season" value="4" checked />
                     </label>
-                    <label>3
+                    <label>
+                        3
                         <input type="checkbox" name="season" value="3" checked />
                     </label>
-                    <label>2
+                    <label>
+                        2
                         <input type="checkbox" name="season" value="2" checked />
                     </label>
-                    <label>1
+                    <label>
+                        1
                         <input type="checkbox" name="season" value="1" checked />
                     </label>
                 </fieldset>
 
                 <fieldset form="filterForm" id="gi-crew-field">
                     <legend>GI Crew: </legend>
-                    <label>Andrew Reiner
+                    <label>
+                        Andrew Reiner
                         <input type="checkbox" name="giCrew" value="Andrew Reiner" checked />
                     </label>
                 </fieldset>
 
                 <fieldset form="filterForm" id="segment-field">
                     <legend>Segment: </legend>
-                    <label>RR
+                    <label>
+                        RR
                         <input type="checkbox" name="segment" value="RR" checked />
                     </label>
                 </fieldset>
@@ -133,13 +137,20 @@
                 </div>
             </form>
 
-            <div id="sort-main">
-                <div id="misc-buttons-container">
-                    <button type="button" id="button-toggleVideoPlayer">Toggle YT Player</button>
-                    <button type="button" id="button-shuffle">Shuffle</button>
-                    <button type="button" id="button-reset-list">Reset List</button>
-                </div>
+            <div id="misc-buttons-container">
+                <button type="button" id="button-toggleVideoPlayer">Toggle YT Player</button>
+                <button type="button" id="button-shuffle">Shuffle</button>
+                <button type="button" id="button-reset-list">Reset List</button>
+            </div>
 
+            <div id="page-number-container" class="page-number-container">
+                <button type="button" value="prev">PREV</button>
+                <button type="button" value="1" class="page-number">1</button>
+                <button type="button" value="2" class="page-number">2</button>
+                <button type="button" value="next">NEXT</button>
+            </div>
+
+            <div id="sort-main">
                 <div id="sort-container">
                     <label for="sort-type-select">Sort:</label>
                     <select name="sort-type" id="sort-type-select">
@@ -166,10 +177,10 @@
                         <option value="show-all">All</option>
                     </select>
                 </div>
-            </div>
 
-            <div id="number-displayed-container">
-                Displaying XX out of XXX replay episodes
+                <div id="number-displayed-container">
+                    Displaying XX out of XXX replay episodes
+                </div>
             </div>
 
             <section class="episode">
@@ -223,11 +234,13 @@
     <footer>
         <p>
             &copy; 2019 Todd Brentlinger, Santa Cruz, CA, USA.<br />
-            Code licensed under MIT License.
+            Code licensed under <a href="https://opensource.org/licenses/MIT" target="_blank" rel="nofollow">MIT License</a>.
         </p>
         <br />
         <p>Website last modified on <time id="lastModifiedDate"></time></p>
+        <!--
         <p>Replay list last modified on <time id="lastModifiedReplayList"></time></p>
+        -->
     </footer>
 
     <script src="data/gameInformerReplayFandomWikiDataJS.js"></script>

@@ -35,7 +35,7 @@ var replayEpisodeCollection = {
     // Filter
     filterElement: document.querySelector('#filterForm'),
 
-    currentDisplayedEpisodesMessageElement: document.getElementById('number-displayed-container'),
+    currentDisplayedEpisodesMessageElement: document.querySelector('#number-displayed-container div'),
 
     replayEpisodeObjectArray: [],
 
@@ -63,7 +63,7 @@ var replayEpisodeCollection = {
     },
 
     // Page Selection
-    _currentPageDisplayed: 1, // Page number of selected episodes list depending on maxDisplayedEpisodes
+    _currentPageDisplayed: parseInt(window.sessionStorage.getItem('currentPageDisplayed'), 10) || 1, // Page number of selected episodes list depending on maxDisplayedEpisodes
     get currentPageDisplayed() { return this._currentPageDisplayed; },
     set currentPageDisplayed(num) {
         // If string, try to convert to int, assigns NaN if cannot
@@ -72,7 +72,10 @@ var replayEpisodeCollection = {
         // Limit value between 1 and totalPages
         this._currentPageDisplayed = (num < 1) ? 1
             : (num > this.totalPages) ? this.totalPages
-            : num;
+                : num;
+
+        // Assign to local/session storage
+        window.sessionStorage.setItem('currentPageDisplayed', this.currentPageDisplayed);
     },
     get totalPages() {
         return (this.maxDisplayedEpisodes)
@@ -84,7 +87,7 @@ var replayEpisodeCollection = {
     nextButton: document.querySelector('#page-number-container button:last-child'),
 
     // Sort
-    _sortType: window.sessionStorage.getItem('sortType') || sort.airdate,
+    _sortType: parseInt(window.sessionStorage.getItem('sortType'), 10) || sort.airdate,
     get sortType() { return this._sortType; },
     set sortType(input) {
         let tempSortType; // Initialized to undefined
@@ -96,7 +99,6 @@ var replayEpisodeCollection = {
                 case 'most-liked': tempSortType = sort.likes; break;
                 case 'video-length': tempSortType = sort.length; break;
                 case 'none': tempSortType = sort.none; break;
-                case 'number':
                 default: tempSortType = sort.number;
             }
         }
@@ -126,8 +128,6 @@ var replayEpisodeCollection = {
             case sort.views: this.sortTypeElement.value = 'most-viewed'; break;
             case sort.likes: this.sortTypeElement.value = 'most-liked'; break;
             case sort.length: this.sortTypeElement.value = 'video-length'; break;
-            case sort.number:
-            case sort.none:
             default: this.sortTypeElement.value = 'none';
         }
     },
@@ -139,9 +139,8 @@ var replayEpisodeCollection = {
             case sort.views: return 'most-viewed'; break;
             case sort.likes: return 'most-liked'; break;
             case sort.length: return 'video-length'; break;
-            case sort.number: return 'episode-number'; break;
-            case sort.none:
-            default: return 'none';
+            case sort.none: return 'none'; break;
+            default: return 'episode-number';
         }
     },
 
@@ -613,7 +612,6 @@ replayEpisodeCollection.sortByType = function () {
         // None (No sort such as for shuffled list)
         case sort.none: break;
         // Default (episodeNumber)
-        case sort.number:
         default:
             // Default sort by episodeNumber in descending order
             this.selectedEpisodes.sort(function (first, second) {
@@ -659,7 +657,7 @@ replayEpisodeCollection.resetSortFilterSearch = function() {
 replayEpisodeCollection.updatePageNumber = function () {
     // Variables
     let tempNode;
-    console.log('updatePageNumber started');
+
     // Remove all page number buttons
     this.pageNumberContainer.querySelectorAll('.page-number').forEach(function (node) {
         node.remove();

@@ -4,19 +4,19 @@ replayEpisodeCollection.init(replayEpisodeArray);
 
 // Sort - Event Listeners
 document.querySelector(
-    '#sort-container > select[name = "sort-type"]')
+    '#sort-container select[name = "sort-type"]')
     .addEventListener("change",
         replayEpisodeCollection.setSortByEvent
         .bind(replayEpisodeCollection),
     false);
 document.querySelector(
-    '#sort-container > select[name = "sort-direction"]')
+    '#sort-container select[name = "sort-direction"]')
     .addEventListener("change",
         replayEpisodeCollection.setSortByEvent
         .bind(replayEpisodeCollection),
     false);
 document.querySelector(
-    '#sort-container > select[name = "max-displayed"]')
+    '#sort-container select[name = "max-displayed"]')
     .addEventListener("change",
         replayEpisodeCollection.setSortByEvent
         .bind(replayEpisodeCollection),
@@ -97,7 +97,7 @@ document.getElementById('button-toggleVideoPlayer')
 
 // Set date the document was last modified at the bottom of the page
 document.getElementById('lastModifiedDate').innerHTML = new Date(document.lastModified).toDateString();
-document.getElementById('lastModifiedReplayList').innerHTML = lastModifiedReplayList;
+//document.getElementById('lastModifiedReplayList').innerHTML = lastModifiedReplayList;
 
 /* JSON
 let requestURL = 'https://github.com/toddbrentlinger/Game-Informer-Scraper/blob/master/Game%20Informer%20Scraper/gameInformerReplayFandomWikiData.json';

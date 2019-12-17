@@ -167,7 +167,7 @@ class ReplayEpisode {
     // ReplayEpisode.populateEpisodeSection()
     populateEpisodeSection(episodeTemplateNode) {
         // Variables (temp can be array, string, ...)
-        let parentNode, childNode, temp;
+        let parentNode, temp;
 
         // Initialize this.episodeSection to template clone
         this.episodeSection = episodeTemplateNode.cloneNode(true);
@@ -194,12 +194,10 @@ class ReplayEpisode {
 
         // Anchor link
         parentNode = this.episodeSection.querySelector('.episodeThumbnail > a');
-        //childNode.setAttribute('title', '');
         parentNode.setAttribute('href', 'https://www.youtube.com/watch?v=' + this.youtubeVideoID);
 
         // Image
         parentNode = this.episodeSection.querySelector('.episodeImage');
-        //childNode.setAttribute('alt', '');
         parentNode.setAttribute('width', this.image.width);
         parentNode.setAttribute('height', this.image.height);
         parentNode.setAttribute('src', this.image.srcset[0]);
@@ -300,27 +298,36 @@ class ReplayEpisode {
                 'div', 'article-author', `by ${this.replayArticle.author}${this.replayArticle.date}`));
             // Add article content
             if (this.replayArticle.hasOwnProperty('content')) {
-                for (const para of this.replayArticle.content)
-                    parentNode.appendChild(ReplayEpisode.createElementAdv('p', undefined, para));
+                for (const para of this.replayArticle.content) {
+                    if (para.replace(/\s/g, '').length)
+                        parentNode.appendChild(ReplayEpisode.createElementAdv('p', undefined, para));
+                }
             }
         }
         
         // Other Headings (External Links should go last)
         if (this.hasOwnProperty('otherHeadingsObj')) {
             for (const heading in this.otherHeadingsObj) {
-                // Add heading as a header element to episodeMoreInfo element
-                parentNode.appendChild(ReplayEpisode.createElementAdv(
-                    'h4', undefined, heading.replace('_', ' ')));
-                ReplayEpisode.addContentArrToNode(parentNode, this.otherHeadingsObj[heading]);
+                // If heading is 'See Also', add list of URL links
+                if (heading == 'see_also')
+                    ReplayEpisode.addListOfLinks(this.otherHeadingsObj[heading], parentNode, 'See Also');
+                else {
+                    // Add heading as a header element to episodeMoreInfo element
+                    parentNode.appendChild(ReplayEpisode.createElementAdv(
+                        'h4', undefined, heading.replace(/_/g, ' ')));
+                    ReplayEpisode.addContentArrToNode(parentNode, this.otherHeadingsObj[heading]);
+                }
             }
         }
 
         // External Links (bottom of episodeMoreInfo)
         if (this.hasOwnProperty('external_links')) {
+            ReplayEpisode.addListOfLinks(this.external_links, parentNode, 'External Links');
+            /*
             // Variables
             let listElement, listItemElement, anchorElement, linkSource;
             // Add header for external links to episodeMoreInfo element
-            parentNode.appendChild(ReplayEpisode.createElementAdv('h4', undefined, 'External Links:'));
+            parentNode.appendChild(ReplayEpisode.createElementAdv('h4', undefined, 'External Links'));
             // Create ul element and append as child to episodeMoreInfo element
             listElement = parentNode.appendChild(document.createElement('ul'));
             // Loop through each value of array of list values
@@ -347,6 +354,7 @@ class ReplayEpisode {
                     listItemElement.appendChild(document.createTextNode(' on '
                         + linkSource));
             }
+            */
         }
 
         // Return episode section HTML
@@ -583,5 +591,39 @@ class ReplayEpisode {
                 return false;
         }
         return true;
+    }
+
+    // Add list of URL links
+    static addListOfLinks(linksList, parentNode, headlineString) {
+        // Variables
+        let listElement, listItemElement, anchorElement, linkSource;
+        // Add header for external links to episodeMoreInfo element
+        parentNode.appendChild(ReplayEpisode.createElementAdv('h4', undefined, headlineString));
+        // Create ul element and append as child to episodeMoreInfo element
+        listElement = parentNode.appendChild(document.createElement('ul'));
+        // Loop through each value of array of list values
+        for (const linkObj of linksList) {
+            // Create li element and append as child to ul element
+            listItemElement = listElement.appendChild(document.createElement('li'));
+            // Create i element and append as child to li list element
+            // then create anchor element and append as child to i element
+            anchorElement = listItemElement.appendChild(document.createElement('i'))
+                .appendChild(ReplayEpisode.createElementAdv('a', undefined, linkObj.title));
+            anchorElement.setAttribute('href', linkObj.href);
+            anchorElement.setAttribute('target', '_blank');
+            // Add text listing source of link
+            linkSource = '';
+            // Find matching link source
+            for (let i = 0; i < linkSourceOptions.length; i++) {
+                if (linkObj.href.includes(linkSourceOptions[i][0])) {
+                    linkSource = linkSourceOptions[i][1];
+                    break;
+                }
+            }
+            // If match was found, add to end of link, else don't include anything
+            if (linkSource)
+                listItemElement.appendChild(document.createTextNode(' on '
+                    + linkSource));
+        }
     }
 }

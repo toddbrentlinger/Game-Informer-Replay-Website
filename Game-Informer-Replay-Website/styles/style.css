@@ -243,6 +243,7 @@ header h1 { display: none; }
     left: 0;
     width: 100%;
     height: 100%;
+    overflow: hidden;
 }
 
 /* Thumnail Image */
@@ -399,20 +400,33 @@ header h1 { display: none; }
 /* -------------------------- */
 #sort-main {
     font-size: .9em;
+    display: flex;
 }
+
 #sort-container {
-    float: right;
-    width: 50%;
+    flex: 2;
+    display: flex;
+    order: 1;
+}
+#sort-container label {
+    flex: 2;
+}
+#sort-container label:last-child {
+    flex: 1;
+}
+#sort-container label select {
+    display: block;
+    width: 100%;
 }
 
 #number-displayed-container {
-    float: left;
-    width: 50%;
+    flex: 3;
+    position: relative;
 }
-#sort-main::after {
-    content: "";
-    clear: both;
-    display: table;
+#number-displayed-container div {
+    position: absolute;
+    bottom: 0;
+    left: 0;
 }
 
 /* ---------------------------------- */

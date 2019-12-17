@@ -152,34 +152,38 @@
 
             <div id="sort-main">
                 <div id="sort-container">
-                    <label for="sort-type-select">Sort:</label>
-                    <select name="sort-type" id="sort-type-select">
-                        <option value="none">-- Sort By --</option>
-                        <option value="airdate" selected>Air Date</option>
-                        <option value="most-viewed">Most Viewed</option>
-                        <option value="most-liked">Most Liked</option>
-                        <option value="video-length">Video Length</option>
-                    </select>
+                    <label for="sort-type-select">Sort:
+                        <select name="sort-type" id="sort-type-select">
+                            <option value="none">-- Sort By --</option>
+                            <option value="airdate" selected>Air Date</option>
+                            <option value="most-viewed">Most Viewed</option>
+                            <option value="most-liked">Most Liked</option>
+                            <option value="video-length">Video Length</option>
+                        </select>
+                    </label>
+                    
 
-                    <label for="sort-direction-select"></label>
-                    <select name="sort-direction" id="sort-direction-select">
-                        <option value="descending" selected>Descending</option>
-                        <option value="ascending">Ascending</option>
-                    </select>
+                    <label for="sort-direction-select">Direction:
+                        <select name="sort-direction" id="sort-direction-select">
+                            <option value="descending" selected>Descending</option>
+                            <option value="ascending">Ascending</option>
+                        </select>
+                    </label>
 
-                    <label for="max-displayed-select">Displayed:</label>
-                    <select name="max-displayed" id="max-displayed-select">
-                        <option>10</option>
-                        <option>25</option>
-                        <option selected>50</option>
-                        <option>100</option>
-                        <option>200</option>
-                        <option value="show-all">All</option>
-                    </select>
+                    <label for="max-displayed-select">Per Page:
+                        <select name="max-displayed" id="max-displayed-select">
+                            <option>10</option>
+                            <option>25</option>
+                            <option selected>50</option>
+                            <option>100</option>
+                            <option>200</option>
+                            <option value="show-all">All</option>
+                        </select>
+                    </label>
                 </div>
 
                 <div id="number-displayed-container">
-                    Displaying XX out of XXX replay episodes
+                    <div>Displaying XX out of XXX replay episodes</div>
                 </div>
             </div>
 

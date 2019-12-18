@@ -37,7 +37,7 @@ document.querySelector('#search-container button')
             .bind(replayEpisodeCollection),
     false);
 // Search if press enter inside input field by making button click
-document.querySelector('#search-container input[type="search"]')
+document.querySelector('#search-container input[type="text"]')
     .addEventListener("keyup", function (event) {
         if (event.keyCode === 13) { // No. 13 is 'enter' key
             // Cancel default action, if needed

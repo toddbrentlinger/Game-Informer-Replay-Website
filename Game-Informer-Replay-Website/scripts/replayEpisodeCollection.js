@@ -31,7 +31,7 @@ var replayEpisodeCollection = {
     sortDirectionElement: document.getElementById('sort-direction-select'),
     maxDisplayedElement: document.getElementById('max-displayed-select'),
     // Search
-    searchInputElement: document.querySelector('#search-container input[type = "search"]'),
+    searchInputElement: document.querySelector('#search-container input[type = "text"]'),
     // Filter
     filterElement: document.querySelector('#filterForm'),
 
@@ -44,20 +44,22 @@ var replayEpisodeCollection = {
     // array of ReplayEpisode objects
     selectedEpisodes: [],
 
-    // Max Displayed Episdoes - Increments [10, 25, 50, 100, 200]
+    // Max Displayed Episodes - Increments [10, 25, 50, 100, 200]
+    // Value of 0 shows all episodes
     _maxDisplayedEpisodes: window.sessionStorage.getItem('maxDisplayedEpisodes') || 50,
     get maxDisplayedEpisodes() { return this._maxDisplayedEpisodes; },
     set maxDisplayedEpisodes(num) {
+        //console.log(`Argument num: ${num} (${typeof num}) - Max Displayed: ${this.maxDisplayedEpisodes}`);
         // If string, try to convert to int, assigns NaN if cannot
         if (typeof num == 'string')
             num = parseInt(num, 10);
         // If argument is a number and greater than zero, assign the value
         // of the argument. Else assign value of 0.
         this._maxDisplayedEpisodes = (!isNaN(num) && num > 0) ? num : 0;
-
+        //console.log(`maxDisplayed: ${this.maxDisplayedEpisodes}`);
         // Assign to local/session storage
         window.sessionStorage.setItem('maxDisplayedEpisodes', this.maxDisplayedEpisodes);
-
+        //console.log(`Argument num: ${num} (${typeof num}) - Max Displayed: ${this.maxDisplayedEpisodes}`);
         // Check that HTML select element value is correct
         this.maxDisplayedElement.value = this.maxDisplayedEpisodes;
     },
@@ -66,19 +68,20 @@ var replayEpisodeCollection = {
     _currentPageDisplayed: parseInt(window.sessionStorage.getItem('currentPageDisplayed'), 10) || 1, // Page number of selected episodes list depending on maxDisplayedEpisodes
     get currentPageDisplayed() { return this._currentPageDisplayed; },
     set currentPageDisplayed(num) {
+        console.log(`Argument num: ${num} (${typeof num}) --- Current Page: ${this.currentPageDisplayed}`);
         // If string, try to convert to int, assigns NaN if cannot
         if (typeof num == 'string')
             num = parseInt(num, 10);
         // Limit value between 1 and totalPages
-        this._currentPageDisplayed = (num < 1) ? 1
-            : (num > this.totalPages) ? this.totalPages
-                : num;
+        this._currentPageDisplayed = (num < 1) ? 1 : ((num > this.totalPages) ? this.totalPages : num);
 
         // Assign to local/session storage
         window.sessionStorage.setItem('currentPageDisplayed', this.currentPageDisplayed);
+
+        console.log(`Argument num: ${num} (${typeof num}) --- Current Page: ${this.currentPageDisplayed}`);
     },
     get totalPages() {
-        return (this.maxDisplayedEpisodes)
+        return (this.maxDisplayedEpisodes && this.selectedEpisodes.length)
             ? Math.ceil(this.selectedEpisodes.length / this.maxDisplayedEpisodes)
             : 1;
     },
@@ -233,7 +236,7 @@ replayEpisodeCollection.populateEpisodeObjectArray = function (replayEpisodeArra
  
 // clearMainElement()
 replayEpisodeCollection.clearMainElement = function () {
-    let currentEpisodeElements = this.mainElement.getElementsByClassName('episode');
+    const currentEpisodeElements = this.mainElement.getElementsByClassName('episode');
     // Make sure there are no episode elements already in place
     if (typeof currentEpisodeElements != 'undefined') {
         while (currentEpisodeElements.length > 0)
@@ -250,15 +253,18 @@ replayEpisodeCollection.clearMainElement = function () {
 replayEpisodeCollection.updateDisplayedEpisodes = function () {
     // Variables
     const selectedEpisodesLength = this.selectedEpisodes.length;
-    let start = 0, end = this.maxDisplayedEpisodes;
+    let start, end, i;
 
-    // Change start/end depending on selectedEpisodes length, maxDisplayedEpisodes, and currentPageDisplayed
+    // Assign start/end depending on selectedEpisodes length, maxDisplayedEpisodes, and currentPageDisplayed
     /* Ex. 120 episodes and 50 max displayed
      * 1: 0-49 (first 50) start=first end=50
      * 2: 50-99 (second 50) start=50 end=100
      * 3: 100-119 (last 20) start=100 end=last */
     start = (this.currentPageDisplayed - 1) * this.maxDisplayedEpisodes;
-    end = Math.min(this.currentPageDisplayed * this.maxDisplayedEpisodes, selectedEpisodesLength)
+    end = (this.maxDisplayedEpisodes)
+        ? Math.min(this.currentPageDisplayed * this.maxDisplayedEpisodes, selectedEpisodesLength)
+        : selectedEpisodesLength;
+    console.log(`Current Page: ${this.currentPageDisplayed} --- Max Displayed: ${this.maxDisplayedEpisodes} --- Start: ${start} --- End: ${end}`);
 
     /*
     // Check start argument
@@ -274,7 +280,7 @@ replayEpisodeCollection.updateDisplayedEpisodes = function () {
     this.clearMainElement();
 
     // Fill main element with selected episodes array
-    for (let i = start; i < end; i++)
+    for (i = start; i < end; i++)
         this.mainElement.appendChild(this.selectedEpisodes[i].episodeSection);
 
     // Change current number of displayed episodes message string
@@ -375,6 +381,7 @@ replayEpisodeCollection.shuffleSelectedEpisodes = function () {
 // filterBySearch(searchTerms)
 // IN-PROGRESS
 replayEpisodeCollection.search = function () {
+    // Variables
     const searchTerms = this.searchInputElement.value;
 
     if (searchTerms) {
@@ -395,9 +402,10 @@ replayEpisodeCollection.search = function () {
 
         // Sort selected episodes
         this.sortByType();
-
+        console.log(`CurrentPage Before: ${this.currentPageDisplayed}`);
         // Reset current page displayed
         this.currentPageDisplayed = 1;
+        console.log(`CurrentPage After: ${this.currentPageDisplayed}`);
 
         // Update displayed episodes with filtered episodes
         this.updateDisplayedEpisodes();

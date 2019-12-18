@@ -1,6 +1,24 @@
 ﻿TO-DO:
 
+12/17/19
+
+- Web Scraper: Some 'See Also' headlines have a single link
+in a paragraph element instead of ul li list.
+
+- Ignore Video headline in episodeMoreInfo element
+
+- When search with empty text input, reset selectedEpisodes
+list to include all episodes and apply sort/filter
+
+- Do NOT load YouTube playlist if selectedEpisodes is empty
+OR load Replay Highlights instead.
+
 12/16/19
+
+- ISSUE: Searching through GI article can lead to 
+non-relevant search result.
+SOLUTION: Ignore GI article when searching each replay
+episode.
 
 - ISSUE: When search returns zero results, check for errors
 and number of displayed episodes is not reset.

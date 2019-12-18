@@ -12,7 +12,7 @@ Softrobo Pro Font on fonts.com
 
 */
 
-/* Varbiables */
+/* Variables */
 :root {
     --main-text-color: #f6f6f6; /* nearly pure white */
     --main-bg-color: #0077a2; /* gi blue */
@@ -103,6 +103,8 @@ ul {
     padding-left: 40px;
 }
 
+
+/* ---------- Misc ---------- */
 h1, h2, footer { text-align: center; }
 
 /* ---------- Header ---------- */
@@ -129,6 +131,11 @@ header + img {
 header h1 { display: none; }
 
 /* ---------- Footer ---------- */
+
+footer {
+    padding: 1em 0;
+    font-size: .9em;
+}
 
 /* ---------- Top Nav ---------- */
 #topnav {
@@ -170,7 +177,10 @@ header h1 { display: none; }
 #sidenav ul { list-style-type: none; }
 
 /* ---------- Main ---------- */
-#main { margin: 0 .6em; }
+#main { 
+    margin: 0 .8em;
+    padding-top: .5em;
+}
 
 /* ---------- Episode ---------- */
 .episode { margin: .6em 0; }
@@ -219,7 +229,7 @@ header h1 { display: none; }
 /* Thumbnail */
 .thumbnail-container {
     float: left;
-    width: 35%;
+    width: 45%;
     margin-right: 1em;
 }
 
@@ -315,11 +325,27 @@ header h1 { display: none; }
 }
 
 /* GI Article */
+.article-heading {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1.33em 0;
+}
 .article-title {
-    margin-bottom: 0;
+    margin: 0;
+    padding-right: .8em;
 }
 .article-author {
+    align-self: flex-end;
     font-size: .9em;
+}
+
+/* Gallery */
+.gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+.gallery-container .gallery-item {
+
 }
 
 /* Thematic Break hr */
@@ -378,6 +404,33 @@ header h1 { display: none; }
     */
 }
 
+/* ---------------------------- */
+/* ---------- Search ---------- */
+/* ---------------------------- */
+
+#search-container {
+    display: flex;
+    font-size: 1em;
+}
+#search-container input[type=text] {
+    flex: 4;
+    padding: .6em;
+    border: 2px solid var(--main-bg-color);
+    background-color: var(--second-bg-color);
+    color: var(--second-text-color);
+}
+#search-container button {
+    flex: 1;
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    border: 2px solid var(--main-bg-color);
+    border-left: none; /* prevents double borders */
+    cursor: pointer;
+}
+#search-container button:hover {
+    background-color: var(--main-bg-select-color);
+}
+
 /* --------------------------------- */
 /* ---------- Filter Form ---------- */
 /* --------------------------------- */
@@ -412,7 +465,7 @@ header h1 { display: none; }
     flex: 2;
 }
 #sort-container label:last-child {
-    flex: 1;
+    flex-basis:
 }
 #sort-container label select {
     display: block;

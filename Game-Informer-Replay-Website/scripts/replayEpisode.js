@@ -167,7 +167,7 @@ class ReplayEpisode {
     // ReplayEpisode.populateEpisodeSection()
     populateEpisodeSection(episodeTemplateNode) {
         // Variables (temp can be array, string, ...)
-        let parentNode, temp;
+        let parentNode, childNode, temp;
 
         // Initialize this.episodeSection to template clone
         this.episodeSection = episodeTemplateNode.cloneNode(true);
@@ -290,12 +290,16 @@ class ReplayEpisode {
         
         // Article
         if (this.hasOwnProperty('replayArticle')) {
-            // Add title as header element to episodeMoreInfo element
+            // Add container for article heading to episodeMoreInfo element
+            parentNode = parentNode.appendChild(ReplayEpisode.createElementAdv('div', 'article-heading'));
+            // Add title as header element to article heading element
             parentNode.appendChild(ReplayEpisode.createElementAdv(
                 'h4', 'article-title', this.replayArticle.title));
             // Add author and date posted
             parentNode.appendChild(ReplayEpisode.createElementAdv(
                 'div', 'article-author', `by ${this.replayArticle.author}${this.replayArticle.date}`));
+            // Reset parentNode to episodeMoreInfo element
+            parentNode = this.episodeSection.querySelector('.episodeMoreInfo');
             // Add article content
             if (this.replayArticle.hasOwnProperty('content')) {
                 for (const para of this.replayArticle.content) {
@@ -304,13 +308,37 @@ class ReplayEpisode {
                 }
             }
         }
-        
+
         // Other Headings (External Links should go last)
         if (this.hasOwnProperty('otherHeadingsObj')) {
             for (const heading in this.otherHeadingsObj) {
                 // If heading is 'See Also', add list of URL links
                 if (heading == 'see_also')
-                    ReplayEpisode.addListOfLinks(this.otherHeadingsObj[heading], parentNode, 'See Also');
+                    ReplayEpisode.addListOfLinks(this.otherHeadingsObj[heading], parentNode, 'see also');
+                // Else If heading is 'Gallery'
+                else if (heading == 'gallery') {
+                    // Add header of 'Gallery' to episodeMoreInfo element
+                    parentNode.appendChild(ReplayEpisode.createElementAdv('h4', undefined, heading));
+                    // Add gallery container to episodeMoreInfo element
+                    parentNode = parentNode.appendChild(ReplayEpisode.createElementAdv('div', 'gallery-container'));
+                    // For each image, add gallery item to container, add image to gallery item
+                    for (const image of this.otherHeadingsObj[heading]) {
+                        // Add gallery item to container
+                        childNode = parentNode.appendChild(ReplayEpisode.createElementAdv('a', 'gallery-item'));
+                        childNode.setAttribute('href', image.link);
+                        childNode.setAttribute('target', '_blank');
+                        // Caption
+                        childNode.appendChild(ReplayEpisode.createElementAdv('div', undefined, image.caption));
+                        // Add image to gallery item
+                        childNode = childNode.appendChild(document.createElement('img'));
+                        childNode.setAttribute('src', image.src);
+                        childNode.setAttribute('width', image.width);
+                        childNode.setAttribute('height', image.height);
+                        childNode.setAttribute('title', image.title);
+                    }
+                    // Reset parentNode to episodeMoreInfo element
+                    parentNode = this.episodeSection.querySelector('.episodeMoreInfo');
+                }
                 else {
                     // Add heading as a header element to episodeMoreInfo element
                     parentNode.appendChild(ReplayEpisode.createElementAdv(
@@ -322,7 +350,7 @@ class ReplayEpisode {
 
         // External Links (bottom of episodeMoreInfo)
         if (this.hasOwnProperty('external_links')) {
-            ReplayEpisode.addListOfLinks(this.external_links, parentNode, 'External Links');
+            ReplayEpisode.addListOfLinks(this.external_links, parentNode, 'external links');
             /*
             // Variables
             let listElement, listItemElement, anchorElement, linkSource;

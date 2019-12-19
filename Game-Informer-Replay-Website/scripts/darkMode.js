@@ -6,11 +6,11 @@ if (currentTheme) {
 
 document.addEventListener("DOMContentLoaded", function () {
     const darkModeSwitch = document.getElementById('dark-mode-checkbox');
+    const darkModeSwitchLabel = document.querySelector('.switch-container em');
     if (currentTheme) {
         //document.documentElement.setAttribute('data-theme', currentTheme);
-        if (currentTheme == 'dark') {
+        if (currentTheme == 'dark')
             darkModeSwitch.checked = 'true';
-        }
     }
     darkModeSwitch.addEventListener('click', function (event) {
         if (event.target.checked) {

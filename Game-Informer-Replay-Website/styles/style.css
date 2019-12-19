@@ -12,7 +12,10 @@ Softrobo Pro Font on fonts.com
 
 */
 
-/* Variables */
+/* ------------------------------- */
+/* ---------- Variables ---------- */
+/* ------------------------------- */
+
 :root {
     --main-text-color: #f6f6f6; /* nearly pure white */
     --main-bg-color: #0077a2; /* gi blue */
@@ -103,11 +106,19 @@ ul {
     padding-left: 40px;
 }
 
-
+/* -------------------------- */
 /* ---------- Misc ---------- */
+/* -------------------------- */
+
 h1, h2, footer { text-align: center; }
 
+img {
+    border: 0; /* prevent IE9 (and earlier) from displaying a border around the edges */
+}
+
+/* ---------------------------- */
 /* ---------- Header ---------- */
+/* ---------------------------- */
 
 header {
     background-image: url("/images/Game_Informer_logo_(2010-present).png");
@@ -124,28 +135,36 @@ header + img {
     height: auto;
     display: block;
     margin: 0 auto;
-    border: 0; /* prevent IE9 (and earlier) from displaying a border around the edges */
 }
 
 /* Hide h1 inside header but still accessible for readers */
 header h1 { display: none; }
 
+/* ---------------------------- */
 /* ---------- Footer ---------- */
+/* ---------------------------- */
 
 footer {
     padding: 1em 0;
     font-size: .9em;
 }
 
+/* ----------------------------- */
 /* ---------- Top Nav ---------- */
+/* ----------------------------- */
+
 #topnav {
-    text-align: center; /* center inline elements */
+    display: flex;
     background-color: var(--main-bg-color);
+}
+#topnav div:last-child {
 }
 /* Style the top navigation bar, unordered list */
 #topnav ul {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
     list-style-type: none;
-    overflow: hidden;
     padding: 0; /* remove default padding for ul elements */
     margin: 0; /* remove default margin for ul elements */
     font-size: 0; /* to prevent space between inline-block elements in li element;
@@ -153,16 +172,20 @@ footer {
 }
 /* Style the top navigation list element */
 #topnav ul li {
-    display: inline; /* center links in combination with text-align: center; */
+    flex: 1;
+    text-align: center;
 }
 /* Style the top navigation links */
 #topnav li a {
-    display: inline-block;
+    display: block;
+    height: 100%;
     font-size: 1rem; /* 16px: reset font-size after setting to zero in #topnav ul {} to
         prevent space between inline-block elements */
     padding: 0.875em 1em; /* 14px 16px (1em=16px) */
     text-decoration: none;
     color: var(--main-text-color);
+    -webkit-transition-duration: .2s;
+            transition-duration: .2s;
 }
 /* Set color on default link and active pseudo-classes */
 #topnav a:link, #topnav a:visited {
@@ -173,16 +196,24 @@ footer {
     background-color: var(--main-bg-select-color);
 }
 
+/* ------------------------------ */
 /* ---------- Side Nav ---------- */
+/* ------------------------------ */
+
 #sidenav ul { list-style-type: none; }
 
+/* -------------------------- */
 /* ---------- Main ---------- */
+/* -------------------------- */
 #main { 
     margin: 0 .8em;
     padding-top: .5em;
 }
 
+/* ----------------------------- */
 /* ---------- Episode ---------- */
+/* ----------------------------- */
+
 .episode { margin: .6em 0; }
 
 /* Episode Main */
@@ -263,7 +294,6 @@ footer {
     width: auto;
     display: block;
     margin: 0 auto;
-    border: 0; /* prevent IE9 (and earlier) from displaying a border around the edges */
 }
 
 /* Play Video Overlay */
@@ -290,6 +320,7 @@ footer {
 }
 
 /* Episode Length */
+
 .episodeLength {
     position: absolute;
     bottom: 0;
@@ -302,7 +333,7 @@ footer {
     font-size: .8em;
 }
 
-/* Episode Details */
+/* ---------- Episode Details ---------- */
 
 .episodeDetails {
     padding: 0 1.5em;
@@ -310,7 +341,8 @@ footer {
 }
 .episodeDetails > * { padding: .5em 0; }
 
-/* Episode More Info (Button to dropdown display) */
+/* ---------- Episode More Info (Button to dropdown display) ---------- */
+
 .episodeMoreInfo {
     padding: 0 1.5em;
     font-size: .9em;
@@ -324,7 +356,8 @@ footer {
     font-size: 1.1em;
 }
 
-/* GI Article */
+/* ---------- GI Article ---------- */
+
 .article-heading {
     display: flex;
     flex-wrap: wrap;
@@ -339,16 +372,45 @@ footer {
     font-size: .9em;
 }
 
-/* Gallery */
+/* ---------- Gallery ---------- */
+
 .gallery-container {
     display: flex;
     flex-wrap: wrap;
 }
-.gallery-container .gallery-item {
-
+.gallery-item {
+    margin: .3em;
+    border-style: solid;
+    border-width: .2em;
+    border-color: var(--main-bg-color);
+    border-radius: .5em;
+    overflow: hidden;
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+}
+.gallery-item figure {
+    display: table;
+    margin: 0;
+}
+.gallery-item figure a {
+    display: block;
+}
+.gallery-item figure img {  }
+.gallery-item figcaption { 
+    display: table-caption;
+    caption-side: bottom;
+    text-align: center;
+    padding: .3em;
 }
 
-/* Thematic Break hr */
+/* ---------- Lists of Links ---------- */
+
+ul.link-list {
+    column-count: 1;
+}
+
+/* ---------- Thematic Break hr ---------- */
+
 .episode hr {
     border: 0;
     height: 2px;
@@ -411,6 +473,8 @@ footer {
 #search-container {
     display: flex;
     font-size: 1em;
+    max-width: 28em;
+    margin: 0 auto;
 }
 #search-container input[type=text] {
     flex: 4;
@@ -457,15 +521,17 @@ footer {
 }
 
 #sort-container {
-    flex: 2;
+    flex: 1;
     display: flex;
     order: 1;
+    align-items: flex-end;
+    justify-content: flex-end;
 }
 #sort-container label {
-    flex: 2;
+    padding: 0 .1em;
 }
 #sort-container label:last-child {
-    flex-basis:
+    /*flex-basis:;*/
 }
 #sort-container label select {
     display: block;
@@ -473,7 +539,7 @@ footer {
 }
 
 #number-displayed-container {
-    flex: 3;
+    flex: 1;
     position: relative;
 }
 #number-displayed-container div {
@@ -482,31 +548,25 @@ footer {
     left: 0;
 }
 
-/* ---------------------------------- */
-/* ---------- Misc Buttons ---------- */
-/* ---------------------------------- */
-
-#misc-buttons-container {
-    display: flex;
-}
-#misc-buttons-container button {
-    flex: 1;
-}
-
 /* --------------------------------- */
 /* ---------- Page Select ---------- */
 /* --------------------------------- */
 
 .page-number-container {
     display: flex;
-    flex-wrap: wrap;
-
 }
 .page-number-container button {
-    display: inline-block;
-    flex: 2em;
+    flex: 1;
 }
-.page-number-container .active {
+.page-number-list {
+    flex: 6;
+    display: flex;
+    flex-wrap: wrap;
+}
+.page-number-list button {
+    padding: 1em;
+}
+.page-number-list button.active {
     background-color: black;
     color: white;
 }
@@ -534,16 +594,32 @@ footer {
 /* ------------------------------- */
 /* ---------- Dark Mode ---------- */
 /* ------------------------------- */
-/*
+
 @media (prefers-color-scheme: dark) {
     :root {
-        
+        --main-text-color: hsl(0, 0%, 90%);
+        --main-bg-color: hsl(0, 0%, 30%);
+        --main-bg-select-color: hsl(0, 0%, 24%);
+        --second-text-color: hsl(0, 0%, 66%);
+        --second-bg-color: hsl(0, 0%, 10%);
+        --third-bg-color: hsl(0, 0%, 0%);
+
+        background-color: hsl(0, 0%, 20%);
+        background-image: url("/images/replay_bg.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center top;
+        background-size: cover;
+    }
+
+    header {
+        background-image: url("/images/Game_Informer_logo_(2010-present)(dark_mode).png");
+    }
+
+    .episodeDetails b, .episodeMoreInfo h4 {
+        color: var(--main-text-color);
     }
 }
-*/
-/* ----------------------------------------------- */
-/* ---------- Dark Mode - Toggle Switch ---------- */
-/* ----------------------------------------------- */
 
 [data-theme="dark"] {
     --main-text-color: hsl(0, 0%, 90%);
@@ -567,48 +643,67 @@ footer {
     color: var(--main-text-color);
 }
 
-/* Toggle Switch CSS */
+/* ----------------------------------------------- */
+/* ---------- Dark Mode - Toggle Switch ---------- */
+/* ----------------------------------------------- */
 
 .switch-container {
-    display: inline-block;
     color: var(--main-text-color);
+    font-size: 1rem; /* 16px: reset font-size after setting to zero in #topnav ul {} to
+        prevent space between inline-block elements */
+    padding: .3em;
 }
 
-.switch-container > em { display: block; }
+.switch-container > em { 
+    display: block; 
+    font-size: .9em;
+}
 
 .switch {
-  display: inline-block;
-  height: 34px;
-  position: relative;
-  width: 60px;
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
 }
 
-.switch input { display:none; }
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
 
 .slider {
-  background-color: #ccc;
-  bottom: 0;
-  cursor: pointer;
-  left: 0;
-  position: absolute;
-  right: 0;
-  top: 0;
-  transition: .4s;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+            transition: .4s;
 }
 
 .slider:before {
-  background-color: #fff;
-  bottom: 4px;
-  content: "";
-  height: 26px;
-  left: 4px;
-  position: absolute;
-  transition: .4s;
-  width: 26px;
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #fff;
+    -webkit-transition: .4s;
+            transition: .4s;
 }
 
 input:checked + .slider { background-color: var(--main-bg-select-color); }
-input:checked + .slider:before { transform: translateX(26px); }
+input:checked + .slider:before { 
+    -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+            transform: translateX(26px); 
+
+}
+/* Rounded slider */
 .slider.round { border-radius: 34px; }
 .slider.round:before { border-radius: 50%; }
 
@@ -619,3 +714,46 @@ input:checked + .slider:before { transform: translateX(26px); }
 /* Episode Anchor Links */
 .external-links a { color: #1f64e3; }
 .external-links a:visited { color: #ff008e; } /* #c10172 */
+
+/* ---------------------------------- */
+/* ---------- Misc Buttons ---------- */
+/* ---------------------------------- */
+
+#misc-buttons-container {
+    display: flex;
+    padding: 1em 0;
+}
+#misc-buttons-container button {
+    flex: 1;
+    background-color: var(--main-bg-color);
+    border: none;
+    color: var(--main-text-color);
+    padding: 1em;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    -webkit-transition-duration: .2s;
+            transition-duration: .2s;
+}
+#misc-buttons-container button:hover {
+    background-color: var(--main-bg-select-color);
+}
+#misc-buttons-container button:nth-of-type(2) {
+    margin: 0 1em;
+}
+
+/* ----------------------------------- */
+/* ---------- Media Queries ---------- */
+/* ----------------------------------- */
+
+@media (max-width: 550px) {
+    .thumbnail-container {
+        float: none;
+        width: 100%;
+        margin: 0;
+    }
+
+    ul.link-list {
+        column-count: 1;
+    }
+}

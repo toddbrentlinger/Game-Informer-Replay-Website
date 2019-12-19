@@ -23,7 +23,7 @@ window.onYouTubePlayerAPIReady = function () {
     videoPlayer = new YT.Player('youtubePlayerPlaceholder', {
         height: 360,
         width: 640,
-        videoId: '0ZtEkX8m6yg', // default video: Replay Highlights
+        //videoId: '0ZtEkX8m6yg', // default video: Replay Highlights
         playerVars: {
             iv_load_policy: 3, // default: 1
             modestbranding: 1,

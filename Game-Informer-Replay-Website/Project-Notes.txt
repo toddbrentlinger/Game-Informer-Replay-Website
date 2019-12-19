@@ -2,15 +2,27 @@
 
 12/17/19
 
+- TODO: Page Select: Prev-First-BackN-(i-m)-(i-1)-i-(i+1)-(i+m)-ForwardN-Last-Next
+N: skip forward/backward n episodes where n is proportional 
+to totalPages() or maxDisplayedEpisodes
+
+- ISSUE: 'See Also' links have wrong url beginnings. Also, list 'See Also'
+links after 'External Links' and display them as two columns for wider
+screens.
+
+- ISSUE: MaxDisplayedEpisodes 'All' is not correctly
+loaded on refresh
+
 - Web Scraper: Some 'See Also' headlines have a single link
 in a paragraph element instead of ul li list.
 
-- Ignore Video headline in episodeMoreInfo element
+- Ignore Video headline in episodeMoreInfo element.
+Don't scrape in Python web scraper.
 
 - When search with empty text input, reset selectedEpisodes
 list to include all episodes and apply sort/filter
 
-- Do NOT load YouTube playlist if selectedEpisodes is empty
+X Do NOT load YouTube playlist if selectedEpisodes is empty
 OR load Replay Highlights instead.
 
 12/16/19

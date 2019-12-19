@@ -30,20 +30,21 @@
     <!-- Top Navigation -->
     <nav id="topnav">
         <!--<img src="/images/logo.svg" alt="Game Informer logo" /> -->
+        <div class="counter-balance-switch-container"></div>
         <ul>
             <li><a href="https://replay.fandom.com/wiki/List_of_Replay_episodes" target="_blank">Replay</a></li>
             <li><a href="https://replay.fandom.com/wiki/List_of_Super_Replay_installments">Super Replay</a></li>
             <li><a href="https://www.gameinformer.com/index.php/covergallery" target="_blank">Magazine Covers</a></li>
             <li><a href="https://replay.fandom.com/wiki/Category:Game_Informer_staff" target="_blank">GI Crew</a></li>
             <!--
-            <li><a href="/debug/episodeSection.html">Episode Section</a></li>
-            -->
+        <li><a href="/debug/episodeSection.html">Episode Section</a></li>
+        -->
         </ul>
         <div class="switch-container">
-            <em>Enable Dark Mode</em>
+            <em>Dark Mode</em>
             <label class="switch" for="dark-mode-checkbox">
                 <input type="checkbox" id="dark-mode-checkbox" />
-                <div class="slider round"></div>
+                <span class="slider round"></span>
             </label>
         </div>
     </nav>
@@ -89,31 +90,31 @@
                 <fieldset form="filterForm" id="seasonField">
                     <legend>Season: </legend>
                     <label>
-                        6
-                        <input type="checkbox" name="season" value="6" checked />
-                    </label>
-                    <label>
-                        5
-                        <input type="checkbox" name="season" value="5" checked />
-                    </label>
-                    <label>
-                        4
-                        <input type="checkbox" name="season" value="4" checked />
-                    </label>
-                    <label>
-                        3
-                        <input type="checkbox" name="season" value="3" checked />
+                        1
+                        <input type="checkbox" name="season" value="1" checked />
                     </label>
                     <label>
                         2
                         <input type="checkbox" name="season" value="2" checked />
                     </label>
                     <label>
-                        1
-                        <input type="checkbox" name="season" value="1" checked />
+                        3
+                        <input type="checkbox" name="season" value="3" checked />
+                    </label>
+                    <label>
+                        4
+                        <input type="checkbox" name="season" value="4" checked />
+                    </label>
+                    <label>
+                        5
+                        <input type="checkbox" name="season" value="5" checked />
+                    </label>
+                    <label>
+                        6
+                        <input type="checkbox" name="season" value="6" checked />
                     </label>
                 </fieldset>
-
+                <!--
                 <fieldset form="filterForm" id="gi-crew-field">
                     <legend>GI Crew: </legend>
                     <label>
@@ -129,10 +130,11 @@
                         <input type="checkbox" name="segment" value="RR" checked />
                     </label>
                 </fieldset>
-
+                -->
                 <div id="filterSubmitButton">
                     <button type="button">Filter</button>
                     <input type="reset" />
+                    <button type="button">Select/Deselect All</button>
                 </div>
             </form>
 
@@ -144,8 +146,10 @@
 
             <div id="page-number-container" class="page-number-container">
                 <button type="button" value="prev">PREV</button>
-                <button type="button" value="1" class="page-number">1</button>
-                <button type="button" value="2" class="page-number">2</button>
+                <div class="page-number-list">
+                    <button type="button" value="1" class="page-number">1</button>
+                    <button type="button" value="2" class="page-number">2</button>
+                </div>
                 <button type="button" value="next">NEXT</button>
             </div>
 

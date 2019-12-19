@@ -321,15 +321,19 @@ class ReplayEpisode {
                     parentNode.appendChild(ReplayEpisode.createElementAdv('h4', undefined, heading));
                     // Add gallery container to episodeMoreInfo element
                     parentNode = parentNode.appendChild(ReplayEpisode.createElementAdv('div', 'gallery-container'));
-                    // For each image, add gallery item to container, add image to gallery item
+                    // For each image in gallery property
                     for (const image of this.otherHeadingsObj[heading]) {
                         // Add gallery item to container
-                        childNode = parentNode.appendChild(ReplayEpisode.createElementAdv('a', 'gallery-item'));
+                        childNode = parentNode.appendChild(ReplayEpisode.createElementAdv('div', 'gallery-item'));
+                        // Add figure element to gallery item
+                        childNode = childNode.appendChild(document.createElement('figure'));
+                        // Add caption to figure
+                        childNode.appendChild(ReplayEpisode.createElementAdv('figcaption', undefined, image.caption));
+                        // Add anchor to gallery item figure
+                        childNode = childNode.appendChild(document.createElement('a'));
                         childNode.setAttribute('href', image.link);
                         childNode.setAttribute('target', '_blank');
-                        // Caption
-                        childNode.appendChild(ReplayEpisode.createElementAdv('div', undefined, image.caption));
-                        // Add image to gallery item
+                        // Add image to figure
                         childNode = childNode.appendChild(document.createElement('img'));
                         childNode.setAttribute('src', image.src);
                         childNode.setAttribute('width', image.width);
@@ -628,7 +632,7 @@ class ReplayEpisode {
         // Add header for external links to episodeMoreInfo element
         parentNode.appendChild(ReplayEpisode.createElementAdv('h4', undefined, headlineString));
         // Create ul element and append as child to episodeMoreInfo element
-        listElement = parentNode.appendChild(document.createElement('ul'));
+        listElement = parentNode.appendChild(ReplayEpisode.createElementAdv('ul', 'link-list'));
         // Loop through each value of array of list values
         for (const linkObj of linksList) {
             // Create li element and append as child to ul element

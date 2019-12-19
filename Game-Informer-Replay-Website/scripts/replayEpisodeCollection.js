@@ -85,9 +85,9 @@ var replayEpisodeCollection = {
             ? Math.ceil(this.selectedEpisodes.length / this.maxDisplayedEpisodes)
             : 1;
     },
-    pageNumberContainer: document.getElementById('page-number-container'),
-    prevButton: document.querySelector('#page-number-container button:first-child'),
-    nextButton: document.querySelector('#page-number-container button:last-child'),
+    pageNumberList: document.querySelector('#page-number-container .page-number-list'),
+    prevButton: document.querySelector('#page-number-container > button:first-child'),
+    nextButton: document.querySelector('#page-number-container > button:last-child'),
 
     // Sort
     _sortType: parseInt(window.sessionStorage.getItem('sortType'), 10) || sort.airdate,
@@ -189,8 +189,6 @@ var replayEpisodeCollection = {
 // init(replayEpisodeArray)
 replayEpisodeCollection.init = function (replayEpisodeArray) {
     // Initialize sort/filter properties based on selected input elements
-    //this.ascending = this.sortDirectionElement.value == 'ascending';
-    //this.maxDisplayedEpisodes = this.maxDisplayedElement.value;
     this.sortTypeElement.value = this.sortTypeString;
     this.sortDirectionElement.value = this.ascending ? 'ascending' : 'descending';
     this.maxDisplayedElement.value = this.maxDisplayedEpisodes;
@@ -291,18 +289,25 @@ replayEpisodeCollection.updateDisplayedEpisodes = function () {
         : this.selectedEpisodes.length)
         + ' of ' + this.selectedEpisodes.length + ' replay episodes';
     */
-    this.currentDisplayedEpisodesMessageElement.innerHTML = 'Showing ' +
-        ((this.maxDisplayedEpisodes > 0)
-        ? `${start + 1} - ${end} of`
-        : 'all')
-        + ` ${selectedEpisodesLength} replay episodes`;
+    if (selectedEpisodesLength) {
+        this.currentDisplayedEpisodesMessageElement.innerHTML = 'Showing ' +
+            ((this.maxDisplayedEpisodes > 0)
+                ? `${start + 1} - ${end} of`
+                : 'all')
+            + ` ${selectedEpisodesLength} replay episodes`;
+    } else
+        this.currentDisplayedEpisodesMessageElement.innerHTML = 'Showing no replay episodes';
 
     // Update page number containers
     this.updatePageNumber();
 
     // Update video player to match selectedEpisodes
-    if (this.videoPlayer)
-        this.videoPlayer.cuePlaylist({ playlist: this.selectedVideoIdArray.slice(0, 200) });
+    if (this.videoPlayer) {
+        if (this.selectedEpisodes.length)
+            this.videoPlayer.cuePlaylist({ playlist: this.selectedVideoIdArray.slice(0, 200) });
+        else
+            this.videoPlayer.cueVideoById('0ZtEkX8m6yg');
+    }
 };
 
 // showTotalTime()
@@ -667,7 +672,7 @@ replayEpisodeCollection.updatePageNumber = function () {
     let tempNode;
 
     // Remove all page number buttons
-    this.pageNumberContainer.querySelectorAll('.page-number').forEach(function (node) {
+    this.pageNumberList.querySelectorAll('.page-number').forEach(function (node) {
         node.remove();
     });
     // Remove temp page number container from bottom of main element
@@ -693,10 +698,11 @@ replayEpisodeCollection.updatePageNumber = function () {
                 this.setPageNumber(i);
             }.bind(this), false);
 
-            this.nextButton.insertAdjacentElement('beforebegin', tempNode);
+            //this.nextButton.insertAdjacentElement('beforebegin', tempNode);
+            this.pageNumberList.appendChild(tempNode);
         }
         // Clone page button container and add to bottom of main element
-        //tempNode = this.pageNumberContainer.cloneNode(true);
+        //tempNode = this.pageNumberList.cloneNode(true);
         //tempNode.id = 'temp-page-number-container';
         //this.mainElement.insertAdjacentElement('beforeend', tempNode);
     } else { // Else total pages is only one, hide all

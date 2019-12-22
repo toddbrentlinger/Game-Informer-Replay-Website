@@ -18,21 +18,21 @@ firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 // after the API code downloads.
 var videoPlayer;
 window.onYouTubePlayerAPIReady = function () {
-    console.log('window.onYouTubePlayerAPIReady has started with this = ' + this);
-
     videoPlayer = new YT.Player('youtubePlayerPlaceholder', {
         height: 360,
         width: 640,
         //videoId: '0ZtEkX8m6yg', // default video: Replay Highlights
         playerVars: {
+            playlist: [replayEpisodeCollection.selectedVideoIdArray.slice(0, 200) || '0ZtEkX8m6yg'],
             iv_load_policy: 3, // default: 1
             modestbranding: 1,
-            enablejsapi: 1
+            enablejsapi: 1,
+            loop: 0
             //'origin': specify domain
         },
         events: {
             onReady: replayEpisodeCollection.onPlayerReady.bind(replayEpisodeCollection),
-            onStateChange: replayEpisodeCollection.onPlayerStateChange.bind(replayEpisodeCollection),
+            //onStateChange: replayEpisodeCollection.onPlayerStateChange.bind(replayEpisodeCollection),
             onError: replayEpisodeCollection.onPlayerError.bind(replayEpisodeCollection)
         }
     });
@@ -42,6 +42,19 @@ window.onYouTubePlayerAPIReady = function () {
 
     console.log('window.onYouTubePlayerAPIReady has finished');
 };
+let videoPlayerState = -1;
+setInterval(function () {
+    if (videoPlayer && typeof videoPlayer.getPlayerState === 'function') {
+        const state = videoPlayer.getPlayerState() || -1;
+        if (videoPlayerState !== state) {
+            replayEpisodeCollection.onPlayerStateChange({
+                data: state
+            });
+            videoPlayerState = state;
+        }
+    }
+}, 10);
+
 /*
 // onPlayerReady(event)
 // The API will call this function when the video player is ready.

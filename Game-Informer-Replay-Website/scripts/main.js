@@ -23,18 +23,31 @@ document.querySelector(
     false);
 
 // Filter - Event Listeners
-document.querySelector('#filterForm button')
+document.getElementById('filter-button')
     .addEventListener("click",
-        replayEpisodeCollection.filterSelectedEpisodes
+        replayEpisodeCollection.updateFilterObj
         .bind(replayEpisodeCollection),
     false);
+
+// Filter - Select/Deselect All Toggle
+document.getElementById('filter-toggle-select-button')
+    .addEventListener("click", function () {
+        const inputArr = replayEpisodeCollection.filterFormElement.querySelectorAll('input[type="checkbox"]');
+        const bMoreCheckedInputs = (replayEpisodeCollection.filterFormElement.querySelectorAll('input[type="checkbox"]:checked').length
+            > .5 * inputArr.length);
+
+        for (const inputNode of inputArr) {
+            inputNode.checked = !bMoreCheckedInputs;
+        }
+    }, false);
 
 // Seach - Event Listeners
 // Search is button is clicked
 document.querySelector('#search-container button')
-    .addEventListener("click",
-        replayEpisodeCollection.search
-            .bind(replayEpisodeCollection),
+    .addEventListener("click", function () {
+        replayEpisodeCollection.updateFilterObj();
+        //replayEpisodeCollection.filterBySearch(replayEpisodeCollection.searchInputElement.value)
+    }.bind(replayEpisodeCollection),
     false);
 // Search if press enter inside input field by making button click
 document.querySelector('#search-container input[type="text"]')

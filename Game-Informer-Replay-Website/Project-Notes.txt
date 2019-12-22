@@ -1,5 +1,16 @@
 ﻿TO-DO:
 
+12/20/19
+
+- TODO: Reset video player to cue first 200 episodes of selectedEpisodes
+only when NOT videoPlayer.PlayerState.CUED
+
+- TODO: Use setter for search and filter that sorts order, changes 
+page number, and updates displayed elements
+
+- ISSUE: When searching for text, sortByType() is run and reverses array
+again
+
 12/17/19
 
 - TODO: Page Select: Prev-First-BackN-(i-m)-(i-1)-i-(i+1)-(i+m)-ForwardN-Last-Next

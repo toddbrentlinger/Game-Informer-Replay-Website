@@ -194,7 +194,12 @@ class ReplayEpisode {
 
         // Anchor link
         parentNode = this.episodeSection.querySelector('.episodeThumbnail > a');
-        parentNode.setAttribute('href', 'https://www.youtube.com/watch?v=' + this.youtubeVideoID);
+        //parentNode.setAttribute('href', 'https://www.youtube.com/watch?v=' + this.youtubeVideoID);
+
+        // Add event listener that plays video of episode
+        parentNode.addEventListener("click", function () {
+            replayEpisodeCollection.playEpisode(this);
+        }.bind(this), false);
 
         // Image
         parentNode = this.episodeSection.querySelector('.episodeImage');
@@ -314,7 +319,7 @@ class ReplayEpisode {
             for (const heading in this.otherHeadingsObj) {
                 // If heading is 'See Also', add list of URL links
                 if (heading == 'see_also')
-                    ReplayEpisode.addListOfLinks(this.otherHeadingsObj[heading], parentNode, 'see also');
+                    ReplayEpisode.addListOfLinks(this.otherHeadingsObj[heading], parentNode, 'see also', 'https://replay.fandom.com');
                 // Else If heading is 'Gallery'
                 else if (heading == 'gallery') {
                     // Add header of 'Gallery' to episodeMoreInfo element
@@ -626,7 +631,7 @@ class ReplayEpisode {
     }
 
     // Add list of URL links
-    static addListOfLinks(linksList, parentNode, headlineString) {
+    static addListOfLinks(linksList, parentNode, headlineString, urlPrepend) {
         // Variables
         let listElement, listItemElement, anchorElement, linkSource;
         // Add header for external links to episodeMoreInfo element
@@ -641,7 +646,9 @@ class ReplayEpisode {
             // then create anchor element and append as child to i element
             anchorElement = listItemElement.appendChild(document.createElement('i'))
                 .appendChild(ReplayEpisode.createElementAdv('a', undefined, linkObj.title));
-            anchorElement.setAttribute('href', linkObj.href);
+            anchorElement.setAttribute('href',
+                (urlPrepend ? urlPrepend + linkObj.href : linkObj.href)
+            );
             anchorElement.setAttribute('target', '_blank');
             // Add text listing source of link
             linkSource = '';

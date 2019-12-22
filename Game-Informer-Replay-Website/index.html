@@ -89,29 +89,29 @@
             <form id="filterForm">
                 <fieldset form="filterForm" id="seasonField">
                     <legend>Season: </legend>
-                    <label>
-                        1
+                    <label>1
                         <input type="checkbox" name="season" value="1" checked />
+                        <span class="checkmark"></span>
                     </label>
-                    <label>
-                        2
+                    <label>2
                         <input type="checkbox" name="season" value="2" checked />
+                        <span class="checkmark"></span>
                     </label>
-                    <label>
-                        3
+                    <label>3
                         <input type="checkbox" name="season" value="3" checked />
+                        <span class="checkmark"></span>
                     </label>
-                    <label>
-                        4
+                    <label>4
                         <input type="checkbox" name="season" value="4" checked />
+                        <span class="checkmark"></span>
                     </label>
-                    <label>
-                        5
+                    <label>5
                         <input type="checkbox" name="season" value="5" checked />
+                        <span class="checkmark"></span>
                     </label>
-                    <label>
-                        6
+                    <label>6
                         <input type="checkbox" name="season" value="6" checked />
+                        <span class="checkmark"></span>
                     </label>
                 </fieldset>
                 <!--
@@ -132,9 +132,11 @@
                 </fieldset>
                 -->
                 <div id="filterSubmitButton">
-                    <button type="button">Filter</button>
-                    <input type="reset" />
-                    <button type="button">Select/Deselect All</button>
+                    <button type="button" id="filter-button">Filter</button>
+                    <!--
+                    <input type="reset" id="filter-reset-button" />
+                    -->
+                    <button type="button" id="filter-toggle-select-button">Select/Deselect All</button>
                 </div>
             </form>
 
@@ -198,7 +200,7 @@
                     </div>
                     <div class="thumbnail-container">
                         <div class="episodeThumbnail">
-                            <a title="" href="" target="_blank">
+                            <a title="" target="_blank">
                                 <img class="episodeImage" alt="" width="300" height="169" src="" srcset="" />
                                 <time class="episodeLength" datetime=""></time>
                                 <div class="playOverlay">
@@ -231,7 +233,7 @@
     </div>
 
     <!-- Jump To Top Of Page -->
-    <div id="jump-top-page-container" style="display: none;">
+    <div id="jump-top-page-container" title="Jump To Top" style="display: none;">
         <a href="#main">
             <i class="fa fa-chevron-circle-up" aria-hidden="true"></i>
         </a>

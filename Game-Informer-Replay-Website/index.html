@@ -78,71 +78,62 @@
         </nav>
 
         <!-- Middle Column -->
-        <main class="column middle" id="main">
-            <!-- Search -->
-            <div id="search-container">
-                <input type="text" placeholder="Search..." required />
-                <button type="button"><i class="fa fa-search"></i></button>
+        <main class="column middle">
+            <div id="search-filter-container">
+                <!-- Search -->
+                <div id="search-container">
+                    <input type="text" placeholder="Search..." required />
+                    <button type="button"><i class="fa fa-search"></i></button>
+                </div>
+
+                <!-- Filter Form -->
+                <button id="filter-display-toggle-button" class="collapsible"><i class="fa fa-sliders fa-lg" aria-hidden="true"></i> Filter</button>
+                <form id="filterForm">
+                    <fieldset form="filterForm" id="seasonField">
+                        <legend>Season: </legend>
+                        <label>
+                            1
+                            <input type="checkbox" name="season" value="1" checked />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label>
+                            2
+                            <input type="checkbox" name="season" value="2" checked />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label>
+                            3
+                            <input type="checkbox" name="season" value="3" checked />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label>
+                            4
+                            <input type="checkbox" name="season" value="4" checked />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label>
+                            5
+                            <input type="checkbox" name="season" value="5" checked />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label>
+                            6
+                            <input type="checkbox" name="season" value="6" checked />
+                            <span class="checkmark"></span>
+                        </label>
+                    </fieldset>
+
+                    <div id="filterSubmitButton">
+                        <!-- <button type="button" id="filter-button">Filter</button> -->
+                        <!-- <input type="reset" id="filter-reset-button" /> -->
+                        <button type="button" id="filter-toggle-select-button">Select/Deselect All</button>
+                    </div>
+                </form>
             </div>
 
-            <!-- Filter Form -->
-            <form id="filterForm">
-                <fieldset form="filterForm" id="seasonField">
-                    <legend>Season: </legend>
-                    <label>1
-                        <input type="checkbox" name="season" value="1" checked />
-                        <span class="checkmark"></span>
-                    </label>
-                    <label>2
-                        <input type="checkbox" name="season" value="2" checked />
-                        <span class="checkmark"></span>
-                    </label>
-                    <label>3
-                        <input type="checkbox" name="season" value="3" checked />
-                        <span class="checkmark"></span>
-                    </label>
-                    <label>4
-                        <input type="checkbox" name="season" value="4" checked />
-                        <span class="checkmark"></span>
-                    </label>
-                    <label>5
-                        <input type="checkbox" name="season" value="5" checked />
-                        <span class="checkmark"></span>
-                    </label>
-                    <label>6
-                        <input type="checkbox" name="season" value="6" checked />
-                        <span class="checkmark"></span>
-                    </label>
-                </fieldset>
-                <!--
-                <fieldset form="filterForm" id="gi-crew-field">
-                    <legend>GI Crew: </legend>
-                    <label>
-                        Andrew Reiner
-                        <input type="checkbox" name="giCrew" value="Andrew Reiner" checked />
-                    </label>
-                </fieldset>
-
-                <fieldset form="filterForm" id="segment-field">
-                    <legend>Segment: </legend>
-                    <label>
-                        RR
-                        <input type="checkbox" name="segment" value="RR" checked />
-                    </label>
-                </fieldset>
-                -->
-                <div id="filterSubmitButton">
-                    <button type="button" id="filter-button">Filter</button>
-                    <!--
-                    <input type="reset" id="filter-reset-button" />
-                    -->
-                    <button type="button" id="filter-toggle-select-button">Select/Deselect All</button>
-                </div>
-            </form>
-
             <div id="misc-buttons-container">
-                <button type="button" id="button-toggleVideoPlayer">Toggle YT Player</button>
-                <button type="button" id="button-shuffle">Shuffle</button>
+                <!-- <button type="button" id="button-toggleVideoPlayer">Toggle YT Player</button> -->
+                <button type="button" id="button-shuffle"><i class="fa fa-random fa-lg" aria-hidden="true"></i> Shuffle</button>
                 <button type="button" id="button-reset-list">Reset List</button>
             </div>
 
@@ -192,40 +183,42 @@
                 </div>
             </div>
 
-            <section class="episode">
-                <div class="episodeMain">
-                    <div class="episodeHeader">
-                        <h3 class="episodeTitle"></h3>
-                        <div class="episodeNumber"></div>
-                    </div>
-                    <div class="thumbnail-container">
-                        <div class="episodeThumbnail">
-                            <a title="" target="_blank">
-                                <img class="episodeImage" alt="" width="300" height="169" src="" srcset="" />
-                                <time class="episodeLength" datetime=""></time>
-                                <div class="playOverlay">
-                                    <img alt="" width="256" height="256" src="/images/play-button-icon-gi(1)-256.png" />
-                                </div>
-                            </a>
+            <div id="main">
+                <section class="episode">
+                    <div class="episodeMain">
+                        <div class="episodeHeader">
+                            <h3 class="episodeTitle"></h3>
+                            <div class="episodeNumber"></div>
+                        </div>
+                        <div class="thumbnail-container">
+                            <div class="episodeThumbnail">
+                                <a title="" target="_blank">
+                                    <img class="episodeImage" alt="" width="300" height="169" src="" srcset="" />
+                                    <time class="episodeLength" datetime=""></time>
+                                    <div class="playOverlay">
+                                        <img alt="" width="256" height="256" src="/images/play-button-icon-gi(1)-256.png" />
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="episodeDetails">
+                            <div class="episodeAirDate"><b>Original Air Date: </b><time datetime=""></time></div>
+                            <div class="episodeHosts">
+                                <b>Host: </b>
+                            </div>
+                            <div class="episodeFeaturing">
+                                <b>Featuring: </b>
+                            </div>
+                            <div class="mainSegment"><b>Main Segment Game: </b></div>
+                            <div class="middleSegment"><b>Middle Segment: </b></div>
+                            <div class="secondSegment"><b>Second Segment: </b></div>
                         </div>
                     </div>
-                    <div class="episodeDetails">
-                        <div class="episodeAirDate"><b>Original Air Date: </b><time datetime=""></time></div>
-                        <div class="episodeHosts">
-                            <b>Host: </b>
-                        </div>
-                        <div class="episodeFeaturing">
-                            <b>Featuring: </b>
-                        </div>
-                        <div class="mainSegment"><b>Main Segment Game: </b></div>
-                        <div class="middleSegment"><b>Middle Segment: </b></div>
-                        <div class="secondSegment"><b>Second Segment: </b></div>
+                    <hr />
+                    <div class="episodeMoreInfo">
                     </div>
-                </div>
-                <hr />
-                <div class="episodeMoreInfo">
-                </div>
-            </section>
+                </section>
+            </div>
         </main>
 
         <!-- Right Column -->
@@ -234,7 +227,7 @@
 
     <!-- Jump To Top Of Page -->
     <div id="jump-top-page-container" title="Jump To Top" style="display: none;">
-        <a href="#main">
+        <a href="#top-page">
             <i class="fa fa-chevron-circle-up" aria-hidden="true"></i>
         </a>
     </div>

@@ -21,10 +21,16 @@ document.querySelector(
         replayEpisodeCollection.setSortByEvent
         .bind(replayEpisodeCollection),
     false);
-
+/*
 // Filter - Event Listeners
 document.getElementById('filter-button')
     .addEventListener("click",
+        replayEpisodeCollection.updateFilterObj
+        .bind(replayEpisodeCollection),
+    false);
+*/
+document.getElementById('filterForm')
+    .addEventListener("change",
         replayEpisodeCollection.updateFilterObj
         .bind(replayEpisodeCollection),
     false);
@@ -36,9 +42,20 @@ document.getElementById('filter-toggle-select-button')
         const bMoreCheckedInputs = (replayEpisodeCollection.filterFormElement.querySelectorAll('input[type="checkbox"]:checked').length
             > .5 * inputArr.length);
 
-        for (const inputNode of inputArr) {
+        for (const inputNode of inputArr)
             inputNode.checked = !bMoreCheckedInputs;
-        }
+
+        replayEpisodeCollection.updateFilterObj().bind(replayEpisodeCollection);
+    }, false);
+
+// Filter - Toggle display of filter form
+document.getElementById('filter-display-toggle-button')
+    .addEventListener("click", function () {
+        this.classList.toggle('active');
+        if (replayEpisodeCollection.filterFormElement.style.maxHeight)
+            replayEpisodeCollection.filterFormElement.style.maxHeight = null;
+        else
+            replayEpisodeCollection.filterFormElement.style.maxHeight = replayEpisodeCollection.filterFormElement.scrollHeight + 'px';
     }, false);
 
 // Seach - Event Listeners
@@ -95,7 +112,7 @@ window.addEventListener("scroll", function () {
     jumpToTopPageElement.style.display =
         (mainElement.getBoundingClientRect().top < 0) ? "block" : "none";
 }, false);
-
+/*
 // Toggle Video Player
 var isVideoPlayerDisplayed = true;
 const videoPlayerContainer = document.getElementById('videoPlayer');
@@ -107,7 +124,7 @@ document.getElementById('button-toggleVideoPlayer')
         // Hide/Display video player
         videoPlayerContainer.style.display = (isVideoPlayerDisplayed) ? 'block' : 'none';
     }, false);
-
+*/
 // Set date the document was last modified at the bottom of the page
 document.getElementById('lastModifiedDate').innerHTML = new Date(document.lastModified).toDateString();
 //document.getElementById('lastModifiedReplayList').innerHTML = lastModifiedReplayList;

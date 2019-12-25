@@ -45,8 +45,8 @@ document.getElementById('filter-toggle-select-button')
         for (const inputNode of inputArr)
             inputNode.checked = !bMoreCheckedInputs;
 
-        replayEpisodeCollection.updateFilterObj().bind(replayEpisodeCollection);
-    }, false);
+        replayEpisodeCollection.updateFilterObj();
+    }.bind(replayEpisodeCollection), false);
 
 // Filter - Toggle display of filter form
 document.getElementById('filter-display-toggle-button')

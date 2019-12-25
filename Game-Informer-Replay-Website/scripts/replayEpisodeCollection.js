@@ -92,13 +92,13 @@ var replayEpisodeCollection = {
         // If arg is a string type, compare to properties of sort enum
         if (typeof input === 'string') {
             switch (input) {
-                case 'airdate': tempSortType = sort.airdate; break;
                 case 'most-viewed': tempSortType = sort.views; break;
                 case 'most-liked': tempSortType = sort.likes; break;
                 case 'video-length': tempSortType = sort.length; break;
                 case 'none': tempSortType = sort.none; break;
-                case 'number':
-                default: tempSortType = sort.number;
+                case 'number': tempSortType = sort.number; break;
+                case 'airdate':
+                default: tempSortType = sort.airdate;
             }
         }
         // Else If arg is a number type, compare to values of sort enum
@@ -114,7 +114,7 @@ var replayEpisodeCollection = {
         // If tempSortType is still undefined, do NOT assign sortType and throw error
         if (typeof tempSortType === 'undefined') {
             console.error('Could NOT assign sortType to value: ' + input);
-            this._sortType = sort.number;
+            this._sortType = sort.none;
         }
         else // Else assign tempSortType to sortType
             this._sortType = tempSortType;
@@ -144,8 +144,8 @@ var replayEpisodeCollection = {
             case sort.views: return 'most-viewed'; break;
             case sort.likes: return 'most-liked'; break;
             case sort.length: return 'video-length'; break;
+            case sort.number: return 'number'; break;
             case sort.none:
-            case sort.number:
             default: return 'none';
         }
     },
@@ -750,24 +750,37 @@ replayEpisodeCollection.sortByType = function () {
 
     // Sort selectedEpisodes by sortType in ascending order
     switch (this.sortType) {
-        // Air Date
-        case sort.airdate:
-            this.selectedEpisodes.sort(function (firstEl, secondEl) {
-                return firstEl.airdate - secondEl.airdate;
-            });
-            break;
+        // None (No sort such as for shuffled list)
+        case sort.none: break;
+        // Video Length/Duration
         case sort.length:
             this.selectedEpisodes.sort(function (first, second) {
                 return first.videoLengthInSeconds - second.videoLengthInSeconds;
             });
             break;
-        // None (No sort such as for shuffled list)
-        case sort.none: break;
+        // Episode Number (Special episodes separate from official)
         case sort.number:
-        default:
-            // Default sort by episodeNumber
             this.selectedEpisodes.sort(function (first, second) {
                 return first.episodeNumber - second.episodeNumber;
+            });
+            break;
+        // Views
+        case sort.views:
+            this.selectedEpisodes.sort(function (first, second) {
+                return first.views - second.views;
+            });
+            break;
+        // Likes
+        case sort.likes:
+            this.selectedEpisodes.sort(function (first, second) {
+                return first.likes - second.likes;
+            });
+            break;
+        // Air Date (Default)
+        case sort.airdate:
+        default:
+            this.selectedEpisodes.sort(function (firstEl, secondEl) {
+                return firstEl.airdate - secondEl.airdate;
             });
     }
 

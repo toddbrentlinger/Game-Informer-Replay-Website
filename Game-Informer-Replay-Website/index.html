@@ -87,38 +87,36 @@
                 </div>
 
                 <!-- Filter Form -->
-                <button id="filter-display-toggle-button" class="collapsible"><i class="fa fa-sliders fa-lg" aria-hidden="true"></i> Filter</button>
+                <button id="filter-display-toggle-button" class="collapsible"><i class="fa fa-sliders fa-lg" aria-hidden="true"></i> FILTER</button>
                 <form id="filterForm">
                     <fieldset form="filterForm" id="seasonField">
                         <legend>Season: </legend>
-                        <label>
-                            1
+                        <label>1
                             <input type="checkbox" name="season" value="1" checked />
                             <span class="checkmark"></span>
                         </label>
-                        <label>
-                            2
+                        <label>2
                             <input type="checkbox" name="season" value="2" checked />
                             <span class="checkmark"></span>
                         </label>
-                        <label>
-                            3
+                        <label>3
                             <input type="checkbox" name="season" value="3" checked />
                             <span class="checkmark"></span>
                         </label>
-                        <label>
-                            4
+                        <label>4
                             <input type="checkbox" name="season" value="4" checked />
                             <span class="checkmark"></span>
                         </label>
-                        <label>
-                            5
+                        <label>5
                             <input type="checkbox" name="season" value="5" checked />
                             <span class="checkmark"></span>
                         </label>
-                        <label>
-                            6
+                        <label>6
                             <input type="checkbox" name="season" value="6" checked />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label>Special
+                            <input type="checkbox" name="season" value="0" checked />
                             <span class="checkmark"></span>
                         </label>
                     </fieldset>
@@ -133,8 +131,8 @@
 
             <div id="misc-buttons-container">
                 <!-- <button type="button" id="button-toggleVideoPlayer">Toggle YT Player</button> -->
-                <button type="button" id="button-shuffle"><i class="fa fa-random fa-lg" aria-hidden="true"></i> Shuffle</button>
-                <button type="button" id="button-reset-list">Reset List</button>
+                <button type="button" id="button-shuffle"><i class="fa fa-random fa-lg" aria-hidden="true"></i> SHUFFLE</button>
+                <button type="button" id="button-reset-list"><i class="fa fa-refresh fa-lg" aria-hidden="true"></i> RESET LIST</button>
             </div>
 
             <div id="page-number-container" class="page-number-container">
@@ -152,6 +150,7 @@
                         <select name="sort-type" id="sort-type-select">
                             <option value="none">-- Sort By --</option>
                             <option value="airdate" selected>Air Date</option>
+                            <option value="number" selected>Number</option>
                             <option value="most-viewed">Most Viewed</option>
                             <option value="most-liked">Most Liked</option>
                             <option value="video-length">Video Length</option>
@@ -209,9 +208,11 @@
                             <div class="episodeFeaturing">
                                 <b>Featuring: </b>
                             </div>
-                            <div class="mainSegment"><b>Main Segment Game: </b></div>
+                            <div class="mainSegment"><b>Main Segment: </b></div>
                             <div class="middleSegment"><b>Middle Segment: </b></div>
                             <div class="secondSegment"><b>Second Segment: </b></div>
+                            <div class="views"><b><i class="fa fa-eye fa-lg" aria-hidden="true"></i> Views: </b></div>
+                            <div class="likes"><b><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"></i> Likes: </b></div>
                         </div>
                     </div>
                     <hr />
@@ -236,7 +237,7 @@
     <footer>
         <p>
             &copy; 2019 Todd Brentlinger, Santa Cruz, CA, USA.<br />
-            Code licensed under <a href="https://opensource.org/licenses/MIT" target="_blank" rel="nofollow">MIT License</a>.
+            Code licensed under <a href="https://github.com/toddbrentlinger/Game-Informer-Replay-Website/blob/master/LICENSE" target="_blank" rel="nofollow">MIT License</a>.
         </p>
         <p>Last modified on <time id="lastModifiedDate"></time></p>
         <!--

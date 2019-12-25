@@ -81,6 +81,14 @@ class ReplayEpisode {
             this.secondSegmentGames = replayEpisode.secondSegmentGames;
         }
 
+        // YouTube views/likes
+        if (replayEpisode.hasOwnProperty('youtube')) {
+            // Views
+            this.views = parseInt(replayEpisode.youtube.views, 10);
+            // Likes
+            this.likes = parseInt(replayEpisode.youtube.likes, 10);
+        }
+
         // Description (array)
         // If description is empty, create custom description
         if (Array.isArray(replayEpisode.details.description) &&
@@ -246,7 +254,7 @@ class ReplayEpisode {
         // Add 's' to 'Main Segment Game: ' if more than one game
         if (this.mainSegmentGamesAdv.length > 1)
             this.episodeSection.querySelector('.mainSegment > b')
-                .innerHTML = 'Main Segment Games: ';
+                .innerHTML = 'Main Segment: ';
         // Add list of games as text node
         temp = []; // Assign temp to empty array for game titles
         this.mainSegmentGamesAdv.forEach(game => temp.push(game.title));
@@ -282,6 +290,17 @@ class ReplayEpisode {
                 );
         } else // Else NO second segment, remove secondSegment node
             this.episodeSection.querySelector('.secondSegment').remove();
+
+        // YouTube (views/likes)
+        if (this.hasOwnProperty('views')) {
+            // Views
+            this.episodeSection.querySelector('.views')
+                .insertAdjacentText('beforeend', this.views);
+
+            // Likes
+            this.episodeSection.querySelector('.likes')
+                .insertAdjacentText('beforeend', this.likes);
+        }
 
         // -------------------------------
         // ---------- More Info ----------
@@ -400,27 +419,28 @@ class ReplayEpisode {
 
     // Get replay season and season episode number
     getReplaySeason() {
-        //Constant array to hold episode numbers that each season begins with
-        // excluding the first season which is assumed to start at episode 1
+        //Constant array to hold episode numbers that each season begins with.
+        // Episode numbers less than 1 are special unoffical episodes
         // NOTE: Could use episode titles in the future if episode number is unreliable
-        const replaySeasonStartEpisodes = [107, 268, 385, 443, 499]; // [S2, S3, S4, S5, S6]
+        const replaySeasonStartEpisodes = [1, 107, 268, 385, 443, 499]; // [S1, S2, S3, S4, S5, S6]
 
         // Season
         let season = 0;
         for (let index = 0; index < replaySeasonStartEpisodes.length; index++) {
             if (this.episodeNumber < replaySeasonStartEpisodes[index]) {
-                season = index + 1;
+                season = index;
                 break;
             }
             // If reached end of loop, assign last season
             if (index == replaySeasonStartEpisodes.length - 1) {
-                season = replaySeasonStartEpisodes.length + 1;
+                season = replaySeasonStartEpisodes.length;
             }
         }
 
         // Season Episode
-        let seasonEpisode = (season == 1) ? this.episodeNumber
-            : this.episodeNumber - replaySeasonStartEpisodes[season - 2] + 1;
+        let seasonEpisode = (season > 1)
+            ? this.episodeNumber - replaySeasonStartEpisodes[season - 1] + 1
+            : this.episodeNumber;
 
         // Return both season and seasonEpisode number
         return [season, seasonEpisode];

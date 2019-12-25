@@ -1,6 +1,6 @@
 ﻿const replayEpisodeArray = [
     {
-        "episodeNumber": -14,
+        "episodeNumber": .14,
         "episodeTitle": "Replay Holiday Special 2015",
         "fandomWikiURL": "/wiki/Replay_Holiday_Special_2015",
         "mainSegmentGamesAdv": [
@@ -66,7 +66,7 @@
         }
     },
     {
-        "episodeNumber": -13,
+        "episodeNumber": .13,
         "episodeTitle": "Replay Holiday Special 2014",
         "fandomWikiURL": "/wiki/Replay_Holiday_Special_2014",
         "mainSegmentGamesAdv": [
@@ -87,7 +87,9 @@
         "secondSegmentGames": [],
         "season": 0,
         "details": {
-            "description": [],
+            "description": [
+                "Features Batman Returns and Home Alone 2: Lost in New York."
+            ],
             "external_links": [
                 {
                     "href": "http://www.gameinformer.com/b/features/archive/2014/12/25/replay-holiday-special-2014.aspx",
@@ -136,7 +138,7 @@
         }
     },
     {
-        "episodeNumber": -12,
+        "episodeNumber": .10,
         "episodeTitle": "Replay Holiday Special 2013",
         "fandomWikiURL": "/wiki/Replay_Holiday_Special_2013",
         "mainSegmentGamesAdv": [
@@ -157,7 +159,9 @@
         "secondSegmentGames": [],
         "season": 0,
         "details": {
-            "description": [],
+            "description": [
+                "Features Daze Before Christmas for Genesis and Mario Party 6 for GameCube."
+            ],
             "external_links": [
                 {
                     "href": "http://www.gameinformer.com/b/features/archive/2013/12/24/replay-holiday-special-2013.aspx",
@@ -208,7 +212,147 @@
         }
     },
     {
-        "episodeNumber": -11,
+        "episodeNumber": .09,
+        "episodeTitle": "ScaReplay: Splatterhouse Series",
+        "fandomWikiURL": "",
+        "mainSegmentGamesAdv": [
+            {
+                "title": "Splatterhouse",
+                "system": "Arcade",
+                "yearReleased": "1989"
+            },
+            {
+                "title": "Splatterhouse 2",
+                "system": "Genesis",
+                "yearReleased": "1992"
+            },
+            {
+                "title": "Splatterhouse 3",
+                "system": "Genesis",
+                "yearReleased": "1993"
+            },
+            {
+                "title": "Splatterhouse: Wanpaku Grafitti",
+                "system": "Famicom",
+                "yearReleased": "1989"
+            },
+        ],
+        "airDate": "10/31/13",
+        "videoLength": "34:08",
+        "secondSegment": "",
+        "secondSegmentGames": [],
+        "season": 0,
+        "details": {
+            "description": [],
+            "external_links": [
+                {
+                    "href": "https://www.gameinformer.com/b/features/archive/2013/10/31/replay-halloween-special-2013.aspx",
+                    "title": "Replay Halloween Special 2013"
+                },
+                {
+                    "href": "https://www.youtube.com/watch?v=O68cR45zRSg",
+                    "title": "ScaReplay \u2013 Splatterhouse Series"
+                }
+            ],
+            "image": {},
+            "system": [
+                "Arcade",
+                "Genesis",
+                "Genesis",
+                "Famicom"
+            ],
+            "gamedate": [
+                "1989-1993"
+            ],
+            "airdate": "October 31, 2013",
+            "runtime": "34:08",
+            "host": [
+                "Andrew Reiner"
+            ],
+            "featuring": [
+                "Tim Turi",
+                "Ben Reeves",
+                "Joe Juba",
+                "Jason Oestreicher"
+            ]
+        },
+        "article": {
+            "title": "Replay Halloween Special 2013",
+            "author": "Andrew Reiner",
+            "date": " on Oct 31, 2013 at 10:30 AM",
+            "content": [
+                "Before you head outside to hunt down a mountain of free candy, spend a half hour with the Game Informer crew in this Replay Halloween Special. We take a look at four games in this episode, all set within Namco's Splatterhouse series. Tim Turi and Jason Oestreicher work their way through each game, showing us just how difficult they are, and how much the Terror Mask changes in each game. Our journey begins original arcade release and concludes with an oddity not many people know about. We hope you all have a great Halloween, and end up getting a great assortment of candy that is mostly free of that crappy taffy in orange and black wrappers."
+            ]
+        },
+        "youtube": {
+            "views": 10790,
+            "likes": 155,
+            "dislikes": 5
+        }
+    },
+    {
+        "episodeNumber": .05,
+        "episodeTitle": "Stress Test \u2013 Ryckert vs Tyson",
+        "fandomWikiURL": "",
+        "mainSegmentGamesAdv": [
+            {
+                "title": "Punch Out!!",
+                "system": "NES",
+                "yearReleased": "1987"
+            }
+        ],
+        "airDate": "1/21/13",
+        "videoLength": "57:52",
+        "secondSegment": "",
+        "secondSegmentGames": [],
+        "season": 0,
+        "details": {
+            "description": [],
+            "external_links": [
+                {
+                    "href": "http://www.gameinformer.com/b/features/archive/2012/12/24/replay-holiday-special.aspx",
+                    "title": "Replay \u2013 Punch-Out!! Stress Test: Dan Vs. Tyson Part III"
+                },
+                {
+                    "href": "https://www.youtube.com/watch?v=P9F2fDNfNC0",
+                    "title": "Stress Test \u2013 Dan vs Tyson in Punch\u2013Out"
+                }
+            ],
+            "image": {},
+            "system": [
+                "NES"
+            ],
+            "gamedate": [
+                "1987"
+            ],
+            "airdate": "January 21, 2013",
+            "runtime": "57:52",
+            "host": [
+                "Andrew Reiner"
+            ],
+            "featuring": [
+                "Dan Ryckert",
+                "Joe Juba",
+                "Jeff Cork"
+            ]
+        },
+        "article": {
+            "title": "Replay \u2013 Punch-Out!! Stress Test: Dan Vs. Tyson Part III",
+            "author": "Dan Ryckert",
+            "date": " on Jan 29, 2013 at 05:18 AM",
+            "content": [
+                "In my entire gaming history, one accomplishment has eluded me more than any other. I've completed hundreds upon hundreds of games and stood victorious over insanely difficult boss battles, but one man has annihilated me every time I've encountered him. Mike Tyson's Punch-Out!! is one of my top ten games of all time, but it's one I've never beat. In 2013, it's time to get serious about getting this monkey off my back.",
+                "Click below to witness my quest to defeat my biggest gaming nightmare."
+            ]
+        },
+        "youtube": {
+            "views": 18257,
+            "likes": 257,
+            "dislikes": 5
+        }
+    },
+    {
+        "episodeNumber": .04,
         "episodeTitle": "Replay Holiday Special 2012",
         "fandomWikiURL": "/wiki/Replay_Holiday_Special_2012",
         "mainSegmentGamesAdv": [
@@ -280,7 +424,7 @@
         }
     },
     {
-        "episodeNumber": -10,
+        "episodeNumber": .03,
         "episodeTitle": "Reevesplay: Silent Bomber",
         "fandomWikiURL": "/wiki/Reevesplay",
         "mainSegmentGamesAdv": [
@@ -324,14 +468,14 @@
                 "2000"
             ],
             "airdate": "September 22, 2012",
-            "runtime": "54.48",
+            "runtime": "54:48",
             "host": [
                 "Ben Reeves"
             ],
             "featuring": []
         },
         "article": {
-            "title": "This Isn't Replay: It's Reevesplay! ",
+            "title": "This Isn't Replay: It's Reevesplay!",
             "author": "Ben Reeves",
             "date": " on Sep 22, 2012 at 07:00 AM",
             "content": [
@@ -340,4 +484,133 @@
             ]
         }
     },
+    {
+        "episodeNumber": .02,
+        "episodeTitle": "Super Readplay: Gears of War: Anvil Gate",
+        "fandomWikiURL": "/wiki/Super_Readplay",
+        "mainSegmentGamesAdv": [
+            {
+                "title": "Gears of War: Anvil Gate",
+                "system": "Novel",
+                "yearReleased": "2010"
+            }
+        ],
+        "airDate": "8/20/10",
+        "videoLength": "7:50",
+        "secondSegment": "",
+        "secondSegmentGames": [],
+        "season": 0,
+        "details": {
+            "description": [
+                "Super Readplay is a gag episode of Replay that features Dan Ryckert reading the prologue of the book Gears of War: Anvil Gate based in the Gears of War universe. Although the episode is listed in the Replay hub, it is not an official episode, but is counted toward the 100th episode claimed in the Super Mario 64 Replay.",
+                "The official page for the episode lists it as 1 of 82."
+            ],
+            "trivia": [
+                [
+                    "The song looping in the background is \"Kepora Gebora's Theme\" from The Legend of Zelda: Ocarina of Time Original Soundtrack."
+                ]
+            ],
+            "external_links": [
+                {
+                    "href": "http://www.gameinformer.com/b/news/archive/2010/08/20/super-readplay-gears-of-war-anvil-gate.aspx",
+                    "title": "Super Readplay: Gears of War: Anvil Gate"
+                },
+                {
+                    "href": "https://www.youtube.com/watch?v=lLglnD0GDR8?t=1664",
+                    "title": "Replay: Syphon Filter"
+                },
+                {
+                    "href": "http://en.wikipedia.org/wiki/Gears_of_War:_Anvil_Gate",
+                    "title": "Gears of War: Anvil Gate"
+                }
+            ],
+            "image": {
+                "width": "200",
+                "height": "179",
+                "srcset": [
+                    "https://vignette.wikia.nocookie.net/replay/images/b/bc/Readplay_icon.jpg/revision/latest?cb=20120430213038",
+                    "1x",
+                    "https://vignette.wikia.nocookie.net/replay/images/b/bc/Readplay_icon.jpg/revision/latest?cb=20120430213038",
+                    "2x"
+                ]
+            },
+            "system": [
+                "Novel"
+            ],
+            "gamedate": [
+                "2010"
+            ],
+            "airdate": "August 20, 2010",
+            "runtime": "7:50",
+            "host": [
+                "Dan Ryckert"
+            ],
+            "featuring": []
+        },
+        "article": {
+            "title": "Super Readplay \u2013 Gears of War: Anvil Gate",
+            "author": "Dan Ryckert",
+            "date": " on Aug 20, 2010 at 03:30 PM",
+            "content": [
+                "You may already be familiar with our Super Replay series, in which we play through the entirety of some of the all-time greatest games. So far, we've presented you with the iconic Legend of Zelda: Link to the Past and Resident Evil 2. While we are a gaming-focused website, we have respect for all of the arts. So why should we deprive you of the all-time greats from other entertainment mediums? My boss (Reiner) told me that reading great literature is also a sometimes-worthwhile pursuit. He assured me that Gears of War: Anvil Gate is widely considered one of the all-time great examples of the written word.",
+                "Because of his enthusiasm for this particular work, I didn't protest when he asked me to begin a Super Readplay of Gears of War: Anvil Gate. You can watch part 1 of 82 below. Enjoy."
+            ]
+        }
+    },
+    {
+        "episodeNumber": .01,
+        "episodeTitle": "Winter Games",
+        "fandomWikiURL": "/wiki/Replay:_Winter_Games",
+        "mainSegmentGamesAdv": [],
+        "airDate": "2/25/10",
+        "videoLength": "13:37",
+        "secondSegment": "",
+        "secondSegmentGames": [],
+        "season": 0,
+        "details": {
+            "description": [
+                "Winter Games is an unofficial episode of Replay that was posted to Game Informer editor Matt Bertz's site blog on February 25, 2010 under the title A Supposedly Fun Thing I'll Never Do Again (a reference to a collection of nonfiction writing by David Foster Wallace). The episode is hosted by Matt Bertz and features Replay regulars Tim Turi, Andrew Reiner, and Dan Ryckert.",
+                "Bertz describes Winter Games as \"the worst game I ever had the misfortune of owning.\" As explained in the blog post, the game was an impulse purchase from a moment in Bertz's childhood when his parents allowed him to pick out one video game to buy at a game store. He settled on Winter Games because of its \"Miami Vice cover art.\"",
+                "The episode is not featured in the Replay hub."
+            ],
+            "external_links": [
+                {
+                    "href": "http://www.gameinformer.com/blogs/editors/b/gibertz_blog/archive/2010/02/25/a-supposedly-fun-thing-i-ll-never-do-again.aspx",
+                    "title": "A Supposedly Fun Thing I'll Never Do Again"
+                }
+            ],
+            "image": {
+                "width": "300",
+                "height": "175",
+                "srcset": [
+                    "https://vignette.wikia.nocookie.net/replay/images/a/ac/Winter_Games.jpg/revision/latest/scale-to-width-down/310?cb=20120223083144",
+                    "1x",
+                    "https://vignette.wikia.nocookie.net/replay/images/a/ac/Winter_Games.jpg/revision/latest?cb=20120223083144",
+                    "2x"
+                ]
+            },
+            "system": [
+                "NES"
+            ],
+            "gamedate": [
+                "1986"
+            ],
+            "airdate": "February 25, 2010",
+            "runtime": "13:37",
+            "host": [
+                "Matt Bertz"
+            ],
+            "featuring": [
+                "Tim Turi",
+                "Andrew Reiner",
+                "Dan Ryckert"
+            ]
+        },
+        "article": {
+            "title": "A Supposedly Fun Thing I'll Never Do Again ",
+            "author": "Matt Bertz",
+            "date": " on Feb 25, 2010 at 12:00 PM",
+            "content": []
+        }
+    }
 ];

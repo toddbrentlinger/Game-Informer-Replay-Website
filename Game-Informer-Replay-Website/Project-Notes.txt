@@ -1,5 +1,12 @@
 ﻿TO-DO:
 
+12/24/19
+
+- TODO: Spider-man 2 'likes' return 1 instead of 1600
+SOLUTION: Web Scraper: remove commas from likes/dislikes
+
+- Add comma(s) to views/likes
+
 12/20/19
 
 - TODO: Reset video player to cue first 200 episodes of selectedEpisodes

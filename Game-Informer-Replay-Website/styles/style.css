@@ -22,7 +22,7 @@ Softrobo Pro Font on fonts.com
     --main-bg-hover-color: hsl(196, 100%, 15%); /* dark gi blue */
     --main-bg-select-color: hsl(196, 100%, 15%); /* dark gi blue */
     --second-text-color: #0077a2; /* gi blue */
-    --second-bg-color: #f6f6f6; /* nearly pure white */
+    --second-bg-color: #f4f4f4; /* nearly pure white */
     --third-text-color: #3a3a3a; /* nearly pure black */
     --third-bg-color: #f6f6f6; /* nearly pure white */
     background-color: var(--main-bg-color);
@@ -114,6 +114,33 @@ h1, h2, footer { text-align: center; }
 
 img {
     border: 0; /* prevent IE9 (and earlier) from displaying a border around the edges */
+}
+
+/* ----------------------------------- */
+/* ---------- Custom Button ---------- */
+/* ----------------------------------- */
+
+.custom-button {
+    /*box-shadow: 0px 10px 14px -7px var(--main-bg-color);*/
+    background-image: linear-gradient(to bottom, var(--main-bg-select-color) 5%, var(--main-bg-color) 80%);
+    background-color: var(--main-bg-color);
+    border: none;
+    border-radius: .5em;
+    color: var(--main-text-color);
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+    -webkit-transition-duration: .2s;
+            transition-duration: .2s;
+}
+.custom-button:hover {
+    background-image: linear-gradient(to bottom, var(--main-bg-select-color) 5%, var(--main-bg-select-color) 80%);
+    background-color: var(--main-bg-select-color);
+}
+.custom-button:active {
+    position: relative;
+    top: 1px;
 }
 
 /* ---------------------------- */
@@ -319,6 +346,20 @@ main {
     display: table;
 }
 
+/* Views/Likes */
+.views-likes-container {
+    display: flex;
+    justify-content: center;
+    padding: .3em 0;
+    font-size: .9em;
+}
+.views-likes-container > * {
+    padding: 0 1em;
+}
+.views-likes-container .fa {
+    margin-right: .5em;
+}
+
 /* Episode Length */
 
 .episodeLength {
@@ -352,7 +393,7 @@ main {
     display: table;
 }
 
-/* ---------- Episode More Info (Button to dropdown display) ---------- */
+/* ---------- Episode More Info (w/ dropdown display) ---------- */
 
 .episodeMoreInfo {
     padding: 0 1.5em;
@@ -490,6 +531,7 @@ ul.link-list {
 #search-container {
     order: 1;
     width: 70%;
+    height: 80%;
     display: flex;
     font-size: 1em;
     max-width: 28em;
@@ -504,15 +546,7 @@ ul.link-list {
 }
 #search-container button {
     flex: 1;
-    background-color: var(--main-bg-color);
-    color: var(--main-text-color);
-    border: 2px solid var(--main-bg-color);
-    border-left: none; /* prevents double borders */
     border-radius: 0 .5em .5em 0;
-    cursor: pointer;
-}
-#search-container button:hover {
-    background-color: var(--main-bg-select-color);
 }
 
 /* --------------------------------- */
@@ -522,17 +556,15 @@ ul.link-list {
 /* Filter Display Toggle Button */
 #filter-display-toggle-button {
     width: 25%;
-    background-color: var(--main-bg-color);
-    color: var(--main-text-color);
-    cursor: pointer;
     padding: 1em;
-    border: none;
-    border-radius: .5em;
     text-align: left;
-    outline: none;
 }
-#filter-display-toggle-button:hover {
-    background-color: var(--main-bg-select-color);
+#filter-display-toggle-button.active {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+#filter-display-toggle-button.active:after {
+    content: "\2212";
 }
 #filter-display-toggle-button:after {
     content: '\002B';
@@ -541,28 +573,22 @@ ul.link-list {
     float: right;
     margin-left: 5px;
 }
-#filter-display-toggle-button.active:after {
-    content: "\2212";
-}
-#filter-display-toggle-button.active {
-    border-bottom-left-radius: 0;
-}
 #filter-display-toggle-button > .fa { margin-right: .3em; }
 #filter-display-toggle-button.active + form {
     border: 2px solid var(--main-bg-color);
-    border-top: none;
-    border-radius: 0 0 .5em .5em;
+    border-radius: 0 .5em .5em .5em;
 }
 
 #filterForm {
     order: 2;
     width: 100%;
+    padding: 0 1em;
     max-height: 0;
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
 
-#filterForm > fieldset { 
+#filterForm > fieldset {
     display: inline-block;
     padding: .4em;
 }
@@ -633,25 +659,13 @@ ul.link-list {
 
 /* Filter Form Buttons */
 #filterSubmitButton {
-    display: flex;
-    justify-content: space-between;
     padding: 1em 0;
 }
 #filterSubmitButton > button {
-    width: 49%;
-    background-color: var(--main-bg-color);
-    border: none;
-    border-radius: .5em;
-    color: var(--main-text-color);
+    display: block;
+    width: 50%;
+    margin: 0 auto;
     padding: 1em;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    -webkit-transition-duration: .2s;
-            transition-duration: .2s;
-}
-#filterSubmitButton > button:hover {
-    background-color: var(--main-bg-select-color);
 }
 
 /* -------------------------- */
@@ -706,17 +720,7 @@ ul.link-list {
 .page-number-container > button {
     flex: 1;
     padding: .7em 0;
-    background-color: var(--main-bg-color);
     border: 1px solid var(--second-bg-color);
-    color: var(--main-text-color);
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    -webkit-transition-duration: .2s;
-            transition-duration: .2s;
-}
-.page-number-container button:hover {
-    background-color: var(--main-bg-select-color);
 }
 .page-number-container > button:first-child { 
     border-radius: .5em 0 0 .5em; 
@@ -735,18 +739,21 @@ ul.link-list {
 .page-number-list button {
     width: 10%;
     padding: .5em 0;
-    background-color: var(--main-bg-color);
     border: 1px solid var(--second-bg-color);
-    color: var(--main-text-color);
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    -webkit-transition-duration: .2s;
-            transition-duration: .2s;
+    border-radius: 0;
 }
 .page-number-list button.active {
+    background-image: none;
     background-color: black;
     color: white;
+}
+
+/* --------------------------- */
+/* ---------- Stats ---------- */
+/* --------------------------- */
+
+#stats {
+    margin: 0 1em;
 }
 
 /* ----------------------------------------- */
@@ -817,7 +824,12 @@ ul.link-list {
 [data-theme="dark"] header {
     background-image: url("/images/Game_Informer_logo_(2010-present)(dark_mode).png");
 }
-[data-theme="dark"] .episodeDetails b, [data-theme="dark"] .episodeMoreInfo h4 {
+[data-theme="dark"] .episodeDetails b, 
+[data-theme="dark"] .episodeMoreInfo h4,
+[data-theme="dark"] .views-likes-container .fa {
+    color: var(--main-text-color);
+}
+[data-theme="dark"] #jump-top-page-container > a > i {
     color: var(--main-text-color);
 }
 
@@ -900,23 +912,11 @@ input:checked + .slider:before {
 #misc-buttons-container {
     display: flex;
     justify-content: space-between;
-    padding: 1em 0;
+    padding: .6em 0;
 }
 #misc-buttons-container button {
     width: 49%;
-    background-color: var(--main-bg-color);
-    border: none;
-    border-radius: .5em;
-    color: var(--main-text-color);
     padding: 1em;
-    text-align: center;
-    text-decoration: none;
-    cursor: pointer;
-    -webkit-transition-duration: .2s;
-            transition-duration: .2s;
-}
-#misc-buttons-container button:hover {
-    background-color: var(--main-bg-select-color);
 }
 #misc-buttons-container button .fa { margin-right: .3em; }
 

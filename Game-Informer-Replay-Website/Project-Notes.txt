@@ -2,7 +2,10 @@
 
 12/24/19
 
-- TODO: Spider-man 2 'likes' return 1 instead of 1600
+- Update sort for views/likes so episodes with no values are
+added to bottom of list with lowest value
+
+X TODO: Spider-man 2 'likes' return 1 instead of 1600
 SOLUTION: Web Scraper: remove commas from likes/dislikes
 
 - Add comma(s) to views/likes

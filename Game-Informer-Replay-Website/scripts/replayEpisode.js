@@ -295,11 +295,11 @@ class ReplayEpisode {
         if (this.hasOwnProperty('views')) {
             // Views
             this.episodeSection.querySelector('.views')
-                .insertAdjacentText('beforeend', this.views);
+                .insertAdjacentText('beforeend', ReplayEpisode.addCommasToNumber(this.views));
 
             // Likes
             this.episodeSection.querySelector('.likes')
-                .insertAdjacentText('beforeend', this.likes);
+                .insertAdjacentText('beforeend', ReplayEpisode.addCommasToNumber(this.likes));
         }
 
         // -------------------------------
@@ -377,41 +377,8 @@ class ReplayEpisode {
         }
 
         // External Links (bottom of episodeMoreInfo)
-        if (this.hasOwnProperty('external_links')) {
+        if (this.hasOwnProperty('external_links'))
             ReplayEpisode.addListOfLinks(this.external_links, parentNode, 'external links');
-            /*
-            // Variables
-            let listElement, listItemElement, anchorElement, linkSource;
-            // Add header for external links to episodeMoreInfo element
-            parentNode.appendChild(ReplayEpisode.createElementAdv('h4', undefined, 'External Links'));
-            // Create ul element and append as child to episodeMoreInfo element
-            listElement = parentNode.appendChild(document.createElement('ul'));
-            // Loop through each value of array of list values
-            for (const linkObj of this.external_links) {
-                // Create li element and append as child to ul element
-                listItemElement = listElement.appendChild(document.createElement('li'));
-                // Create i element and append as child to li list element
-                // then create anchor element and append as child to i element
-                anchorElement = listItemElement.appendChild(document.createElement('i'))
-                    .appendChild(ReplayEpisode.createElementAdv('a', undefined, linkObj.title));
-                anchorElement.setAttribute('href', linkObj.href);
-                anchorElement.setAttribute('target', '_blank');
-                // Add text listing source of link
-                linkSource = '';
-                // Find matching link source
-                for (let i = 0; i < linkSourceOptions.length; i++) {
-                    if (linkObj.href.includes(linkSourceOptions[i][0])) {
-                        linkSource = linkSourceOptions[i][1];
-                        break;
-                    }
-                }
-                // If match was found, add to end of link, else don't include anything
-                if (linkSource)
-                    listItemElement.appendChild(document.createTextNode(' on '
-                        + linkSource));
-            }
-            */
-        }
 
         // Return episode section HTML
         return this.episodeSection;
@@ -684,5 +651,20 @@ class ReplayEpisode {
                 listItemElement.appendChild(document.createTextNode(' on '
                     + linkSource));
         }
+    }
+
+    static addCommasToNumber(num) {
+        // If typeof num is number, convert to string
+        if (typeof num === 'number')
+            num = num.toString();
+        // If num is string and string contains number and more than 3 digits
+        if (typeof num === 'string'
+            && !isNaN(parseInt(num, 10))
+            && num.length > 3
+        ) {
+            // Add comma after every 3rd index from end
+            return num.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        } else // Else return the num as is
+            return num;
     }
 }

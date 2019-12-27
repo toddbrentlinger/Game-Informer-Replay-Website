@@ -83,11 +83,11 @@
                 <!-- Search -->
                 <div id="search-container">
                     <input type="text" placeholder="Search..." required />
-                    <button type="button"><i class="fa fa-search"></i></button>
+                    <button class="custom-button" type="button"><i class="fa fa-search"></i></button>
                 </div>
 
                 <!-- Filter Form -->
-                <button id="filter-display-toggle-button" class="collapsible"><i class="fa fa-sliders fa-lg" aria-hidden="true"></i> FILTER</button>
+                <button id="filter-display-toggle-button" class="custom-button collapsible"><i class="fa fa-sliders fa-lg" aria-hidden="true"></i> FILTER</button>
                 <form id="filterForm">
                     <fieldset form="filterForm" id="seasonField">
                         <legend>Season: </legend>
@@ -124,24 +124,24 @@
                     <div id="filterSubmitButton">
                         <!-- <button type="button" id="filter-button">Filter</button> -->
                         <!-- <input type="reset" id="filter-reset-button" /> -->
-                        <button type="button" id="filter-toggle-select-button">Select/Deselect All</button>
+                        <button type="button" class="custom-button" id="filter-toggle-select-button">Select/Deselect All</button>
                     </div>
                 </form>
             </div>
 
             <div id="misc-buttons-container">
                 <!-- <button type="button" id="button-toggleVideoPlayer">Toggle YT Player</button> -->
-                <button type="button" id="button-shuffle"><i class="fa fa-random fa-lg" aria-hidden="true"></i> SHUFFLE</button>
-                <button type="button" id="button-reset-list"><i class="fa fa-refresh fa-lg" aria-hidden="true"></i> RESET LIST</button>
+                <button class="custom-button" type="button" id="button-shuffle"><i class="fa fa-random fa-lg" aria-hidden="true"></i> SHUFFLE</button>
+                <button class="custom-button" type="button" id="button-reset-list"><i class="fa fa-refresh fa-lg" aria-hidden="true"></i> RESET LIST</button>
             </div>
 
             <div id="page-number-container" class="page-number-container">
-                <button type="button" value="prev">PREV</button>
+                <button class="custom-button" type="button" value="prev">PREV</button>
                 <div class="page-number-list">
-                    <button type="button" value="1" class="page-number">1</button>
-                    <button type="button" value="2" class="page-number">2</button>
+                    <button type="button" value="1" class="custom-button">1</button>
+                    <button type="button" value="2" class="custom-button">2</button>
                 </div>
-                <button type="button" value="next">NEXT</button>
+                <button class="custom-button" type="button" value="next">NEXT</button>
             </div>
 
             <div id="sort-main">
@@ -150,9 +150,9 @@
                         <select name="sort-type" id="sort-type-select">
                             <option value="none">-- Sort By --</option>
                             <option value="airdate" selected>Air Date</option>
-                            <option value="number" selected>Number</option>
-                            <option value="most-viewed">Most Viewed</option>
-                            <option value="most-liked">Most Liked</option>
+                            <option value="number" selected>Ep. Number</option>
+                            <option value="most-viewed">Views</option>
+                            <option value="most-liked">Likes</option>
                             <option value="video-length">Video Length</option>
                         </select>
                     </label>
@@ -199,6 +199,10 @@
                                     </div>
                                 </a>
                             </div>
+                            <div class="views-likes-container">
+                                <div class="views"><b><i class="fa fa-eye" aria-hidden="true"></i></b></div>
+                                <div class="likes"><b><i class="fa fa-thumbs-up" aria-hidden="true"></i></b></div>
+                            </div>
                         </div>
                         <div class="episodeDetails">
                             <div class="episodeAirDate"><b>Original Air Date: </b><time datetime=""></time></div>
@@ -211,8 +215,10 @@
                             <div class="mainSegment"><b>Main Segment: </b></div>
                             <div class="middleSegment"><b>Middle Segment: </b></div>
                             <div class="secondSegment"><b>Second Segment: </b></div>
+                            <!--
                             <div class="views"><b><i class="fa fa-eye fa-lg" aria-hidden="true"></i> Views: </b></div>
                             <div class="likes"><b><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"></i> Likes: </b></div>
+                            -->
                         </div>
                     </div>
                     <hr />
@@ -221,6 +227,18 @@
                 </section>
             </div>
         </main>
+
+        <div id="stats">
+            <h2>Stats:</h2>
+            <!-- Total Time -->
+            <div id="stats-total-time"><b>Total time of all replay episodes: </b></div>
+            <!-- Total Views -->
+            <div id="stats-total-views"><b>Total views of all replay episodes: </b></div>
+            <!-- GI Crew Episodes -->
+            <div id="stats-gi-crew"></div>
+            <!-- Segments -->
+            <div id="stats-segments"></div>
+        </div>
 
         <!-- Right Column -->
         <aside class="column right"></aside>

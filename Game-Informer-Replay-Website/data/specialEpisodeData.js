@@ -63,6 +63,11 @@
                 "Cover your ears, folks, you're going to hear us sing holiday songs, and Tim Turi never wavers from being creepily upbeat. We check out every minigame and bonus feature in this game, and walk away from this episode equally proud and depressed from our efforts to entertain.",
                 "Happy holidays to all of you, and here's hoping you stick around for another year of Replay!"
             ]
+        },
+        "youtube": {
+            "views": "12096",
+            "likes": "205",
+            "dislikes": "3"
         }
     },
     {
@@ -135,6 +140,11 @@
                 "Grab a glass of eggnog and a handful of sugar cookies, everyone! The Replay crew is here to celebrate the holidays with you in the best way possible: with Batman. Yes, we decided to give Santa Claus a break this year, and play the Christmas-themed Batman Returns instead. We battle our way through waves of clowns (why are they clowns?) and square off against Catwoman, all to deliver holiday cheer!",
                 "We hope that you and all of your loved ones have a great holiday season. We'll see you in the New Year (and in new Super Replay)!"
             ]
+        },
+        "youtube": {
+            "views": "8644",
+            "likes": "92",
+            "dislikes": "3"
         }
     },
     {
@@ -209,6 +219,11 @@
                 "Happy holidays, Replay community! The Game Informer staff tracked down an odd little game crammed to capacity with holiday cheer.In Funcom and Sunsoft's Days Before Christmas, Santa bounds across perilous pits to rescue woodland elves trapped in presents, and to reclaim his prized star collection. In a strange twist, he also transforms into a hideous Anti-Claus, using a bag full of toys as a weapon to beat the life out of mice in scuba gear. Yes, this game is a real trip.",
                 "Our second segment begins with an unexpected visit from a Replay fan, who hands us a gift that we didn't want, but you surely did. If this guest ever shows his face again, we're taking him down."
             ]
+        },
+        "youtube": {
+            "views": "20490",
+            "likes": "323",
+            "dislikes": "5"
         }
     },
     {
@@ -254,7 +269,13 @@
                     "title": "ScaReplay \u2013 Splatterhouse Series"
                 }
             ],
-            "image": {},
+            "image": {
+                "width": "300",
+                "height": "169",
+                "srcset": [
+                    "/images/Replay_new_logo_orig_300x169.png"
+                ]
+            },
             "system": [
                 "Arcade",
                 "Genesis",
@@ -318,7 +339,13 @@
                     "title": "Stress Test \u2013 Dan vs Tyson in Punch\u2013Out"
                 }
             ],
-            "image": {},
+            "image": {
+                "width": "300",
+                "height": "169",
+                "srcset": [
+                    "/images/Replay_new_logo_orig_300x169.png"
+                ]
+            },
             "system": [
                 "NES"
             ],
@@ -421,6 +448,11 @@
             "date": " on Dec 24, 2012 at 08:52 AM",
             "content": [
                 "'Tis the season for crappy holiday gaming. Scattered within the thousands of games in Game Informer's vault, we found two that celebrate the holiday season. Now that Wii U is on store shelves, we can officially dive into Wii's library for Replay episodes. Outside of Tim breaking the rules of the spacetime continuum with his rogue Super Smash Bros. Brawl Replay episode, our first sanctioned Wii game is Santa Claus is Comin' to Town! Our Roulette is equally as season-appropriate. Enjoy the episode, folks! And happy holidays!"            ]
+        },
+        "youtube": {
+            "views": "16697",
+            "likes": "190",
+            "dislikes": "4"
         }
     },
     {
@@ -482,6 +514,11 @@
                 "Playing games by myself is no strange thing, but I don't usually record it. Now I have!",
                 "This has been a long time coming. I apologize for the wait. Check out the video of me playing the little talked about PSOne title Silent Bomber below. It's like watching a recording of a guy who's playing a game by himself."
             ]
+        },
+        "youtube": {
+            "views": "3974",
+            "likes": "160",
+            "dislikes": "9"
         }
     },
     {

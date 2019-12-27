@@ -52,10 +52,8 @@ var replayEpisodeCollection = {
         // If argument is a number and greater than zero, assign the value
         // of the argument. Else assign value of 0.
         this._maxDisplayedEpisodes = (!isNaN(num) && num > 0) ? num : 0;
-        //console.log(`maxDisplayed: ${this.maxDisplayedEpisodes}`);
         // Assign to local/session storage
         window.sessionStorage.setItem('maxDisplayedEpisodes', this.maxDisplayedEpisodes);
-        //console.log(`Argument num: ${num} (${typeof num}) - Max Displayed: ${this.maxDisplayedEpisodes}`);
         // Check that HTML select element value is correct
         this.maxDisplayedElement.value = this.maxDisplayedEpisodes;
     },
@@ -64,7 +62,6 @@ var replayEpisodeCollection = {
     _currentPageDisplayed: parseInt(window.sessionStorage.getItem('currentPageDisplayed'), 10) || 1, // Page number of selected episodes list depending on maxDisplayedEpisodes
     get currentPageDisplayed() { return this._currentPageDisplayed; },
     set currentPageDisplayed(num) {
-        //console.log(`Argument num: ${num} (${typeof num}) --- Current Page: ${this.currentPageDisplayed}`);
         // If string, try to convert to int, assigns NaN if cannot
         if (typeof num == 'string')
             num = parseInt(num, 10);
@@ -72,7 +69,6 @@ var replayEpisodeCollection = {
         this._currentPageDisplayed = (num < 1) ? 1 : ((num > this.totalPages) ? this.totalPages : num);
         // Assign to local/session storage
         window.sessionStorage.setItem('currentPageDisplayed', this.currentPageDisplayed);
-        //console.log(`Argument num: ${num} (${typeof num}) --- Current Page: ${this.currentPageDisplayed}`);
     },
     get totalPages() {
         return (this.maxDisplayedEpisodes && this.selectedEpisodes.length)
@@ -124,17 +120,6 @@ var replayEpisodeCollection = {
 
         // Check that HTML select element value is correct
         this.sortTypeElement.value = this.sortTypeString;
-        /*
-        switch (this.sortType) {
-            case sort.airdate: this.sortTypeElement.value = 'airdate'; break;
-            case sort.views: this.sortTypeElement.value = 'most-viewed'; break;
-            case sort.likes: this.sortTypeElement.value = 'most-liked'; break;
-            case sort.length: this.sortTypeElement.value = 'video-length'; break;
-            case sort.none:
-            case sort.number:
-            default: this.sortTypeElement.value = 'none';
-        }
-        */
     },
 
     // Converts number type to string for value attribute of select option element
@@ -251,9 +236,9 @@ replayEpisodeCollection.init = function (replayEpisodeArray) {
 
     // Sort selected episodes
     this.sortByType();
+
     // Populate main element with initialized selected episodes array
     this.updateDisplayedEpisodes();
-
     
     // Cue playlist of first 200 selected episodes
     if (this.videoPlayer) {
@@ -263,17 +248,9 @@ replayEpisodeCollection.init = function (replayEpisodeArray) {
         else // Else no selected episodes, cue Replay highlights video
             this.videoPlayer.cueVideoById('0ZtEkX8m6yg');
     }
-    
-    /*
-    // Assign episode to play as first episode of selected episodes array
-    for (let i = 0; i < this.selectedEpisodes.length; i++) {
-        if (this.selectedEpisodes[i].hasOwnProperty('youtubeVideoID')
-            && this.selectedEpisodes[i].youtubeVideoID) {
-            this.episodeToPlay = this.selectedEpisodes[i];
-            break;
-        }
-    }
-    */
+
+    // Add stats
+    this.populateStats();
 };
 
 // populateEpisodeObjectArray()
@@ -322,7 +299,6 @@ replayEpisodeCollection.updateDisplayedEpisodes = function () {
     end = (this.maxDisplayedEpisodes)
         ? Math.min(this.currentPageDisplayed * this.maxDisplayedEpisodes, selectedEpisodesLength)
         : selectedEpisodesLength;
-    //console.log(`Current Page: ${this.currentPageDisplayed} --- Max Displayed: ${this.maxDisplayedEpisodes} --- Start: ${start} --- End: ${end}`);
 
     // Clear main element of episode sections
     this.clearMainElement();
@@ -343,33 +319,6 @@ replayEpisodeCollection.updateDisplayedEpisodes = function () {
 
     // Update page number containers
     this.updatePageNumber();
-
-    /*
-    // Update video player to match selectedEpisodes
-    if (this.videoPlayer) {
-        if (this.selectedEpisodes.length)
-            this.videoPlayer.cuePlaylist({ playlist: this.selectedVideoIdArray.slice(0, 200) });
-        else
-            this.videoPlayer.cueVideoById('0ZtEkX8m6yg');
-    }
-    */
-};
-
-// showTotalTime()
-// TODO: Static utility function with parameter totalTimeSeconds
-replayEpisodeCollection.showTotalTime = function () {
-    const days = Math.floor(this.totalTimeSeconds / 86400)
-    const hours = Math.floor((this.totalTimeSeconds - days * 86400) / 3600);
-    const minutes = Math.floor((this.totalTimeSeconds - days * 86400 - hours * 3600) / 60);
-    const seconds = this.totalTimeSeconds - (days * 86400) - (hours * 3600) - (minutes * 60);
-    
-    const totalTimePara = document.createElement('p');
-    totalTimePara.textContent = "Total length of all replay episodes: "
-        + days + " days, " + hours + " hours, " + minutes + " minutes, "
-        + seconds + " seconds!";
-    totalTimePara.textContent += "\nTotal seconds: " + this.totalTimeSeconds;
-    
-    this.mainElement.appendChild(totalTimePara);
 };
 
 // getEpisodeByNumber(num)
@@ -394,25 +343,11 @@ replayEpisodeCollection.getEpisodeByVideoId = function (idString) {
     // return undefined
 };
 
-
 // updateSelectedEpisodes(searchBool, filterBool, sortBool)
 // Starts with default selectedEpisodes and changes it based on
 // search, filter, sort, etc.
 // IN PROGRESS
 replayEpisodeCollection.updateSelectedEpisodes = function (setFirstPage = true) {
-    // Search (changes selectedEpisodes length)
-    //if (searchBool) { this.search(); }
-    // Filter (changes selectedEpisodes length)
-    //if (filterBool) { this.filterSelectedEpisodes(); }
-
-    // Sort (does NOT change selectedEpisodes length)
-    //if (sortBool) { }
-
-    // Set page number back to 1 to show beginning of updated list
-    // Only if selectedEpisodes length changes (search or filter)
-    // TODO: Maybe remove sort from this function and let updateDisplayedEpisodes
-    // sort the episodes.
-
     // Sort selected episodes
     this.sortByType();
     // Reset current page displayed
@@ -509,9 +444,6 @@ replayEpisodeCollection.updateFilterObj = function () {
  * NOTE: Ignore spaces between 'property:' and next valid character
  */
 replayEpisodeCollection.filterBySearch = function (searchTerms = '') {
-    // Variables
-    //const searchTerms = this.searchInputElement.value;
-
     if (searchTerms) {
         // Reset selectedEpisodes to show complete list
         this.selectedEpisodes = this.replayEpisodeObjectArray.slice();
@@ -528,72 +460,17 @@ replayEpisodeCollection.filterBySearch = function (searchTerms = '') {
                 return re.test(episode.episodeSection
                     .textContent.toLowerCase());
             });
-
-        // Sort selected episodes
-        //this.sortByType();
-        // Reset current page displayed
-        //this.currentPageDisplayed = 1;
-        // Update displayed episodes with filtered episodes
-        //this.updateDisplayedEpisodes();
         this.updateSelectedEpisodes();
     } else { // Else show all episodes applying filter and sort
         // TODO
         console.log('No search text');
     }
 };
- 
-// filterSelectedEpisodes()
-// IN-PROGRESS
-/*
-replayEpisodeCollection.filterSelectedEpisodes = function () {
-    // Create filter object of properties corresponding to input
-    // name and values of arrays with values of unchecked inputs.
-    // Unchecked elements should be filtered out of selectedEpisodes
-    let filterObj = {};
-    // For each input element in the filter form
-    for (const input of this.filterFormElement.getElementsByTagName('input')) {
-        if (!input.checked) {
-            // If filterObj already has input.name as a property, add value to property array
-            if (filterObj.hasOwnProperty(input.name))
-                filterObj[input.name].push(input.value);
-            // Else add filterObj as property and add value as first element
-            else
-                filterObj[input.name] = [ input.value ];
-        }
-    }
 
-    // Fill selectedEpisodes with references to replayEpisodeObjectArray objects
-    this.selectedEpisodes = [];
-    this.replayEpisodeObjectArray.forEach(episode => this.selectedEpisodes.push(episode));
-
-
-    // Season
-    if (filterObj.hasOwnProperty('season')) {
-        // Convert array of strings to array of numbers
-        filterObj.season.forEach(function (item, index, arr) {
-            arr[index] = parseInt(item, 10);
-        });
-        this.filterBySeason(filterObj.season);
-    }
-
-    // GI Crew
-    // Segment
-    // Year
-
-    // Sort selected episodes
-    //this.sortByType();
-    // Reset current page displayed
-    //this.currentPageDisplayed = 1;
-    // Update displayed episodes with filtered episodes
-    //this.updateDisplayedEpisodes();
-    this.updateSelectedEpisodes();
-};
- */
 // filterBySeason(seasons)
 // Filters the current array of filtered episodes by season
 // Argument can be number or array of numbers
 replayEpisodeCollection.filterBySeason = function (seasonToFilter) {
-    console.log(`${seasonToFilter} - ${typeof seasonToFilter[0]}`);
     // Make sure that each value is a number
     seasonToFilter.forEach(function (value, index, arr) {
         // If value is NOT a number, remove array element
@@ -716,30 +593,8 @@ replayEpisodeCollection.setSortByEvent = function (event) {
         // Default
         default:
     }
-
-    // Update main HTML element to display new sorted episodes
-    //this.updateDisplayedEpisodes();
 };
-/*
-// setSortByInput()
-replayEpisodeCollection.setSortByInput = function () {
-    // Sort Type
-    const sortTypeInput = this.sortTypeElement.value;
-    switch (sortTypeInput) {
-        case 'airdate': this.sortType = sort.airdate; break;
-        case 'most-viewed': this.sortType = sort.views; break;
-        case 'most-liked': this.sortType = sort.likes; break;
-        default: this.sortType = sort.number;
-    }
-    this.sortType
 
-    this.ascending = this.sortDirectionElement.value == 'ascending';
-    this.maxDisplayedEpisodes = this.maxDisplayedElement.value;
-
-    console.log(this.maxDisplayedElement.value + '__' + this.sortDirectionElement.value);
-
-};
-*/
 // sortByType
 // Sort selected episodes by sort type and ascending bool
 replayEpisodeCollection.sortByType = function () {
@@ -767,13 +622,23 @@ replayEpisodeCollection.sortByType = function () {
         // Views
         case sort.views:
             this.selectedEpisodes.sort(function (first, second) {
-                return first.views - second.views;
+                if (first.hasOwnProperty('views') && second.hasOwnProperty('views'))
+                    return first.views - second.views;
+                else if (first.hasOwnProperty('views'))
+                    return 1;
+                else if (second.hasOwnProperty('views'))
+                    return -1;
             });
             break;
         // Likes
         case sort.likes:
             this.selectedEpisodes.sort(function (first, second) {
-                return first.likes - second.likes;
+                if (first.hasOwnProperty('likes') && second.hasOwnProperty('likes'))
+                    return first.likes - second.likes;
+                else if (first.hasOwnProperty('likes'))
+                    return 1;
+                else if (second.hasOwnProperty('likes'))
+                    return -1;
             });
             break;
         // Air Date (Default)
@@ -800,9 +665,7 @@ replayEpisodeCollection.resetSelectedEpisodes = function () {
 
     // Reset sort/filter/search
     // Change HTML select element values to default
-    //this.sortTypeElement.value = sort.airdate;
     this.sortType = sort.airdate;
-    //this.sortDirectionElement.value = 'descending';
     this.ascending = false;
     this.searchInputElement.value = '';
     this.filterFormElement.reset();
@@ -813,17 +676,6 @@ replayEpisodeCollection.resetSelectedEpisodes = function () {
     //this.updateDisplayedEpisodes();
     this.updateSelectedEpisodes();
 };
-/*
-replayEpisodeCollection.resetSortFilterSearch = function() {
-    // Change HTML select element values to default
-    //this.sortTypeElement.value = sort.airdate;
-    this.sortType = sort.airdate;
-    //this.sortDirectionElement.value = 'descending';
-    this.ascending = false;
-    this.searchInputElement.value = '';
-    this.filterFormElement.reset();
-};
-*/
 
 // ------------------------------------
 // ---------- Page Selection ----------
@@ -834,18 +686,13 @@ replayEpisodeCollection.updatePageNumber = function () {
     let tempNode;
 
     // Remove all page number buttons
-    this.pageNumberList.querySelectorAll('.page-number').forEach(function (node) {
+    this.pageNumberList.querySelectorAll('.custom-button').forEach(function (node) {
         node.remove();
     });
-    // Remove temp page number container from bottom of main element
-    //tempNode = this.mainElement.querySelector('#temp-page-number-container');
-    //if (tempNode) tempNode.parentNode.removeChild(tempNode);
 
     // Show 'PREV' if current page is more than 1
-    //this.prevButton.style.display = (this.currentPageDisplayed > 1) ? 'inline-block' : 'none';
     this.prevButton.disabled = (this.currentPageDisplayed == 1);
     // Show 'NEXT' if current page is NOT last page
-    //this.nextButton.style.display = (this.currentPageDisplayed != this.totalPages) ? 'inline-block' : 'none';
     this.nextButton.disabled = (this.currentPageDisplayed == this.totalPages);
 
     // If total pages is more than one
@@ -857,8 +704,8 @@ replayEpisodeCollection.updatePageNumber = function () {
         // Add button for each page number and highlight current page
         for (let i = 1; i <= this.totalPages; i++) {
             tempNode = (i == this.currentPageDisplayed)
-                ? ReplayEpisode.createElementAdv('button', 'active page-number', i)
-                : ReplayEpisode.createElementAdv('button', 'page-number', i);
+                ? ReplayEpisode.createElementAdv('button', 'active custom-button', i)
+                : ReplayEpisode.createElementAdv('button', 'custom-button', i);
             tempNode.setAttribute('type', 'button');
             tempNode.setAttribute('value', i);
             tempNode.addEventListener("click", function () {
@@ -869,15 +716,10 @@ replayEpisodeCollection.updatePageNumber = function () {
             this.pageNumberList.appendChild(tempNode);
         }
         // Clone page button container and add to bottom of main element
-        //tempNode = this.pageNumberList.cloneNode(true);
-        //tempNode.id = 'temp-page-number-container';
-        //this.mainElement.insertAdjacentElement('beforeend', tempNode);
+        // TODO
     } else { // Else total pages is only one, hide all
         // Make sure page number container is NOT displayed
         this.prevButton.parentElement.style.display = 'none';
-        // Hide 'PREV' and 'NEXT' buttons
-        //this.prevButton.style.display = "none";
-        //this.nextButton.style.display = "none";
     }
 };
 
@@ -923,12 +765,6 @@ replayEpisodeCollection.onPlayerReady = function (event) {
         }
     } else
         this.videoPlayer.cueVideoById('0ZtEkX8m6yg');
-
-    /*
-    event.target.cuePlaylist({
-        playlist: this.selectedVideoIdArray.slice(0, 200)
-    });
-    */
 };
 
 // onPlayerStateChange(event)
@@ -1055,6 +891,35 @@ function findEpisodesWithNoYouTubeURL(replayEpisodes) {
     });
     console.log(episodesFlagged);
 }
+
+// ---------------------------
+// ---------- Stats ----------
+// ---------------------------
+
+// populateStats()
+replayEpisodeCollection.populateStats = function () {
+    // Total Time
+    this.showTotalTime();
+    // Total Views
+    let totalViews = 0;
+    this.replayEpisodeObjectArray.forEach(function (episode) {
+        if (episode.hasOwnProperty('views'))
+            totalViews += episode.views;
+    });
+    document.getElementById('stats-total-views').insertAdjacentText('beforeend', ReplayEpisode.addCommasToNumber(totalViews));
+};
+
+// showTotalTime()
+// TODO: Static utility function with parameter totalTimeSeconds
+replayEpisodeCollection.showTotalTime = function () {
+    const days = Math.floor(this.totalTimeSeconds / 86400)
+    const hours = Math.floor((this.totalTimeSeconds - days * 86400) / 3600);
+    const minutes = Math.floor((this.totalTimeSeconds - days * 86400 - hours * 3600) / 60);
+    const seconds = this.totalTimeSeconds - (days * 86400) - (hours * 3600) - (minutes * 60);
+    const totalTimeStr = `${days} days, ${hours} hours, ${minutes} minutes, and ${seconds} seconds! (Total seconds: ${ReplayEpisode.addCommasToNumber(this.totalTimeSeconds)})`;
+
+    document.getElementById('stats-total-time').insertAdjacentText('beforeend', totalTimeStr);
+};
 
 // Get list of host/featuring with no duplicates
 function getGICrew() {

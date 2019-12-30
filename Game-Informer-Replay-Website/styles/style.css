@@ -18,13 +18,16 @@ Softrobo Pro Font on fonts.com
 
 :root {
     --main-text-color: #f6f6f6; /* nearly pure white */
-    --main-bg-color: #0077a2; /* gi blue */
-    --main-bg-hover-color: hsl(196, 100%, 15%); /* dark gi blue */
-    --main-bg-select-color: hsl(196, 100%, 15%); /* dark gi blue */
+    --main-bg-color: #0077a2; /* gi blue hsl(196, 100%, 32%) */
+    --main-bg-hover-color: hsl(196, 100%, 24%); /* dark gi blue */
+    --main-bg-select-color: hsl(196, 100%, 16%); /* darker gi blue */
+
     --second-text-color: #0077a2; /* gi blue */
     --second-bg-color: #f4f4f4; /* nearly pure white */
+
     --third-text-color: #3a3a3a; /* nearly pure black */
     --third-bg-color: #f6f6f6; /* nearly pure white */
+
     background-color: var(--main-bg-color);
     background-image: url("/images/replay_bg_gi_blue(3).png");
     background-repeat: no-repeat;
@@ -121,8 +124,8 @@ img {
 /* ----------------------------------- */
 
 .custom-button {
-    /*box-shadow: 0px 10px 14px -7px var(--main-bg-color);*/
-    background-image: linear-gradient(to bottom, var(--main-bg-select-color) 5%, var(--main-bg-color) 80%);
+    box-shadow: 0px 0px 1em 0px rgba(0,0,0,0.4);
+    background-image: linear-gradient(to bottom, var(--main-bg-hover-color) 5%, var(--main-bg-color) 80%);
     background-color: var(--main-bg-color);
     border: none;
     border-radius: .5em;
@@ -135,10 +138,12 @@ img {
             transition-duration: .2s;
 }
 .custom-button:hover {
-    background-image: linear-gradient(to bottom, var(--main-bg-select-color) 5%, var(--main-bg-select-color) 80%);
-    background-color: var(--main-bg-select-color);
+    background-image: none;
+    background-color: var(--main-bg-hover-color);
 }
 .custom-button:active {
+    background-image: none;
+    background-color: var(--main-bg-select-color);
     position: relative;
     top: 1px;
 }
@@ -182,6 +187,7 @@ footer {
 
 #topnav {
     display: flex;
+    background-image: linear-gradient(to bottom, var(--main-bg-hover-color) 5%, var(--main-bg-color) 80%);
     background-color: var(--main-bg-color);
 }
 #topnav div:last-child {
@@ -219,7 +225,11 @@ footer {
 
 }
 /* Change the color on hover */
-#topnav a:hover, #topnav a:active {
+#topnav a:hover {
+    background-color: var(--main-bg-hover-color);
+}
+/* Change the color on active/select */
+#topnav a:active {
     background-color: var(--main-bg-select-color);
 }
 
@@ -257,6 +267,7 @@ main {
 
 /* Episode Header */
 .episodeHeader {
+    background-image: linear-gradient(to bottom, var(--main-bg-hover-color) 5%, var(--main-bg-color) 80%);
     background-color: var(--main-bg-color);
     color: var(--main-text-color);
     padding: 1em;
@@ -719,16 +730,14 @@ ul.link-list {
 }
 .page-number-container > button {
     flex: 1;
-    padding: .7em 0;
-    border: 1px solid var(--second-bg-color);
 }
-.page-number-container > button:first-child { 
-    border-radius: .5em 0 0 .5em; 
+.page-number-container > button[value="prev"] { 
     padding: .7em;
+    border-radius: .5em 0 0 .5em;
 }
-.page-number-container > button:last-child { 
-    border-radius: 0 .5em .5em 0; 
+.page-number-container > button[value="next"] { 
     padding: .7em;
+    border-radius: 0 .5em .5em 0;
 }
 .page-number-list {
     flex: 6;
@@ -739,6 +748,7 @@ ul.link-list {
 .page-number-list button {
     width: 10%;
     padding: .5em 0;
+    box-shadow: none;
     border: 1px solid var(--second-bg-color);
     border-radius: 0;
 }
@@ -784,9 +794,12 @@ ul.link-list {
     :root {
         --main-text-color: hsl(0, 0%, 90%);
         --main-bg-color: hsl(0, 0%, 30%);
-        --main-bg-select-color: hsl(0, 0%, 24%);
+        --main-bg-hover-color: hsl(0, 0%, 24%);
+        --main-bg-select-color: hsl(0, 0%, 18%);
+
         --second-text-color: hsl(0, 0%, 66%);
         --second-bg-color: hsl(0, 0%, 10%);
+
         --third-bg-color: hsl(0, 0%, 0%);
 
         background-color: hsl(0, 0%, 20%);
@@ -809,9 +822,12 @@ ul.link-list {
 [data-theme="dark"] {
     --main-text-color: hsl(0, 0%, 90%);
     --main-bg-color: hsl(0, 0%, 30%);
-    --main-bg-select-color: hsl(0, 0%, 24%);
+    --main-bg-hover-color: hsl(0, 0%, 24%);
+    --main-bg-select-color: hsl(0, 0%, 18%);
+
     --second-text-color: hsl(0, 0%, 66%);
     --second-bg-color: hsl(0, 0%, 10%);
+
     --third-bg-color: hsl(0, 0%, 0%);
 
     background-color: hsl(0, 0%, 20%); 

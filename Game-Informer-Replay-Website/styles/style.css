@@ -29,7 +29,7 @@ Softrobo Pro Font on fonts.com
     --third-bg-color: #f6f6f6; /* nearly pure white */
 
     background-color: var(--main-bg-color);
-    background-image: url("images/replay_bg_gi_blue(3).png");
+    background-image: url("../images/replay_bg_gi_blue(3).png");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center top;
@@ -153,7 +153,7 @@ img {
 /* ---------------------------- */
 
 header {
-    background-image: url("images/Game_Informer_logo_(2010-present).png");
+    background-image: url("../images/Game_Informer_logo_(2010-present).png");
     background-color: var(--second-bg-color);
     background-repeat: no-repeat;
     background-position: center;
@@ -803,7 +803,7 @@ ul.link-list {
         --third-bg-color: hsl(0, 0%, 0%);
 
         background-color: hsl(0, 0%, 20%);
-        background-image: url("images/replay_bg.jpg");
+        background-image: url("../images/replay_bg.jpg");
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-position: center top;
@@ -811,7 +811,7 @@ ul.link-list {
     }
 
     header {
-        background-image: url("images/Game_Informer_logo_(2010-present)(dark_mode).png");
+        background-image: url("../images/Game_Informer_logo_(2010-present)(dark_mode).png");
     }
 
     .episodeDetails b, .episodeMoreInfo h4 {
@@ -831,14 +831,14 @@ ul.link-list {
     --third-bg-color: hsl(0, 0%, 0%);
 
     background-color: hsl(0, 0%, 20%); 
-    background-image: url("images/replay_bg.jpg"); 
+    background-image: url("../images/replay_bg.jpg"); 
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center top;
     background-size: cover;
 }
 [data-theme="dark"] header {
-    background-image: url("images/Game_Informer_logo_(2010-present)(dark_mode).png");
+    background-image: url("../images/Game_Informer_logo_(2010-present)(dark_mode).png");
 }
 [data-theme="dark"] .episodeDetails b, 
 [data-theme="dark"] .episodeMoreInfo h4,

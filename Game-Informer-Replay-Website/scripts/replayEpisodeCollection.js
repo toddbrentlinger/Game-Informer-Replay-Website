@@ -161,7 +161,7 @@ var replayEpisodeCollection = {
     _filterObj: {}, // empty object
     get filterObj() { return this._filterObj; },
     set filterObj(newObject) {
-        console.log(newObject);
+        console.log(`FilterObj: ${newObject}`);
         // Reset selectedEpisodes to show all episodes from base episode object array
         // If newObject is empty, filter will NOT change selectedEpisodes listing all episodes
         this.selectedEpisodes = [];
@@ -242,7 +242,7 @@ replayEpisodeCollection.init = function (replayEpisodeArray) {
     
     // Cue playlist of first 200 selected episodes
     if (this.videoPlayer) {
-        console.length(`selectedEpisodes.length = ${this.selectedEpisodes.length}`);
+        //console.log(`selectedEpisodes.length = ${this.selectedEpisodes.length}`);
         if (this.selectedEpisodes.length)
             this.videoPlayer.cuePlaylist({ playlist: this.selectedVideoIdArray.slice(0, 200) });
         else // Else no selected episodes, cue Replay highlights video
@@ -463,7 +463,7 @@ replayEpisodeCollection.filterBySearch = function (searchTerms = '') {
         this.updateSelectedEpisodes();
     } else { // Else show all episodes applying filter and sort
         // TODO
-        console.log('No search text');
+        //console.log('No search text');
     }
 };
 
@@ -742,6 +742,10 @@ replayEpisodeCollection.setPageNumber = function (input) {
         this.updateDisplayedEpisodes();
 };
 
+replayEpisodeCollection.getPageNumberOfEpisode = function (replayEpisode) {
+
+};
+
 // ------------------------------------------------
 // ---------- Video Player - YouTube API ----------
 // ------------------------------------------------
@@ -814,7 +818,11 @@ replayEpisodeCollection.playEpisode = function (replayEpisode) {
         console.log('ERROR: Requested video is NOT in selected episodes array');
     } else {
         if (this.selectedVideoIdArray.length > 200) {
-            this.videoPlayer.cuePlaylist(this.selectedVideoIdArray.slice(episodeIndex, episodeIndex + 200));
+            // If episode is after first 200 on selected episode list
+            if (episodeIndex > 199)
+                this.videoPlayer.cuePlaylist(this.selectedVideoIdArray.slice(episodeIndex, episodeIndex + 200));
+            else // Else episode is within first 200
+                this.videoPlayer.cuePlaylist(this.selectedVideoIdArray.slice(0, episodeIndex + 200), episodeIndex);
         } else { // Else 200 or less episodes in selected episodes
             this.videoPlayer.cuePlaylist(this.selectedVideoIdArray, episodeIndex);
         }
@@ -900,13 +908,16 @@ function findEpisodesWithNoYouTubeURL(replayEpisodes) {
 replayEpisodeCollection.populateStats = function () {
     // Total Time
     this.showTotalTime();
-    // Total Views
-    let totalViews = 0;
+    // Total Views, Total Likes
+    let totalViews = 0, totalLikes = 0;
     this.replayEpisodeObjectArray.forEach(function (episode) {
         if (episode.hasOwnProperty('views'))
             totalViews += episode.views;
+        if (episode.hasOwnProperty('likes'))
+            totalLikes += episode.likes;
     });
     document.getElementById('stats-total-views').insertAdjacentText('beforeend', ReplayEpisode.addCommasToNumber(totalViews));
+    document.getElementById('stats-total-likes').insertAdjacentText('beforeend', ReplayEpisode.addCommasToNumber(totalLikes));
 };
 
 // showTotalTime()

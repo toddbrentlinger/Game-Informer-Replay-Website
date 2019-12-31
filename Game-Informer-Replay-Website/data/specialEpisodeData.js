@@ -273,7 +273,7 @@
                 "width": "300",
                 "height": "169",
                 "srcset": [
-                    "/images/Replay_new_logo_orig_300x169.png"
+                    "../images/Replay_new_logo_orig_300x169.png"
                 ]
             },
             "system": [
@@ -343,7 +343,7 @@
                 "width": "300",
                 "height": "169",
                 "srcset": [
-                    "/images/Replay_new_logo_orig_300x169.png"
+                    "../images/Replay_new_logo_orig_300x169.png"
                 ]
             },
             "system": [

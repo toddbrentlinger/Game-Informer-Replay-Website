@@ -84,9 +84,11 @@ class ReplayEpisode {
         // YouTube views/likes
         if (replayEpisode.hasOwnProperty('youtube')) {
             // Views
-            this.views = parseInt(replayEpisode.youtube.views, 10);
+            if (replayEpisode.youtube.hasOwnProperty('views'))
+                this.views = parseInt(replayEpisode.youtube.views, 10);
             // Likes
-            this.likes = parseInt(replayEpisode.youtube.likes, 10);
+            if (replayEpisode.youtube.hasOwnProperty('likes'))
+                this.likes = parseInt(replayEpisode.youtube.likes, 10);
         }
 
         // Description (array)
@@ -192,9 +194,15 @@ class ReplayEpisode {
         // Number
         // Assign temp to array of season number and season episode number
         temp = this.getReplaySeason();
-        this.episodeSection.querySelector('.episodeNumber')
-            .insertAdjacentText('afterbegin',
-                `S${temp[0]}:E${temp[1]} (#${this.episodeNumber})`);
+        if (temp[0]) {
+            this.episodeSection.querySelector('.episodeNumber')
+                .insertAdjacentText('afterbegin',
+                    `S${temp[0]}:E${temp[1]} (#${this.episodeNumber})`);
+        } else { // Else season is 0 (unofficial episode)
+            this.episodeSection.querySelector('.episodeNumber')
+                .insertAdjacentText('afterbegin',
+                    `Unofficial #${Math.floor(this.episodeNumber * 100)}`);
+        }
 
         // -------------------------------
         // ---------- Thumbnail ----------

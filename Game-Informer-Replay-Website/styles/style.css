@@ -138,11 +138,11 @@ img {
             transition-duration: .2s;
 }
 .custom-button:hover {
-    background-image: none;
+    background-image: linear-gradient(to bottom, var(--main-bg-hover-color) 5%, var(--main-bg-hover-color) 80%);
     background-color: var(--main-bg-hover-color);
 }
 .custom-button:active {
-    background-image: none;
+    background-image: linear-gradient(to bottom, var(--main-bg-select-color) 5%, var(--main-bg-select-color) 80%);
     background-color: var(--main-bg-select-color);
     position: relative;
     top: 1px;
@@ -814,9 +814,15 @@ ul.link-list {
         background-image: url("../images/Game_Informer_logo_(2010-present)(dark_mode).png");
     }
 
-    .episodeDetails b, .episodeMoreInfo h4 {
+    .episodeDetails b, .episodeMoreInfo h4, .views-likes-container .fa {
         color: var(--main-text-color);
     }
+
+    #jump-top-page-container > a > i {
+        color: var(--main-text-color);
+    }
+
+    .switch-container { display: none; }
 }
 
 [data-theme="dark"] {
@@ -940,17 +946,27 @@ input:checked + .slider:before {
 /* ---------- Media Queries ---------- */
 /* ----------------------------------- */
 
+/*
+    - desktop ( > 1600px )
+    - laptop ( <= 1600px )
+    - tablets in landscape orientation ( <= 1024px )
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {}
+    - tablets ( <= 768px )
+    - mobile ( <= 480px )
+*/
+
 @media (max-width: 550px) {
+    :root { background-image: none; }
+
+    body { width: 100%; }
+
     .thumbnail-container {
         float: none;
         width: 100%;
         margin: 0;
     }
-    .episodeDetails {
-        width: 100%;
-    }
 
-    ul.link-list {
-        column-count: 1;
-    }
+    .episodeDetails { width: 100%; }
+
+    ul.link-list { column-count: 1; }
 }

@@ -21,6 +21,7 @@ Softrobo Pro Font on fonts.com
     --main-bg-color: #0077a2; /* gi blue hsl(196, 100%, 32%) */
     --main-bg-hover-color: hsl(196, 100%, 24%); /* dark gi blue */
     --main-bg-select-color: hsl(196, 100%, 16%); /* darker gi blue */
+    --main-shadow-color: rgba(0,0,0,0.6); /* black */
 
     --second-text-color: #0077a2; /* gi blue */
     --second-bg-color: #f4f4f4; /* nearly pure white */
@@ -124,7 +125,7 @@ img {
 /* ----------------------------------- */
 
 .custom-button {
-    box-shadow: 0px 0px 1em 0px rgba(0,0,0,0.4);
+    box-shadow: 0px 0px 3px 0px var(--main-shadow-color);
     background-image: linear-gradient(to bottom, var(--main-bg-hover-color) 5%, var(--main-bg-color) 80%);
     background-color: var(--main-bg-color);
     border: none;
@@ -134,8 +135,8 @@ img {
     text-decoration: none;
     cursor: pointer;
     outline: none;
-    -webkit-transition-duration: .2s;
-            transition-duration: .2s;
+    -webkit-transition-duration: .1s;
+            transition-duration: .1s;
 }
 .custom-button:hover {
     background-image: linear-gradient(to bottom, var(--main-bg-hover-color) 5%, var(--main-bg-hover-color) 80%);
@@ -243,7 +244,7 @@ footer {
 /* ---------- Main ---------- */
 /* -------------------------- */
 main { 
-    margin: 0 1em;
+    margin: 0 .8em;
     padding-top: .5em;
 }
 
@@ -251,7 +252,16 @@ main {
 /* ---------- Episode ---------- */
 /* ----------------------------- */
 
-.episode { margin: .6em 0; }
+.episode { 
+    margin: .6em 0; 
+    /*box-shadow: 0px 0px 5px 0px var(--main-shadow-color);*/
+    box-shadow: inset 0 -3em 3em rgba(150,150,150,.1),
+        0 .3em 1em -.1em rgba(0,0,0,.3);
+    border-radius: 1em;
+    overflow: hidden;
+    border: 2px solid var(--main-bg-color);
+    border-top: none;
+}
 
 /* Episode Main */
 
@@ -271,7 +281,7 @@ main {
     background-color: var(--main-bg-color);
     color: var(--main-text-color);
     padding: 1em;
-    border-radius: 1em 1em 0 0;
+    /*border-radius: 1em 1em 0 0;*/
 }
 
 /* Episode Title */
@@ -409,10 +419,12 @@ main {
 .episodeMoreInfo {
     padding: 0 1.5em;
     font-size: .9em;
+    /*
     border-style: none solid solid solid;
     border-width: .2em;
     border-color: var(--main-bg-color);
     border-radius: 0 0 1em 1em;
+    */                         
 }
 .episodeMoreInfo h4 {
     text-transform: capitalize;
@@ -450,6 +462,7 @@ main {
     overflow: hidden;
     background-color: var(--main-bg-color);
     color: var(--main-text-color);
+    box-shadow: 0 .3em 1em -.1em rgba(0,0,0,.3);
 }
 .gallery-item figure {
     display: table;
@@ -592,6 +605,10 @@ ul.link-list {
 
 #filterForm {
     order: 2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
     width: 100%;
     padding: 0 1em;
     max-height: 0;
@@ -600,19 +617,20 @@ ul.link-list {
 }
 
 #filterForm > fieldset {
-    display: inline-block;
+    /*display: inline-block;*/
     padding: .4em;
 }
 
 /* Checkbox */
 /* Customize the label */
 #filterForm label {
-    /*display: block;*/
+    display: block;
     position: relative;
-    padding-left: 25px;
-    /*margin-bottom: .3em;*/
+    padding-right: 25px;
+    margin-bottom: 2px;
     cursor: pointer;
     font-size: 1em;
+    text-align: right;
     -webkit-user-select: none;
        -moz-user-select: none;
         -ms-user-select: none;
@@ -630,7 +648,7 @@ ul.link-list {
 .checkmark {
     position: absolute;
     top: 0;
-    left: 0;
+    right: 0;
     height: 20px;
     width: 20px;
     border-radius: 3px;
@@ -670,6 +688,7 @@ ul.link-list {
 
 /* Filter Form Buttons */
 #filterSubmitButton {
+    width: 100%;
     padding: 1em 0;
 }
 #filterSubmitButton > button {
@@ -796,6 +815,7 @@ ul.link-list {
         --main-bg-color: hsl(0, 0%, 30%);
         --main-bg-hover-color: hsl(0, 0%, 24%);
         --main-bg-select-color: hsl(0, 0%, 18%);
+        --main-shadow-color: rgba(255,255,255,0.6); /* white */
 
         --second-text-color: hsl(0, 0%, 66%);
         --second-bg-color: hsl(0, 0%, 10%);
@@ -830,6 +850,7 @@ ul.link-list {
     --main-bg-color: hsl(0, 0%, 30%);
     --main-bg-hover-color: hsl(0, 0%, 24%);
     --main-bg-select-color: hsl(0, 0%, 18%);
+    --main-shadow-color: rgba(255,255,255,0.6); /* white */
 
     --second-text-color: hsl(0, 0%, 66%);
     --second-bg-color: hsl(0, 0%, 10%);
@@ -960,6 +981,8 @@ input:checked + .slider:before {
 
     body { width: 100%; }
 
+    main { margin: 0 .3em; }
+
     .thumbnail-container {
         float: none;
         width: 100%;
@@ -967,6 +990,7 @@ input:checked + .slider:before {
     }
 
     .episodeDetails { width: 100%; }
+    .episodeMoreInfo { padding: 0 1em; }
 
     ul.link-list { column-count: 1; }
 }

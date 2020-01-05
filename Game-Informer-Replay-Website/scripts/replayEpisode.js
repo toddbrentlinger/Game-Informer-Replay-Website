@@ -136,9 +136,14 @@ class ReplayEpisode {
         ];
         let tempHeadingsObj = {};
         for (const prop in replayEpisode.details) {
-            // If prop is NOT in a prop to ignore, add to tempHeadingsObj
-            if (!propsToIgnore.includes(prop))
+            // If prop is NOT in a prop to ignore
+            if (!propsToIgnore.includes(prop)) {
+                // If property is array and array is empty, continue
+                if (Array.isArray(replayEpisode.details[prop]) && !replayEpisode.details[prop].length)
+                    continue;
+                // Add to tempHeadingsObj
                 tempHeadingsObj[prop] = replayEpisode.details[prop];
+            }
         }
         // If tempHeadingsObj is NOT empty, assign to this.otherHeadingsObj
         if (!ReplayEpisode.isEmptyObject(tempHeadingsObj))
@@ -537,14 +542,21 @@ class ReplayEpisode {
         // If only one game in main segment
         if (replayEpisode.mainSegmentGamesAdv.length == 1) {
             descriptionArr.push(replayEpisode.mainSegmentGamesAdv[0].title + ' is the featured game in the '
-                + this.numOrdinalSuffix(replayEpisode.episodeNumber) + ' episode of Replay.');
+                + ((replayEpisode.episodeNumber < 1)
+                ? this.numOrdinalSuffix(Math.floor(replayEpisode.episodeNumber * 100)) + ' unofficial'
+                : this.numOrdinalSuffix(replayEpisode.episodeNumber))
+                + ' episode of Replay.');
         }
         else { // Else more than one game in main segment
             let mainSegmentGamesTitleArray = [];
             replayEpisode.mainSegmentGamesAdv.forEach(function (item, index, arr) {
                 mainSegmentGamesTitleArray.push(item.title);
             });
-            descriptionArr.push('The ' + this.numOrdinalSuffix(replayEpisode.episodeNumber) + ' episode of Replay is '
+            descriptionArr.push('The '
+                + ((replayEpisode.episodeNumber < 1)
+                ? this.numOrdinalSuffix(Math.floor(replayEpisode.episodeNumber * 100)) + ' unofficial'
+                : this.numOrdinalSuffix(replayEpisode.episodeNumber))
+                + ' episode of Replay is '
                 + replayEpisode.episodeTitle.replace('Replay: ', '') + ', featuring '
                 + this.listArrayAsString(mainSegmentGamesTitleArray) + '.');
         }

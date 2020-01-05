@@ -2,6 +2,8 @@
 // Replay Episode Collection
 replayEpisodeCollection.init(replayEpisodeArray);
 
+// TODO: Add code from youtubePlayerController.js
+
 // Sort - Event Listeners
 document.querySelector(
     '#sort-container select[name = "sort-type"]')
@@ -125,6 +127,10 @@ document.getElementById('button-toggleVideoPlayer')
         videoPlayerContainer.style.display = (isVideoPlayerDisplayed) ? 'block' : 'none';
     }, false);
 */
+
+// Set date for copyright
+document.getElementById('copyright-current-year').innerHTML = `2019-${new Date().getFullYear()}`;
+
 // Set date the document was last modified at the bottom of the page
 document.getElementById('lastModifiedDate').innerHTML = new Date(document.lastModified).toDateString();
 //document.getElementById('lastModifiedReplayList').innerHTML = lastModifiedReplayList;

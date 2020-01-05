@@ -553,10 +553,6 @@
                     "title": "Super Readplay: Gears of War: Anvil Gate"
                 },
                 {
-                    "href": "https://www.youtube.com/watch?v=lLglnD0GDR8?t=1664",
-                    "title": "Replay: Syphon Filter"
-                },
-                {
                     "href": "http://en.wikipedia.org/wiki/Gears_of_War:_Anvil_Gate",
                     "title": "Gears of War: Anvil Gate"
                 }

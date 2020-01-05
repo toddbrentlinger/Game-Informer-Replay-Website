@@ -2,6 +2,205 @@
 
 const replayEpisodeArray = [
     {
+        "episodeNumber": 520,
+        "episodeTitle": "Replay: Blade",
+        "fandomWikiURL": "/wiki/Replay:_Blade",
+        "mainSegmentGamesAdv": [
+            {
+                "title": "Blade",
+                "system": "PlayStation",
+                "yearReleased": "2000"
+            }
+        ],
+        "airDate": "1/3/20",
+        "videoLength": "48:22",
+        "secondSegment": "RR",
+        "secondSegmentGames": [
+            "Sudeki"
+        ],
+        "season": 6,
+        "details": {
+            "description": [
+                "Blade is the featured game in the 520th episode of Replay. This episode is hosted by Andrew Reiner and features Ben Reeves, Jeff Cork and Alex Stadnik. The roulette for this episode is Sudeki."
+            ],
+            "external_links": [
+                {
+                    "href": "https://www.gameinformer.com/replay/replay/2020/01/03/replay-blade",
+                    "title": "Replay: Blade"
+                },
+                {
+                    "href": "https://www.youtube.com/watch?v=UO3U75WCmLs",
+                    "title": "Replay: Blade"
+                },
+                {
+                    "href": "https://en.wikipedia.org/wiki/Blade_(video_game)",
+                    "title": "Blade"
+                },
+                {
+                    "href": "https://en.wikipedia.org/wiki/Sudeki",
+                    "title": "Sudeki"
+                }
+            ],
+            "image": {
+                "width": "300",
+                "height": "169",
+                "srcset": [
+                    "https://vignette.wikia.nocookie.net/replay/images/9/94/Blade.jpg/revision/latest/scale-to-width-down/310?cb=20200103230144",
+                    "1x",
+                    "https://vignette.wikia.nocookie.net/replay/images/9/94/Blade.jpg/revision/latest/scale-to-width-down/619?cb=20200103230144",
+                    "2x"
+                ]
+            },
+            "system": [
+                "PlayStation"
+            ],
+            "gamedate": [
+                "November 23, 2000"
+            ],
+            "airdate": "January 3, 2020",
+            "runtime": "48:22",
+            "host": [
+                "Andrew Reiner"
+            ],
+            "featuring": [
+                "Ben Reeves",
+                "Alex Stadnik",
+                "Jeff Cork"
+            ]
+        },
+        "article": {
+            "title": "Replay \u2013 Blade",
+            "author": "Alex Stadnik",
+            "date": " on Jan 03, 2020 at 02:00 PM",
+            "content": [
+                "Welcome back to Replay's first episode of 2020! We hope you all had a great holiday season and we're thrilled to be back. While it may seem like a distant memory, Blade was one of the first major properties that Marvel brought to the big screen. And with each superhero film\u00a0from the early 2000's also came a painful movie tie-in game, and Blade is no exception. Join us as we take on the seedy thugs as what we think is supposed to be Wesley Snipes while also discussing the bonkers trivia from the creation of Blade 3.",
+                "After their ears and eyes stop bleeding, Andrew Reiner, Ben Reeves, and Jeff Cork switch over to Sudeki, an original Xbox exclusive RPG with an art style that's aged considerably better than the aforementioned Marvel property.",
+                "After weeks of anticipation, we'll finally be back live next Friday at 2 p.m Central to interact with the beautiful\u00a0chat and make fools of ourselves in real-time.\u00a0You can also subscribe\u00a0to the show over\u00a0on\u00a0YouTube,\u00a0Twitch,\u00a0Mixer,\u00a0Twitter, or\u00a0Facebook\u00a0to be\u00a0notified whenever we go live! Thanks for watching, and enjoy the show!"
+            ]
+        },
+        "youtube": {
+            "views": 2820,
+            "likes": 123,
+            "dislikes": 6
+        }
+    },
+    {
+        "episodeNumber": 519,
+        "episodeTitle": "Replay: The 2019 Steam Holiday Extravaganza",
+        "fandomWikiURL": "/wiki/Replay:_The_2019_Steam_Holiday_Extravaganza",
+        "mainSegmentGamesAdv": [
+            {
+                "title": "The 2019 Steam Holiday Extravaganza",
+                "system": "PC",
+                "yearReleased": "2018"
+            },
+            {
+                "title": "Christmas Race 2",
+                "system": "PC",
+                "yearReleased": "2017"
+            },
+            {
+                "title": "Krampus Quest II",
+                "system": "PC",
+                "yearReleased": "2019"
+            },
+            {
+                "title": "Operation Snowman",
+                "system": "PC",
+                "yearReleased": "2015"
+            },
+            {
+                "title": "Hatoful Boyfriend: Holiday Star",
+                "system": "PC",
+                "yearReleased": "2015"
+            }
+        ],
+        "airDate": "12/24/19",
+        "videoLength": "53:43",
+        "secondSegment": "",
+        "secondSegmentGames": [],
+        "season": 6,
+        "details": {
+            "description": [
+                "The 2019 Steam Holiday Extravaganza is the title of the 519th episode of Replay. It features four Christmas themed games; Christmas Race 2, Krampus Quest II, Operation Snowman and Hatoful Boyfriend: Holiday Star. This episode is hosted by Andrew Reiner and features Ben Reeves, Jeff Cork and Alex Stadnik. "
+            ],
+            "external_links": [
+                {
+                    "href": "https://www.gameinformer.com/replay/replay/2019/12/24/replay-the-2019-steam-holiday-extravaganza",
+                    "title": "The 2019 Steam Holiday Extravaganza"
+                },
+                {
+                    "href": "https://www.youtube.com/watch?v=mIRvIzb_BQs",
+                    "title": "Replay: The 2019 Steam Holiday Extravaganza"
+                },
+                {
+                    "href": "https://store.steampowered.com/app/801890/Christmas_Race_2/",
+                    "title": "Christmas Race 2"
+                },
+                {
+                    "href": "https://store.steampowered.com/app/758170/Krampus_Quest/",
+                    "title": "Krampus Quest II"
+                },
+                {
+                    "href": "https://store.steampowered.com/app/970690/Operation_Snowman/",
+                    "title": "Operation Snowman"
+                },
+                {
+                    "href": "https://store.steampowered.com/app/377080/Hatoful_Boyfriend_Holiday_Star/",
+                    "title": "Hatoful Boyfriend: Holiday Star"
+                }
+            ],
+            "image": {
+                "width": "300",
+                "height": "169",
+                "srcset": [
+                    "https://vignette.wikia.nocookie.net/replay/images/b/b0/2019Christmas.jpg/revision/latest/scale-to-width-down/310?cb=20191225054149",
+                    "1x",
+                    "https://vignette.wikia.nocookie.net/replay/images/b/b0/2019Christmas.jpg/revision/latest/scale-to-width-down/619?cb=20191225054149",
+                    "2x"
+                ]
+            },
+            "system": [
+                "PC"
+            ],
+            "gamedate": [
+                "December 13, 2018",
+                "Race",
+                "December 20, 2017",
+                "Krampus",
+                "January 25, 2019",
+                "Snowman",
+                "December 15, 2015",
+                "Hatoful"
+            ],
+            "airdate": "December 24, 2019",
+            "runtime": "53:43",
+            "host": [
+                "Andrew Reiner"
+            ],
+            "featuring": [
+                "Ben Reeves",
+                "Alex Stadnik",
+                "Jeff Cork"
+            ]
+        },
+        "article": {
+            "title": "Replay \u2013 The 2019 Steam Holiday Extravaganza",
+            "author": "Alex Stadnik",
+            "date": " on Dec 24, 2019 at 02:00 PM",
+            "content": [
+                "The holiday season. A joyous time of year where friends and family congregate to be together, slay hoards\u00a0of snowmen, and save Krampus from a group of treacherous elves. Join Andrew Reiner, Ben Reeves, Jeff Cork, and I as we play through some of the most random holiday Steam games we could get our hands on.",
+                "And with that, Replay is done\u00a0for the year. Thank you so much to everyone who's supported the show throughout the years. From the diehards who are with us every week in the chat to the people who've only tuned in once, you guys make this show\u00a0special and we are so excited for another year of making ridiculous content for you.",
+                "Next week we'll be back\u00a0on the regular Friday schedule at 2 p.m. Central.\u00a0You can also subscribe\u00a0to the show over\u00a0on\u00a0YouTube,\u00a0Twitch,\u00a0Mixer,\u00a0Twitter, or\u00a0Facebook\u00a0to be\u00a0notified whenever we go live! Thanks for watching, and happy holidays!"
+            ]
+        },
+        "youtube": {
+            "views": 5960,
+            "likes": 178,
+            "dislikes": 7
+        }
+    },
+    {
         "episodeNumber": 518,
         "episodeTitle": "Replay: Star Wars: Knights of the Old Republic",
         "fandomWikiURL": "/wiki/Replay:_Star_Wars:_Knights_of_the_Old_Republic",
@@ -2960,9 +3159,7 @@ const replayEpisodeArray = [
                 "Suriel Vazquez",
                 "Leo Vader",
                 "Hunter Wolfe",
-                "Intern",
-                "Jay Guisao",
-                "Intern"
+                "Jay Guisao"
             ]
         },
         "article": {
@@ -43720,10 +43917,6 @@ const replayEpisodeArray = [
                 {
                     "href": "http://www.gameinformer.com/b/news/archive/2010/08/20/super-readplay-gears-of-war-anvil-gate.aspx",
                     "title": "Super Readplay: Gears of War: Anvil Gate"
-                },
-                {
-                    "href": "https://www.youtube.com/watch?v=lLglnD0GDR8?t=1664",
-                    "title": "Replay: Syphon Filter"
                 },
                 {
                     "href": "http://en.wikipedia.org/wiki/Gears_of_War:_Anvil_Gate",

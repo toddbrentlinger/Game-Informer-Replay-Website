@@ -28,7 +28,7 @@ window.onYouTubePlayerAPIReady = function () {
             modestbranding: 1,
             enablejsapi: 1,
             loop: 0
-            //'origin': specify domain
+            //'origin': 'https://toddbrentlinger.github.io/Game-Informer-Replay-Website/Game-Informer-Replay-Website/'
         },
         events: {
             onReady: replayEpisodeCollection.onPlayerReady.bind(replayEpisodeCollection),

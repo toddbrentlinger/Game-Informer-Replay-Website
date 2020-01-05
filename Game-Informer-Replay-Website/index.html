@@ -86,43 +86,58 @@
                 <!-- Filter Form -->
                 <button id="filter-display-toggle-button" class="custom-button collapsible"><i class="fa fa-sliders fa-lg" aria-hidden="true"></i> FILTER</button>
                 <form id="filterForm">
-                    <fieldset form="filterForm" id="seasonField">
-                        <legend>Season: </legend>
-                        <label>1
-                            <input type="checkbox" name="season" value="1" checked />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label>2
-                            <input type="checkbox" name="season" value="2" checked />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label>3
-                            <input type="checkbox" name="season" value="3" checked />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label>4
-                            <input type="checkbox" name="season" value="4" checked />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label>5
-                            <input type="checkbox" name="season" value="5" checked />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label>6
-                            <input type="checkbox" name="season" value="6" checked />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label>Special
-                            <input type="checkbox" name="season" value="0" checked />
-                            <span class="checkmark"></span>
-                        </label>
-                    </fieldset>
-
                     <div id="filterSubmitButton">
                         <!-- <button type="button" id="filter-button">Filter</button> -->
                         <!-- <input type="reset" id="filter-reset-button" /> -->
                         <button type="button" class="custom-button" id="filter-toggle-select-button">Select/Deselect All</button>
                     </div>
+
+                    <fieldset form="filterForm" id="seasonField">
+                        <legend>Season: </legend>
+                        <label>
+                            1
+                            <input type="checkbox" name="season" value="1" checked />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label>
+                            2
+                            <input type="checkbox" name="season" value="2" checked />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label>
+                            3
+                            <input type="checkbox" name="season" value="3" checked />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label>
+                            4
+                            <input type="checkbox" name="season" value="4" checked />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label>
+                            5
+                            <input type="checkbox" name="season" value="5" checked />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label>
+                            6
+                            <input type="checkbox" name="season" value="6" checked />
+                            <span class="checkmark"></span>
+                        </label>
+                        <label>
+                            Special
+                            <input type="checkbox" name="season" value="0" checked />
+                            <span class="checkmark"></span>
+                        </label>
+                    </fieldset>
+
+                    <fieldset form="filterForm" id="year-field">
+                        <legend>Year: </legend>
+                    </fieldset>
+
+                    <fieldset form="filterForm" id="gi-crew-field">
+                        <legend>GI Crew: </legend>
+                    </fieldset>
                 </form>
             </div>
 
@@ -143,26 +158,29 @@
 
             <div id="sort-main">
                 <div id="sort-container">
-                    <label for="sort-type-select">Sort:
+                    <label for="sort-type-select">
+                        Sort:
                         <select name="sort-type" id="sort-type-select">
                             <option value="none">-- Sort By --</option>
                             <option value="airdate" selected>Air Date</option>
-                            <option value="number" selected>Ep. Number</option>
+                            <option value="number">Ep. Number</option>
                             <option value="most-viewed">Views</option>
                             <option value="most-liked">Likes</option>
                             <option value="video-length">Video Length</option>
                         </select>
                     </label>
-                    
 
-                    <label for="sort-direction-select">Direction:
+
+                    <label for="sort-direction-select">
+                        Direction:
                         <select name="sort-direction" id="sort-direction-select">
                             <option value="descending" selected>Descending</option>
                             <option value="ascending">Ascending</option>
                         </select>
                     </label>
 
-                    <label for="max-displayed-select">Per Page:
+                    <label for="max-displayed-select">
+                        Per Page:
                         <select name="max-displayed" id="max-displayed-select">
                             <option>10</option>
                             <option>25</option>
@@ -225,6 +243,17 @@
             </div>
         </main>
 
+        <!-- Bottom Page Number Selection -->
+        <div id="page-number-container-bottom" class="page-number-container">
+            <button class="custom-button" type="button" value="prev">PREV</button>
+            <button class="custom-button" type="button" value="first">FIRST</button>
+            <div class="page-number-list">
+                <button type="button" value="1" class="custom-button">1</button>
+            </div>
+            <button class="custom-button" type="button" value="last">LAST</button>
+            <button class="custom-button" type="button" value="next">NEXT</button>
+        </div>
+
         <div id="stats">
             <h2>Stats:</h2>
             <!-- Total Time -->
@@ -254,7 +283,7 @@
     <footer>
         <p>
             <small>
-                Source code &copy; 2019-2020 Todd Brentlinger, Santa Cruz, CA, USA.<br />
+                Source code &copy; <time id="copyright-current-year">2019-2020</time> Todd Brentlinger, Santa Cruz, CA, USA.
                 <!--
                 Code licensed under <a href="https://github.com/toddbrentlinger/Game-Informer-Replay-Website/blob/master/LICENSE" target="_blank" rel="nofollow">MIT License</a>.
                 -->
@@ -269,8 +298,8 @@
     <script src="data/gameInformerReplayFandomWikiDataJS.js"></script>
     <script src="scripts/replayEpisode.js"></script>
     <script src="scripts/replayEpisodeCollection.js"></script>
-    <script src="scripts/youtubePlayerController.js"></script>
     <script src="scripts/main.js"></script>
+    <script src="scripts/youtubePlayerController.js"></script>
     <script src="scripts/debug.js"></script>
 </body>
 </html>

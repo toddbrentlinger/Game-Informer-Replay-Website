@@ -1,5 +1,9 @@
 ﻿TO-DO:
 
+1/3/20
+
+- ISSUE: Ascending/Descending does nothing when shuffled
+
 12/24/19
 
 - Update sort for views/likes so episodes with no values are

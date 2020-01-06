@@ -354,6 +354,7 @@ replayEpisodeCollection.updateDisplayedEpisodes = function () {
 
     // Update page number containers
     this.updatePageNumber();
+    this.updatePageNumberAdv();
 };
 
 // updateSelectedEpisodes(searchBool, filterBool, sortBool)
@@ -886,34 +887,90 @@ replayEpisodeCollection.updatePageNumber = function () {
 
 replayEpisodeCollection.updatePageNumberAdv = function () {
     // Variables
-    const pageNumberList = document.getElementById('page-number-container-bottom');
-    const maxDisplayedButtons = 5
-    let numberedButtons = maxDisplayedButtons
+    const pageNumberContainer = document.getElementById('page-number-container-bottom');
+    const prevButton = pageNumberContainer.querySelector('button[value="prev"]');
+    const firstButton = pageNumberContainer.querySelector('button[value="first"]');
+    const minusButton = pageNumberContainer.querySelector('button[value="-n"]');
+    const pageNumberList = pageNumberContainer.querySelector('.page-number-list');
+    const plusButton = pageNumberContainer.querySelector('button[value="+n"]');
+    const lastButton = pageNumberContainer.querySelector('button[value="last"]');
+    const nextButton = pageNumberContainer.querySelector('button[value="next"]');
+    const maxDisplayedButtons = 7
 
     // Remove all page number buttons
-    pageNumberList.querySelectorAll('.page-number-list .custom-button')
+    pageNumberContainer.querySelectorAll('.page-number-list .custom-button')
         .forEach(function (node) {
         node.remove();
         });
 
     // Disable 'PREV' if current page is equal to 1
-    this.prevButton.disabled = (this.currentPageDisplayed == 1);
+    prevButton.disabled = (this.currentPageDisplayed === 1);
 
-    // If current page is near beginning of list
-    if (this.currentPageDisplayed <= maxDisplayedButtons) {
-
-    }
-    // Else If current page is near end of list
-    else if (this.currentPageDisplayed >= this.totalPages - maxDisplayedButtons) {
-
-    }
-    // Else current page is in middle of list
-    else {
-
+    // Page number list
+    // If totalPages is more than maxDisplayedButtons
+    if (this.totalPages > maxDisplayedButtons) {
+        // If current page is near beginning of list
+        if (this.currentPageDisplayed <= maxDisplayedButtons) {
+            // Hide 'FIRST' button
+            firstButton.disabled = true;
+            // Hide minus button
+            minusButton.disabled = true;
+            // Add maxDisplayedButtons buttons starting with 1
+            for (let i = 1; i <= maxDisplayedButtons; i++)
+                pageNumberList.appendChild(this.createNumberedButton(i));
+            // Show plus button
+            plusButton.disabled = false;
+            // Show 'LAST' button
+            lastButton.disabled = false;
+        }
+        // Else If current page is near end of list
+        else if (this.currentPageDisplayed > this.totalPages - maxDisplayedButtons) {
+            // Show 'FIRST' button
+            firstButton.disabled = false;
+            // Show minus button
+            minusButton.disabled = false;
+            // Add maxDisplayedButtons buttons ending with totalPages
+            for (let i = this.totalPages - maxDisplayedButtons + 1;
+                i <= this.totalPages; i++)
+                pageNumberList.appendChild(this.createNumberedButton(i));
+            // Hide plus button
+            plusButton.disabled = true;
+            // Hide 'LAST' button
+            lastButton.disabled = true;
+        }
+        // Else current page is in middle of list
+        else {
+            // Show 'FIRST' button
+            firstButton.disabled = false;
+            // Show minus button
+            minusButton.disabled = false;
+            // Add currentPage as middle button
+            // Add(maxDisplayedButtons - 1) / 2 buttons to each side of currentPage
+            for (let i = this.currentPageDisplayed - .5 * (maxDisplayedButtons - 1);
+                i <= this.currentPageDisplayed + .5 * (maxDisplayedButtons - 1);
+                i++)
+                pageNumberList.appendChild(this.createNumberedButton(i));
+            // Show plus button
+            plusButton.disabled = false;
+            // Show 'LAST' button
+            lastButton.disabled = false;
+        }
+    } else { // Else totalPages is less than or equal to maxDisplayedButtons
+        // Hide 'FIRST' button
+        firstButton.disabled = true;
+        // Hide minus button
+        minusButton.disabled = true;
+        // Add buttons ranging from 1 to totalPages
+        for (let i = 1; i <= this.totalPages; i++)
+            pageNumberList.appendChild(this.createNumberedButton(i));
+        // Hide plus button
+        plusButton.disabled = true;
+        // Hide 'LAST' button
+        lastButton.disabled = true;
     }
 
     // Disable 'NEXT' if current page is equal to last page (totalPages)
-    this.prevButton.disabled = (this.currentPageDisplayed == this.totalPages);
+    nextButton.disabled = (this.currentPageDisplayed === this.totalPages);
 };
 
 // TODO: 
@@ -924,9 +981,13 @@ replayEpisodeCollection.setPageNumber = function (input) {
     else if (typeof input === 'string') {
         // If input is 'next', increase page by 1
         if (input == 'next') this.currentPageDisplayed++;
-        // Else if input is 'prev', decrease page by 1
+        // Else If input is 'prev', decrease page by 1
         else if (input == 'prev') this.currentPageDisplayed--;
-        // Else if string is a number, assign number to page
+        // Else If input is 'first', set page to 1
+        else if (input == 'first') this.currentPageDisplayed = 1;
+        // Else If input is 'last', set page to totalPages
+        else if (input == 'last') this.currentPageDisplayed = this.totalPages;
+        // Else If string is a number, assign number to page
         else if (!isNaN(parseInt(input, 10)))
             this.currentPageDisplayed = parseInt(input, 10);
     }
@@ -1059,7 +1120,12 @@ replayEpisodeCollection.onPlayerStateChange = function (event) {
         case 3: str += 'Buffering'; break;
         case 5:
             str += 'Cued';
-            console.log(`Cued Video URL: ${this.getEpisodeByVideoID(this.videoPlayer.getVideoUrl().split('=')[1].slice(0, 11)).episodeNumber} - Playlist Index: ${this.videoPlayer.getPlaylistIndex()}`);
+            if (this.videoPlayer.getVideoUrl()) {
+                this.currentEpisode = this.getEpisodeByVideoID(this.videoPlayer.getPlaylist()[this.videoPlayer.getPlaylistIndex()]);
+                console.log(`OnPlayerStateChange() - Playlist Index: ${this.videoPlayer.getPlaylistIndex()}`);
+                console.log(`OnPlayerStateChange() - Episode At Index: ${this.currentEpisode.episodeNumber}`);
+                console.log(`event.target: ${event.target}`);
+            }
             break;
         default:
     }
@@ -1075,7 +1141,7 @@ replayEpisodeCollection.onPlayerStateChange = function (event) {
 
 // onPlayerError(event)
 replayEpisodeCollection.onPlayerError = function (event) {
-    console.log('Error: ' + event.data);
+    console.log(`onPlayerError: ${event.data}`);
 };
 
 // playEpisode(replayEpisode)

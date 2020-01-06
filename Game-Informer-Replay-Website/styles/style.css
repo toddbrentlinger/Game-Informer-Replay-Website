@@ -211,7 +211,9 @@ footer {
 }
 /* Style the top navigation links */
 #topnav li a {
-    display: block;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     height: 100%;
     font-size: 1rem; /* 16px: reset font-size after setting to zero in #topnav ul {} to
         prevent space between inline-block elements */
@@ -744,11 +746,13 @@ ul.link-list {
 /* ---------- Page Select ---------- */
 /* --------------------------------- */
 
-.page-number-container {
-    display: flex;
-}
-.page-number-container > button {
+.page-number-container { display: flex; }
+.page-number-container > button { 
     flex: 1;
+}
+.page-number-container > button:disabled { 
+    opacity: 0; 
+    cursor: default;
 }
 .page-number-container > button[value="prev"] { 
     padding: .7em;

@@ -32,17 +32,17 @@
         <!--<img src="/images/logo.svg" alt="Game Informer logo" /> -->
         <div class="counter-balance-switch-container"></div>
         <ul>
-            <li><a href="https://replay.fandom.com/wiki/List_of_Replay_episodes" target="_blank">Replay</a></li>
-            <li><a href="https://replay.fandom.com/wiki/List_of_Super_Replay_installments" target="_blank">Super Replay</a></li>
-            <li><a href="https://www.gameinformer.com/index.php/covergallery" target="_blank">Magazine Covers</a></li>
-            <li><a href="https://replay.fandom.com/wiki/Category:Game_Informer_staff" target="_blank">GI Crew</a></li>
+            <li><a href="https://replay.fandom.com/wiki/List_of_Replay_episodes" target="_blank"><span>Replay</span></a></li>
+            <li><a href="https://replay.fandom.com/wiki/List_of_Super_Replay_installments" target="_blank"><span>Super Replay</span></a></li>
+            <li><a href="https://www.gameinformer.com/index.php/covergallery" target="_blank"><span>Magazine Covers</span></a></li>
+            <li><a href="https://replay.fandom.com/wiki/Category:Game_Informer_staff" target="_blank"><span>GI Crew</span></a></li>
         </ul>
         <div class="switch-container">
-            <em>Dark Mode</em>
             <label class="switch" for="dark-mode-checkbox">
                 <input type="checkbox" id="dark-mode-checkbox" />
                 <span class="slider round"></span>
             </label>
+            <em>Dark Mode</em>
         </div>
     </nav>
 
@@ -247,9 +247,9 @@
         <div id="page-number-container-bottom" class="page-number-container">
             <button class="custom-button" type="button" value="prev">PREV</button>
             <button class="custom-button" type="button" value="first">FIRST</button>
-            <div class="page-number-list">
-                <button type="button" value="1" class="custom-button">1</button>
-            </div>
+            <button class="custom-button" type="button" value="-n">-n</button>
+            <div class="page-number-list"></div>
+            <button class="custom-button" type="button" value="+n">+n</button>
             <button class="custom-button" type="button" value="last">LAST</button>
             <button class="custom-button" type="button" value="next">NEXT</button>
         </div>

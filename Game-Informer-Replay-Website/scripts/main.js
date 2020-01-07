@@ -161,6 +161,23 @@ document.getElementById('copyright-current-year').innerHTML = `2019-${new Date()
 document.getElementById('lastModifiedDate').innerHTML = new Date(document.lastModified).toDateString();
 //document.getElementById('lastModifiedReplayList').innerHTML = lastModifiedReplayList;
 
+// Media Queries
+function setMaxDisplayedButtonsByMediaQuery(mediaQueryObj) {
+    const prevValue = replayEpisodeCollection.maxDisplayedButtons;
+    replayEpisodeCollection.maxDisplayedButtons = 
+        (mediaQueryObj.matches) ? 5 : 7;
+    // Update page number containers
+    if (replayEpisodeCollection.maxDisplayedButtons !== prevValue) {
+        replayEpisodeCollection.updatePageNumberAdv('top');
+        replayEpisodeCollection.updatePageNumberAdv('bottom');
+    }
+}
+var maxWidthForFiveNumberButtons = window.matchMedia("(max-width: 550px)");
+// Call listener function at run time
+setMaxDisplayedButtonsByMediaQuery(maxWidthForFiveNumberButtons);
+// Attach listener function on state changes
+maxWidthForFiveNumberButtons.addListener(setMaxDisplayedButtonsByMediaQuery);
+
 /* JSON
 let requestURL = 'https://github.com/toddbrentlinger/Game-Informer-Scraper/blob/master/Game%20Informer%20Scraper/gameInformerReplayFandomWikiData.json';
 let request = new XMLHttpRequest();

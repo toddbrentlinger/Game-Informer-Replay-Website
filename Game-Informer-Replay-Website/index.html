@@ -66,6 +66,8 @@
         </div>
     </div>
 
+    <div id="current-episode-info"></div>
+
     <div class="row" id="top-page">
         <!-- Left Column -->
         <nav id="sidenav" class="column left">
@@ -146,13 +148,22 @@
                 <button class="custom-button" type="button" id="button-shuffle"><i class="fa fa-random fa-lg" aria-hidden="true"></i> SHUFFLE</button>
                 <button class="custom-button" type="button" id="button-reset-list"><i class="fa fa-refresh fa-lg" aria-hidden="true"></i> RESET LIST</button>
             </div>
-
-            <div id="page-number-container" class="page-number-container">
+            <!--
+    <div id="page-number-container" class="page-number-container">
+        <button class="custom-button" type="button" value="prev">PREV</button>
+        <div class="page-number-list">
+            <button type="button" value="1" class="custom-button">1</button>
+            <button type="button" value="2" class="custom-button">2</button>
+        </div>
+        <button class="custom-button" type="button" value="next">NEXT</button>
+    </div>
+    -->
+            <!-- Top Page Number Selection -->
+            <div id="page-number-container-top" class="page-number-container">
                 <button class="custom-button" type="button" value="prev">PREV</button>
-                <div class="page-number-list">
-                    <button type="button" value="1" class="custom-button">1</button>
-                    <button type="button" value="2" class="custom-button">2</button>
-                </div>
+                <button class="custom-button" type="button" value="first">FIRST</button>
+                <div class="page-number-list"></div>
+                <button class="custom-button" type="button" value="last">LAST</button>
                 <button class="custom-button" type="button" value="next">NEXT</button>
             </div>
 
@@ -231,9 +242,9 @@
                             <div class="middleSegment"><b>Middle Segment: </b></div>
                             <div class="secondSegment"><b>Second Segment: </b></div>
                             <!--
-                            <div class="views"><b><i class="fa fa-eye fa-lg" aria-hidden="true"></i> Views: </b></div>
-                            <div class="likes"><b><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"></i> Likes: </b></div>
-                            -->
+                    <div class="views"><b><i class="fa fa-eye fa-lg" aria-hidden="true"></i> Views: </b></div>
+                    <div class="likes"><b><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"></i> Likes: </b></div>
+                    -->
                         </div>
                     </div>
                     <hr />
@@ -241,18 +252,16 @@
                     </div>
                 </section>
             </div>
-        </main>
 
-        <!-- Bottom Page Number Selection -->
-        <div id="page-number-container-bottom" class="page-number-container">
-            <button class="custom-button" type="button" value="prev">PREV</button>
-            <button class="custom-button" type="button" value="first">FIRST</button>
-            <button class="custom-button" type="button" value="-n">-n</button>
-            <div class="page-number-list"></div>
-            <button class="custom-button" type="button" value="+n">+n</button>
-            <button class="custom-button" type="button" value="last">LAST</button>
-            <button class="custom-button" type="button" value="next">NEXT</button>
-        </div>
+            <!-- Bottom Page Number Selection -->
+            <div id="page-number-container-bottom" class="page-number-container">
+                <button class="custom-button" type="button" value="prev">PREV</button>
+                <button class="custom-button" type="button" value="first">FIRST</button>
+                <div class="page-number-list"></div>
+                <button class="custom-button" type="button" value="last">LAST</button>
+                <button class="custom-button" type="button" value="next">NEXT</button>
+            </div>
+        </main>
 
         <div id="stats">
             <h2>Stats:</h2>

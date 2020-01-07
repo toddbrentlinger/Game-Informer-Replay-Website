@@ -61,7 +61,7 @@ html {
 body {
     background-color: var(--second-bg-color);
     color: var(--second-text-color);
-    max-width: 850px;
+    max-width: 950px;
     width: 88%;
     margin: 0 auto; /* default: 8px */
     margin-top: 0;
@@ -749,17 +749,22 @@ ul.link-list {
 .page-number-container { display: flex; }
 .page-number-container > button { 
     flex: 1;
+    padding: 1em;
 }
 .page-number-container > button:disabled { 
     opacity: 0; 
     cursor: default;
 }
-.page-number-container > button[value="prev"] { 
-    padding: .7em;
+.page-number-container > button[value="prev"] {
     border-radius: .5em 0 0 .5em;
 }
-.page-number-container > button[value="next"] { 
-    padding: .7em;
+.page-number-container > button[value="first"] {
+    border-radius: 0 .5em .5em 0;
+}
+.page-number-container > button[value="last"] {
+    border-radius: .5em 0 0 .5em;
+}
+.page-number-container > button[value="next"] {
     border-radius: 0 .5em .5em 0;
 }
 .page-number-list {
@@ -767,10 +772,11 @@ ul.link-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    padding: 0 1em;
 }
 .page-number-list button {
-    width: 10%;
-    padding: .5em 0;
+    /*width: 10%;*/
+    flex: 1;
     box-shadow: none;
     border: 1px solid var(--second-bg-color);
     border-radius: 0;

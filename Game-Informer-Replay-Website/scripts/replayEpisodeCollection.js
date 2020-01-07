@@ -77,10 +77,13 @@ var replayEpisodeCollection = {
             : 1;
     },
 
+    // Page Select
+    maxDisplayedButtons: 7,
+    /*
     pageNumberList: document.querySelector('#page-number-container .page-number-list'),
     prevButton: document.querySelector('#page-number-container > button:first-child'),
     nextButton: document.querySelector('#page-number-container > button:last-child'),
-
+    */
     // Sort
     _sortType: parseInt(window.sessionStorage.getItem('sortType'), 10) || sort.airdate,
     get sortType() { return this._sortType; },
@@ -219,7 +222,37 @@ var replayEpisodeCollection = {
     // Video Player
     videoPlayerContainer: document.getElementById('videoPlayer'),
     videoPlayer: undefined, // Assigned inside global onYouTubePlayerAPIReady()
-    currentEpisode: undefined, // reference to ReplayEpisode object
+    currentEpisodeInfoElement: document.getElementById('current-episode-info'),
+    _currentEpisode: undefined, // reference to ReplayEpisode object
+    get currentEpisode() { return this._currentEpisode; },
+    set currentEpisode(episode) {
+        if (episode instanceof ReplayEpisode && episode !== this._currentEpisode) {
+            console.log(`set currentEpisode = ${episode.episodeNumber}`);
+            // Assign currentEpisode
+            this._currentEpisode = episode;
+            // Remove episode info below video player
+            while (this.currentEpisodeInfoElement.firstChild) {
+                this.currentEpisodeInfoElement
+                    .removeChild(this.currentEpisodeInfoElement.firstChild);
+            }
+            // Display episode info below video player
+            this.currentEpisodeInfoElement.appendChild(episode.episodeSection.cloneNode(true));
+        }
+        else {
+            if (episode instanceof ReplayEpisode && episode === this._currentEpisode)
+                console.error(`Attempted to assign same episode to currentEpisode`);
+            else {
+                console.error(`Could NOT assign ${episode} to currentEpisode`);
+                // Remove episode info below video player
+                while (this.currentEpisodeInfoElement.firstChild) {
+                    this.currentEpisodeInfoElement
+                        .removeChild(this.currentEpisodeInfoElement.firstChild);
+                    // Assign value of undefined
+                    this._currentEpisode = undefined;
+                }
+            }
+        }
+    },
     get selectedVideoIdArray() {
         const videoIdArray = [];
         for (const episode of replayEpisodeCollection.selectedEpisodes) {
@@ -238,12 +271,12 @@ var replayEpisodeCollection = {
 replayEpisodeCollection.init = function (replayEpisodeArray) {
     // Initialize object properties
     // Set value of input elements based on sort/filter properties
-    console.log(`Properties - \nSortType: ${this.sortTypeString}(${this.sortType}) \nAscending: ${this.ascending} \nMaxDisplayed: ${this.maxDisplayedEpisodes}`);
-    console.log(`Element Values - \nSortType: ${this.sortTypeElement.value}(${this.sortType}) \nAscending: ${this.sortDirectionElement.value} \nMaxDisplayed: ${this.maxDisplayedElement.value}`);
+    //console.log(`Properties - \nSortType: ${this.sortTypeString}(${this.sortType}) \nAscending: ${this.ascending} \nMaxDisplayed: ${this.maxDisplayedEpisodes}`);
+    //console.log(`Element Values - \nSortType: ${this.sortTypeElement.value}(${this.sortType}) \nAscending: ${this.sortDirectionElement.value} \nMaxDisplayed: ${this.maxDisplayedElement.value}`);
     this.sortTypeElement.value = this.sortTypeString;
     this.sortDirectionElement.value = this.ascending ? 'ascending' : 'descending';
     this.maxDisplayedElement.value = this.maxDisplayedEpisodes;
-    console.log(`Element Values - \nSortType: ${this.sortTypeElement.value}(${this.sortType}) \nAscending: ${this.sortDirectionElement.value} \nMaxDisplayed: ${this.maxDisplayedElement.value}`);
+    //console.log(`Element Values - \nSortType: ${this.sortTypeElement.value}(${this.sortType}) \nAscending: ${this.sortDirectionElement.value} \nMaxDisplayed: ${this.maxDisplayedElement.value}`);
 
     // Set filter
     // Set search
@@ -353,8 +386,9 @@ replayEpisodeCollection.updateDisplayedEpisodes = function () {
         this.currentDisplayedEpisodesMessageElement.innerHTML = 'Showing no replay episodes';
 
     // Update page number containers
-    this.updatePageNumber();
-    this.updatePageNumberAdv();
+    //this.updatePageNumber();
+    this.updatePageNumberAdv('top');
+    this.updatePageNumberAdv('bottom');
 };
 
 // updateSelectedEpisodes(searchBool, filterBool, sortBool)
@@ -447,6 +481,7 @@ replayEpisodeCollection.shuffleSelectedEpisodes = function () {
 // updateFilterObj()
 // TODO: Add to updateSelectedEpisodes
 replayEpisodeCollection.updateFilterObj = function () {
+    console.log('updateFilterObj() started');
     // Variables
     const tempObj = {};
 
@@ -839,7 +874,7 @@ replayEpisodeCollection.createNumberedButton = function (buttonValue, buttonStr)
     // Return button
     return tempNode;
 };
-
+/*
 replayEpisodeCollection.updatePageNumber = function () {
     // Variables
     //let tempNode;
@@ -875,7 +910,7 @@ replayEpisodeCollection.updatePageNumber = function () {
 
             //this.nextButton.insertAdjacentElement('beforebegin', tempNode);
             this.pageNumberList.appendChild(tempNode);
-            */
+            //
         }
         // Clone page button container and add to bottom of main element
         // TODO
@@ -884,90 +919,83 @@ replayEpisodeCollection.updatePageNumber = function () {
         this.prevButton.parentElement.style.display = 'none';
     }
 };
+*/
 
-replayEpisodeCollection.updatePageNumberAdv = function () {
+replayEpisodeCollection.updatePageNumberAdv = function (positionStr) {
     // Variables
-    const pageNumberContainer = document.getElementById('page-number-container-bottom');
+    const pageNumberContainer = document.getElementById(`page-number-container${(positionStr) ? '-' + positionStr : ''}`);
     const prevButton = pageNumberContainer.querySelector('button[value="prev"]');
     const firstButton = pageNumberContainer.querySelector('button[value="first"]');
-    const minusButton = pageNumberContainer.querySelector('button[value="-n"]');
     const pageNumberList = pageNumberContainer.querySelector('.page-number-list');
-    const plusButton = pageNumberContainer.querySelector('button[value="+n"]');
     const lastButton = pageNumberContainer.querySelector('button[value="last"]');
     const nextButton = pageNumberContainer.querySelector('button[value="next"]');
-    const maxDisplayedButtons = 7
 
     // Remove all page number buttons
     pageNumberContainer.querySelectorAll('.page-number-list .custom-button')
-        .forEach(function (node) {
-        node.remove();
-        });
+        .forEach(node => node.remove());
 
     // Disable 'PREV' if current page is equal to 1
     prevButton.disabled = (this.currentPageDisplayed === 1);
 
+    // Disable 'FIRST' if totalPages is less than or equal to maxDisplayedButtons
+    // OR current page is near beginning of list
+    firstButton.disabled = (this.totalPages <= this.maxDisplayedButtons
+        || this.currentPageDisplayed <= this.maxDisplayedButtons
+    );
+
     // Page number list
     // If totalPages is more than maxDisplayedButtons
-    if (this.totalPages > maxDisplayedButtons) {
+    if (this.totalPages > this.maxDisplayedButtons) {
         // If current page is near beginning of list
-        if (this.currentPageDisplayed <= maxDisplayedButtons) {
+        if (this.currentPageDisplayed <= this.maxDisplayedButtons) {
             // Hide 'FIRST' button
-            firstButton.disabled = true;
-            // Hide minus button
-            minusButton.disabled = true;
+            //firstButton.disabled = true;
             // Add maxDisplayedButtons buttons starting with 1
-            for (let i = 1; i <= maxDisplayedButtons; i++)
+            for (let i = 1; i <= this.maxDisplayedButtons; i++)
                 pageNumberList.appendChild(this.createNumberedButton(i));
-            // Show plus button
-            plusButton.disabled = false;
             // Show 'LAST' button
-            lastButton.disabled = false;
+            //lastButton.disabled = false;
         }
         // Else If current page is near end of list
-        else if (this.currentPageDisplayed > this.totalPages - maxDisplayedButtons) {
+        else if (this.currentPageDisplayed > this.totalPages - this.maxDisplayedButtons) {
             // Show 'FIRST' button
-            firstButton.disabled = false;
-            // Show minus button
-            minusButton.disabled = false;
+            //firstButton.disabled = false;
             // Add maxDisplayedButtons buttons ending with totalPages
-            for (let i = this.totalPages - maxDisplayedButtons + 1;
+            for (let i = this.totalPages - this.maxDisplayedButtons + 1;
                 i <= this.totalPages; i++)
                 pageNumberList.appendChild(this.createNumberedButton(i));
-            // Hide plus button
-            plusButton.disabled = true;
             // Hide 'LAST' button
-            lastButton.disabled = true;
+            //lastButton.disabled = true;
         }
         // Else current page is in middle of list
         else {
             // Show 'FIRST' button
-            firstButton.disabled = false;
-            // Show minus button
-            minusButton.disabled = false;
+            //firstButton.disabled = false;
             // Add currentPage as middle button
             // Add(maxDisplayedButtons - 1) / 2 buttons to each side of currentPage
-            for (let i = this.currentPageDisplayed - .5 * (maxDisplayedButtons - 1);
-                i <= this.currentPageDisplayed + .5 * (maxDisplayedButtons - 1);
+            for (let i = this.currentPageDisplayed - .5 * (this.maxDisplayedButtons - 1);
+                i <= this.currentPageDisplayed + .5 * (this.maxDisplayedButtons - 1);
                 i++)
                 pageNumberList.appendChild(this.createNumberedButton(i));
-            // Show plus button
-            plusButton.disabled = false;
             // Show 'LAST' button
-            lastButton.disabled = false;
+            //lastButton.disabled = false;
         }
-    } else { // Else totalPages is less than or equal to maxDisplayedButtons
+    }
+    else { // Else totalPages is less than or equal to maxDisplayedButtons
         // Hide 'FIRST' button
-        firstButton.disabled = true;
-        // Hide minus button
-        minusButton.disabled = true;
+        //firstButton.disabled = true;
         // Add buttons ranging from 1 to totalPages
         for (let i = 1; i <= this.totalPages; i++)
             pageNumberList.appendChild(this.createNumberedButton(i));
-        // Hide plus button
-        plusButton.disabled = true;
         // Hide 'LAST' button
-        lastButton.disabled = true;
+        //lastButton.disabled = true;
     }
+
+    // Disable 'LAST' if totalPages is less than or equal to maxDisplayedButtons
+    // OR current page is near end of list
+    lastButton.disabled = (this.totalPages <= this.maxDisplayedButtons
+        || (this.currentPageDisplayed > this.totalPages - this.maxDisplayedButtons)
+    );
 
     // Disable 'NEXT' if current page is equal to last page (totalPages)
     nextButton.disabled = (this.currentPageDisplayed === this.totalPages);
@@ -991,9 +1019,14 @@ replayEpisodeCollection.setPageNumber = function (input) {
         else if (!isNaN(parseInt(input, 10)))
             this.currentPageDisplayed = parseInt(input, 10);
     }
-    // If currentPageDisplayed has changed value, update displayed episodes
-    if (prevPage != this.currentPageDisplayed)
+    // If currentPageDisplayed has changed value
+    if (prevPage != this.currentPageDisplayed) {
+        // Update displayed episodes
         this.updateDisplayedEpisodes();
+        // Scroll to top
+        document.getElementById('top-page')
+            .scrollIntoView({behavior: "smooth"});
+    }
 };
 
 // TODO
@@ -1087,7 +1120,9 @@ replayEpisodeCollection.cueEpisodePlaylist = function (replayEpisode) {
 // onPlayerReady(event)
 // The API will call this function when the video player is ready.
 replayEpisodeCollection.onPlayerReady = function (event) {
-    console.log('replayEpisodeCollection.onPlayerReady(event) started');
+    this.videoPlayer.addEventListener('onStateChange',
+        this.onPlayerStateChange.bind(replayEpisodeCollection));
+    console.log('replayEpisodeCollection.onPlayerReady() finished');
     // Cue playlist of first 200 selected episodes
     //this.cueEpisodePlaylist();
 
@@ -1113,19 +1148,19 @@ replayEpisodeCollection.onPlayerReady = function (event) {
 replayEpisodeCollection.onPlayerStateChange = function (event) {
     let str = 'YT Player State: ';
     switch (event.data) {
-        case -1: str += 'Unstarted'; break;
+        case -1:
+            str += 'Unstarted';
+            if (this.videoPlayer.getVideoUrl()) {
+                this.currentEpisode = this.getEpisodeByVideoID(this.videoPlayer.getPlaylist()[this.videoPlayer.getPlaylistIndex()]);
+                console.log(`onPlayerStateChange() - Playlist Index: ${this.videoPlayer.getPlaylistIndex()} - Episode At Index: ${this.currentEpisode.episodeNumber}`);
+            }
+            break;
         case 0: str += 'Ended'; break;
         case 1: str += 'Playing'; break;
         case 2: str += 'Paused'; break;
         case 3: str += 'Buffering'; break;
         case 5:
             str += 'Cued';
-            if (this.videoPlayer.getVideoUrl()) {
-                this.currentEpisode = this.getEpisodeByVideoID(this.videoPlayer.getPlaylist()[this.videoPlayer.getPlaylistIndex()]);
-                console.log(`OnPlayerStateChange() - Playlist Index: ${this.videoPlayer.getPlaylistIndex()}`);
-                console.log(`OnPlayerStateChange() - Episode At Index: ${this.currentEpisode.episodeNumber}`);
-                console.log(`event.target: ${event.target}`);
-            }
             break;
         default:
     }
@@ -1191,12 +1226,6 @@ replayEpisodeCollection.playEpisode = function (replayEpisode) {
      * Use previous episode to play to check if need to cue new playlist
      * or just play current playlist at certain index.
     */
-};
-
-// moveEpisodeSectionsAroundVideoPlayer()
-// Move all displayed episode sections prior to episode to play before video player
-replayEpisodeCollection.moveEpisodeSectionsAroundVideoPlayer = function () {
-
 };
 
 // playNextEpisode()

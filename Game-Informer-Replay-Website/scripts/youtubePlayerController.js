@@ -42,6 +42,7 @@ window.onYouTubePlayerAPIReady = function () {
 
     console.log('window.onYouTubePlayerAPIReady has finished');
 };
+/*
 let videoPlayerState = -1;
 setInterval(function () {
     if (videoPlayer && typeof videoPlayer.getPlayerState === 'function') {
@@ -54,7 +55,7 @@ setInterval(function () {
         }
     }
 }, 10);
-
+*/
 /*
 // onPlayerReady(event)
 // The API will call this function when the video player is ready.

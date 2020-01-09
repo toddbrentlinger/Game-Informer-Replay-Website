@@ -4,6 +4,12 @@ replayEpisodeCollection.init(replayEpisodeArray);
 
 // TODO: Add code from youtubePlayerController.js
 
+// Current Episode Display Toggle
+document.getElementById('current-episode-info-toggle-button')
+    .addEventListener("click",
+        replayEpisodeCollection.toggleCurrentEpisodeInfo.bind(replayEpisodeCollection),
+        false);
+
 // Sort - Event Listeners
 document.querySelector(
     '#sort-container select[name = "sort-type"]')
@@ -23,14 +29,8 @@ document.querySelector(
         replayEpisodeCollection.setSortByEvent
         .bind(replayEpisodeCollection),
     false);
-/*
+
 // Filter - Event Listeners
-document.getElementById('filter-button')
-    .addEventListener("click",
-        replayEpisodeCollection.updateFilterObj
-        .bind(replayEpisodeCollection),
-    false);
-*/
 document.getElementById('filterForm')
     .addEventListener("change",
         replayEpisodeCollection.updateFilterObj
@@ -54,12 +54,35 @@ document.getElementById('filter-toggle-select-button')
 document.getElementById('filter-display-toggle-button')
     .addEventListener("click", function () {
         this.classList.toggle('active');
+        replayEpisodeCollection.filterFormElement.style.maxHeight =
+            (replayEpisodeCollection.filterFormElement.style.maxHeight)
+                ? null
+                : replayEpisodeCollection.filterFormElement.scrollHeight + 12 + 'px';
+        /*
         if (replayEpisodeCollection.filterFormElement.style.maxHeight)
             replayEpisodeCollection.filterFormElement.style.maxHeight = null;
         else
             replayEpisodeCollection.filterFormElement.style.maxHeight = replayEpisodeCollection.filterFormElement.scrollHeight + 'px';
+        */
     }, false);
-
+/*
+document.querySelectorAll('#filterForm fieldset').forEach(
+    function (fieldset) {
+        fieldset.querySelector('legend').addEventListener("click", function () {
+            this.parentElement.classList.toggle('active');
+            const element = this.parentElement.querySelector('ul');
+            element.style.maxHeight =
+                (element.style.maxHeight)
+                    ? null
+                    : element.scrollHeight + 'px';
+            // If whole filterForm is expanded, change maxHeight
+            if (replayEpisodeCollection.filterFormElement.style.maxHeight)
+                replayEpisodeCollection.filterFormElement.style
+                    .maxHeight = replayEpisodeCollection.filterFormElement.scrollHeight + 12 + 'px';
+        }, false);
+    }
+);
+*/
 // Seach - Event Listeners
 // Search is button is clicked
 document.querySelector('#search-container button')
@@ -96,6 +119,15 @@ document.getElementById('button-reset-list')
     false);
 
 // Page Select
+document.querySelectorAll('.page-number-container > button')
+    .forEach(function (node) {
+        node.addEventListener("click", function () {
+            replayEpisodeCollection
+                .setPageNumber(this.getAttribute('value'),
+                    this.parentElement.id.includes('bottom'));
+        }, false);
+    });
+/*
 document.querySelectorAll('.page-number-container button[value="prev"]')
     .forEach(function (node) {
         node.addEventListener("click", function () {
@@ -120,17 +152,6 @@ document.querySelectorAll('.page-number-container button[value="last"]')
             replayEpisodeCollection.setPageNumber('last');
         }, false);
     });
-/*
-replayEpisodeCollection.prevButton.addEventListener("click",
-    function () {
-        replayEpisodeCollection.setPageNumber('prev');
-    }.bind(replayEpisodeCollection), false
-);
-replayEpisodeCollection.nextButton.addEventListener("click",
-    function () {
-        replayEpisodeCollection.setPageNumber('next');
-    }.bind(replayEpisodeCollection), false
-);
 */
 
 // Jump To Top Page
@@ -140,19 +161,6 @@ window.addEventListener("scroll", function () {
     jumpToTopPageElement.style.display =
         (mainElement.getBoundingClientRect().top < 0) ? "block" : "none";
 }, false);
-/*
-// Toggle Video Player
-var isVideoPlayerDisplayed = true;
-const videoPlayerContainer = document.getElementById('videoPlayer');
-document.getElementById('button-toggleVideoPlayer')
-    .addEventListener("click", 
-    function () {
-        // Toggle videoPlayerDisplayed
-        isVideoPlayerDisplayed = !isVideoPlayerDisplayed;
-        // Hide/Display video player
-        videoPlayerContainer.style.display = (isVideoPlayerDisplayed) ? 'block' : 'none';
-    }, false);
-*/
 
 // Set date for copyright
 document.getElementById('copyright-current-year').innerHTML = `2019-${new Date().getFullYear()}`;
@@ -169,7 +177,7 @@ function setMaxDisplayedButtonsByMediaQuery(mediaQueryObj) {
     // Update page number containers
     if (replayEpisodeCollection.maxDisplayedButtons !== prevValue) {
         replayEpisodeCollection.updatePageNumberAdv('top');
-        replayEpisodeCollection.updatePageNumberAdv('bottom');
+        replayEpisodeCollection.updatePageNumberAdv('bottom', true);
     }
 }
 var maxWidthForFiveNumberButtons = window.matchMedia("(max-width: 550px)");

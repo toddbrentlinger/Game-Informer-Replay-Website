@@ -54,19 +54,23 @@
         -->
     </header>
 
-    <img src="images/replay-logo-alpha.png" alt="Game Informer Replay Logo" width="610" height="214" />
+    <img src="images/replay-logo-alpha(2).png" alt="Game Informer Replay Logo" width="610" height="214" />
 
-    <!-- YouTube Video Player -->
-    <div style="display: block;" id="videoPlayer">
-        <div class="iframeWrapper">
-            <div id="youtubePlayerPlaceholder"></div>
-            <!--
-            <iframe id="youtubePlayer" width="640" height="360" src="https://www.youtube.com/embed/jsEIcUHPz5M?enablejsapi=1" frameborder="0"></iframe>
-            -->
+    <!-- Video Player Container -->
+    <div id="video-player-container">
+        <!-- Header -->
+        <div id="current-episode-header"></div>
+        <!-- YouTube Video Player -->
+        <div style="display: block;" id="videoPlayer">
+            <div class="iframeWrapper">
+                <div id="youtubePlayerPlaceholder"></div>
+            </div>
         </div>
+        <!-- Current Episode Info -->
+        <div id="current-episode-info"></div>
+        <!-- Toggle Button to display episode info -->
+        <button class="custom-button" type="button" id="current-episode-info-toggle-button">Show/Hide Episode Details</button>
     </div>
-
-    <div id="current-episode-info"></div>
 
     <div class="row" id="top-page">
         <!-- Left Column -->
@@ -96,49 +100,60 @@
 
                     <fieldset form="filterForm" id="seasonField">
                         <legend>Season: </legend>
-                        <label>
-                            1
-                            <input type="checkbox" name="season" value="1" checked />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label>
-                            2
-                            <input type="checkbox" name="season" value="2" checked />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label>
-                            3
-                            <input type="checkbox" name="season" value="3" checked />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label>
-                            4
-                            <input type="checkbox" name="season" value="4" checked />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label>
-                            5
-                            <input type="checkbox" name="season" value="5" checked />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label>
-                            6
-                            <input type="checkbox" name="season" value="6" checked />
-                            <span class="checkmark"></span>
-                        </label>
-                        <label>
-                            Special
-                            <input type="checkbox" name="season" value="0" checked />
-                            <span class="checkmark"></span>
-                        </label>
+                        <ul>
+                            <li>
+                                <label>1
+                                    <input type="checkbox" name="season" value="1" checked />
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <label>2
+                                    <input type="checkbox" name="season" value="2" checked />
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <label>3
+                                    <input type="checkbox" name="season" value="3" checked />
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <label>4
+                                    <input type="checkbox" name="season" value="4" checked />
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <label>5
+                                    <input type="checkbox" name="season" value="5" checked />
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <label>6
+                                    <input type="checkbox" name="season" value="6" checked />
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                            <li>
+                                <label>Special
+                                    <input type="checkbox" name="season" value="0" checked />
+                                    <span class="checkmark"></span>
+                                </label>
+                            </li>
+                        </ul>
                     </fieldset>
 
                     <fieldset form="filterForm" id="year-field">
                         <legend>Year: </legend>
+                        <ul></ul>
                     </fieldset>
 
                     <fieldset form="filterForm" id="gi-crew-field">
                         <legend>GI Crew: </legend>
+                        <ul></ul>
                     </fieldset>
                 </form>
             </div>
@@ -148,16 +163,7 @@
                 <button class="custom-button" type="button" id="button-shuffle"><i class="fa fa-random fa-lg" aria-hidden="true"></i> SHUFFLE</button>
                 <button class="custom-button" type="button" id="button-reset-list"><i class="fa fa-refresh fa-lg" aria-hidden="true"></i> RESET LIST</button>
             </div>
-            <!--
-    <div id="page-number-container" class="page-number-container">
-        <button class="custom-button" type="button" value="prev">PREV</button>
-        <div class="page-number-list">
-            <button type="button" value="1" class="custom-button">1</button>
-            <button type="button" value="2" class="custom-button">2</button>
-        </div>
-        <button class="custom-button" type="button" value="next">NEXT</button>
-    </div>
-    -->
+
             <!-- Top Page Number Selection -->
             <div id="page-number-container-top" class="page-number-container">
                 <button class="custom-button" type="button" value="prev">PREV</button>
@@ -241,10 +247,6 @@
                             <div class="mainSegment"><b>Main Segment: </b></div>
                             <div class="middleSegment"><b>Middle Segment: </b></div>
                             <div class="secondSegment"><b>Second Segment: </b></div>
-                            <!--
-                    <div class="views"><b><i class="fa fa-eye fa-lg" aria-hidden="true"></i> Views: </b></div>
-                    <div class="likes"><b><i class="fa fa-thumbs-up fa-lg" aria-hidden="true"></i> Likes: </b></div>
-                    -->
                         </div>
                     </div>
                     <hr />
@@ -309,6 +311,8 @@
     <script src="scripts/replayEpisodeCollection.js"></script>
     <script src="scripts/main.js"></script>
     <script src="scripts/youtubePlayerController.js"></script>
+    <!--
     <script src="scripts/debug.js"></script>
+    -->
 </body>
 </html>

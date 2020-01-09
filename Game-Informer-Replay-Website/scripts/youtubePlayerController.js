@@ -13,12 +13,10 @@ tag.src = "https://www.youtube.com/player_api";
 var firstScriptTag = document.getElementsByTagName('script')[0];
 firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-
 // This function creates an <iframe> (and YouTube player)
 // after the API code downloads.
-var videoPlayer;
 window.onYouTubePlayerAPIReady = function () {
-    videoPlayer = new YT.Player('youtubePlayerPlaceholder', {
+    replayEpisodeCollection.videoPlayer = new YT.Player('youtubePlayerPlaceholder', {
         height: 360,
         width: 640,
         //videoId: '0ZtEkX8m6yg', // default video: Replay Highlights
@@ -37,48 +35,6 @@ window.onYouTubePlayerAPIReady = function () {
         }
     });
 
-    // Assign reference to videoPlayer in replayEpisodeCollection
-    replayEpisodeCollection.videoPlayer = videoPlayer;
-
-    console.log('window.onYouTubePlayerAPIReady has finished');
+    console.log('window.onYouTubePlayerAPIReady() has finished');
 };
-/*
-let videoPlayerState = -1;
-setInterval(function () {
-    if (videoPlayer && typeof videoPlayer.getPlayerState === 'function') {
-        const state = videoPlayer.getPlayerState() || -1;
-        if (videoPlayerState !== state) {
-            replayEpisodeCollection.onPlayerStateChange({
-                data: state
-            });
-            videoPlayerState = state;
-        }
-    }
-}, 10);
-*/
-/*
-// onPlayerReady(event)
-// The API will call this function when the video player is ready.
-function onPlayerReady(event) {
-    event.target.cuePlaylist({
-        playlist: videoIdArray.slice(-200).reverse()
-    });
-}
-
-// onPlayerStateChange(event)
-// The API calls this function when the player's state changes.
-var done = false;
-function onPlayerStateChange(event) {
-    if (event.data == YT.PlayerState.PLAYING && !done) {
-        // done = true;
-    } else if (event.data == YT.PlayerState.ENDED) {
-        // location.reload();
-    }
-}
-
-// onPlayerError(event)
-function onPlayerError(event) {
-    console.log('Error: ' + event.data);
-}
-*/
 

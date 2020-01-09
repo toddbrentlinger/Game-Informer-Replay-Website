@@ -1,5 +1,24 @@
 ﻿TO-DO:
 
+1/6/20
+
+- When entire fieldset is empty, do not filter by that fieldset name.
+This allows to deselect everything and then select only input wanted.
+OR
+Change filter for season/year to filter based on checked inputs instead
+of unchecked inputs. 
+
+- Add dropdown to reveal current episode info. Can click on top or
+bottom to close the dropdown. Whenever new episode is assigned, close
+the dropdown OR the problem of different heights of episode elements 
+might be solved by scrolling to top of main whenever 
+sort/filter/shuffle/reset
+
+- Whenever displayed episodes are updated, scroll to top of main
+
+- Use onclick event listener on 'jump to top page' instead of linking
+to element id
+
 1/3/20
 
 - ISSUE: Ascending/Descending does nothing when shuffled

@@ -79,11 +79,7 @@ var replayEpisodeCollection = {
 
     // Page Select
     maxDisplayedButtons: 7,
-    /*
-    pageNumberList: document.querySelector('#page-number-container .page-number-list'),
-    prevButton: document.querySelector('#page-number-container > button:first-child'),
-    nextButton: document.querySelector('#page-number-container > button:last-child'),
-    */
+
     // Sort
     _sortType: parseInt(window.sessionStorage.getItem('sortType'), 10) || sort.airdate,
     get sortType() { return this._sortType; },
@@ -171,10 +167,12 @@ var replayEpisodeCollection = {
     _filterObj: {}, // empty object
     get filterObj() { return this._filterObj; },
     set filterObj(newObject) {
-        console.log('----- New filterObj -----');
+        console.log('----- New filterObj Assigned -----');
         for (let [key, value] of Object.entries(newObject)) {
             console.log(`${key}: ${value}`);
         }
+        console.log('----- End of New filterObj -----');
+
         // Reset selectedEpisodes to show all episodes from base episode object array
         // If newObject is empty, filter will NOT change selectedEpisodes listing all episodes
         this.selectedEpisodes = [];
@@ -189,22 +187,18 @@ var replayEpisodeCollection = {
                 // Search
                 case 'search':
                     this.filterBySearch(newObject[filterType]);
-                    //this._filterObj[filterType] = newObject[filterType];
                     break;
                 // Season
                 case 'season':
                     this.filterBySeason(newObject[filterType]);
-                    //this._filterObj[filterType] = newObject[filterType];
                     break;
                 // Year
                 case 'year':
                     this.filterByYear(newObject[filterType]);
-                    //this._filterObj[filterType] = newObject[filterType];
                     break;
                 // GI Crew
                 case 'giCrew':
                     this.filterByCrew(newObject[filterType]);
-                    //this._filterObj[filterType] = newObject[filterType];
                     break;
                 default:
             }
@@ -222,6 +216,7 @@ var replayEpisodeCollection = {
     // Video Player
     videoPlayerContainer: document.getElementById('videoPlayer'),
     videoPlayer: undefined, // Assigned inside global onYouTubePlayerAPIReady()
+    currentEpisodeHeaderElement: document.getElementById('current-episode-header'),
     currentEpisodeInfoElement: document.getElementById('current-episode-info'),
     _currentEpisode: undefined, // reference to ReplayEpisode object
     get currentEpisode() { return this._currentEpisode; },
@@ -230,26 +225,37 @@ var replayEpisodeCollection = {
             console.log(`set currentEpisode = ${episode.episodeNumber}`);
             // Assign currentEpisode
             this._currentEpisode = episode;
+            // Remove episode info from around video player
+            this.removeCurrentEpisodeInfo();
+            // Display episode info around video player
+            this.addCurrentEpisodeInfo();
+            /*
             // Remove episode info below video player
             while (this.currentEpisodeInfoElement.firstChild) {
                 this.currentEpisodeInfoElement
                     .removeChild(this.currentEpisodeInfoElement.firstChild);
             }
+            
             // Display episode info below video player
             this.currentEpisodeInfoElement.appendChild(episode.episodeSection.cloneNode(true));
+            */
         }
         else {
             if (episode instanceof ReplayEpisode && episode === this._currentEpisode)
-                console.error(`Attempted to assign same episode to currentEpisode`);
+                console.log(`*** Attempted to assign same episode to currentEpisode ***`);
             else {
                 console.error(`Could NOT assign ${episode} to currentEpisode`);
+                // Assign value of undefined
+                this._currentEpisode = undefined;
+                // Remove episode info from around video player
+                this.removeCurrentEpisodeInfo();
+                /*
                 // Remove episode info below video player
                 while (this.currentEpisodeInfoElement.firstChild) {
                     this.currentEpisodeInfoElement
                         .removeChild(this.currentEpisodeInfoElement.firstChild);
-                    // Assign value of undefined
-                    this._currentEpisode = undefined;
                 }
+                */
             }
         }
     },
@@ -305,18 +311,10 @@ replayEpisodeCollection.init = function (replayEpisodeArray) {
     //console.log('Init before');
     //this.cueEpisodePlaylist();
     //console.log('Init after');
-    /*
-    if (this.videoPlayer) {
-        //console.log(`selectedEpisodes.length = ${this.selectedEpisodes.length}`);
-        if (this.selectedEpisodes.length)
-            this.videoPlayer.cuePlaylist({ playlist: this.selectedVideoIdArray.slice(0, 200) });
-        else // Else no selected episodes, cue Replay highlights video
-            this.videoPlayer.cueVideoById('0ZtEkX8m6yg');
-    }
-    */
 
     // Add stats
     this.populateStats();
+
     // Add filter options
     this.populateFilterForm();
 };
@@ -386,9 +384,8 @@ replayEpisodeCollection.updateDisplayedEpisodes = function () {
         this.currentDisplayedEpisodesMessageElement.innerHTML = 'Showing no replay episodes';
 
     // Update page number containers
-    //this.updatePageNumber();
     this.updatePageNumberAdv('top');
-    this.updatePageNumberAdv('bottom');
+    this.updatePageNumberAdv('bottom', true);
 };
 
 // updateSelectedEpisodes(searchBool, filterBool, sortBool)
@@ -405,14 +402,6 @@ replayEpisodeCollection.updateSelectedEpisodes = function (setFirstPage = true) 
 
     // Cue playlist of first 200 selected episodes
     this.cueEpisodePlaylist();
-    /*
-    if (this.videoPlayer) {
-        if (this.selectedEpisodes.length)
-            this.videoPlayer.cuePlaylist({ playlist: this.selectedVideoIdArray.slice(0, 200) });
-        else // Else no selected episodes, cue Replay highlights video
-            this.videoPlayer.cueVideoById('0ZtEkX8m6yg');
-    }
-    */
 };
 
 // --------------------------
@@ -432,7 +421,6 @@ replayEpisodeCollection.getEpisodeByNumber = function (num) {
 };
 
 // getEpisodeByVideoID(youtubeVideoID)
-// TODO: NOT being used
 replayEpisodeCollection.getEpisodeByVideoID = function (youtubeVideoID) {
     for (const episode of this.replayEpisodeObjectArray) {
         if (episode.hasOwnProperty('youtubeVideoID') && episode.youtubeVideoID === youtubeVideoID)
@@ -481,7 +469,6 @@ replayEpisodeCollection.shuffleSelectedEpisodes = function () {
 // updateFilterObj()
 // TODO: Add to updateSelectedEpisodes
 replayEpisodeCollection.updateFilterObj = function () {
-    console.log('updateFilterObj() started');
     // Variables
     const tempObj = {};
 
@@ -492,6 +479,14 @@ replayEpisodeCollection.updateFilterObj = function () {
     // Other: Season, Year, GI Crew, etc.
     // For each checkbox input element in the filter form
     for (const input of this.filterFormElement.querySelectorAll('input[type="checkbox"]')) {
+        if (input.checked) {
+            // If filterObj already has input.name as a property, add value to property array
+            if (tempObj.hasOwnProperty(input.name))
+                tempObj[input.name].push(input.value);
+            else // Else add filterObj as property and add value as first element
+                tempObj[input.name] = [input.value];
+        }
+        /*
         switch (input.name) {
             case 'giCrew':
                 if (input.checked) {
@@ -511,6 +506,7 @@ replayEpisodeCollection.updateFilterObj = function () {
                         tempObj[input.name] = [input.value];
                 }
         }
+        */
     }
     // Assign to filterObj. Setter filters selectedEpisodes
     this.filterObj = tempObj;
@@ -566,21 +562,19 @@ replayEpisodeCollection.filterBySeason = function (seasonToFilter) {
         // If value is NOT a number, remove array element
         if (isNaN(value))
             arr.splice(index, 1);
-        else { // Else value is a number
-            // If value is string type, convert to number type
-            if (typeof value === 'string')
-                arr[index] = parseInt(value, 10);
-        }
+        // Else If value is string (and is a number), convert to number type
+        else if (typeof value === 'string')
+            arr[index] = parseInt(value, 10);
     });
 
     if (typeof seasonToFilter == 'number') {
         this.selectedEpisodes = this.selectedEpisodes.filter(
-            episode => (episode.getReplaySeason()[0] !== seasonToFilter)
+            episode => (episode.getReplaySeason()[0] === seasonToFilter)
         );
     }
     else if (Array.isArray(seasonToFilter)) {
         this.selectedEpisodes = this.selectedEpisodes.filter(
-            episode => !seasonToFilter.includes(episode.getReplaySeason()[0])
+            episode => seasonToFilter.includes(episode.getReplaySeason()[0])
         );
     }
 };
@@ -601,12 +595,12 @@ replayEpisodeCollection.filterByYear = function (yearsToFilter) {
 
     if (typeof yearsToFilter == 'number') {
         this.selectedEpisodes = this.selectedEpisodes.filter(
-            episode => (episode.airdate.getFullYear() !== yearsToFilter)
+            episode => (episode.airdate.getFullYear() === yearsToFilter)
         );
     }
     else if (Array.isArray(yearsToFilter)) {
         this.selectedEpisodes = this.selectedEpisodes.filter(
-            episode => !yearsToFilter.includes(episode.airdate.getFullYear())
+            episode => yearsToFilter.includes(episode.airdate.getFullYear())
         );
     }
 };
@@ -666,18 +660,20 @@ replayEpisodeCollection.populateFilterForm = function () {
     // Season
 
     // Year
-    parentElement = document.getElementById('year-field');
+    parentElement = document.querySelector('#year-field ul');
     for (i = 2010; i <= currentYear; i++) {
-        parentElement.append(this.createFieldsetLabel('year', i.toString()));
+        parentElement.appendChild(document.createElement('li'))
+            .append(this.createFieldsetLabel('year', i.toString()));
     }
 
     // GI Crew
-    parentElement = document.getElementById('gi-crew-field');
+    parentElement = document.querySelector('#gi-crew-field ul');
     // getGICrew() returns: 
     // [tempHostArr, tempGuestArr, tempTotalAppearancesArr, noHostEpisodes, noGuestEpisodes]
     //giCrewArr = getGICrew();
     for (const person of sortedGICrewObjArr) {
-        parentElement.append(this.createFieldsetLabel('giCrew', person.name, `${person.name} (${person.count})`));
+        parentElement.appendChild(document.createElement('li'))
+            .append(this.createFieldsetLabel('giCrew', person.name, `${person.name} (${person.count})`));
     }
     /*
     // Segment
@@ -728,10 +724,7 @@ replayEpisodeCollection.setSortByEvent = function (event) {
         case 'sort-type':
             // Assign sortType
             this.sortType = event.currentTarget.value;
-            // Sort selectedEpisodes by sortType
-            //this.sortByType();
-            // Reset current page displayed
-            //this.currentPageDisplayed = 1;
+            // Update main HTML element to display new sorted episodes
             this.updateSelectedEpisodes();
             break;
 
@@ -741,14 +734,12 @@ replayEpisodeCollection.setSortByEvent = function (event) {
             if (event.currentTarget.value == 'ascending') {
                 if (!this.ascending) {
                     this.ascending = true;
-                    //this.selectedEpisodes.reverse();
                     // Update main HTML element to display new sorted episodes
                     this.updateSelectedEpisodes();
                 }
             } else { // Else descending is selected
                 if (this.ascending) {
                     this.ascending = false;
-                    //this.selectedEpisodes.reverse();
                     // Update main HTML element to display new sorted episodes
                     this.updateSelectedEpisodes();
                 }
@@ -847,8 +838,7 @@ replayEpisodeCollection.resetSelectedEpisodes = function () {
 
     // Reset current page displayed
     //this.currentPageDisplayed = 1;
-    // Update displayed episodes
-    //this.updateDisplayedEpisodes();
+
     this.updateSelectedEpisodes();
 };
 
@@ -856,7 +846,7 @@ replayEpisodeCollection.resetSelectedEpisodes = function () {
 // ---------- Page Selection ----------
 // ------------------------------------
 
-replayEpisodeCollection.createNumberedButton = function (buttonValue, buttonStr) {
+replayEpisodeCollection.createNumberedButton = function (buttonValue, buttonStr, scrollToTop = false) {
     // Variables
     let tempNode;
     // If buttonStr is undefined, assign same value as buttonValue
@@ -869,59 +859,13 @@ replayEpisodeCollection.createNumberedButton = function (buttonValue, buttonStr)
     tempNode.setAttribute('type', 'button');
     tempNode.setAttribute('value', buttonValue);
     tempNode.addEventListener("click", function () {
-        this.setPageNumber(buttonValue);
+        this.setPageNumber(buttonValue, scrollToTop);
     }.bind(this), false);
     // Return button
     return tempNode;
 };
-/*
-replayEpisodeCollection.updatePageNumber = function () {
-    // Variables
-    //let tempNode;
 
-    // Remove all page number buttons
-    this.pageNumberList.querySelectorAll('.custom-button').forEach(function (node) {
-        node.remove();
-    });
-
-    // Show 'PREV' if current page is more than 1
-    this.prevButton.disabled = (this.currentPageDisplayed == 1);
-    // Show 'NEXT' if current page is NOT last page
-    this.nextButton.disabled = (this.currentPageDisplayed == this.totalPages);
-
-    // If total pages is more than one
-    if (this.totalPages > 1) {
-        // Make sure page number container is displayed
-        // TODO: Toggle class that hides element instead of changing display
-        this.prevButton.parentElement.style.display = 'flex';
-
-        // Add button for each page number and highlight current page
-        for (let i = 1; i <= this.totalPages; i++) {
-            this.pageNumberList.appendChild(this.createNumberedButton(i));
-            /*
-            tempNode = (i == this.currentPageDisplayed)
-                ? ReplayEpisode.createElementAdv('button', 'active custom-button', i)
-                : ReplayEpisode.createElementAdv('button', 'custom-button', i);
-            tempNode.setAttribute('type', 'button');
-            tempNode.setAttribute('value', i);
-            tempNode.addEventListener("click", function () {
-                this.setPageNumber(i);
-            }.bind(this), false);
-
-            //this.nextButton.insertAdjacentElement('beforebegin', tempNode);
-            this.pageNumberList.appendChild(tempNode);
-            //
-        }
-        // Clone page button container and add to bottom of main element
-        // TODO
-    } else { // Else total pages is only one, hide all
-        // Make sure page number container is NOT displayed
-        this.prevButton.parentElement.style.display = 'none';
-    }
-};
-*/
-
-replayEpisodeCollection.updatePageNumberAdv = function (positionStr) {
+replayEpisodeCollection.updatePageNumberAdv = function (positionStr, scrollToTop = false) {
     // Variables
     const pageNumberContainer = document.getElementById(`page-number-container${(positionStr) ? '-' + positionStr : ''}`);
     const prevButton = pageNumberContainer.querySelector('button[value="prev"]');
@@ -948,47 +892,32 @@ replayEpisodeCollection.updatePageNumberAdv = function (positionStr) {
     if (this.totalPages > this.maxDisplayedButtons) {
         // If current page is near beginning of list
         if (this.currentPageDisplayed <= this.maxDisplayedButtons) {
-            // Hide 'FIRST' button
-            //firstButton.disabled = true;
             // Add maxDisplayedButtons buttons starting with 1
             for (let i = 1; i <= this.maxDisplayedButtons; i++)
-                pageNumberList.appendChild(this.createNumberedButton(i));
-            // Show 'LAST' button
-            //lastButton.disabled = false;
+                pageNumberList.appendChild(this.createNumberedButton(i, i, scrollToTop));
         }
         // Else If current page is near end of list
         else if (this.currentPageDisplayed > this.totalPages - this.maxDisplayedButtons) {
-            // Show 'FIRST' button
-            //firstButton.disabled = false;
             // Add maxDisplayedButtons buttons ending with totalPages
             for (let i = this.totalPages - this.maxDisplayedButtons + 1;
                 i <= this.totalPages; i++)
-                pageNumberList.appendChild(this.createNumberedButton(i));
-            // Hide 'LAST' button
-            //lastButton.disabled = true;
+                pageNumberList.appendChild(this.createNumberedButton(i, i, scrollToTop));
         }
         // Else current page is in middle of list
         else {
-            // Show 'FIRST' button
-            //firstButton.disabled = false;
             // Add currentPage as middle button
             // Add(maxDisplayedButtons - 1) / 2 buttons to each side of currentPage
             for (let i = this.currentPageDisplayed - .5 * (this.maxDisplayedButtons - 1);
                 i <= this.currentPageDisplayed + .5 * (this.maxDisplayedButtons - 1);
                 i++)
-                pageNumberList.appendChild(this.createNumberedButton(i));
-            // Show 'LAST' button
-            //lastButton.disabled = false;
+                pageNumberList.appendChild(this.createNumberedButton(i, i, scrollToTop));
         }
     }
     else { // Else totalPages is less than or equal to maxDisplayedButtons
-        // Hide 'FIRST' button
-        //firstButton.disabled = true;
         // Add buttons ranging from 1 to totalPages
-        for (let i = 1; i <= this.totalPages; i++)
-            pageNumberList.appendChild(this.createNumberedButton(i));
-        // Hide 'LAST' button
-        //lastButton.disabled = true;
+        if (this.totalPages > 1)
+            for (let i = 1; i <= this.totalPages; i++)
+                pageNumberList.appendChild(this.createNumberedButton(i, i, scrollToTop));
     }
 
     // Disable 'LAST' if totalPages is less than or equal to maxDisplayedButtons
@@ -1002,7 +931,7 @@ replayEpisodeCollection.updatePageNumberAdv = function (positionStr) {
 };
 
 // TODO: 
-replayEpisodeCollection.setPageNumber = function (input) {
+replayEpisodeCollection.setPageNumber = function (input, scrollToTop = false) {
     const prevPage = this.currentPageDisplayed;
     if (typeof input === 'number')
         this.currentPageDisplayed = input;
@@ -1024,8 +953,8 @@ replayEpisodeCollection.setPageNumber = function (input) {
         // Update displayed episodes
         this.updateDisplayedEpisodes();
         // Scroll to top
-        document.getElementById('top-page')
-            .scrollIntoView({behavior: "smooth"});
+        if (scrollToTop)
+            document.getElementById('top-page').scrollIntoView({behavior: "smooth"});
     }
 };
 
@@ -1049,11 +978,11 @@ replayEpisodeCollection.cueEpisodePlaylist = function (replayEpisode) {
     if (typeof replayEpisode === 'undefined') {
         if (this.selectedEpisodes.length) {
             this.videoPlayer.cuePlaylist({ playlist: this.selectedVideoIdArray.slice(0, 200) });
-            this.currentlyPlayingEpisode = this.getEpisodeByVideoID(this.selectedVideoIdArray[0]);
+            //this.currentEpisode = this.getEpisodeByVideoID(this.selectedVideoIdArray[0]);
         }
         else { // Else no selected episodes, cue Replay highlights video
             this.videoPlayer.cueVideoById('0ZtEkX8m6yg');
-            this.currentlyPlayingEpisode = undefined;
+            //this.currentEpisode = undefined;
         }
     }
     else { // Cue playlist starting with episodeIndex
@@ -1096,22 +1025,12 @@ replayEpisodeCollection.cueEpisodePlaylist = function (replayEpisode) {
                 playlistStartIndex,
                 playlistStartIndex + 200
             ), episodeIndex - playlistStartIndex);
-        } else // Else 200 or less episodes in selected episodes
-            this.videoPlayer.cuePlaylist(this.selectedVideoIdArray, episodeIndex);
-        /*
-        // If more than 200 episodes in selected episodes
-        if (this.selectedVideoIdArray.length > 200) {
-            // If episode is after first 200 on selected episode list
-            if (episodeIndex > 199)
-                this.videoPlayer.cuePlaylist(this.selectedVideoIdArray.slice(episodeIndex, episodeIndex + 200));
-            else // Else episode is within first 200
-                this.videoPlayer.cuePlaylist(this.selectedVideoIdArray.slice(0, 200), episodeIndex);
-        } else { // Else 200 or less episodes in selected episodes
+        }
+        else { // Else 200 or less episodes in selected episodes
             this.videoPlayer.cuePlaylist(this.selectedVideoIdArray, episodeIndex);
         }
-        */
         // Assign new currently playing episode
-        this.currentlyPlayingEpisode = replayEpisode;
+        //this.currentEpisode = replayEpisode;
     }
 };
 
@@ -1123,24 +1042,6 @@ replayEpisodeCollection.onPlayerReady = function (event) {
     this.videoPlayer.addEventListener('onStateChange',
         this.onPlayerStateChange.bind(replayEpisodeCollection));
     console.log('replayEpisodeCollection.onPlayerReady() finished');
-    // Cue playlist of first 200 selected episodes
-    //this.cueEpisodePlaylist();
-
-    // If selected episodes length is greater than 0
-        // If episode to play is defined, load playlist 200 videos in
-        // length with selected episode first
-        // Else cue playlist of first 200 selected episodes
-    // Else selected episodes length is zero, cue Replay highlights
-    /*
-    if (this.selectedEpisodes.length) {
-        if (this.currentEpisode) {
-
-        } else {
-
-        }
-    } else
-        this.videoPlayer.cueVideoById('0ZtEkX8m6yg');
-    */
 };
 
 // onPlayerStateChange(event)
@@ -1159,9 +1060,7 @@ replayEpisodeCollection.onPlayerStateChange = function (event) {
         case 1: str += 'Playing'; break;
         case 2: str += 'Paused'; break;
         case 3: str += 'Buffering'; break;
-        case 5:
-            str += 'Cued';
-            break;
+        case 5: str += 'Cued'; break;
         default:
     }
     console.log(str);
@@ -1196,25 +1095,6 @@ replayEpisodeCollection.playEpisode = function (replayEpisode) {
 
     this.cueEpisodePlaylist(replayEpisode);
 
-    /*
-    const episodeIndex = this.selectedVideoIdArray.indexOf(replayEpisode.youtubeVideoID);
-    if (episodeIndex === -1) {
-        console.log('ERROR: Requested video is NOT in selected episodes array');
-    } else {
-        if (this.selectedVideoIdArray.length > 200) {
-            // If episode is after first 200 on selected episode list
-            if (episodeIndex > 199)
-                this.videoPlayer.cuePlaylist(this.selectedVideoIdArray.slice(episodeIndex, episodeIndex + 200));
-            else // Else episode is within first 200
-                this.videoPlayer.cuePlaylist(this.selectedVideoIdArray.slice(0, episodeIndex + 200), episodeIndex);
-        } else { // Else 200 or less episodes in selected episodes
-            this.videoPlayer.cuePlaylist(this.selectedVideoIdArray, episodeIndex);
-        }
-    }
-
-    // Assign new currently playing episode
-    this.currentlyPlayingEpisode = replayEpisode;
-    */
     // Play video of episode
     //this.videoPlayer.cueVideoById(replayEpisode.youtubeVideoID);
 
@@ -1237,6 +1117,60 @@ replayEpisodeCollection.playNextEpisode = function () {
 replayEpisodeCollection.playPrevEpisode = function () {
 
 };
+
+// -------------------------------------
+// ---------- Current Episode ----------
+// -------------------------------------
+
+// removeCurrentEpisodeInfo()
+replayEpisodeCollection.removeCurrentEpisodeInfo = function () {
+    // Remove episode header above video player
+    while (this.currentEpisodeHeaderElement.firstChild) {
+        this.currentEpisodeHeaderElement
+            .removeChild(this.currentEpisodeHeaderElement.firstChild);
+    }
+    // Remove episode info below video player
+    while (this.currentEpisodeInfoElement.firstChild) {
+        this.currentEpisodeInfoElement
+            .removeChild(this.currentEpisodeInfoElement.firstChild);
+    }
+};
+
+// addCurrentEpisodeInfo()
+replayEpisodeCollection.addCurrentEpisodeInfo = function (keepOpen = false) {
+    const currentEpisodeSection = this.currentEpisode.episodeSection.cloneNode(true);
+    // If episode info element is expanded, close
+    if (this.currentEpisodeInfoElement.style.maxHeight && !keepOpen) {
+        this.currentEpisodeInfoElement.classList.remove('active');
+        this.currentEpisodeInfoElement.style.maxHeight = null;
+    }
+    // Add episode header above video player
+    this.currentEpisodeHeaderElement
+        .appendChild(currentEpisodeSection.querySelector('.episodeHeader'));
+    // Add episode info below video player
+    this.currentEpisodeInfoElement.appendChild(currentEpisodeSection);
+};
+
+// toggleCurrentEpisodeInfo()
+replayEpisodeCollection.toggleCurrentEpisodeInfo = function () {
+    if (this.currentEpisodeInfoElement.style.maxHeight) {
+        this.currentEpisodeInfoElement.classList.remove('active');
+        this.currentEpisodeInfoElement.style.maxHeight = null;
+    }
+    else {
+        this.currentEpisodeInfoElement.classList.add('active');
+        this.currentEpisodeInfoElement.style.maxHeight = this.currentEpisodeInfoElement.scrollHeight + 'px';
+    }
+}
+
+// -------------------------------------------
+// ---------- Scroll Top Adjustment ----------
+// -------------------------------------------
+
+// TODO: When current episode info is added below video player, the 
+// different element height of episode section auto adjusts the scroll
+// of the page. Create function to adjust scrollTop when new episode
+// is added to current episode info.
 
 // --------------------------
 // ---------- Misc ----------

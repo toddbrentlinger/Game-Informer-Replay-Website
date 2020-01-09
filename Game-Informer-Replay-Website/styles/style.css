@@ -508,6 +508,8 @@ ul.link-list {
 /* ---------- YouTube Player ---------- */
 /* ------------------------------------ */
 
+#video-player-container { margin: 0 .8em; }
+
 #videoPlayer {
     /*position: fixed;
     top: 0;
@@ -542,6 +544,46 @@ ul.link-list {
     width: 100%;
     height: 100%;
     */
+}
+
+/* ------------------------------------------ */
+/* ---------- Current Episode Info ---------- */
+/* ------------------------------------------ */
+
+#current-episode-header {
+    border-radius: .5em .5em 0 0;
+    overflow: hidden;
+}
+
+#current-episode-info {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+#current-episode-info .episode { 
+    margin: 0;
+    border-radius: 0;
+    border-bottom: none;
+}
+
+#current-episode-info .thumbnail-container {
+    float: none;
+    width: 100%;
+    margin: 0;
+}
+
+#current-episode-info .episodeThumbnail { display: none; }
+#current-episode-info .episodeDetails { width: 100%; }
+#current-episode-info .episodeMoreInfo { padding: 0 1em; }
+
+/* Toggle button */
+#current-episode-info-toggle-button {
+    width: 100%;
+    padding: 1.2em;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    box-shadow: none;
 }
 
 /* ---------------------------- */
@@ -617,11 +659,37 @@ ul.link-list {
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
-
+/*
+#filterForm:after {
+    content: ""; 
+    display: block;
+    height: 1em;
+    padding: .5em;
+}
+*/
 #filterForm > fieldset {
     /*display: inline-block;*/
     padding: .4em;
+    border-top: none;
+    border-bottom: none;
+    border-color: var(--main-bg-color);
+    margin: 0 2px;
 }
+/*
+#filterForm > fieldset legend {
+    cursor: pointer;
+}
+*/
+#filterForm fieldset ul {
+    list-style-type: none;
+    padding: 0; /* remove default padding for ul elements */
+    margin: 0; /* remove default margin for ul elements */
+    /*
+    max-height: 0;
+    overflow: hidden;
+    */
+}
+#filterForm fieldset ul.active { /*height: auto;*/ }
 
 /* Checkbox */
 /* Customize the label */
@@ -688,6 +756,9 @@ ul.link-list {
             transform: rotate(45deg);
 }
 
+/* Filter: gi-crew-field */
+#gi-crew-field ul { column-count: 2; }
+
 /* Filter Form Buttons */
 #filterSubmitButton {
     width: 100%;
@@ -699,6 +770,7 @@ ul.link-list {
     margin: 0 auto;
     padding: 1em;
 }
+
 
 /* -------------------------- */
 /* ---------- Sort ---------- */
@@ -755,24 +827,21 @@ ul.link-list {
     opacity: 0; 
     cursor: default;
 }
-.page-number-container > button[value="prev"] {
-    border-radius: .5em 0 0 .5em;
-}
+.page-number-container > button[value="prev"] {}
 .page-number-container > button[value="first"] {
-    border-radius: 0 .5em .5em 0;
+    border-radius: .5em 0 0 .5em;
+    margin-left: .5em;
 }
 .page-number-container > button[value="last"] {
-    border-radius: .5em 0 0 .5em;
-}
-.page-number-container > button[value="next"] {
     border-radius: 0 .5em .5em 0;
+    margin-right: .5em;
 }
+.page-number-container > button[value="next"] {}
 .page-number-list {
     flex: 6;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    padding: 0 1em;
 }
 .page-number-list button {
     /*width: 10%;*/
@@ -780,6 +849,8 @@ ul.link-list {
     box-shadow: none;
     border: 1px solid var(--second-bg-color);
     border-radius: 0;
+    border-top: none;
+    border-bottom: none;
 }
 .page-number-list button.active {
     background-image: none;
@@ -791,9 +862,7 @@ ul.link-list {
 /* ---------- Stats ---------- */
 /* --------------------------- */
 
-#stats {
-    margin: 0 1em;
-}
+#stats { margin: 0 1em; }
 
 /* ----------------------------------------- */
 /* ---------- Jump To Top of Page ---------- */
@@ -1002,5 +1071,7 @@ input:checked + .slider:before {
     .episodeDetails { width: 100%; }
     .episodeMoreInfo { padding: 0 1em; }
 
-    ul.link-list { column-count: 1; }
+    ul.link-list, #gi-crew-field ul {
+        column-count: 1;
+    }
 }

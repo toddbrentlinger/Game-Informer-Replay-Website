@@ -21,6 +21,7 @@ Softrobo Pro Font on fonts.com
     --main-bg-color: #0077a2; /* gi blue hsl(196, 100%, 32%) */
     --main-bg-hover-color: hsl(196, 100%, 24%); /* dark gi blue */
     --main-bg-select-color: hsl(196, 100%, 16%); /* darker gi blue */
+    --main-bg-active-color: hsl(196, 100%, 10%); /* darkest gi blue */
     --main-shadow-color: rgba(0,0,0,0.6); /* black */
 
     --second-text-color: #0077a2; /* gi blue */
@@ -125,7 +126,7 @@ img {
 /* ----------------------------------- */
 
 .custom-button {
-    box-shadow: 0px 0px 3px 0px var(--main-shadow-color);
+    box-shadow: inset 0px 0px 1px 0px var(--main-shadow-color);
     background-image: linear-gradient(to bottom, var(--main-bg-hover-color) 5%, var(--main-bg-color) 80%);
     background-color: var(--main-bg-color);
     border: none;
@@ -240,15 +241,18 @@ footer {
 /* ---------- Side Nav ---------- */
 /* ------------------------------ */
 
+#sidenav {
+    margin: 0 .8em;
+    padding-top: .5em;
+}
+
 #sidenav ul { list-style-type: none; }
 
 /* -------------------------- */
 /* ---------- Main ---------- */
 /* -------------------------- */
-main { 
-    margin: 0 .8em;
-    padding-top: .5em;
-}
+
+main { margin: 0 .8em; }
 
 /* ----------------------------- */
 /* ---------- Episode ---------- */
@@ -508,7 +512,10 @@ ul.link-list {
 /* ---------- YouTube Player ---------- */
 /* ------------------------------------ */
 
-#video-player-container { margin: 0 .8em; }
+#video-player-container { 
+    margin: 0 .8em;
+    padding-top: .5em;
+}
 
 #videoPlayer {
     /*position: fixed;
@@ -551,7 +558,7 @@ ul.link-list {
 /* ------------------------------------------ */
 
 #current-episode-header {
-    border-radius: .5em .5em 0 0;
+    border-radius: 1em 1em 0 0;
     overflow: hidden;
 }
 
@@ -574,15 +581,36 @@ ul.link-list {
 }
 
 #current-episode-info .episodeThumbnail { display: none; }
-#current-episode-info .episodeDetails { width: 100%; }
+
+#current-episode-info .episodeDetails { 
+    width: 100%; 
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+#current-episode-info .episodeDetails > * {
+    width: 49%;
+}
+
 #current-episode-info .episodeMoreInfo { padding: 0 1em; }
+#current-episode-info .episodeAirDate { order: -2; }
+
+#current-episode-info .views-likes-container { 
+    order: -1;
+    font-size: unset; 
+    justify-content: flex-end;
+}
+#current-episode-info .views-likes-container > * { width: unset; }
+
+#current-episode-info .mainSegment { order: 1; }
+#current-episode-info .episodeFeaturing { order: 2; }
+#current-episode-info .secondSegment { order: 3; }
 
 /* Toggle button */
 #current-episode-info-toggle-button {
     width: 100%;
     padding: 1.2em;
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
+    border-radius: 0 0 1em 1em;
     box-shadow: none;
 }
 
@@ -608,6 +636,7 @@ ul.link-list {
     flex: 4;
     padding: .6em;
     border: 2px solid var(--main-bg-color);
+    border-right: none;
     border-radius: .5em 0 0 .5em;
     background-color: var(--second-bg-color);
     color: var(--second-text-color);
@@ -640,6 +669,7 @@ ul.link-list {
     font-weight: bold;
     float: right;
     margin-left: 5px;
+    font-size: 1.2em;
 }
 #filter-display-toggle-button > .fa { margin-right: .3em; }
 #filter-display-toggle-button.active + form {
@@ -778,12 +808,12 @@ ul.link-list {
 #sort-main {
     font-size: .9em;
     display: flex;
+    flex-direction: row-reverse;
 }
 
 #sort-container {
     flex: 1;
     display: flex;
-    order: 1;
     align-items: flex-end;
     justify-content: flex-end;
 }
@@ -806,19 +836,18 @@ ul.link-list {
 
 #number-displayed-container {
     flex: 1;
-    position: relative;
-}
-#number-displayed-container div {
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    display: flex;
+    align-items: flex-end;
 }
 
 /* --------------------------------- */
 /* ---------- Page Select ---------- */
 /* --------------------------------- */
 
-.page-number-container { display: flex; }
+.page-number-container { 
+    display: flex; 
+    margin: .6em 0;
+}
 .page-number-container > button { 
     flex: 1;
     padding: 1em;
@@ -842,11 +871,13 @@ ul.link-list {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    border-left: 1px solid var(--second-bg-color);
+    border-right: 1px solid var(--second-bg-color);
 }
 .page-number-list button {
     /*width: 10%;*/
     flex: 1;
-    box-shadow: none;
+    /*box-shadow: none;*/
     border: 1px solid var(--second-bg-color);
     border-radius: 0;
     border-top: none;
@@ -854,8 +885,7 @@ ul.link-list {
 }
 .page-number-list button.active {
     background-image: none;
-    background-color: black;
-    color: white;
+    background-color: var(--main-bg-active-color);
 }
 
 /* --------------------------- */
@@ -872,13 +902,13 @@ ul.link-list {
     position: fixed;
     right: .5em;
     bottom: .5em;
+    cursor: pointer;
 }
-#jump-top-page-container > a {
-    display: block;
+#jump-top-page-container > div {
     background-color: var(--second-bg-color);
     border-radius: 50%;
 }
-#jump-top-page-container > a > i {
+#jump-top-page-container > div > i {
     color: var(--second-text-color);
     font-size: 2em;
     padding: .05em .1em;
@@ -894,6 +924,7 @@ ul.link-list {
         --main-bg-color: hsl(0, 0%, 30%);
         --main-bg-hover-color: hsl(0, 0%, 24%);
         --main-bg-select-color: hsl(0, 0%, 18%);
+        --main-bg-active-color: hsl(0, 0%, 10%);
         --main-shadow-color: rgba(255,255,255,0.6); /* white */
 
         --second-text-color: hsl(0, 0%, 66%);
@@ -929,6 +960,7 @@ ul.link-list {
     --main-bg-color: hsl(0, 0%, 30%);
     --main-bg-hover-color: hsl(0, 0%, 24%);
     --main-bg-select-color: hsl(0, 0%, 18%);
+    --main-bg-active-color: hsl(0, 0%, 10%);
     --main-shadow-color: rgba(255,255,255,0.6); /* white */
 
     --second-text-color: hsl(0, 0%, 66%);
@@ -1034,7 +1066,7 @@ input:checked + .slider:before {
 #misc-buttons-container {
     display: flex;
     justify-content: space-between;
-    padding: .6em 0;
+    margin: .6em 0;
 }
 #misc-buttons-container button {
     width: 49%;
@@ -1060,7 +1092,7 @@ input:checked + .slider:before {
 
     body { width: 100%; }
 
-    main { margin: 0 .3em; }
+    main, #sidenav, #video-player-container { margin: 0 .3em; }
 
     .thumbnail-container {
         float: none;
@@ -1070,8 +1102,22 @@ input:checked + .slider:before {
 
     .episodeDetails { width: 100%; }
     .episodeMoreInfo { padding: 0 1em; }
+    ul.link-list, #gi-crew-field ul { column-count: 1; }
+    #sort-main { flex-direction: column; }
+    #number-displayed-container { margin-top: .6em; }
+}
 
-    ul.link-list, #gi-crew-field ul {
-        column-count: 1;
+/* Mobile */
+@media (max-width: 480px) {
+    #search-container, #filter-display-toggle-button { width: 100%; }
+
+    #search-container { 
+        margin-bottom: .5em; 
+        order: initial;
+    }
+
+    #filter-display-toggle-button.active + form {
+        border-top-right-radius: 0;
+        border-top: none;
     }
 }

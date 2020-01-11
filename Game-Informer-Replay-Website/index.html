@@ -75,13 +75,6 @@
     <div class="row" id="top-page">
         <!-- Left Column -->
         <nav id="sidenav" class="column left">
-            <ul>
-                <li></li>
-            </ul>
-        </nav>
-
-        <!-- Middle Column -->
-        <main class="column middle">
             <div id="search-filter-container">
                 <!-- Search -->
                 <div id="search-container">
@@ -102,43 +95,50 @@
                         <legend>Season: </legend>
                         <ul>
                             <li>
-                                <label>1
+                                <label>
+                                    1
                                     <input type="checkbox" name="season" value="1" checked />
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
-                                <label>2
+                                <label>
+                                    2
                                     <input type="checkbox" name="season" value="2" checked />
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
-                                <label>3
+                                <label>
+                                    3
                                     <input type="checkbox" name="season" value="3" checked />
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
-                                <label>4
+                                <label>
+                                    4
                                     <input type="checkbox" name="season" value="4" checked />
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
-                                <label>5
+                                <label>
+                                    5
                                     <input type="checkbox" name="season" value="5" checked />
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
-                                <label>6
+                                <label>
+                                    6
                                     <input type="checkbox" name="season" value="6" checked />
                                     <span class="checkmark"></span>
                                 </label>
                             </li>
                             <li>
-                                <label>Special
+                                <label>
+                                    Special
                                     <input type="checkbox" name="season" value="0" checked />
                                     <span class="checkmark"></span>
                                 </label>
@@ -157,7 +157,10 @@
                     </fieldset>
                 </form>
             </div>
+        </nav>
 
+        <!-- Middle Column -->
+        <main class="column middle">
             <div id="misc-buttons-container">
                 <!-- <button type="button" id="button-toggleVideoPlayer">Toggle YT Player</button> -->
                 <button class="custom-button" type="button" id="button-shuffle"><i class="fa fa-random fa-lg" aria-hidden="true"></i> SHUFFLE</button>
@@ -200,8 +203,8 @@
                         Per Page:
                         <select name="max-displayed" id="max-displayed-select">
                             <option>10</option>
-                            <option>25</option>
-                            <option selected>50</option>
+                            <option selected>25</option>
+                            <option>50</option>
                             <option>100</option>
                             <option>200</option>
                             <option value="0">All</option>
@@ -285,16 +288,16 @@
 
     <!-- Jump To Top Of Page -->
     <div id="jump-top-page-container" title="Jump To Top" style="display: none;">
-        <a href="#top-page">
+        <div>
             <i class="fa fa-chevron-circle-up" aria-hidden="true"></i>
-        </a>
+        </div>
     </div>
 
     <!-- Footer -->
     <footer>
         <p>
             <small>
-                Source code &copy; <time id="copyright-current-year">2019-2020</time> Todd Brentlinger, Santa Cruz, CA, USA.
+                Source code &copy; <time id="copyright-current-year">2019-2020</time> Todd Brentlinger, Santa Cruz, CA, USA. All Rights Reserved.
                 <!--
                 Code licensed under <a href="https://github.com/toddbrentlinger/Game-Informer-Replay-Website/blob/master/LICENSE" target="_blank" rel="nofollow">MIT License</a>.
                 -->

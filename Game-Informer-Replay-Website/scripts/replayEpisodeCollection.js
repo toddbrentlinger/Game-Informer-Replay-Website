@@ -214,7 +214,7 @@ var replayEpisodeCollection = {
     isShuffled: false,
 
     // Video Player
-    videoPlayerContainer: document.getElementById('videoPlayer'),
+    videoPlayerContainer: document.getElementById('video-player-container'),
     videoPlayer: undefined, // Assigned inside global onYouTubePlayerAPIReady()
     currentEpisodeHeaderElement: document.getElementById('current-episode-header'),
     currentEpisodeInfoElement: document.getElementById('current-episode-info'),
@@ -982,6 +982,7 @@ replayEpisodeCollection.cueEpisodePlaylist = function (replayEpisode) {
         }
         else { // Else no selected episodes, cue Replay highlights video
             this.videoPlayer.cueVideoById('0ZtEkX8m6yg');
+            this.removeCurrentEpisodeInfo();
             //this.currentEpisode = undefined;
         }
     }
@@ -1139,14 +1140,19 @@ replayEpisodeCollection.removeCurrentEpisodeInfo = function () {
 // addCurrentEpisodeInfo()
 replayEpisodeCollection.addCurrentEpisodeInfo = function (keepOpen = false) {
     const currentEpisodeSection = this.currentEpisode.episodeSection.cloneNode(true);
+    /*
     // If episode info element is expanded, close
     if (this.currentEpisodeInfoElement.style.maxHeight && !keepOpen) {
         this.currentEpisodeInfoElement.classList.remove('active');
         this.currentEpisodeInfoElement.style.maxHeight = null;
     }
+    */
     // Add episode header above video player
     this.currentEpisodeHeaderElement
         .appendChild(currentEpisodeSection.querySelector('.episodeHeader'));
+    // Move views-likes-container to episodeDetails
+    currentEpisodeSection.querySelector('.episodeDetails')
+        .appendChild(currentEpisodeSection.querySelector('.views-likes-container'));
     // Add episode info below video player
     this.currentEpisodeInfoElement.appendChild(currentEpisodeSection);
 };

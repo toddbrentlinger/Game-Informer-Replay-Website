@@ -156,10 +156,14 @@ document.querySelectorAll('.page-number-container button[value="last"]')
 
 // Jump To Top Page
 const jumpToTopPageElement = document.getElementById('jump-top-page-container');
+const topPageElement = document.getElementById('top-page');
 const mainElement = document.querySelector('main');
 window.addEventListener("scroll", function () {
     jumpToTopPageElement.style.display =
         (mainElement.getBoundingClientRect().top < 0) ? "block" : "none";
+}, false);
+jumpToTopPageElement.addEventListener("click", function () {
+    topPageElement.scrollIntoView();
 }, false);
 
 // Set date for copyright
@@ -170,6 +174,8 @@ document.getElementById('lastModifiedDate').innerHTML = new Date(document.lastMo
 //document.getElementById('lastModifiedReplayList').innerHTML = lastModifiedReplayList;
 
 // Media Queries
+// TODO: Change function to check each mediaQueryList in mediaQueriesArr
+// for a match and assign correct maxDisplayedButtons
 function setMaxDisplayedButtonsByMediaQuery(mediaQueryObj) {
     const prevValue = replayEpisodeCollection.maxDisplayedButtons;
     replayEpisodeCollection.maxDisplayedButtons = 
@@ -180,7 +186,10 @@ function setMaxDisplayedButtonsByMediaQuery(mediaQueryObj) {
         replayEpisodeCollection.updatePageNumberAdv('bottom', true);
     }
 }
-var maxWidthForFiveNumberButtons = window.matchMedia("(max-width: 550px)");
+var maxWidthForFiveNumberButtons = window.matchMedia("(max-width: 750px)"); // 550
+var maxWidthForThreeNumberButtons = window.matchMedia("(max-width: 480px)");
+var mediaQueriesArr = [ maxWidthForFiveNumberButtons, maxWidthForThreeNumberButtons ];
+
 // Call listener function at run time
 setMaxDisplayedButtonsByMediaQuery(maxWidthForFiveNumberButtons);
 // Attach listener function on state changes

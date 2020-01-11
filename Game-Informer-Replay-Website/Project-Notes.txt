@@ -1,8 +1,20 @@
 ﻿TO-DO:
 
+1/10/20
+
+- ISSUE: Sort type of none remains after reload even though sort
+variable is airdate by default
+
+- Change default values of filter to unchecked
+
+- Fix CSS for current episode info to incorprate middle segments
+
+- If NO pages, add hide class to page selection container that changes
+display to none.
+
 1/6/20
 
-- When entire fieldset is empty, do not filter by that fieldset name.
+X When entire fieldset is empty, do not filter by that fieldset name.
 This allows to deselect everything and then select only input wanted.
 OR
 Change filter for season/year to filter based on checked inputs instead
@@ -31,7 +43,7 @@ added to bottom of list with lowest value
 X TODO: Spider-man 2 'likes' return 1 instead of 1600
 SOLUTION: Web Scraper: remove commas from likes/dislikes
 
-- Add comma(s) to views/likes
+X Add comma(s) to views/likes
 
 12/20/19
 

@@ -2,10 +2,13 @@
 
 1/10/20
 
+- When window changes size, using event listener, change max-height
+of current episode dropdown
+
 - ISSUE: Sort type of none remains after reload even though sort
 variable is airdate by default
 
-- Change default values of filter to unchecked
+X Change default values of filter to unchecked
 
 - Fix CSS for current episode info to incorprate middle segments
 

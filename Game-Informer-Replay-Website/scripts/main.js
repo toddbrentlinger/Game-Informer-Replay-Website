@@ -5,7 +5,7 @@ replayEpisodeCollection.init(replayEpisodeArray);
 // TODO: Add code from youtubePlayerController.js
 
 // Current Episode Display Toggle
-document.getElementById('current-episode-info-toggle-button')
+replayEpisodeCollection.currentEpisodeInfoToggleButton
     .addEventListener("click",
         replayEpisodeCollection.toggleCurrentEpisodeInfo.bind(replayEpisodeCollection),
         false);
@@ -44,11 +44,12 @@ document.getElementById('filter-toggle-select-button')
         const bMoreCheckedInputs = (replayEpisodeCollection.filterFormElement.querySelectorAll('input[type="checkbox"]:checked').length
             > .5 * inputArr.length);
 
-        for (const inputNode of inputArr)
+        inputArr.forEach(function (inputNode) {
             inputNode.checked = !bMoreCheckedInputs;
+        });
 
         replayEpisodeCollection.updateFilterObj();
-    }.bind(replayEpisodeCollection), false);
+    }, false);
 
 // Filter - Toggle display of filter form
 document.getElementById('filter-display-toggle-button')
@@ -127,32 +128,6 @@ document.querySelectorAll('.page-number-container > button')
                     this.parentElement.id.includes('bottom'));
         }, false);
     });
-/*
-document.querySelectorAll('.page-number-container button[value="prev"]')
-    .forEach(function (node) {
-        node.addEventListener("click", function () {
-            replayEpisodeCollection.setPageNumber('prev');
-        }, false);
-    });
-document.querySelectorAll('.page-number-container button[value="next"]')
-    .forEach(function (node) {
-        node.addEventListener("click", function () {
-            replayEpisodeCollection.setPageNumber('next');
-        }, false);
-    });
-document.querySelectorAll('.page-number-container button[value="first"]')
-    .forEach(function (node) {
-        node.addEventListener("click", function () {
-            replayEpisodeCollection.setPageNumber('first');
-        }, false);
-    });
-document.querySelectorAll('.page-number-container button[value="last"]')
-    .forEach(function (node) {
-        node.addEventListener("click", function () {
-            replayEpisodeCollection.setPageNumber('last');
-        }, false);
-    });
-*/
 
 // Jump To Top Page
 const jumpToTopPageElement = document.getElementById('jump-top-page-container');

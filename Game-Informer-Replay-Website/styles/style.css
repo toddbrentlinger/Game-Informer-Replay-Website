@@ -287,28 +287,18 @@ main { margin: 0 .8em; }
     background-color: var(--main-bg-color);
     color: var(--main-text-color);
     padding: 1em;
+    display: flex;
+    justify-content: space-between;
     /*border-radius: 1em 1em 0 0;*/
 }
 
 /* Episode Title */
-.episodeTitle {
-    float: left;
-    width: 80%;
-    margin: 0;
-}
+.episodeTitle { margin: 0; }
 
 /* Episode Number */
 .episodeNumber {
-    float: right;
-    width: 20%;
+    padding-left: 1em;
     text-align: right;
-}
-
-/* Clear-fix */
-.episodeHeader::after {
-    content: "";
-    clear: both;
-    display: table;
 }
 
 /* Thumbnail */
@@ -381,7 +371,7 @@ main { margin: 0 .8em; }
     font-size: .9em;
 }
 .views-likes-container > * {
-    padding: 0 1em;
+    padding-left: 1em;
 }
 .views-likes-container .fa {
     margin-right: .5em;
@@ -409,7 +399,8 @@ main { margin: 0 .8em; }
     padding: 0 1em;
     font-size: .9em;
 }
-.episodeDetails > * { padding: .4em 0; }
+.episodeAirDate, .gi-crew > *, .segments > * { padding: .4em 0; }
+/*.episodeDetails > * { padding: .4em 0; }*/
 .episodeDetails .views, .episodeDetails .likes {
     float: left;
     width: 50%;
@@ -570,8 +561,8 @@ ul.link-list {
 
 #current-episode-info .episode { 
     margin: 0;
-    border-radius: 0;
-    border-bottom: none;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
 }
 
 #current-episode-info .thumbnail-container {
@@ -583,17 +574,25 @@ ul.link-list {
 #current-episode-info .episodeThumbnail { display: none; }
 
 #current-episode-info .episodeDetails { 
-    width: 100%; 
+    width: 100%;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-end;
+    padding-bottom: .4em;
 }
 #current-episode-info .episodeDetails > * {
-    width: 49%;
+    width: 50%;
+    padding-bottom: 0;
+}
+#current-episode-info .gi-crew > *, #current-episode-info .segments > * {
+    padding-bottom: 0;
 }
 
 #current-episode-info .episodeMoreInfo { padding: 0 1em; }
 #current-episode-info .episodeAirDate { order: -2; }
+#current-episode-info .episodeAirDate, #current-episode-info .gi-crew { 
+    padding-right: 1em; 
+}
 
 #current-episode-info .views-likes-container { 
     order: -1;
@@ -602,16 +601,15 @@ ul.link-list {
 }
 #current-episode-info .views-likes-container > * { width: unset; }
 
-#current-episode-info .mainSegment { order: 1; }
-#current-episode-info .episodeFeaturing { order: 2; }
-#current-episode-info .secondSegment { order: 3; }
-
 /* Toggle button */
 #current-episode-info-toggle-button {
     width: 100%;
     padding: 1.2em;
     border-radius: 0 0 1em 1em;
     box-shadow: none;
+}
+#current-episode-info-toggle-button.active {
+    border-radius: 0;
 }
 
 /* ---------------------------- */

@@ -117,6 +117,7 @@ var replayEpisodeCollection = {
 
         // Assign to local/session storage
         // If sortType is sort.none, assign default value of sort.airdate
+        console.log(`Sort Type: ${this.sortType} (${(this.sortType === sort.none) ? 'true' : 'false'})`);
         window.sessionStorage.setItem('sortType',
             (this.sortType === sort.none)
             ? sort.airdate
@@ -167,12 +168,13 @@ var replayEpisodeCollection = {
     _filterObj: {}, // empty object
     get filterObj() { return this._filterObj; },
     set filterObj(newObject) {
+        /*
         console.log('----- New filterObj Assigned -----');
         for (let [key, value] of Object.entries(newObject)) {
             console.log(`${key}: ${value}`);
         }
         console.log('----- End of New filterObj -----');
-
+        */
         // Reset selectedEpisodes to show all episodes from base episode object array
         // If newObject is empty, filter will NOT change selectedEpisodes listing all episodes
         this.selectedEpisodes = [];
@@ -218,6 +220,7 @@ var replayEpisodeCollection = {
     videoPlayer: undefined, // Assigned inside global onYouTubePlayerAPIReady()
     currentEpisodeHeaderElement: document.getElementById('current-episode-header'),
     currentEpisodeInfoElement: document.getElementById('current-episode-info'),
+    currentEpisodeInfoToggleButton: document.getElementById('current-episode-info-toggle-button'),
     _currentEpisode: undefined, // reference to ReplayEpisode object
     get currentEpisode() { return this._currentEpisode; },
     set currentEpisode(episode) {
@@ -699,7 +702,7 @@ replayEpisodeCollection.createFieldsetLabel = function (nameStr, valueStr, label
     inputElement.setAttribute('type', 'checkbox');
     inputElement.setAttribute('name', nameStr);
     inputElement.setAttribute('value', valueStr);
-    inputElement.defaultChecked = true;
+    //inputElement.defaultChecked = true;
     // Append input element to label
     labelElement = ReplayEpisode.createElementAdv('label', undefined, labelStr);
     labelElement.appendChild(inputElement);
@@ -988,7 +991,7 @@ replayEpisodeCollection.cueEpisodePlaylist = function (replayEpisode) {
     }
     else { // Cue playlist starting with episodeIndex
         const episodeIndex = this.selectedVideoIdArray.indexOf(replayEpisode.youtubeVideoID);
-        console.log(`episodeIndex: ${episodeIndex} - videoID: ${replayEpisode.youtubeVideoID}`);
+        console.log(`CuePlaylist: episodeIndex: ${episodeIndex} - videoID: ${replayEpisode.youtubeVideoID}`);
         // Check for errors
         if (episodeIndex === -1) {
             console.error('Requested video is NOT in selected episodes array');
@@ -1052,7 +1055,8 @@ replayEpisodeCollection.onPlayerStateChange = function (event) {
     switch (event.data) {
         case -1:
             str += 'Unstarted';
-            if (this.videoPlayer.getVideoUrl()) {
+            console.log(`onPlayerStateChange() - ${this.videoPlayer.getVideoUrl()}`);
+            if (this.videoPlayer.getPlaylist()) {
                 this.currentEpisode = this.getEpisodeByVideoID(this.videoPlayer.getPlaylist()[this.videoPlayer.getPlaylistIndex()]);
                 console.log(`onPlayerStateChange() - Playlist Index: ${this.videoPlayer.getPlaylistIndex()} - Episode At Index: ${this.currentEpisode.episodeNumber}`);
             }
@@ -1161,11 +1165,15 @@ replayEpisodeCollection.addCurrentEpisodeInfo = function (keepOpen = false) {
 replayEpisodeCollection.toggleCurrentEpisodeInfo = function () {
     if (this.currentEpisodeInfoElement.style.maxHeight) {
         this.currentEpisodeInfoElement.classList.remove('active');
+        this.currentEpisodeInfoToggleButton.classList.remove('active');
         this.currentEpisodeInfoElement.style.maxHeight = null;
+        this.currentEpisodeInfoToggleButton.textContent = 'Show Episode Details';
     }
     else {
         this.currentEpisodeInfoElement.classList.add('active');
+        this.currentEpisodeInfoToggleButton.classList.add('active');
         this.currentEpisodeInfoElement.style.maxHeight = this.currentEpisodeInfoElement.scrollHeight + 'px';
+        this.currentEpisodeInfoToggleButton.textContent = 'Hide Episode Details';
     }
 }
 

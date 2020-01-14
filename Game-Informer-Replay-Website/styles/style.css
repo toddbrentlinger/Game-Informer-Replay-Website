@@ -826,10 +826,9 @@ ul.link-list {
     width: 100%;
     background-color: var(--second-bg-color);
     color: var(--second-text-color);
-    /*
     -webkit-appearance: none;
        -moz-appearance: none;
-    */
+            appearance: none;
 }
 
 #number-displayed-container {

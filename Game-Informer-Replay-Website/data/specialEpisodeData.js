@@ -148,6 +148,147 @@
         }
     },
     {
+        "episodeNumber": .12,
+        "episodeTitle": "Bonus Replay: Strider",
+        "fandomWikiURL": "",
+        "mainSegmentGamesAdv": [
+            {
+                "title": "Strider",
+                "system": "NES",
+                "yearReleased": "1989"
+            },
+            {
+                "title": "Pitfall: The Mayan Adventure",
+                "system": "Super NES",
+                "yearReleased": "1994"
+            }
+        ],
+        "airDate": "8/07/14",
+        "videoLength": "31:05",
+        "secondSegment": "",
+        "secondSegmentGames": [],
+        "season": 0,
+        "details": {
+            "description": [],
+            "external_links": [
+                {
+                    "href": "https://www.gameinformer.com/b/features/archive/2014/08/07/bonus-replay-strider-guests-arj-barker-and-louis-katz.aspx",
+                    "title": "Bonus Replay \u2013 Strider (Guests: Arj Barker And Louis Katz)"
+                },
+                {
+                    "href": "https://www.youtube.com/watch?v=349FpRsKvog",
+                    "title": "Bonus Replay \u2013 Strider (Guest: Arj Barker And Louis Katz)"
+                }
+            ],
+            "image": {
+                "width": "300",
+                "height": "169",
+                "srcset": [
+                    "https://www.gameinformer.com/s3/files/styles/body_default/s3/legacy-images/imagefeed/Bonus%20Replay%20%E2%80%93%20Strider%20%28Guests%3A%20Arj%20Barker%20And%20Louis%20Katz%29/striderreplay_610.jpg"
+                ]
+            },
+            "system": [
+                "NES",
+                "Super NES"
+            ],
+            "gamedate": [
+                "1989",
+                "1994"
+            ],
+            "airdate": "August 7, 2014",
+            "runtime": "31:05",
+            "host": [
+                "Kyle Hilliard"
+            ],
+            "featuring": [
+                "Ben Reeves",
+                "Arj Barker",
+                "Louis Katz"
+            ]
+        },
+        "article": {
+            "title": "Bonus Replay \u2013 Strider (Guests: Arj Barker And Louis Katz) ",
+            "author": "Kyle Hilliard",
+            "date": " on Aug 07, 2014 at 09:00 AM",
+            "content": [
+                "In this special bonus episode of Replay, we take a look at the original incarnation of Strider on the NES. Myself and Ben Reeves are joined by comedians Arj Barker and Louis Katz as we travel the world and discuss the differences between Strider's interpretation and the real world version of Australia, where Arj Barker lives half the year.",
+                "Both Arj Barker and Louis Katz are accomplished comedians releasing assorted specials and appearing on Comedy Central as well as late night night shows such as Jimmy Fallon's. You may also recognize Arj Barker from the HBO comedy, Flight of the Conchords where he played the titular duo's American, pawn shop owning friend Dave. For more on Louis Katz, you can check out his website. For more on Arj Barker, you can check out his website."
+            ]
+        },
+        "youtube": {
+            "views": 5485,
+            "likes": 59,
+            "dislikes": 2
+        }
+    },
+    {
+        "episodeNumber": .11,
+        "episodeTitle": "Replay: ToeJam & Earl 2 (feat. Riff Raff)",
+        "fandomWikiURL": "",
+        "mainSegmentGamesAdv": [
+            {
+                "title": "ToeJam & Earl in Panic on Funkotron",
+                "system": "Genesis",
+                "yearReleased": "1993"
+            }
+        ],
+        "airDate": "1/02/14",
+        "videoLength": "15:07",
+        "secondSegment": "",
+        "secondSegmentGames": [],
+        "season": 0,
+        "details": {
+            "description": [],
+            "external_links": [
+                {
+                    "href": "https://www.gameinformer.com/b/features/archive/2014/01/02/replay-toejam-and-earl.aspx",
+                    "title": "Replay \u2013 ToeJam & Earl 2 (Special Guest: Riff Raff)"
+                },
+                {
+                    "href": "https://www.youtube.com/watch?v=MQCGyYO9ov0",
+                    "title": "Replay \u2013 ToeJam & Earl 2 (feat. Riff Raff)"
+                }
+            ],
+            "image": {
+                "width": "300",
+                "height": "169",
+                "srcset": [
+                    "https://www.gameinformer.com/s3/files/styles/body_default/s3/legacy-images/imagefeed/Replay%20–%20ToeJam%20%26%20Earl%202%20%28Special%20Guest%3A%20Riff%20Raff%29/Toejam610.jpg"
+                ]
+            },
+            "system": [
+                "Genesis"
+            ],
+            "gamedate": [
+                "1993"
+            ],
+            "airdate": "January 2, 2014",
+            "runtime": "15:07",
+            "host": [
+                "Andrew Reiner"
+            ],
+            "featuring": [
+                "Tim Turi",
+                "Dan Ryckert",
+                "Riff Raff"
+            ]
+        },
+        "article": {
+            "title": "Replay \u2013 ToeJam & Earl 2 (Special Guest: Riff Raff)",
+            "author": "Dan Ryckert",
+            "date": " on Jan 02, 2014 at 08:27 AM",
+            "content": [
+                "We've listened to Tim rave about the soundtrack for ToeJam & Earl for years, and figured it was about time to bring out the Genesis to play it for ourselves. When some antagonistic Earthlings stow away as the two aliens head back to Funkotron, it's up to the funky duo to track them down and send them back home.",
+                "Watch below to see Andrew Reiner, Tim Turi, me, and special guest Riff Raff check out the Genesis title, followed by the Replay crew receiving their first game pitch from Jody Highroller himself."
+            ]
+        },
+        "youtube": {
+            "views": 33110,
+            "likes": 451,
+            "dislikes": 63
+        }
+    },
+    {
         "episodeNumber": .10,
         "episodeTitle": "Replay Holiday Special 2013",
         "fandomWikiURL": "/wiki/Replay_Holiday_Special_2013",
@@ -273,7 +414,7 @@
                 "width": "300",
                 "height": "169",
                 "srcset": [
-                    "../images/Replay_new_logo_orig_300x169.png"
+                    "https://s3.amazonaws.com/prod-media.gameinformer.com/styles/body_default/s3/legacy-images/imagefeed/Replay%20Halloween%20Special%202013/Replay_splatterhouse_600.jpg"
                 ]
             },
             "system": [
@@ -312,6 +453,143 @@
         }
     },
     {
+        "episodeNumber": .08,
+        "episodeTitle": "Replay: Mutant League Football",
+        "fandomWikiURL": "",
+        "mainSegmentGamesAdv": [
+            {
+                "title": "Mutant League Football",
+                "system": "Genesis",
+                "yearReleased": "1993"
+            }
+        ],
+        "airDate": "9/10/13",
+        "videoLength": "29:04",
+        "secondSegment": "",
+        "secondSegmentGames": [],
+        "season": 0,
+        "details": {
+            "description": [],
+            "external_links": [
+                {
+                    "href": "https://www.gameinformer.com/b/features/archive/2013/09/10/replay-mutant-league-football.aspx",
+                    "title": "Replay \u2013 Mutant League Football"
+                },
+                {
+                    "href": "https://www.youtube.com/watch?v=TYWVEf7fQ_8",
+                    "title": "Replay \u2013 Mutant League Football"
+                }
+            ],
+            "image": {
+                "width": "300",
+                "height": "169",
+                "srcset": [
+                    "https://s3.amazonaws.com/prod-media.gameinformer.com/styles/body_default/s3/legacy-images/imagefeed/Replay%20–%20Mutant%20League%20Football/Replay_mutantleaguefootball_600.jpg"
+                ]
+            },
+            "system": [
+                "Genesis"
+            ],
+            "gamedate": [
+                "1993"
+            ],
+            "airdate": "September 10, 2013",
+            "runtime": "29:04",
+            "host": [
+                "Andrew Reiner"
+            ],
+            "featuring": [
+                "Ben Reeves",
+                "Matt Helgeson",
+                "Kimberly Wallace",
+                "Jason Oestreicher"
+            ]
+        },
+        "article": {
+            "title": "Replay \u2013 Mutant League Football",
+            "author": "Matt Helgeson",
+            "date": " on Sep 10, 2013 at 07:00 AM",
+            "content": [
+                "We take a look back at EA's grisly gridiron classic.",
+                "By now, you may have heard the news that Michael Mendheim, the creator of Mutant League Football, is launching a Kickstarter to create a spiritual successor to the Genesis-era cult classic. To celebrate, host Andy Reiner welcomes Matt Helgeson, Ben Reeves, Kim Wallace, and Jason Oestreicher to the Replay studio to see how the original holds up. The results are a bit ugly at times – to hilarious results. Also, without spoiling anything, in the Replay Roulette segment, Ben Reeves pulls off one of the most pathetic \"feats\" in Replay history, to Kim's chagrin."
+            ]
+        },
+        "youtube": {
+            "views": 14269,
+            "likes": 148,
+            "dislikes": 14
+        }
+    },
+    {
+        "episodeNumber": .07,
+        "episodeTitle": "Stress Test \u2013 Joe vs Tyson",
+        "fandomWikiURL": "",
+        "mainSegmentGamesAdv": [
+            {
+                "title": "Punch Out!!",
+                "system": "NES",
+                "yearReleased": "1987"
+            }
+        ],
+        "airDate": "8/8/13",
+        "videoLength": "1:02:09",
+        "secondSegment": "",
+        "secondSegmentGames": [],
+        "season": 0,
+        "details": {
+            "description": [],
+            "external_links": [
+                {
+                    "href": "https://www.gameinformer.com/b/features/archive/2013/09/05/replay-punch-out-stress-test-joe-vs-tyson.aspx",
+                    "title": "Replay \u2013 Punch-Out!! Stress Test: Joe Vs. Tyson \u2013 Episode 2"
+                },
+                {
+                    "href": "https://www.youtube.com/watch?v=3i8ccmRLTCI",
+                    "title": "Stress Test \u2013 Joe vs Tyson \u2013 Episode 1"
+                }
+            ],
+            "image": {
+                "width": "300",
+                "height": "169",
+                "srcset": [
+                    "https://s3.amazonaws.com/prod-media.gameinformer.com/styles/body_default/s3/legacy-images/imagefeed/Replay%20–%20Punch-Out%21%21%20Stress%20Test%3A%20Joe%20Vs.%20Tyson%20–%20Episode%202/joevtyson610.jpg"
+                ]
+            },
+            "system": [
+                "NES"
+            ],
+            "gamedate": [
+                "1987"
+            ],
+            "airdate": "August 8, 2013",
+            "runtime": "1:02:09",
+            "host": [
+                "Andrew Reiner"
+            ],
+            "featuring": [
+                "Dan Ryckert",
+                "Jeff Marchiafava",
+                "Joe Juba",
+                "Jason Oestreicher"
+            ]
+        },
+        "article": {
+            "title": "Replay \u2013 Punch-Out!! Stress Test: Joe Vs. Tyson \u2013 Episode 2",
+            "author": "Joe Juba",
+            "date": " on Sep 5, 2013 at 10:30 AM",
+            "content": [
+                "Earlier this year, I watched my co-worker Dan try to defeat Mike Tyson in Punch-Out!!. He failed miserably for three straight hours. Near the end of his attempt, I made a bold claim: Dan's story was just a prologue to a better (and shorter) video featuring me effortlessly beating Iron Mike. The time has finally come to back up my bravado.",
+                "While I try to shame Dan on the gameplay front, the accompanying commentary from Andrew Reiner and Jeff Marchiafava shame him on several personal and professional levels.  Dan sits in also, but his testimony does more to incriminate than defend himself.",
+                "Watch the drama unfold in the video below:"
+            ]
+        },
+        "youtube": {
+            "views": 13476,
+            "likes": 211,
+            "dislikes": 6
+        }
+    },
+    {
         "episodeNumber": .05,
         "episodeTitle": "Stress Test \u2013 Ryckert vs Tyson",
         "fandomWikiURL": "",
@@ -331,7 +609,7 @@
             "description": [],
             "external_links": [
                 {
-                    "href": "http://www.gameinformer.com/b/features/archive/2012/12/24/replay-holiday-special.aspx",
+                    "href": "https://www.gameinformer.com/b/features/archive/2013/01/29/stress-test-dan-vs-tyson.aspx",
                     "title": "Replay \u2013 Punch-Out!! Stress Test: Dan Vs. Tyson Part III"
                 },
                 {
@@ -343,7 +621,7 @@
                 "width": "300",
                 "height": "169",
                 "srcset": [
-                    "../images/Replay_new_logo_orig_300x169.png"
+                    "https://s3.amazonaws.com/prod-media.gameinformer.com/styles/body_default/s3/legacy-images/imagefeed/Replay%20–%20Punch-Out%21%21%20Stress%20Test%3A%20Dan%20Vs.%20Tyson%20Part%20III/tyson610.jpg"
                 ]
             },
             "system": [

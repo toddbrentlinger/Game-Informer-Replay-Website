@@ -1,5 +1,8 @@
 ﻿TO-DO:
 
+- ISSUE: Search 'earl 3' to get one episode with no YouTube url. Causes error
+in assigning current episode.
+
 1/10/20
 
 - When window changes size, using event listener, change max-height

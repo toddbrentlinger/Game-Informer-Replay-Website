@@ -2,6 +2,82 @@
 
 const replayEpisodeArray = [
     {
+        "episodeNumber": 521,
+        "episodeTitle": "Replay: Dragon's Dogma: Dark Arisen",
+        "fandomWikiURL": "/wiki/Replay:_Dragon%27s_Dogma:_Dark_Arisen",
+        "mainSegmentGamesAdv": [
+            {
+                "title": "Dragon's Dogma: Dark Arisen",
+                "system": "Switch",
+                "yearReleased": "2019"
+            }
+        ],
+        "airDate": "1/10/20",
+        "videoLength": "1:27:54",
+        "secondSegment": "",
+        "secondSegmentGames": [],
+        "season": 6,
+        "details": {
+            "description": [
+                " Dragon's Dogma: Dark Arisen is the featured game in the 521st episode of Replay. This episode is hosted by Andrew Reiner and features Joe Juba, Jeff Cork and Alex Stadnik. "
+            ],
+            "external_links": [
+                {
+                    "href": "https://www.gameinformer.com/replay/replay/2020/01/10/replay-dragons-dogma-dark-arisen",
+                    "title": "Replay: Dragon's Dogma: Dark Arisen"
+                },
+                {
+                    "href": "https://www.youtube.com/watch?v=ju-BltZqZgM",
+                    "title": "Replay: Dragon's Dogma: Dark Arisen"
+                },
+                {
+                    "href": "https://en.wikipedia.org/wiki/Dragon%27s_Dogma#Dragon%27s_Dogma:_Dark_Arisen",
+                    "title": "Dragon's Dogma: Dark Arisen"
+                }
+            ],
+            "image": {
+                "width": "300",
+                "height": "169",
+                "srcset": [
+                    "https://vignette.wikia.nocookie.net/replay/images/4/41/Dogma.jpg/revision/latest/scale-to-width-down/310?cb=20200113074746",
+                    "1x",
+                    "https://vignette.wikia.nocookie.net/replay/images/4/41/Dogma.jpg/revision/latest/scale-to-width-down/619?cb=20200113074746",
+                    "2x"
+                ]
+            },
+            "system": [
+                "Nintendo Switch"
+            ],
+            "gamedate": [
+                "April 23, 2019"
+            ],
+            "airdate": "January 10, 2020",
+            "runtime": "1:27:54",
+            "host": [
+                "Andrew Reiner"
+            ],
+            "featuring": [
+                "Joe Juba",
+                "Alex Stadnik",
+                "Jeff Cork"
+            ]
+        },
+        "article": {
+            "title": "Replay \u2013 Dragon's Dogma: Dark Arisen",
+            "author": "Alex Stadnik",
+            "date": " on Jan 10, 2020 at 04:00 PM",
+            "content": [
+                "On Replay's first episode of the new year, Andrew Reiner sits down with Joe Juba, Jeff Cork, and me\u00a0to delve into the fan-requested fantasy world of Dragon's Dogma: Dark Arisen. This week was even more fun, though, as the community stepped up and sent in pawn IDs to aid us in our quest. Thank you to everyone who sent your fun creations in (even Meg).",
+                "We went live earlier today but be sure to check out the archive of the stream above! Be sure to subscribe over\u00a0on\u00a0YouTube,\u00a0Twitch,\u00a0Mixer,\u00a0Twitter, or\u00a0Facebook\u00a0to get notified when we go live each week!\u00a0Enjoy the show!"
+            ]
+        },
+        "youtube": {
+            "views": 10663,
+            "likes": 242,
+            "dislikes": 12
+        }
+    },
+    {
         "episodeNumber": 520,
         "episodeTitle": "Replay: Blade",
         "fandomWikiURL": "/wiki/Replay:_Blade",
@@ -79,9 +155,9 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 8252,
-            "likes": 233,
-            "dislikes": 15
+            "views": 8546,
+            "likes": 237,
+            "dislikes": 16
         }
     },
     {
@@ -195,9 +271,9 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 6285,
+            "views": 6398,
             "likes": 179,
-            "dislikes": 7
+            "dislikes": 9
         }
     },
     {
@@ -270,8 +346,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12496,
-            "likes": 269,
+            "views": 12643,
+            "likes": 272,
             "dislikes": 12
         }
     },
@@ -347,8 +423,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12855,
-            "likes": 317,
+            "views": 12973,
+            "likes": 318,
             "dislikes": 12
         }
     },
@@ -429,8 +505,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 6720,
-            "likes": 141,
+            "views": 6740,
+            "likes": 142,
             "dislikes": 7
         }
     },
@@ -518,7 +594,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 7214,
+            "views": 7235,
             "likes": 224,
             "dislikes": 4
         }
@@ -608,8 +684,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11075,
-            "likes": 281,
+            "views": 11099,
+            "likes": 282,
             "dislikes": 11
         }
     },
@@ -683,7 +759,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 16601,
+            "views": 16637,
             "likes": 366,
             "dislikes": 21
         }
@@ -774,8 +850,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 16826,
-            "likes": 327,
+            "views": 16862,
+            "likes": 328,
             "dislikes": 17
         }
     },
@@ -850,7 +926,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 8180,
+            "views": 8191,
             "likes": 226,
             "dislikes": 7
         }
@@ -933,7 +1009,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 10648,
+            "views": 10658,
             "likes": 218,
             "dislikes": 9
         }
@@ -1008,7 +1084,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13078,
+            "views": 13097,
             "likes": 300,
             "dislikes": 11
         }
@@ -1095,7 +1171,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 8399,
+            "views": 8413,
             "likes": 226,
             "dislikes": 13
         }
@@ -1177,7 +1253,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 10006,
+            "views": 10021,
             "likes": 272,
             "dislikes": 9
         }
@@ -1254,7 +1330,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 9382,
+            "views": 9387,
             "likes": 281,
             "dislikes": 7
         }
@@ -1331,8 +1407,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14416,
-            "likes": 332,
+            "views": 14432,
+            "likes": 333,
             "dislikes": 19
         }
     },
@@ -1413,9 +1489,9 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 25439,
+            "views": 25563,
             "likes": 516,
-            "dislikes": 25
+            "dislikes": 26
         }
     },
     {
@@ -1489,7 +1565,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14427,
+            "views": 14471,
             "likes": 361,
             "dislikes": 28
         }
@@ -1646,8 +1722,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 32883,
-            "likes": 1214,
+            "views": 32913,
+            "likes": 1215,
             "dislikes": 63
         }
     },
@@ -1739,7 +1815,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 17559,
+            "views": 17585,
             "likes": 433,
             "dislikes": 14
         }
@@ -1821,8 +1897,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 22854,
-            "likes": 572,
+            "views": 22896,
+            "likes": 573,
             "dislikes": 15
         }
     },
@@ -1899,7 +1975,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 10191,
+            "views": 10197,
             "likes": 368,
             "dislikes": 25
         }
@@ -1983,7 +2059,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11346,
+            "views": 11356,
             "likes": 256,
             "dislikes": 11
         }
@@ -2060,7 +2136,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12015,
+            "views": 12029,
             "likes": 294,
             "dislikes": 12
         }
@@ -2137,7 +2213,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14615,
+            "views": 14626,
             "likes": 331,
             "dislikes": 11
         }
@@ -2214,7 +2290,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 23446,
+            "views": 23472,
             "likes": 454,
             "dislikes": 33
         }
@@ -2311,7 +2387,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15318,
+            "views": 15321,
             "likes": 378,
             "dislikes": 28
         }
@@ -2418,7 +2494,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 52145,
+            "views": 52163,
             "likes": 824,
             "dislikes": 52
         }
@@ -2503,7 +2579,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 16213,
+            "views": 16222,
             "likes": 413,
             "dislikes": 17
         }
@@ -2585,7 +2661,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15668,
+            "views": 15673,
             "likes": 348,
             "dislikes": 23
         }
@@ -2669,7 +2745,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15000,
+            "views": 15034,
             "likes": 307,
             "dislikes": 15
         }
@@ -2749,7 +2825,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 16680,
+            "views": 16690,
             "likes": 413,
             "dislikes": 24
         }
@@ -2834,7 +2910,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 20117,
+            "views": 20129,
             "likes": 488,
             "dislikes": 45
         }
@@ -2923,7 +2999,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 16335,
+            "views": 16355,
             "likes": 357,
             "dislikes": 14
         }
@@ -3012,7 +3088,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 23818,
+            "views": 23837,
             "likes": 491,
             "dislikes": 15
         }
@@ -3092,7 +3168,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13868,
+            "views": 13872,
             "likes": 349,
             "dislikes": 18
         }
@@ -3159,9 +3235,7 @@ const replayEpisodeArray = [
                 "Suriel Vazquez",
                 "Leo Vader",
                 "Hunter Wolfe",
-                "Intern",
-                "Jay Guisao",
-                "Intern"
+                "Jay Guisao"
             ]
         },
         "article": {
@@ -3174,7 +3248,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 18615,
+            "views": 18625,
             "likes": 409,
             "dislikes": 19
         }
@@ -3253,8 +3327,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 19816,
-            "likes": 364,
+            "views": 19840,
+            "likes": 365,
             "dislikes": 26
         }
     },
@@ -3336,7 +3410,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 18140,
+            "views": 18151,
             "likes": 417,
             "dislikes": 24
         }
@@ -3424,8 +3498,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 19703,
-            "likes": 383,
+            "views": 19725,
+            "likes": 384,
             "dislikes": 24
         }
     },
@@ -3503,8 +3577,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 18853,
-            "likes": 520,
+            "views": 18860,
+            "likes": 521,
             "dislikes": 42
         }
     },
@@ -3583,7 +3657,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 10084,
+            "views": 10085,
             "likes": 271,
             "dislikes": 9
         }
@@ -3666,7 +3740,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14943,
+            "views": 14960,
             "likes": 389,
             "dislikes": 19
         }
@@ -3750,7 +3824,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15797,
+            "views": 15817,
             "likes": 338,
             "dislikes": 23
         }
@@ -3829,7 +3903,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 18334,
+            "views": 18338,
             "likes": 344,
             "dislikes": 11
         }
@@ -3908,7 +3982,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13063,
+            "views": 13077,
             "likes": 302,
             "dislikes": 17
         }
@@ -3991,7 +4065,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13695,
+            "views": 13714,
             "likes": 324,
             "dislikes": 22
         }
@@ -4074,7 +4148,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 16470,
+            "views": 16487,
             "likes": 478,
             "dislikes": 7
         }
@@ -4155,7 +4229,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 10933,
+            "views": 10937,
             "likes": 251,
             "dislikes": 11
         }
@@ -4238,7 +4312,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13578,
+            "views": 13580,
             "likes": 338,
             "dislikes": 12
         }
@@ -4327,7 +4401,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 21403,
+            "views": 21408,
             "likes": 488,
             "dislikes": 22
         }
@@ -4411,7 +4485,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13701,
+            "views": 13707,
             "likes": 317,
             "dislikes": 7
         }
@@ -4494,7 +4568,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14122,
+            "views": 14129,
             "likes": 353,
             "dislikes": 15
         }
@@ -4601,7 +4675,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11934,
+            "views": 11938,
             "likes": 243,
             "dislikes": 19
         }
@@ -4679,7 +4753,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12955,
+            "views": 12966,
             "likes": 258,
             "dislikes": 20
         }
@@ -4760,7 +4834,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12327,
+            "views": 12334,
             "likes": 242,
             "dislikes": 15
         }
@@ -4842,7 +4916,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11501,
+            "views": 11506,
             "likes": 253,
             "dislikes": 9
         }
@@ -4924,7 +4998,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14165,
+            "views": 14170,
             "likes": 382,
             "dislikes": 12
         }
@@ -5003,8 +5077,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14233,
-            "likes": 325,
+            "views": 14241,
+            "likes": 326,
             "dislikes": 21
         }
     },
@@ -5085,7 +5159,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11718,
+            "views": 11730,
             "likes": 289,
             "dislikes": 26
         }
@@ -5168,7 +5242,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13006,
+            "views": 13011,
             "likes": 242,
             "dislikes": 11
         }
@@ -5247,7 +5321,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 10256,
+            "views": 10259,
             "likes": 219,
             "dislikes": 6
         }
@@ -5330,7 +5404,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 21986,
+            "views": 21994,
             "likes": 387,
             "dislikes": 23
         }
@@ -5414,7 +5488,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 17832,
+            "views": 17845,
             "likes": 265,
             "dislikes": 13
         }
@@ -5506,7 +5580,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15130,
+            "views": 15135,
             "likes": 373,
             "dislikes": 9
         }
@@ -5597,7 +5671,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 9315,
+            "views": 9318,
             "likes": 260,
             "dislikes": 1
         }
@@ -5701,7 +5775,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 9188,
+            "views": 9192,
             "likes": 170,
             "dislikes": 14
         }
@@ -5810,7 +5884,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11951,
+            "views": 11956,
             "likes": 237,
             "dislikes": 11
         }
@@ -5889,8 +5963,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 26776,
-            "likes": 517,
+            "views": 26811,
+            "likes": 518,
             "dislikes": 44
         }
     },
@@ -5972,7 +6046,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14442,
+            "views": 14455,
             "likes": 297,
             "dislikes": 15
         }
@@ -6079,8 +6153,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14663,
-            "likes": 328,
+            "views": 14677,
+            "likes": 329,
             "dislikes": 8
         }
     },
@@ -6175,7 +6249,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13390,
+            "views": 13391,
             "likes": 254,
             "dislikes": 21
         }
@@ -6264,7 +6338,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13856,
+            "views": 13862,
             "likes": 238,
             "dislikes": 12
         }
@@ -6360,7 +6434,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 10878,
+            "views": 10883,
             "likes": 224,
             "dislikes": 10
         }
@@ -6444,7 +6518,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14833,
+            "views": 14839,
             "likes": 395,
             "dislikes": 12
         }
@@ -6596,7 +6670,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11010,
+            "views": 11017,
             "likes": 241,
             "dislikes": 2
         }
@@ -6686,7 +6760,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 10291,
+            "views": 10298,
             "likes": 211,
             "dislikes": 6
         }
@@ -6783,8 +6857,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15176,
-            "likes": 357,
+            "views": 15180,
+            "likes": 358,
             "dislikes": 10
         }
     },
@@ -6865,7 +6939,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13914,
+            "views": 13923,
             "likes": 287,
             "dislikes": 12
         }
@@ -6949,7 +7023,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11237,
+            "views": 11245,
             "likes": 228,
             "dislikes": 7
         }
@@ -7032,7 +7106,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14511,
+            "views": 14525,
             "likes": 235,
             "dislikes": 10
         }
@@ -7115,7 +7189,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 18650,
+            "views": 18661,
             "likes": 399,
             "dislikes": 36
         }
@@ -7198,7 +7272,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15413,
+            "views": 15437,
             "likes": 255,
             "dislikes": 16
         }
@@ -7286,8 +7360,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14128,
-            "likes": 278,
+            "views": 14136,
+            "likes": 279,
             "dislikes": 21
         }
     },
@@ -7370,7 +7444,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 34150,
+            "views": 34158,
             "likes": 523,
             "dislikes": 23
         }
@@ -7454,7 +7528,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 19645,
+            "views": 19652,
             "likes": 329,
             "dislikes": 12
         }
@@ -7533,7 +7607,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15284,
+            "views": 15299,
             "likes": 256,
             "dislikes": 9
         }
@@ -7617,7 +7691,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 16630,
+            "views": 16637,
             "likes": 261,
             "dislikes": 13
         }
@@ -7696,7 +7770,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13551,
+            "views": 13559,
             "likes": 253,
             "dislikes": 11
         }
@@ -7778,7 +7852,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11775,
+            "views": 11778,
             "likes": 238,
             "dislikes": 5
         }
@@ -7860,9 +7934,9 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 131787,
+            "views": 131806,
             "likes": 1694,
-            "dislikes": 89
+            "dislikes": 90
         }
     },
     {
@@ -7938,7 +8012,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13262,
+            "views": 13264,
             "likes": 249,
             "dislikes": 9
         }
@@ -8016,7 +8090,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 16953,
+            "views": 16964,
             "likes": 363,
             "dislikes": 6
         }
@@ -8099,7 +8173,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11539,
+            "views": 11547,
             "likes": 234,
             "dislikes": 15
         }
@@ -8182,7 +8256,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12811,
+            "views": 12815,
             "likes": 274,
             "dislikes": 5
         }
@@ -8265,7 +8339,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 17299,
+            "views": 17316,
             "likes": 330,
             "dislikes": 22
         }
@@ -8353,7 +8427,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 10505,
+            "views": 10514,
             "likes": 219,
             "dislikes": 6
         }
@@ -8550,7 +8624,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 30175,
+            "views": 30203,
             "likes": 438,
             "dislikes": 49
         }
@@ -8632,7 +8706,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15216,
+            "views": 15227,
             "likes": 284,
             "dislikes": 15
         }
@@ -8720,7 +8794,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11373,
+            "views": 11378,
             "likes": 195,
             "dislikes": 14
         }
@@ -8802,7 +8876,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 19574,
+            "views": 19590,
             "likes": 375,
             "dislikes": 12
         }
@@ -8885,7 +8959,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11387,
+            "views": 11391,
             "likes": 227,
             "dislikes": 6
         }
@@ -8981,7 +9055,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13423,
+            "views": 13431,
             "likes": 317,
             "dislikes": 20
         }
@@ -9059,7 +9133,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 16187,
+            "views": 16200,
             "likes": 376,
             "dislikes": 16
         }
@@ -9173,9 +9247,9 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 10299,
+            "views": 10303,
             "likes": 242,
-            "dislikes": 10
+            "dislikes": 11
         }
     },
     {
@@ -9255,7 +9329,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 17580,
+            "views": 17586,
             "likes": 304,
             "dislikes": 10
         }
@@ -9353,7 +9427,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13071,
+            "views": 13080,
             "likes": 251,
             "dislikes": 3
         }
@@ -9436,7 +9510,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 38825,
+            "views": 38906,
             "likes": 380,
             "dislikes": 34
         }
@@ -9518,8 +9592,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13072,
-            "likes": 254,
+            "views": 13081,
+            "likes": 255,
             "dislikes": 8
         }
     },
@@ -9596,8 +9670,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15549,
-            "likes": 312,
+            "views": 15555,
+            "likes": 313,
             "dislikes": 9
         }
     },
@@ -9673,8 +9747,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 8881,
-            "likes": 231,
+            "views": 8884,
+            "likes": 232,
             "dislikes": 9
         }
     },
@@ -9782,7 +9856,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15744,
+            "views": 15752,
             "likes": 301,
             "dislikes": 7
         }
@@ -9880,7 +9954,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13660,
+            "views": 13667,
             "likes": 278,
             "dislikes": 7
         }
@@ -9975,8 +10049,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 7850,
-            "likes": 221,
+            "views": 7853,
+            "likes": 222,
             "dislikes": 8
         }
     },
@@ -10069,7 +10143,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11305,
+            "views": 11306,
             "likes": 278,
             "dislikes": 14
         }
@@ -10269,7 +10343,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 10889,
+            "views": 10897,
             "likes": 247,
             "dislikes": 5
         }
@@ -10358,7 +10432,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14837,
+            "views": 14843,
             "likes": 272,
             "dislikes": 18
         }
@@ -10472,8 +10546,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 20695,
-            "likes": 551,
+            "views": 20703,
+            "likes": 553,
             "dislikes": 8
         }
     },
@@ -10556,7 +10630,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 18456,
+            "views": 18475,
             "likes": 291,
             "dislikes": 11
         }
@@ -10640,7 +10714,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15280,
+            "views": 15286,
             "likes": 326,
             "dislikes": 13
         }
@@ -10719,8 +10793,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 19295,
-            "likes": 339,
+            "views": 19300,
+            "likes": 340,
             "dislikes": 22
         }
     },
@@ -10801,7 +10875,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 21332,
+            "views": 21335,
             "likes": 333,
             "dislikes": 19
         }
@@ -10885,7 +10959,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 28626,
+            "views": 28657,
             "likes": 429,
             "dislikes": 28
         }
@@ -10981,7 +11055,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13386,
+            "views": 13388,
             "likes": 236,
             "dislikes": 11
         }
@@ -11075,7 +11149,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 21508,
+            "views": 21520,
             "likes": 400,
             "dislikes": 26
         }
@@ -11161,7 +11235,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11341,
+            "views": 11347,
             "likes": 177,
             "dislikes": 11
         }
@@ -11278,7 +11352,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12041,
+            "views": 12045,
             "likes": 248,
             "dislikes": 6
         }
@@ -11358,7 +11432,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14951,
+            "views": 14955,
             "likes": 256,
             "dislikes": 21
         }
@@ -11531,7 +11605,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 18414,
+            "views": 18419,
             "likes": 337,
             "dislikes": 17
         }
@@ -11610,7 +11684,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12320,
+            "views": 12325,
             "likes": 232,
             "dislikes": 9
         }
@@ -11693,7 +11767,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 17568,
+            "views": 17582,
             "likes": 303,
             "dislikes": 9
         }
@@ -11775,7 +11849,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11424,
+            "views": 11431,
             "likes": 274,
             "dislikes": 5
         }
@@ -11861,7 +11935,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 18148,
+            "views": 18158,
             "likes": 488,
             "dislikes": 16
         }
@@ -11948,7 +12022,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 19883,
+            "views": 19892,
             "likes": 424,
             "dislikes": 14
         }
@@ -12038,7 +12112,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 17088,
+            "views": 17104,
             "likes": 260,
             "dislikes": 22
         }
@@ -12128,8 +12202,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14586,
-            "likes": 266,
+            "views": 14596,
+            "likes": 267,
             "dislikes": 4
         }
     },
@@ -12214,7 +12288,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 26455,
+            "views": 26464,
             "likes": 418,
             "dislikes": 36
         }
@@ -12299,7 +12373,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 17548,
+            "views": 17551,
             "likes": 310,
             "dislikes": 8
         }
@@ -12417,7 +12491,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13801,
+            "views": 13805,
             "likes": 253,
             "dislikes": 12
         }
@@ -12502,7 +12576,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15218,
+            "views": 15221,
             "likes": 295,
             "dislikes": 6
         }
@@ -12588,7 +12662,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 16232,
+            "views": 16235,
             "likes": 321,
             "dislikes": 9
         }
@@ -12674,7 +12748,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12632,
+            "views": 12644,
             "likes": 209,
             "dislikes": 9
         }
@@ -12760,8 +12834,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15245,
-            "likes": 261,
+            "views": 15249,
+            "likes": 262,
             "dislikes": 16
         }
     },
@@ -12927,7 +13001,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 18234,
+            "views": 18245,
             "likes": 339,
             "dislikes": 18
         }
@@ -13013,8 +13087,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 16247,
-            "likes": 299,
+            "views": 16260,
+            "likes": 300,
             "dislikes": 6
         }
     },
@@ -13098,7 +13172,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 18821,
+            "views": 18825,
             "likes": 335,
             "dislikes": 11
         }
@@ -13183,7 +13257,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 16152,
+            "views": 16159,
             "likes": 242,
             "dislikes": 8
         }
@@ -13269,8 +13343,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 18584,
-            "likes": 258,
+            "views": 18591,
+            "likes": 259,
             "dislikes": 11
         }
     },
@@ -13356,7 +13430,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15157,
+            "views": 15161,
             "likes": 260,
             "dislikes": 14
         }
@@ -13442,7 +13516,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13764,
+            "views": 13772,
             "likes": 199,
             "dislikes": 19
         }
@@ -13534,7 +13608,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12552,
+            "views": 12561,
             "likes": 233,
             "dislikes": 7
         }
@@ -13611,9 +13685,9 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 16912,
-            "likes": 260,
-            "dislikes": 11
+            "views": 16922,
+            "likes": 261,
+            "dislikes": 12
         }
     },
     {
@@ -13695,7 +13769,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 19546,
+            "views": 19553,
             "likes": 398,
             "dislikes": 6
         }
@@ -13778,7 +13852,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15079,
+            "views": 15083,
             "likes": 266,
             "dislikes": 18
         }
@@ -13888,7 +13962,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 28476,
+            "views": 28481,
             "likes": 386,
             "dislikes": 42
         }
@@ -13978,7 +14052,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 20663,
+            "views": 20664,
             "likes": 298,
             "dislikes": 8
         }
@@ -14053,7 +14127,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15384,
+            "views": 15398,
             "likes": 232,
             "dislikes": 19
         }
@@ -14140,7 +14214,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14595,
+            "views": 14604,
             "likes": 251,
             "dislikes": 10
         }
@@ -14225,7 +14299,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 20886,
+            "views": 20892,
             "likes": 287,
             "dislikes": 16
         }
@@ -14300,8 +14374,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 17754,
-            "likes": 269,
+            "views": 17767,
+            "likes": 270,
             "dislikes": 17
         }
     },
@@ -14375,7 +14449,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12195,
+            "views": 12196,
             "likes": 213,
             "dislikes": 14
         }
@@ -14466,7 +14540,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 20596,
+            "views": 20601,
             "likes": 262,
             "dislikes": 19
         }
@@ -14540,7 +14614,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 18597,
+            "views": 18602,
             "likes": 243,
             "dislikes": 15
         }
@@ -14615,7 +14689,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 21218,
+            "views": 21243,
             "likes": 265,
             "dislikes": 25
         }
@@ -14690,7 +14764,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 37337,
+            "views": 37370,
             "likes": 262,
             "dislikes": 36
         }
@@ -14770,7 +14844,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 25194,
+            "views": 25201,
             "likes": 283,
             "dislikes": 14
         }
@@ -14844,7 +14918,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 17233,
+            "views": 17236,
             "likes": 267,
             "dislikes": 16
         }
@@ -14973,7 +15047,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 10562,
+            "views": 10565,
             "likes": 207,
             "dislikes": 6
         }
@@ -15049,7 +15123,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15250,
+            "views": 15257,
             "likes": 229,
             "dislikes": 12
         }
@@ -15144,7 +15218,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 22154,
+            "views": 22155,
             "likes": 332,
             "dislikes": 16
         }
@@ -15218,8 +15292,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 38092,
-            "likes": 420,
+            "views": 38103,
+            "likes": 421,
             "dislikes": 42
         }
     },
@@ -15292,7 +15366,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12189,
+            "views": 12190,
             "likes": 225,
             "dislikes": 8
         }
@@ -15397,7 +15471,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 35020,
+            "views": 35041,
             "likes": 411,
             "dislikes": 42
         }
@@ -15473,7 +15547,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15805,
+            "views": 15813,
             "likes": 252,
             "dislikes": 10
         }
@@ -15549,7 +15623,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15812,
+            "views": 15814,
             "likes": 280,
             "dislikes": 10
         }
@@ -15624,7 +15698,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 20518,
+            "views": 20526,
             "likes": 230,
             "dislikes": 8
         }
@@ -15699,7 +15773,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 19360,
+            "views": 19361,
             "likes": 277,
             "dislikes": 14
         }
@@ -15774,7 +15848,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 17247,
+            "views": 17250,
             "likes": 246,
             "dislikes": 15
         }
@@ -15850,7 +15924,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 27109,
+            "views": 27113,
             "likes": 404,
             "dislikes": 21
         }
@@ -15925,7 +15999,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 26497,
+            "views": 26510,
             "likes": 366,
             "dislikes": 19
         }
@@ -16000,8 +16074,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 34968,
-            "likes": 382,
+            "views": 34976,
+            "likes": 383,
             "dislikes": 50
         }
     },
@@ -16075,7 +16149,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15996,
+            "views": 16049,
             "likes": 240,
             "dislikes": 4
         }
@@ -16148,7 +16222,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 16956,
+            "views": 16961,
             "likes": 303,
             "dislikes": 7
         }
@@ -16222,7 +16296,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 23397,
+            "views": 23403,
             "likes": 289,
             "dislikes": 12
         }
@@ -16298,7 +16372,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 19293,
+            "views": 19303,
             "likes": 300,
             "dislikes": 9
         }
@@ -16390,7 +16464,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12556,
+            "views": 12558,
             "likes": 192,
             "dislikes": 6
         }
@@ -16465,7 +16539,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 19668,
+            "views": 19669,
             "likes": 285,
             "dislikes": 18
         }
@@ -16540,7 +16614,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 17070,
+            "views": 17073,
             "likes": 312,
             "dislikes": 12
         }
@@ -16616,7 +16690,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 16811,
+            "views": 16817,
             "likes": 238,
             "dislikes": 10
         }
@@ -16695,7 +16769,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15228,
+            "views": 15230,
             "likes": 256,
             "dislikes": 7
         }
@@ -16771,7 +16845,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13934,
+            "views": 13937,
             "likes": 257,
             "dislikes": 6
         }
@@ -16846,7 +16920,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12927,
+            "views": 12928,
             "likes": 246,
             "dislikes": 5
         }
@@ -16924,7 +16998,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 29507,
+            "views": 29514,
             "likes": 470,
             "dislikes": 19
         }
@@ -16999,7 +17073,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14981,
+            "views": 14984,
             "likes": 208,
             "dislikes": 12
         }
@@ -17099,7 +17173,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 20714,
+            "views": 20723,
             "likes": 510,
             "dislikes": 10
         }
@@ -17174,7 +17248,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 25533,
+            "views": 25549,
             "likes": 390,
             "dislikes": 30
         }
@@ -17290,7 +17364,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 23736,
+            "views": 23737,
             "likes": 318,
             "dislikes": 18
         }
@@ -17366,7 +17440,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15289,
+            "views": 15295,
             "likes": 291,
             "dislikes": 11
         }
@@ -17441,7 +17515,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 25705,
+            "views": 25713,
             "likes": 453,
             "dislikes": 10
         }
@@ -17517,7 +17591,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14896,
+            "views": 14899,
             "likes": 225,
             "dislikes": 8
         }
@@ -17592,7 +17666,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 22582,
+            "views": 22587,
             "likes": 287,
             "dislikes": 11
         }
@@ -17667,7 +17741,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 18756,
+            "views": 18770,
             "likes": 225,
             "dislikes": 14
         }
@@ -17744,9 +17818,9 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 29709,
-            "likes": 322,
-            "dislikes": 41
+            "views": 29908,
+            "likes": 323,
+            "dislikes": 43
         }
     },
     {
@@ -17819,7 +17893,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 16879,
+            "views": 16887,
             "likes": 231,
             "dislikes": 7
         }
@@ -17894,7 +17968,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14836,
+            "views": 14839,
             "likes": 199,
             "dislikes": 4
         }
@@ -17970,7 +18044,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 19810,
+            "views": 19821,
             "likes": 243,
             "dislikes": 17
         }
@@ -18045,9 +18119,9 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 72036,
+            "views": 72111,
             "likes": 695,
-            "dislikes": 76
+            "dislikes": 77
         }
     },
     {
@@ -18120,7 +18194,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 23499,
+            "views": 23505,
             "likes": 228,
             "dislikes": 15
         }
@@ -18195,7 +18269,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 32161,
+            "views": 32174,
             "likes": 335,
             "dislikes": 33
         }
@@ -18372,7 +18446,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 17602,
+            "views": 17613,
             "likes": 206,
             "dislikes": 6
         }
@@ -18447,8 +18521,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 21198,
-            "likes": 238,
+            "views": 21208,
+            "likes": 239,
             "dislikes": 8
         }
     },
@@ -18523,7 +18597,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 28210,
+            "views": 28230,
             "likes": 300,
             "dislikes": 10
         }
@@ -18598,7 +18672,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15271,
+            "views": 15273,
             "likes": 223,
             "dislikes": 25
         }
@@ -18673,7 +18747,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 9668,
+            "views": 9675,
             "likes": 123,
             "dislikes": 7
         }
@@ -18831,7 +18905,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 22052,
+            "views": 22060,
             "likes": 267,
             "dislikes": 9
         }
@@ -18906,7 +18980,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 28373,
+            "views": 28385,
             "likes": 398,
             "dislikes": 16
         }
@@ -18980,7 +19054,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 21613,
+            "views": 21625,
             "likes": 311,
             "dislikes": 18
         }
@@ -19055,7 +19129,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 32302,
+            "views": 32306,
             "likes": 267,
             "dislikes": 18
         }
@@ -19130,7 +19204,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 74955,
+            "views": 74967,
             "likes": 534,
             "dislikes": 72
         }
@@ -19205,7 +19279,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 17742,
+            "views": 17745,
             "likes": 263,
             "dislikes": 7
         }
@@ -19279,7 +19353,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 19518,
+            "views": 19527,
             "likes": 272,
             "dislikes": 23
         }
@@ -19353,7 +19427,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13135,
+            "views": 13146,
             "likes": 155,
             "dislikes": 8
         }
@@ -19501,8 +19575,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 56398,
-            "likes": 565,
+            "views": 56422,
+            "likes": 566,
             "dislikes": 19
         }
     },
@@ -19575,7 +19649,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14128,
+            "views": 14134,
             "likes": 190,
             "dislikes": 8
         }
@@ -19651,9 +19725,9 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 17541,
+            "views": 17560,
             "likes": 216,
-            "dislikes": 20
+            "dislikes": 21
         }
     },
     {
@@ -19726,7 +19800,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15010,
+            "views": 15018,
             "likes": 196,
             "dislikes": 9
         }
@@ -19803,7 +19877,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15276,
+            "views": 15280,
             "likes": 186,
             "dislikes": 10
         }
@@ -19878,7 +19952,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 20552,
+            "views": 20566,
             "likes": 255,
             "dislikes": 14
         }
@@ -19953,7 +20027,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 21740,
+            "views": 21771,
             "likes": 223,
             "dislikes": 12
         }
@@ -20029,8 +20103,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 29077,
-            "likes": 354,
+            "views": 29169,
+            "likes": 355,
             "dislikes": 15
         }
     },
@@ -20105,7 +20179,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 28225,
+            "views": 28238,
             "likes": 374,
             "dislikes": 12
         }
@@ -20180,7 +20254,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12024,
+            "views": 12028,
             "likes": 149,
             "dislikes": 3
         }
@@ -20256,7 +20330,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 19955,
+            "views": 19979,
             "likes": 275,
             "dislikes": 12
         }
@@ -20331,7 +20405,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 36392,
+            "views": 36413,
             "likes": 424,
             "dislikes": 18
         }
@@ -20407,7 +20481,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 21354,
+            "views": 21366,
             "likes": 254,
             "dislikes": 15
         }
@@ -20484,7 +20558,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14113,
+            "views": 14126,
             "likes": 175,
             "dislikes": 1
         }
@@ -20560,7 +20634,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 16572,
+            "views": 16578,
             "likes": 208,
             "dislikes": 10
         }
@@ -20635,7 +20709,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 24827,
+            "views": 24835,
             "likes": 287,
             "dislikes": 10
         }
@@ -20711,7 +20785,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 10419,
+            "views": 10423,
             "likes": 141,
             "dislikes": 7
         }
@@ -20786,7 +20860,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13982,
+            "views": 13986,
             "likes": 243,
             "dislikes": 9
         }
@@ -20861,7 +20935,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12723,
+            "views": 12727,
             "likes": 196,
             "dislikes": 6
         }
@@ -20936,7 +21010,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 50957,
+            "views": 50964,
             "likes": 461,
             "dislikes": 35
         }
@@ -21012,7 +21086,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 20021,
+            "views": 20027,
             "likes": 274,
             "dislikes": 18
         }
@@ -21087,9 +21161,9 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 20148,
+            "views": 20163,
             "likes": 265,
-            "dislikes": 12
+            "dislikes": 13
         }
     },
     {
@@ -21168,8 +21242,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 20145,
-            "likes": 244,
+            "views": 20162,
+            "likes": 245,
             "dislikes": 10
         }
     },
@@ -21246,7 +21320,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 17542,
+            "views": 17549,
             "likes": 335,
             "dislikes": 7
         }
@@ -21319,7 +21393,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15585,
+            "views": 15599,
             "likes": 189,
             "dislikes": 9
         }
@@ -21392,7 +21466,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13396,
+            "views": 13400,
             "likes": 181,
             "dislikes": 8
         }
@@ -21464,7 +21538,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 16991,
+            "views": 16996,
             "likes": 202,
             "dislikes": 10
         }
@@ -21538,7 +21612,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15552,
+            "views": 15558,
             "likes": 195,
             "dislikes": 15
         }
@@ -21611,7 +21685,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14323,
+            "views": 14327,
             "likes": 172,
             "dislikes": 4
         }
@@ -21682,7 +21756,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 20482,
+            "views": 20494,
             "likes": 236,
             "dislikes": 6
         }
@@ -21755,7 +21829,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14614,
+            "views": 14617,
             "likes": 197,
             "dislikes": 6
         }
@@ -21828,7 +21902,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 9432,
+            "views": 9433,
             "likes": 115,
             "dislikes": 6
         }
@@ -21900,7 +21974,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 18215,
+            "views": 18226,
             "likes": 222,
             "dislikes": 12
         }
@@ -21973,7 +22047,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 29897,
+            "views": 29905,
             "likes": 247,
             "dislikes": 12
         }
@@ -22047,7 +22121,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 17932,
+            "views": 17940,
             "likes": 205,
             "dislikes": 4
         }
@@ -22122,7 +22196,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13803,
+            "views": 13808,
             "likes": 146,
             "dislikes": 5
         }
@@ -22194,7 +22268,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14813,
+            "views": 14820,
             "likes": 157,
             "dislikes": 8
         }
@@ -22267,7 +22341,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 9530,
+            "views": 9533,
             "likes": 91,
             "dislikes": 3
         }
@@ -22351,7 +22425,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 23827,
+            "views": 23835,
             "likes": 222,
             "dislikes": 4
         }
@@ -22423,7 +22497,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 9961,
+            "views": 9962,
             "likes": 136,
             "dislikes": 5
         }
@@ -22568,7 +22642,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14867,
+            "views": 14869,
             "likes": 185,
             "dislikes": 10
         }
@@ -22640,7 +22714,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14464,
+            "views": 14469,
             "likes": 148,
             "dislikes": 8
         }
@@ -22711,7 +22785,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12610,
+            "views": 12613,
             "likes": 137,
             "dislikes": 10
         }
@@ -22783,7 +22857,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 6600,
+            "views": 6601,
             "likes": 117,
             "dislikes": 5
         }
@@ -22856,7 +22930,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 23450,
+            "views": 23454,
             "likes": 149,
             "dislikes": 7
         }
@@ -22935,7 +23009,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 16416,
+            "views": 16425,
             "likes": 182,
             "dislikes": 11
         }
@@ -23007,8 +23081,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13416,
-            "likes": 165,
+            "views": 13422,
+            "likes": 166,
             "dislikes": 5
         }
     },
@@ -23080,7 +23154,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 21374,
+            "views": 21383,
             "likes": 251,
             "dislikes": 8
         }
@@ -23153,7 +23227,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12729,
+            "views": 12731,
             "likes": 181,
             "dislikes": 7
         }
@@ -23225,7 +23299,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 17996,
+            "views": 18002,
             "likes": 239,
             "dislikes": 6
         }
@@ -23297,7 +23371,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15249,
+            "views": 15252,
             "likes": 174,
             "dislikes": 5
         }
@@ -23369,7 +23443,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11010,
+            "views": 11011,
             "likes": 136,
             "dislikes": 5
         }
@@ -23441,7 +23515,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 22201,
+            "views": 22210,
             "likes": 115,
             "dislikes": 9
         }
@@ -23513,7 +23587,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 16893,
+            "views": 16899,
             "likes": 213,
             "dislikes": 4
         }
@@ -23589,7 +23663,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13084,
+            "views": 13088,
             "likes": 224,
             "dislikes": 4
         }
@@ -23664,7 +23738,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 17046,
+            "views": 17054,
             "likes": 256,
             "dislikes": 7
         }
@@ -23737,7 +23811,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14173,
+            "views": 14176,
             "likes": 180,
             "dislikes": 7
         }
@@ -23811,7 +23885,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 18443,
+            "views": 18454,
             "likes": 272,
             "dislikes": 5
         }
@@ -23918,7 +23992,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 40745,
+            "views": 40777,
             "likes": 398,
             "dislikes": 8
         }
@@ -23988,7 +24062,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 17277,
+            "views": 17286,
             "likes": 208,
             "dislikes": 13
         }
@@ -24061,7 +24135,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 16380,
+            "views": 16392,
             "likes": 186,
             "dislikes": 3
         }
@@ -24133,7 +24207,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 22248,
+            "views": 22259,
             "likes": 290,
             "dislikes": 11
         }
@@ -24204,7 +24278,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 21620,
+            "views": 21629,
             "likes": 196,
             "dislikes": 7
         }
@@ -24276,7 +24350,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 34654,
+            "views": 34659,
             "likes": 272,
             "dislikes": 17
         }
@@ -24347,7 +24421,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12805,
+            "views": 12810,
             "likes": 235,
             "dislikes": 5
         }
@@ -24418,7 +24492,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14143,
+            "views": 14147,
             "likes": 195,
             "dislikes": 3
         }
@@ -24492,7 +24566,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12377,
+            "views": 12380,
             "likes": 187,
             "dislikes": 4
         }
@@ -24564,7 +24638,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 9557,
+            "views": 9559,
             "likes": 138,
             "dislikes": 1
         }
@@ -24636,7 +24710,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14767,
+            "views": 14772,
             "likes": 151,
             "dislikes": 4
         }
@@ -24709,7 +24783,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14915,
+            "views": 14918,
             "likes": 185,
             "dislikes": 6
         }
@@ -24780,7 +24854,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14651,
+            "views": 14654,
             "likes": 167,
             "dislikes": 11
         }
@@ -24852,7 +24926,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15522,
+            "views": 15527,
             "likes": 192,
             "dislikes": 12
         }
@@ -24926,7 +25000,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14433,
+            "views": 14437,
             "likes": 163,
             "dislikes": 5
         }
@@ -24997,7 +25071,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 125629,
+            "views": 125646,
             "likes": 663,
             "dislikes": 48
         }
@@ -25074,7 +25148,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12908,
+            "views": 12911,
             "likes": 154,
             "dislikes": 4
         }
@@ -25147,7 +25221,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 20694,
+            "views": 20709,
             "likes": 211,
             "dislikes": 9
         }
@@ -25218,7 +25292,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14151,
+            "views": 14154,
             "likes": 196,
             "dislikes": 5
         }
@@ -25290,7 +25364,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12945,
+            "views": 12947,
             "likes": 181,
             "dislikes": 4
         }
@@ -25374,7 +25448,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11805,
+            "views": 11810,
             "likes": 182,
             "dislikes": 2
         }
@@ -25446,7 +25520,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13335,
+            "views": 13338,
             "likes": 209,
             "dislikes": 6
         }
@@ -25518,7 +25592,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 19871,
+            "views": 19872,
             "likes": 268,
             "dislikes": 17
         }
@@ -25589,7 +25663,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15981,
+            "views": 15987,
             "likes": 167,
             "dislikes": 9
         }
@@ -25661,8 +25735,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14936,
-            "likes": 193,
+            "views": 14941,
+            "likes": 194,
             "dislikes": 6
         }
     },
@@ -25733,7 +25807,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 17028,
+            "views": 17032,
             "likes": 218,
             "dislikes": 14
         }
@@ -25805,7 +25879,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 17921,
+            "views": 17927,
             "likes": 231,
             "dislikes": 11
         }
@@ -25877,7 +25951,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 19497,
+            "views": 19507,
             "likes": 238,
             "dislikes": 6
         }
@@ -25949,7 +26023,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13425,
+            "views": 13429,
             "likes": 170,
             "dislikes": 4
         }
@@ -26021,7 +26095,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 22477,
+            "views": 22479,
             "likes": 307,
             "dislikes": 8
         }
@@ -26094,7 +26168,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 24169,
+            "views": 24171,
             "likes": 219,
             "dislikes": 11
         }
@@ -26166,7 +26240,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14300,
+            "views": 14305,
             "likes": 156,
             "dislikes": 5
         }
@@ -26238,7 +26312,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 19753,
+            "views": 19769,
             "likes": 219,
             "dislikes": 5
         }
@@ -26314,7 +26388,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13843,
+            "views": 13849,
             "likes": 181,
             "dislikes": 10
         }
@@ -26386,7 +26460,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 10764,
+            "views": 10766,
             "likes": 143,
             "dislikes": 3
         }
@@ -26458,7 +26532,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 16814,
+            "views": 16818,
             "likes": 176,
             "dislikes": 12
         }
@@ -26532,7 +26606,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15192,
+            "views": 15200,
             "likes": 198,
             "dislikes": 3
         }
@@ -26606,7 +26680,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 27821,
+            "views": 27825,
             "likes": 218,
             "dislikes": 9
         }
@@ -26679,7 +26753,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 17383,
+            "views": 17387,
             "likes": 280,
             "dislikes": 6
         }
@@ -26753,7 +26827,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13158,
+            "views": 13162,
             "likes": 191,
             "dislikes": 6
         }
@@ -26826,7 +26900,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 16276,
+            "views": 16281,
             "likes": 210,
             "dislikes": 5
         }
@@ -26899,7 +26973,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13380,
+            "views": 13382,
             "likes": 199,
             "dislikes": 5
         }
@@ -26971,7 +27045,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12588,
+            "views": 12590,
             "likes": 169,
             "dislikes": 7
         }
@@ -27043,7 +27117,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 19784,
+            "views": 19798,
             "likes": 245,
             "dislikes": 5
         }
@@ -27115,7 +27189,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11560,
+            "views": 11563,
             "likes": 163,
             "dislikes": 12
         }
@@ -27187,7 +27261,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11627,
+            "views": 11631,
             "likes": 159,
             "dislikes": 5
         }
@@ -27314,7 +27388,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13451,
+            "views": 13456,
             "likes": 186,
             "dislikes": 5
         }
@@ -27387,7 +27461,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 19525,
+            "views": 19531,
             "likes": 247,
             "dislikes": 9
         }
@@ -27459,7 +27533,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15860,
+            "views": 15868,
             "likes": 253,
             "dislikes": 5
         }
@@ -27531,7 +27605,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14038,
+            "views": 14050,
             "likes": 176,
             "dislikes": 5
         }
@@ -27603,7 +27677,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12625,
+            "views": 12632,
             "likes": 201,
             "dislikes": 11
         }
@@ -27676,7 +27750,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 18485,
+            "views": 18494,
             "likes": 315,
             "dislikes": 8
         }
@@ -27749,7 +27823,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11853,
+            "views": 11862,
             "likes": 158,
             "dislikes": 11
         }
@@ -27821,7 +27895,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 18493,
+            "views": 18499,
             "likes": 178,
             "dislikes": 14
         }
@@ -27892,7 +27966,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 20568,
+            "views": 20576,
             "likes": 210,
             "dislikes": 6
         }
@@ -27964,7 +28038,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 16063,
+            "views": 16065,
             "likes": 190,
             "dislikes": 5
         }
@@ -28037,7 +28111,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15377,
+            "views": 15379,
             "likes": 172,
             "dislikes": 6
         }
@@ -28113,7 +28187,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 53570,
+            "views": 53582,
             "likes": 534,
             "dislikes": 33
         }
@@ -28185,7 +28259,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15607,
+            "views": 15608,
             "likes": 200,
             "dislikes": 6
         }
@@ -28257,7 +28331,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 19413,
+            "views": 19421,
             "likes": 218,
             "dislikes": 9
         }
@@ -28329,7 +28403,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 49935,
+            "views": 49938,
             "likes": 257,
             "dislikes": 42
         }
@@ -28400,7 +28474,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13747,
+            "views": 13750,
             "likes": 216,
             "dislikes": 6
         }
@@ -28473,7 +28547,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 20817,
+            "views": 20822,
             "likes": 222,
             "dislikes": 625
         }
@@ -28548,7 +28622,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11990,
+            "views": 11994,
             "likes": 139,
             "dislikes": 6
         }
@@ -28621,7 +28695,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15053,
+            "views": 15056,
             "likes": 238,
             "dislikes": 11
         }
@@ -28694,7 +28768,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 26875,
+            "views": 26881,
             "likes": 212,
             "dislikes": 11
         }
@@ -28766,7 +28840,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12645,
+            "views": 12646,
             "likes": 162,
             "dislikes": 5
         }
@@ -28838,7 +28912,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 16662,
+            "views": 16663,
             "likes": 217,
             "dislikes": 6
         }
@@ -28910,7 +28984,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11564,
+            "views": 11566,
             "likes": 147,
             "dislikes": 2
         }
@@ -28983,7 +29057,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15583,
+            "views": 15587,
             "likes": 164,
             "dislikes": 4
         }
@@ -29054,7 +29128,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13176,
+            "views": 13179,
             "likes": 127,
             "dislikes": 7
         }
@@ -29130,7 +29204,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 10833,
+            "views": 10834,
             "likes": 169,
             "dislikes": 5
         }
@@ -29202,7 +29276,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 24919,
+            "views": 24928,
             "likes": 279,
             "dislikes": 7
         }
@@ -29274,7 +29348,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12026,
+            "views": 12031,
             "likes": 135,
             "dislikes": 5
         }
@@ -29346,7 +29420,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 16060,
+            "views": 16063,
             "likes": 205,
             "dislikes": 5
         }
@@ -29418,7 +29492,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 6303,
+            "views": 6304,
             "likes": 94,
             "dislikes": 4
         }
@@ -29490,7 +29564,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 9096,
+            "views": 9099,
             "likes": 155,
             "dislikes": 1
         }
@@ -29562,7 +29636,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 9257,
+            "views": 9258,
             "likes": 126,
             "dislikes": 2
         }
@@ -29636,7 +29710,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15461,
+            "views": 15469,
             "likes": 199,
             "dislikes": 14
         }
@@ -29708,7 +29782,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 18190,
+            "views": 18196,
             "likes": 215,
             "dislikes": 6
         }
@@ -29779,7 +29853,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 8644,
+            "views": 8645,
             "likes": 108,
             "dislikes": 3
         }
@@ -29850,7 +29924,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 6850,
+            "views": 6854,
             "likes": 94,
             "dislikes": 4
         }
@@ -29922,7 +29996,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 9903,
+            "views": 9906,
             "likes": 138,
             "dislikes": 3
         }
@@ -29994,7 +30068,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14338,
+            "views": 14342,
             "likes": 170,
             "dislikes": 6
         }
@@ -30068,7 +30142,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 8000,
+            "views": 8002,
             "likes": 126,
             "dislikes": 12
         }
@@ -30140,7 +30214,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 17983,
+            "views": 17985,
             "likes": 180,
             "dislikes": 10
         }
@@ -30212,7 +30286,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 23080,
+            "views": 23086,
             "likes": 241,
             "dislikes": 6
         }
@@ -30355,7 +30429,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12189,
+            "views": 12192,
             "likes": 142,
             "dislikes": 3
         }
@@ -30427,7 +30501,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 9689,
+            "views": 9690,
             "likes": 124,
             "dislikes": 4
         }
@@ -30499,7 +30573,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13869,
+            "views": 13870,
             "likes": 220,
             "dislikes": 5
         }
@@ -30643,7 +30717,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14865,
+            "views": 14868,
             "likes": 134,
             "dislikes": 10
         }
@@ -30718,7 +30792,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 23697,
+            "views": 23702,
             "likes": 401,
             "dislikes": 19
         }
@@ -30933,7 +31007,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11240,
+            "views": 11242,
             "likes": 113,
             "dislikes": 8
         }
@@ -31005,7 +31079,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11439,
+            "views": 11442,
             "likes": 123,
             "dislikes": 7
         }
@@ -31077,7 +31151,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14563,
+            "views": 14567,
             "likes": 113,
             "dislikes": 9
         }
@@ -31149,7 +31223,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14061,
+            "views": 14063,
             "likes": 125,
             "dislikes": 5
         }
@@ -31221,7 +31295,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 7796,
+            "views": 7797,
             "likes": 76,
             "dislikes": 1
         }
@@ -31374,7 +31448,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 19482,
+            "views": 19490,
             "likes": 259,
             "dislikes": 6
         }
@@ -31446,7 +31520,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 10171,
+            "views": 10172,
             "likes": 95,
             "dislikes": 4
         }
@@ -31518,7 +31592,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 22473,
+            "views": 22480,
             "likes": 232,
             "dislikes": 4
         }
@@ -31590,7 +31664,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 7859,
+            "views": 7860,
             "likes": 80,
             "dislikes": 3
         }
@@ -31665,7 +31739,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 10880,
+            "views": 10881,
             "likes": 97,
             "dislikes": 5
         }
@@ -31737,7 +31811,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15606,
+            "views": 15614,
             "likes": 161,
             "dislikes": 7
         }
@@ -31809,7 +31883,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 10685,
+            "views": 10691,
             "likes": 83,
             "dislikes": 6
         }
@@ -31881,7 +31955,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 9870,
+            "views": 9872,
             "likes": 115,
             "dislikes": 3
         }
@@ -31953,7 +32027,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12176,
+            "views": 12178,
             "likes": 117,
             "dislikes": 2
         }
@@ -32028,7 +32102,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 17919,
+            "views": 17924,
             "likes": 130,
             "dislikes": 7
         }
@@ -32123,7 +32197,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 19772,
+            "views": 19773,
             "likes": 90,
             "dislikes": 22
         }
@@ -32218,7 +32292,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 8978,
+            "views": 8979,
             "likes": 105,
             "dislikes": 2
         }
@@ -32312,7 +32386,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11056,
+            "views": 11057,
             "likes": 115,
             "dislikes": 8
         }
@@ -32413,7 +32487,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12447,
+            "views": 12451,
             "likes": 98,
             "dislikes": 9
         }
@@ -32506,7 +32580,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12528,
+            "views": 12531,
             "likes": 119,
             "dislikes": 3
         }
@@ -32599,7 +32673,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 16068,
+            "views": 16071,
             "likes": 147,
             "dislikes": 3
         }
@@ -32694,7 +32768,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11579,
+            "views": 11581,
             "likes": 107,
             "dislikes": 0
         }
@@ -32773,7 +32847,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 15906,
+            "views": 15908,
             "likes": 177,
             "dislikes": 4
         }
@@ -32887,7 +32961,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 8148,
+            "views": 8149,
             "likes": 56,
             "dislikes": 6
         }
@@ -32989,7 +33063,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 17818,
+            "views": 17819,
             "likes": 112,
             "dislikes": 6
         }
@@ -33078,7 +33152,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12938,
+            "views": 12941,
             "likes": 115,
             "dislikes": 2
         }
@@ -33171,7 +33245,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 9081,
+            "views": 9084,
             "likes": 77,
             "dislikes": 1
         }
@@ -33280,7 +33354,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 21772,
+            "views": 21780,
             "likes": 152,
             "dislikes": 5
         }
@@ -33383,7 +33457,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 24068,
+            "views": 24083,
             "likes": 173,
             "dislikes": 11
         }
@@ -33665,7 +33739,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 20637,
+            "views": 20653,
             "likes": 165,
             "dislikes": 3
         }
@@ -33794,7 +33868,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11259,
+            "views": 11265,
             "likes": 118,
             "dislikes": 3
         }
@@ -33886,7 +33960,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 9907,
+            "views": 9908,
             "likes": 90,
             "dislikes": 9
         }
@@ -34043,7 +34117,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 4310,
+            "views": 4311,
             "likes": 30,
             "dislikes": 4
         }
@@ -34126,7 +34200,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 14576,
+            "views": 14578,
             "likes": 164,
             "dislikes": 5
         }
@@ -34209,7 +34283,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11878,
+            "views": 11880,
             "likes": 106,
             "dislikes": 1
         }
@@ -34411,7 +34485,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 38511,
+            "views": 38513,
             "likes": 268,
             "dislikes": 17
         }
@@ -34878,8 +34952,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 22308,
-            "likes": 183,
+            "views": 22318,
+            "likes": 184,
             "dislikes": 4
         }
     },
@@ -34961,7 +35035,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 27296,
+            "views": 27308,
             "likes": 240,
             "dislikes": 39
         }
@@ -35130,7 +35204,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12179,
+            "views": 12190,
             "likes": 190,
             "dislikes": 11
         }
@@ -35759,7 +35833,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12055,
+            "views": 12058,
             "likes": 113,
             "dislikes": 9
         }
@@ -35990,7 +36064,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 10408,
+            "views": 10410,
             "likes": 104,
             "dislikes": 4
         }
@@ -36368,7 +36442,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 6996,
+            "views": 6998,
             "likes": 91,
             "dislikes": 4
         }
@@ -36551,7 +36625,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 12018,
+            "views": 12024,
             "likes": 122,
             "dislikes": 7
         }
@@ -36854,7 +36928,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 8066,
+            "views": 8073,
             "likes": 124,
             "dislikes": 1
         }
@@ -37011,7 +37085,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11369,
+            "views": 11376,
             "likes": 114,
             "dislikes": 4
         }
@@ -37168,7 +37242,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 4724,
+            "views": 4761,
             "likes": 172,
             "dislikes": 3
         }
@@ -37254,7 +37328,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 3360,
+            "views": 3382,
             "likes": 104,
             "dislikes": 1
         }
@@ -37338,8 +37412,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 3789,
-            "likes": 111,
+            "views": 3804,
+            "likes": 112,
             "dislikes": 2
         }
     },
@@ -37421,7 +37495,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 11180,
+            "views": 11182,
             "likes": 99,
             "dislikes": 2
         }
@@ -37501,7 +37575,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 5193,
+            "views": 5209,
             "likes": 99,
             "dislikes": 10
         }
@@ -37674,7 +37748,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 4568,
+            "views": 4589,
             "likes": 142,
             "dislikes": 5
         }
@@ -37788,7 +37862,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 8857,
+            "views": 8865,
             "likes": 134,
             "dislikes": 3
         }
@@ -37909,7 +37983,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 7255,
+            "views": 7258,
             "likes": 114,
             "dislikes": 8
         }
@@ -38016,7 +38090,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 6591,
+            "views": 6611,
             "likes": 167,
             "dislikes": 5
         }
@@ -38139,7 +38213,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 13418,
+            "views": 13436,
             "likes": 181,
             "dislikes": 1
         }
@@ -38229,8 +38303,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 10601,
-            "likes": 203,
+            "views": 10612,
+            "likes": 204,
             "dislikes": 7
         }
     },
@@ -38316,7 +38390,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 10829,
+            "views": 10831,
             "likes": 101,
             "dislikes": 11
         }
@@ -38399,7 +38473,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 3714,
+            "views": 3727,
             "likes": 111,
             "dislikes": 6
         }
@@ -38483,7 +38557,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 5035,
+            "views": 5037,
             "likes": 96,
             "dislikes": 3
         }
@@ -38567,7 +38641,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 4053,
+            "views": 4064,
             "likes": 134,
             "dislikes": 4
         }
@@ -38686,7 +38760,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 8670,
+            "views": 8673,
             "likes": 78,
             "dislikes": 2
         }
@@ -38833,7 +38907,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 10760,
+            "views": 10766,
             "likes": 99,
             "dislikes": 5
         }
@@ -38938,7 +39012,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 8011,
+            "views": 8012,
             "likes": 75,
             "dislikes": 6
         }
@@ -39051,7 +39125,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 5467,
+            "views": 5469,
             "likes": 81,
             "dislikes": 3
         }
@@ -39134,7 +39208,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 4553,
+            "views": 4571,
             "likes": 104,
             "dislikes": 7
         }
@@ -39217,7 +39291,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 4467,
+            "views": 4485,
             "likes": 120,
             "dislikes": 6
         }
@@ -39300,7 +39374,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 8963,
+            "views": 8967,
             "likes": 88,
             "dislikes": 5
         }
@@ -39383,7 +39457,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 4950,
+            "views": 4953,
             "likes": 46,
             "dislikes": 1
         }
@@ -39463,7 +39537,7 @@ const replayEpisodeArray = [
             "content": []
         },
         "youtube": {
-            "views": 3734,
+            "views": 3741,
             "likes": 109,
             "dislikes": 1
         }
@@ -39546,7 +39620,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 6490,
+            "views": 6493,
             "likes": 79,
             "dislikes": 2
         }
@@ -39629,8 +39703,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 4125,
-            "likes": 99,
+            "views": 4145,
+            "likes": 100,
             "dislikes": 14
         }
     },
@@ -39712,7 +39786,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 3831,
+            "views": 3846,
             "likes": 108,
             "dislikes": 4
         }
@@ -39864,7 +39938,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 4412,
+            "views": 4441,
             "likes": 115,
             "dislikes": 7
         }
@@ -39947,7 +40021,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 5477,
+            "views": 5482,
             "likes": 98,
             "dislikes": 4
         }
@@ -40030,7 +40104,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 3134,
+            "views": 3144,
             "likes": 82,
             "dislikes": 2
         }
@@ -40113,7 +40187,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 5158,
+            "views": 5172,
             "likes": 144,
             "dislikes": 8
         }
@@ -40196,8 +40270,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 4213,
-            "likes": 134,
+            "views": 4228,
+            "likes": 135,
             "dislikes": 7
         }
     },
@@ -40279,7 +40353,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 4074,
+            "views": 4078,
             "likes": 44,
             "dislikes": 2
         }
@@ -40363,7 +40437,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 4372,
+            "views": 4383,
             "likes": 118,
             "dislikes": 5
         }
@@ -40466,7 +40540,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 2525,
+            "views": 2532,
             "likes": 89,
             "dislikes": 2
         }
@@ -40549,7 +40623,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 4766,
+            "views": 4776,
             "likes": 149,
             "dislikes": 7
         }
@@ -40632,7 +40706,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 7210,
+            "views": 7219,
             "likes": 206,
             "dislikes": 16
         }
@@ -40717,7 +40791,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 4096,
+            "views": 4100,
             "likes": 135,
             "dislikes": 7
         }
@@ -40812,7 +40886,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 2446,
+            "views": 2452,
             "likes": 78,
             "dislikes": 1
         }
@@ -40895,7 +40969,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 9113,
+            "views": 9120,
             "likes": 205,
             "dislikes": 7
         }
@@ -40983,7 +41057,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 4752,
+            "views": 4755,
             "likes": 147,
             "dislikes": 6
         }
@@ -41066,7 +41140,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 3801,
+            "views": 3813,
             "likes": 116,
             "dislikes": 8
         }
@@ -41162,7 +41236,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 5001,
+            "views": 5009,
             "likes": 186,
             "dislikes": 12
         }
@@ -41245,8 +41319,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 4152,
-            "likes": 153,
+            "views": 4160,
+            "likes": 154,
             "dislikes": 5
         }
     },
@@ -41350,8 +41424,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 3836,
-            "likes": 118,
+            "views": 3846,
+            "likes": 120,
             "dislikes": 4
         }
     },
@@ -41432,7 +41506,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 3644,
+            "views": 3648,
             "likes": 107,
             "dislikes": 3
         }
@@ -41548,7 +41622,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 5308,
+            "views": 5321,
             "likes": 53,
             "dislikes": 2
         }
@@ -41650,7 +41724,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 3871,
+            "views": 3875,
             "likes": 129,
             "dislikes": 2
         }
@@ -41731,7 +41805,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 4031,
+            "views": 4037,
             "likes": 144,
             "dislikes": 5
         }
@@ -41843,7 +41917,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 9032,
+            "views": 9039,
             "likes": 136,
             "dislikes": 8
         }
@@ -41952,7 +42026,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 2827,
+            "views": 2834,
             "likes": 104,
             "dislikes": 3
         }
@@ -42049,7 +42123,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 3266,
+            "views": 3273,
             "likes": 115,
             "dislikes": 4
         }
@@ -42157,7 +42231,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 3211,
+            "views": 3214,
             "likes": 92,
             "dislikes": 6
         }
@@ -42286,7 +42360,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 6107,
+            "views": 6116,
             "likes": 209,
             "dislikes": 6
         }
@@ -42407,7 +42481,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 4813,
+            "views": 4814,
             "likes": 56,
             "dislikes": 2
         }
@@ -42526,7 +42600,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 7039,
+            "views": 7043,
             "likes": 102,
             "dislikes": 7
         }
@@ -42649,7 +42723,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 4497,
+            "views": 4498,
             "likes": 55,
             "dislikes": 7
         }
@@ -42789,7 +42863,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 5166,
+            "views": 5169,
             "likes": 57,
             "dislikes": 1
         }
@@ -42907,8 +42981,8 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 4485,
-            "likes": 150,
+            "views": 4489,
+            "likes": 151,
             "dislikes": 12
         }
     },
@@ -43044,7 +43118,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 6523,
+            "views": 6531,
             "likes": 264,
             "dislikes": 15
         }
@@ -43196,7 +43270,7 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 5994,
+            "views": 5998,
             "likes": 294,
             "dislikes": 9
         }
@@ -43362,13 +43436,13 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 17044,
+            "views": 17063,
             "likes": 231,
             "dislikes": 10
         }
     },
     {
-        "episodeNumber": .14,
+        "episodeNumber": ".14",
         "episodeTitle": "Replay Holiday Special 2015",
         "fandomWikiURL": "/wiki/Replay_Holiday_Special_2015",
         "mainSegmentGamesAdv": [
@@ -43433,13 +43507,13 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": "12096",
-            "likes": "205",
-            "dislikes": "3"
+            "views": 12129,
+            "likes": 205,
+            "dislikes": 3
         }
     },
     {
-        "episodeNumber": .13,
+        "episodeNumber": ".13",
         "episodeTitle": "Replay Holiday Special 2014",
         "fandomWikiURL": "/wiki/Replay_Holiday_Special_2014",
         "mainSegmentGamesAdv": [
@@ -43510,13 +43584,154 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": "8644",
-            "likes": "92",
-            "dislikes": "3"
+            "views": 8676,
+            "likes": 92,
+            "dislikes": 3
         }
     },
     {
-        "episodeNumber": .10,
+        "episodeNumber": ".12",
+        "episodeTitle": "Bonus Replay: Strider",
+        "fandomWikiURL": "",
+        "mainSegmentGamesAdv": [
+            {
+                "title": "Strider",
+                "system": "NES",
+                "yearReleased": "1989"
+            },
+            {
+                "title": "Pitfall: The Mayan Adventure",
+                "system": "Super NES",
+                "yearReleased": "1994"
+            }
+        ],
+        "airDate": "8/07/14",
+        "videoLength": "31:05",
+        "secondSegment": "",
+        "secondSegmentGames": [],
+        "season": 0,
+        "details": {
+            "description": [],
+            "external_links": [
+                {
+                    "href": "https://www.gameinformer.com/b/features/archive/2014/08/07/bonus-replay-strider-guests-arj-barker-and-louis-katz.aspx",
+                    "title": "Bonus Replay \u2013 Strider (Guests: Arj Barker And Louis Katz)"
+                },
+                {
+                    "href": "https://www.youtube.com/watch?v=349FpRsKvog",
+                    "title": "Bonus Replay \u2013 Strider (Guest: Arj Barker And Louis Katz)"
+                }
+            ],
+            "image": {
+                "width": "300",
+                "height": "169",
+                "srcset": [
+                    "https://www.gameinformer.com/s3/files/styles/body_default/s3/legacy-images/imagefeed/Bonus%20Replay%20%E2%80%93%20Strider%20%28Guests%3A%20Arj%20Barker%20And%20Louis%20Katz%29/striderreplay_610.jpg"
+                ]
+            },
+            "system": [
+                "NES",
+                "Super NES"
+            ],
+            "gamedate": [
+                "1989",
+                "1994"
+            ],
+            "airdate": "August 7, 2014",
+            "runtime": "31:05",
+            "host": [
+                "Kyle Hilliard"
+            ],
+            "featuring": [
+                "Ben Reeves",
+                "Arj Barker",
+                "Louis Katz"
+            ]
+        },
+        "article": {
+            "title": "Bonus Replay \u2013 Strider (Guests: Arj Barker And Louis Katz) ",
+            "author": "Kyle Hilliard",
+            "date": " on Aug 07, 2014 at 09:00 AM",
+            "content": [
+                "In this special bonus episode of Replay, we take a look at the original incarnation of Strider on the NES. Myself and Ben Reeves are joined by comedians Arj Barker and Louis Katz as we travel the world and discuss the differences between Strider's interpretation and the real world version of Australia, where Arj Barker lives half the year.",
+                "Both Arj Barker and Louis Katz are accomplished comedians releasing assorted specials and appearing on Comedy Central as well as late night night shows such as Jimmy Fallon's. You may also recognize Arj Barker from the HBO comedy, Flight of the Conchords where he played the titular duo's American, pawn shop owning friend Dave. For more on Louis Katz, you can check out his website. For more on Arj Barker, you can check out his website."
+            ]
+        },
+        "youtube": {
+            "views": 5486,
+            "likes": 59,
+            "dislikes": 2
+        }
+    },
+    {
+        "episodeNumber": ".11",
+        "episodeTitle": "Replay: ToeJam & Earl 2 (feat. Riff Raff)",
+        "fandomWikiURL": "",
+        "mainSegmentGamesAdv": [
+            {
+                "title": "ToeJam & Earl in Panic on Funkotron",
+                "system": "Genesis",
+                "yearReleased": "1993"
+            }
+        ],
+        "airDate": "1/02/14",
+        "videoLength": "15:07",
+        "secondSegment": "",
+        "secondSegmentGames": [],
+        "season": 0,
+        "details": {
+            "description": [],
+            "external_links": [
+                {
+                    "href": "https://www.gameinformer.com/b/features/archive/2014/01/02/replay-toejam-and-earl.aspx",
+                    "title": "Replay \u2013 ToeJam & Earl 2 (Special Guest: Riff Raff)"
+                },
+                {
+                    "href": "https://www.youtube.com/watch?v=MQCGyYO9ov0",
+                    "title": "Replay \u2013 ToeJam & Earl 2 (feat. Riff Raff)"
+                }
+            ],
+            "image": {
+                "width": "300",
+                "height": "169",
+                "srcset": [
+                    "https://www.gameinformer.com/s3/files/styles/body_default/s3/legacy-images/imagefeed/Replay%20\u2013%20ToeJam%20%26%20Earl%202%20%28Special%20Guest%3A%20Riff%20Raff%29/Toejam610.jpg"
+                ]
+            },
+            "system": [
+                "Genesis"
+            ],
+            "gamedate": [
+                "1993"
+            ],
+            "airdate": "January 2, 2014",
+            "runtime": "15:07",
+            "host": [
+                "Andrew Reiner"
+            ],
+            "featuring": [
+                "Tim Turi",
+                "Dan Ryckert",
+                "Riff Raff"
+            ]
+        },
+        "article": {
+            "title": "Replay \u2013 ToeJam & Earl 2 (Special Guest: Riff Raff)",
+            "author": "Dan Ryckert",
+            "date": " on Jan 02, 2014 at 08:27 AM",
+            "content": [
+                "We've listened to Tim rave about the soundtrack for ToeJam & Earl for years, and figured it was about time to bring out the Genesis to play it for ourselves. When some antagonistic Earthlings stow away as the two aliens head back to Funkotron, it's up to the funky duo to track them down and send them back home.",
+                "Watch below to see Andrew Reiner, Tim Turi, me, and special guest Riff Raff check out the Genesis title, followed by the Replay crew receiving their first game pitch from Jody Highroller himself."
+            ]
+        },
+        "youtube": {
+            "views": 33113,
+            "likes": 451,
+            "dislikes": 63
+        }
+    },
+    {
+        "episodeNumber": ".10",
         "episodeTitle": "Replay Holiday Special 2013",
         "fandomWikiURL": "/wiki/Replay_Holiday_Special_2013",
         "mainSegmentGamesAdv": [
@@ -43589,13 +43804,13 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": "20490",
-            "likes": "323",
-            "dislikes": "5"
+            "views": 20646,
+            "likes": 327,
+            "dislikes": 5
         }
     },
     {
-        "episodeNumber": .09,
+        "episodeNumber": ".09",
         "episodeTitle": "ScaReplay: Splatterhouse Series",
         "fandomWikiURL": "",
         "mainSegmentGamesAdv": [
@@ -43618,7 +43833,7 @@ const replayEpisodeArray = [
                 "title": "Splatterhouse: Wanpaku Grafitti",
                 "system": "Famicom",
                 "yearReleased": "1989"
-            },
+            }
         ],
         "airDate": "10/31/13",
         "videoLength": "34:08",
@@ -43641,7 +43856,7 @@ const replayEpisodeArray = [
                 "width": "300",
                 "height": "169",
                 "srcset": [
-                    "/images/Replay_new_logo_orig_300x169.png"
+                    "https://s3.amazonaws.com/prod-media.gameinformer.com/styles/body_default/s3/legacy-images/imagefeed/Replay%20Halloween%20Special%202013/Replay_splatterhouse_600.jpg"
                 ]
             },
             "system": [
@@ -43674,13 +43889,150 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 10790,
+            "views": 10817,
             "likes": 155,
             "dislikes": 5
         }
     },
     {
-        "episodeNumber": .05,
+        "episodeNumber": ".08",
+        "episodeTitle": "Replay: Mutant League Football",
+        "fandomWikiURL": "",
+        "mainSegmentGamesAdv": [
+            {
+                "title": "Mutant League Football",
+                "system": "Genesis",
+                "yearReleased": "1993"
+            }
+        ],
+        "airDate": "9/10/13",
+        "videoLength": "29:04",
+        "secondSegment": "",
+        "secondSegmentGames": [],
+        "season": 0,
+        "details": {
+            "description": [],
+            "external_links": [
+                {
+                    "href": "https://www.gameinformer.com/b/features/archive/2013/09/10/replay-mutant-league-football.aspx",
+                    "title": "Replay \u2013 Mutant League Football"
+                },
+                {
+                    "href": "https://www.youtube.com/watch?v=TYWVEf7fQ_8",
+                    "title": "Replay \u2013 Mutant League Football"
+                }
+            ],
+            "image": {
+                "width": "300",
+                "height": "169",
+                "srcset": [
+                    "https://s3.amazonaws.com/prod-media.gameinformer.com/styles/body_default/s3/legacy-images/imagefeed/Replay%20\u2013%20Mutant%20League%20Football/Replay_mutantleaguefootball_600.jpg"
+                ]
+            },
+            "system": [
+                "Genesis"
+            ],
+            "gamedate": [
+                "1993"
+            ],
+            "airdate": "September 10, 2013",
+            "runtime": "29:04",
+            "host": [
+                "Andrew Reiner"
+            ],
+            "featuring": [
+                "Ben Reeves",
+                "Matt Helgeson",
+                "Kimberly Wallace",
+                "Jason Oestreicher"
+            ]
+        },
+        "article": {
+            "title": "Replay \u2013 Mutant League Football",
+            "author": "Matt Helgeson",
+            "date": " on Sep 10, 2013 at 07:00 AM",
+            "content": [
+                "We take a look back at EA's grisly gridiron classic.",
+                "By now, you may have heard the news that Michael Mendheim, the creator of Mutant League Football, is launching a Kickstarter to create a spiritual successor to the Genesis-era cult classic. To celebrate, host Andy Reiner welcomes Matt Helgeson, Ben Reeves, Kim Wallace, and Jason Oestreicher to the Replay studio to see how the original holds up. The results are a bit ugly at times \u2013 to hilarious results. Also, without spoiling anything, in the Replay Roulette segment, Ben Reeves pulls off one of the most pathetic \"feats\" in Replay history, to Kim's chagrin."
+            ]
+        },
+        "youtube": {
+            "views": 14270,
+            "likes": 148,
+            "dislikes": 14
+        }
+    },
+    {
+        "episodeNumber": ".07",
+        "episodeTitle": "Stress Test \u2013 Joe vs Tyson",
+        "fandomWikiURL": "",
+        "mainSegmentGamesAdv": [
+            {
+                "title": "Punch Out!!",
+                "system": "NES",
+                "yearReleased": "1987"
+            }
+        ],
+        "airDate": "8/8/13",
+        "videoLength": "1:02:09",
+        "secondSegment": "",
+        "secondSegmentGames": [],
+        "season": 0,
+        "details": {
+            "description": [],
+            "external_links": [
+                {
+                    "href": "https://www.gameinformer.com/b/features/archive/2013/09/05/replay-punch-out-stress-test-joe-vs-tyson.aspx",
+                    "title": "Replay \u2013 Punch-Out!! Stress Test: Joe Vs. Tyson \u2013 Episode 2"
+                },
+                {
+                    "href": "https://www.youtube.com/watch?v=3i8ccmRLTCI",
+                    "title": "Stress Test \u2013 Joe vs Tyson \u2013 Episode 1"
+                }
+            ],
+            "image": {
+                "width": "300",
+                "height": "169",
+                "srcset": [
+                    "https://s3.amazonaws.com/prod-media.gameinformer.com/styles/body_default/s3/legacy-images/imagefeed/Replay%20\u2013%20Punch-Out%21%21%20Stress%20Test%3A%20Joe%20Vs.%20Tyson%20\u2013%20Episode%202/joevtyson610.jpg"
+                ]
+            },
+            "system": [
+                "NES"
+            ],
+            "gamedate": [
+                "1987"
+            ],
+            "airdate": "August 8, 2013",
+            "runtime": "1:02:09",
+            "host": [
+                "Andrew Reiner"
+            ],
+            "featuring": [
+                "Dan Ryckert",
+                "Jeff Marchiafava",
+                "Joe Juba",
+                "Jason Oestreicher"
+            ]
+        },
+        "article": {
+            "title": "Replay \u2013 Punch-Out!! Stress Test: Joe Vs. Tyson \u2013 Episode 2",
+            "author": "Joe Juba",
+            "date": " on Sep 5, 2013 at 10:30 AM",
+            "content": [
+                "Earlier this year, I watched my co-worker Dan try to defeat Mike Tyson in Punch-Out!!. He failed miserably for three straight hours. Near the end of his attempt, I made a bold claim: Dan's story was just a prologue to a better (and shorter) video featuring me effortlessly beating Iron Mike. The time has finally come to back up my bravado.",
+                "While I try to shame Dan on the gameplay front, the accompanying commentary from Andrew Reiner and Jeff Marchiafava shame him on several personal and professional levels.  Dan sits in also, but his testimony does more to incriminate than defend himself.",
+                "Watch the drama unfold in the video below:"
+            ]
+        },
+        "youtube": {
+            "views": 13481,
+            "likes": 211,
+            "dislikes": 6
+        }
+    },
+    {
+        "episodeNumber": ".05",
         "episodeTitle": "Stress Test \u2013 Ryckert vs Tyson",
         "fandomWikiURL": "",
         "mainSegmentGamesAdv": [
@@ -43699,7 +44051,7 @@ const replayEpisodeArray = [
             "description": [],
             "external_links": [
                 {
-                    "href": "http://www.gameinformer.com/b/features/archive/2012/12/24/replay-holiday-special.aspx",
+                    "href": "https://www.gameinformer.com/b/features/archive/2013/01/29/stress-test-dan-vs-tyson.aspx",
                     "title": "Replay \u2013 Punch-Out!! Stress Test: Dan Vs. Tyson Part III"
                 },
                 {
@@ -43711,7 +44063,7 @@ const replayEpisodeArray = [
                 "width": "300",
                 "height": "169",
                 "srcset": [
-                    "/images/Replay_new_logo_orig_300x169.png"
+                    "https://s3.amazonaws.com/prod-media.gameinformer.com/styles/body_default/s3/legacy-images/imagefeed/Replay%20\u2013%20Punch-Out%21%21%20Stress%20Test%3A%20Dan%20Vs.%20Tyson%20Part%20III/tyson610.jpg"
                 ]
             },
             "system": [
@@ -43741,13 +44093,13 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": 18257,
+            "views": 18303,
             "likes": 257,
             "dislikes": 5
         }
     },
     {
-        "episodeNumber": .04,
+        "episodeNumber": ".04",
         "episodeTitle": "Replay Holiday Special 2012",
         "fandomWikiURL": "/wiki/Replay_Holiday_Special_2012",
         "mainSegmentGamesAdv": [
@@ -43815,16 +44167,17 @@ const replayEpisodeArray = [
             "author": "Andrew Reiner",
             "date": " on Dec 24, 2012 at 08:52 AM",
             "content": [
-                "'Tis the season for crappy holiday gaming. Scattered within the thousands of games in Game Informer's vault, we found two that celebrate the holiday season. Now that Wii U is on store shelves, we can officially dive into Wii's library for Replay episodes. Outside of Tim breaking the rules of the spacetime continuum with his rogue Super Smash Bros. Brawl Replay episode, our first sanctioned Wii game is Santa Claus is Comin' to Town! Our Roulette is equally as season-appropriate. Enjoy the episode, folks! And happy holidays!"]
+                "'Tis the season for crappy holiday gaming. Scattered within the thousands of games in Game Informer's vault, we found two that celebrate the holiday season. Now that Wii U is on store shelves, we can officially dive into Wii's library for Replay episodes. Outside of Tim breaking the rules of the spacetime continuum with his rogue Super Smash Bros. Brawl Replay episode, our first sanctioned Wii game is Santa Claus is Comin' to Town! Our Roulette is equally as season-appropriate. Enjoy the episode, folks! And happy holidays!"
+            ]
         },
         "youtube": {
-            "views": "16697",
-            "likes": "190",
-            "dislikes": "4"
+            "views": 16797,
+            "likes": 192,
+            "dislikes": 4
         }
     },
     {
-        "episodeNumber": .03,
+        "episodeNumber": ".03",
         "episodeTitle": "Reevesplay: Silent Bomber",
         "fandomWikiURL": "/wiki/Reevesplay",
         "mainSegmentGamesAdv": [
@@ -43884,13 +44237,13 @@ const replayEpisodeArray = [
             ]
         },
         "youtube": {
-            "views": "3974",
-            "likes": "160",
-            "dislikes": "9"
+            "views": 3986,
+            "likes": 160,
+            "dislikes": 9
         }
     },
     {
-        "episodeNumber": .02,
+        "episodeNumber": ".02",
         "episodeTitle": "Super Readplay: Gears of War: Anvil Gate",
         "fandomWikiURL": "/wiki/Super_Readplay",
         "mainSegmentGamesAdv": [
@@ -43959,7 +44312,7 @@ const replayEpisodeArray = [
         }
     },
     {
-        "episodeNumber": .01,
+        "episodeNumber": ".01",
         "episodeTitle": "Winter Games",
         "fandomWikiURL": "/wiki/Replay:_Winter_Games",
         "mainSegmentGamesAdv": [],

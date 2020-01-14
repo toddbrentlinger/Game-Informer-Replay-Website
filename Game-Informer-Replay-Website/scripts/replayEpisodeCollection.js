@@ -43,7 +43,7 @@ var replayEpisodeCollection = {
 
     // Max Displayed Episodes - Increments [10, 25, 50, 100, 200]
     // Value of 0 shows all episodes
-    _maxDisplayedEpisodes: window.sessionStorage.getItem('maxDisplayedEpisodes') || 50,
+    _maxDisplayedEpisodes: window.sessionStorage.getItem('maxDisplayedEpisodes') || 25,
     get maxDisplayedEpisodes() { return this._maxDisplayedEpisodes; },
     set maxDisplayedEpisodes(num) {
         //console.log(`Argument num: ${num} (${typeof num}) - Max Displayed: ${this.maxDisplayedEpisodes}`);
@@ -117,7 +117,7 @@ var replayEpisodeCollection = {
 
         // Assign to local/session storage
         // If sortType is sort.none, assign default value of sort.airdate
-        console.log(`Sort Type: ${this.sortType} (${(this.sortType === sort.none) ? 'true' : 'false'})`);
+        //console.log(`Sort Type: ${this.sortType} (${(this.sortType === sort.none) ? 'true' : 'false'})`);
         window.sessionStorage.setItem('sortType',
             (this.sortType === sort.none)
             ? sort.airdate
@@ -218,9 +218,11 @@ var replayEpisodeCollection = {
     // Video Player
     videoPlayerContainer: document.getElementById('video-player-container'),
     videoPlayer: undefined, // Assigned inside global onYouTubePlayerAPIReady()
+
     currentEpisodeHeaderElement: document.getElementById('current-episode-header'),
     currentEpisodeInfoElement: document.getElementById('current-episode-info'),
     currentEpisodeInfoToggleButton: document.getElementById('current-episode-info-toggle-button'),
+
     _currentEpisode: undefined, // reference to ReplayEpisode object
     get currentEpisode() { return this._currentEpisode; },
     set currentEpisode(episode) {
@@ -278,6 +280,7 @@ var replayEpisodeCollection = {
  
 // init(replayEpisodeArray)
 replayEpisodeCollection.init = function (replayEpisodeArray) {
+    
     // Initialize object properties
     // Set value of input elements based on sort/filter properties
     //console.log(`Properties - \nSortType: ${this.sortTypeString}(${this.sortType}) \nAscending: ${this.ascending} \nMaxDisplayed: ${this.maxDisplayedEpisodes}`);
@@ -286,7 +289,7 @@ replayEpisodeCollection.init = function (replayEpisodeArray) {
     this.sortDirectionElement.value = this.ascending ? 'ascending' : 'descending';
     this.maxDisplayedElement.value = this.maxDisplayedEpisodes;
     //console.log(`Element Values - \nSortType: ${this.sortTypeElement.value}(${this.sortType}) \nAscending: ${this.sortDirectionElement.value} \nMaxDisplayed: ${this.maxDisplayedElement.value}`);
-
+    
     // Set filter
     // Set search
 
@@ -342,7 +345,7 @@ replayEpisodeCollection.populateEpisodeObjectArray = function (replayEpisodeArra
 replayEpisodeCollection.clearMainElement = function () {
     const currentEpisodeElements = this.mainElement.getElementsByClassName('episode');
     // Make sure there are no episode elements already in place
-    if (typeof currentEpisodeElements != 'undefined') {
+    if (typeof currentEpisodeElements !== 'undefined') {
         while (currentEpisodeElements.length > 0)
             this.mainElement.removeChild(currentEpisodeElements[currentEpisodeElements.length - 1]);
     }
@@ -357,15 +360,13 @@ replayEpisodeCollection.clearMainElement = function () {
 replayEpisodeCollection.updateDisplayedEpisodes = function () {
     // Variables
     const selectedEpisodesLength = this.selectedEpisodes.length;
-    let start, end;
-
     // Assign start/end depending on selectedEpisodes length, maxDisplayedEpisodes, and currentPageDisplayed
     /* Ex. 120 episodes and 50 max displayed
      * 1: 0-49 (first 50) start=first end=50
      * 2: 50-99 (second 50) start=50 end=100
      * 3: 100-119 (last 20) start=100 end=last */
-    start = (this.currentPageDisplayed - 1) * this.maxDisplayedEpisodes;
-    end = (this.maxDisplayedEpisodes)
+    const start = (this.currentPageDisplayed - 1) * this.maxDisplayedEpisodes;
+    const end = (this.maxDisplayedEpisodes)
         ? Math.min(this.currentPageDisplayed * this.maxDisplayedEpisodes, selectedEpisodesLength)
         : selectedEpisodesLength;
 
@@ -871,6 +872,8 @@ replayEpisodeCollection.createNumberedButton = function (buttonValue, buttonStr,
 replayEpisodeCollection.updatePageNumberAdv = function (positionStr, scrollToTop = false) {
     // Variables
     const pageNumberContainer = document.getElementById(`page-number-container${(positionStr) ? '-' + positionStr : ''}`);
+    // Hide page container if total pages is less than 2
+    pageNumberContainer.style.display = (this.totalPages < 2) ? 'none' : null;
     const prevButton = pageNumberContainer.querySelector('button[value="prev"]');
     const firstButton = pageNumberContainer.querySelector('button[value="first"]');
     const pageNumberList = pageNumberContainer.querySelector('.page-number-list');
@@ -1055,13 +1058,20 @@ replayEpisodeCollection.onPlayerStateChange = function (event) {
     switch (event.data) {
         case -1:
             str += 'Unstarted';
-            console.log(`onPlayerStateChange() - ${this.videoPlayer.getVideoUrl()}`);
             if (this.videoPlayer.getPlaylist()) {
                 this.currentEpisode = this.getEpisodeByVideoID(this.videoPlayer.getPlaylist()[this.videoPlayer.getPlaylistIndex()]);
-                console.log(`onPlayerStateChange() - Playlist Index: ${this.videoPlayer.getPlaylistIndex()} - Episode At Index: ${this.currentEpisode.episodeNumber}`);
+                str += `\nPlaylist Index: ${this.videoPlayer.getPlaylistIndex()} - Episode At Index: ${this.currentEpisode.episodeNumber}`;
             }
             break;
-        case 0: str += 'Ended'; break;
+        case 0:
+            str += 'Ended';
+            if (this.videoPlayer.getPlaylist()) {
+                str += `\nPlaylist Index: ${this.videoPlayer.getPlaylistIndex()}`;
+                if (this.videoPlayer.getPlaylistIndex() === 0) { // If playlist index is zero
+                    // Cue next 200 episodes
+                }
+            }
+            break;
         case 1: str += 'Playing'; break;
         case 2: str += 'Paused'; break;
         case 3: str += 'Buffering'; break;

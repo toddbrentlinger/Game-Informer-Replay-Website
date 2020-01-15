@@ -48,7 +48,7 @@ Softrobo Pro Font on fonts.com
 
 html {
     font-family: Roboto, Arial, sans-serif; /* Helvetica */
-    font-size: 16px; /* 100%, 10px */
+    /*font-size: 16px; /* 100%, 10px */
     /*
     Avoid problems with adjusted text size in older browser versions 
     when using em/rem units for font-size in other html elements 
@@ -703,11 +703,12 @@ ul.link-list {
     border-color: var(--main-bg-color);
     margin: 0 2px;
 }
-/*
+
 #filterForm > fieldset legend {
-    cursor: pointer;
+    /*cursor: pointer;*/
+    margin: 0 auto;
 }
-*/
+
 #filterForm fieldset ul {
     list-style-type: none;
     padding: 0; /* remove default padding for ul elements */

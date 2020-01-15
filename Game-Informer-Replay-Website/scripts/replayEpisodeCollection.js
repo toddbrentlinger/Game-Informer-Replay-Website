@@ -343,11 +343,11 @@ replayEpisodeCollection.populateEpisodeObjectArray = function (replayEpisodeArra
  
 // clearMainElement()
 replayEpisodeCollection.clearMainElement = function () {
-    const currentEpisodeElements = this.mainElement.getElementsByClassName('episode');
+    const episodeElements = this.mainElement.getElementsByClassName('episode');
     // Make sure there are no episode elements already in place
-    if (typeof currentEpisodeElements !== 'undefined') {
-        while (currentEpisodeElements.length > 0)
-            this.mainElement.removeChild(currentEpisodeElements[currentEpisodeElements.length - 1]);
+    if (typeof episodeElements !== 'undefined') {
+        while (episodeElements.length > 0)
+            this.mainElement.removeChild(episodeElements[episodeElements.length - 1]);
     }
 }
 
@@ -1060,6 +1060,9 @@ replayEpisodeCollection.onPlayerStateChange = function (event) {
             str += 'Unstarted';
             if (this.videoPlayer.getPlaylist()) {
                 this.currentEpisode = this.getEpisodeByVideoID(this.videoPlayer.getPlaylist()[this.videoPlayer.getPlaylistIndex()]);
+                if (this.getPageOfEpisode(this.currentEpisode) !== this.currentPageDisplayed) {
+                    this.setPageNumber(this.getPageOfEpisode(this.currentEpisode));
+                }
                 str += `\nPlaylist Index: ${this.videoPlayer.getPlaylistIndex()} - Episode At Index: ${this.currentEpisode.episodeNumber}`;
             }
             break;
@@ -1067,8 +1070,12 @@ replayEpisodeCollection.onPlayerStateChange = function (event) {
             str += 'Ended';
             if (this.videoPlayer.getPlaylist()) {
                 str += `\nPlaylist Index: ${this.videoPlayer.getPlaylistIndex()}`;
-                if (this.videoPlayer.getPlaylistIndex() === 0) { // If playlist index is zero
+                // If playlist index is zero
+                if (this.videoPlayer.getPlaylistIndex() === 0) {
                     // Cue next 200 episodes
+                    let episodeIndex = this.selectedVideoIdArray.indexOf(this.currentEpisode.youtubeVideoID);
+                    this.cueEpisodePlaylist(this.getEpisodeByVideoID(this.selectedVideoIdArray[++episodeIndex]));
+                    console.log(`Playlist ended with index: ${episodeIndex}`);
                 }
             }
             break;
@@ -1204,11 +1211,11 @@ replayEpisodeCollection.toggleCurrentEpisodeInfo = function () {
 // Search for index of replayEpisode in selectedEpisodes and calculate page number
 // with maxDisplayedEpisodes
 replayEpisodeCollection.getPageOfEpisode = function (replayEpisode) {
-    const episodeIndexInSelectedEpisodes = this.selectedEpisodes.indexOf(replayEpisode);
+    let episodeIndexInSelectedEpisodes = this.selectedEpisodes.indexOf(replayEpisode);
     if (episodeIndexInSelectedEpisodes === -1)
         console.error('Cannot find episode');
     else
-        return Math.ceil(episodeIndexInSelectedEpisodes / this.maxDisplayedEpisodes);
+        return Math.ceil(++episodeIndexInSelectedEpisodes / this.maxDisplayedEpisodes);
 };
 
 // -------------------------------------------------

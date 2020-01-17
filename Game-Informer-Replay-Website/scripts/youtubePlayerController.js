@@ -22,11 +22,11 @@ window.onYouTubePlayerAPIReady = function () {
         //videoId: '0ZtEkX8m6yg', // default video: Replay Highlights
         playerVars: {
             playlist: [replayEpisodeCollection.selectedVideoIdArray.slice(0, 200) || '0ZtEkX8m6yg'],
-            iv_load_policy: 3, // default: 1
+            iv_load_policy: 3, // video annotations (default: 1)
             modestbranding: 1,
             enablejsapi: 1,
             loop: 0,
-            origin: 'https://toddbrentlinger.github.io/Game-Informer-Replay-Website/Game-Informer-Replay-Website/'
+            //origin: 'https://toddbrentlinger.github.io/Game-Informer-Replay-Website/Game-Informer-Replay-Website/'
         },
         events: {
             onReady: replayEpisodeCollection.onPlayerReady.bind(replayEpisodeCollection),

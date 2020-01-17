@@ -1,9 +1,20 @@
 ﻿TO-DO:
 
-- ISSUE: Search 'earl 3' to get one episode with no YouTube url. Causes error
-in assigning current episode.
+1/14/19
+
+- Add overlay on current episode in list such as "Cued/Playing/Ended".
+The play button overlay should be disabled.
+
+- Combine filterBySeason and filterByYear
+
+- Binary Search: Since base episode object array is sorted by episode number
+from high to low, write search function using binary search algorithm to find
+reference to episode when the episode number is known.
 
 1/10/20
+
+- ISSUE: Search 'earl 3' to get one episode with no YouTube url. Causes error
+in assigning current episode.
 
 - When window changes size, using event listener, change max-height
 of current episode dropdown

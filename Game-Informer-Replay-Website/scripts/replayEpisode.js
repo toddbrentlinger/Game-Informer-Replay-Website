@@ -89,6 +89,9 @@ class ReplayEpisode {
             // Likes
             if (replayEpisode.youtube.hasOwnProperty('likes'))
                 this.likes = parseInt(replayEpisode.youtube.likes, 10);
+            // Dislikes
+            if (replayEpisode.youtube.hasOwnProperty('dislikes'))
+                this.dislikes = parseInt(replayEpisode.youtube.dislikes, 10);
         }
 
         // Description (array)
@@ -165,7 +168,7 @@ class ReplayEpisode {
     // -----------------------------------
 
     get videoLengthInSeconds() {
-        let timeArr = this.videoLength.split(':');
+        const timeArr = this.videoLength.split(':');
         timeArr.forEach(function (digit, index, arr) {
             arr[index] = parseInt(digit, 10);
         });
@@ -173,6 +176,11 @@ class ReplayEpisode {
         return timeArr[timeArr.length - 1]
             + (timeArr.length > 1 ? timeArr[timeArr.length - 2] * 60 : 0)
             + (timeArr.length > 2 ? timeArr[timeArr.length - 3] * 3600 : 0);
+    }
+
+    get likeRatio() {
+        if (this.hasOwnProperty('likes') && this.hasOwnProperty('dislikes'))
+            return ((this.likes * 100) / (this.likes + this.dislikes)).toFixed(1);
     }
 
     // ---------------------------------------
@@ -311,8 +319,10 @@ class ReplayEpisode {
                 .insertAdjacentText('beforeend', ReplayEpisode.addCommasToNumber(this.views));
 
             // Likes
-            this.episodeSection.querySelector('.likes')
-                .insertAdjacentText('beforeend', ReplayEpisode.addCommasToNumber(this.likes));
+            this.episodeSection.querySelector('.likes').insertAdjacentText(
+                'beforeend',
+                `${ReplayEpisode.addCommasToNumber(this.likes)} (${this.likeRatio}%)`
+            );
         }
 
         // -------------------------------

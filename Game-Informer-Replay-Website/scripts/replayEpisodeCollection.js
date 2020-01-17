@@ -19,7 +19,9 @@ const sort = Object.freeze({
     airdate: 2,
     views: 3,
     likes: 4,
-    length: 5
+    likeRatio: 5,
+    dislikes: 6,
+    length: 7
 });
 
 // Object: Collection of all replay episodes
@@ -88,8 +90,10 @@ var replayEpisodeCollection = {
         // If arg is a string type, compare to properties of sort enum
         if (typeof input === 'string') {
             switch (input) {
-                case 'most-viewed': tempSortType = sort.views; break;
-                case 'most-liked': tempSortType = sort.likes; break;
+                case 'views': tempSortType = sort.views; break;
+                case 'likes': tempSortType = sort.likes; break;
+                case 'like-ratio': tempSortType = sort.likeRatio; break;
+                case 'dislikes': tempSortType = sort.dislikes; break;
                 case 'video-length': tempSortType = sort.length; break;
                 case 'none': tempSortType = sort.none; break;
                 case 'number': tempSortType = sort.number; break;
@@ -132,10 +136,12 @@ var replayEpisodeCollection = {
     get sortTypeString() {
         switch (this.sortType) {
             case sort.airdate: return 'airdate'; break;
-            case sort.views: return 'most-viewed'; break;
-            case sort.likes: return 'most-liked'; break;
-            case sort.length: return 'video-length'; break;
             case sort.number: return 'number'; break;
+            case sort.views: return 'views'; break;
+            case sort.likes: return 'likes'; break;
+            case sort.likeRatio: return 'like-ratio'; break;
+            case sort.dislikes: return 'dislikes'; break;
+            case sort.length: return 'video-length'; break;
             case sort.none:
             default: return 'none';
         }
@@ -228,39 +234,29 @@ var replayEpisodeCollection = {
     set currentEpisode(episode) {
         if (episode instanceof ReplayEpisode && episode !== this._currentEpisode) {
             console.log(`set currentEpisode = ${episode.episodeNumber}`);
+            // Remove 'currently-playing' class from previously played episode
+            if (this.currentEpisode) this.currentEpisode.episodeSection.classList.remove('currently-playing');
+            // Set episodeSection of selected replayEpisode to class 'currently-playing'
+            episode.episodeSection.classList.add('currently-playing');
+
             // Assign currentEpisode
             this._currentEpisode = episode;
             // Remove episode info from around video player
             this.removeCurrentEpisodeInfo();
             // Display episode info around video player
             this.addCurrentEpisodeInfo();
-            /*
-            // Remove episode info below video player
-            while (this.currentEpisodeInfoElement.firstChild) {
-                this.currentEpisodeInfoElement
-                    .removeChild(this.currentEpisodeInfoElement.firstChild);
-            }
-            
-            // Display episode info below video player
-            this.currentEpisodeInfoElement.appendChild(episode.episodeSection.cloneNode(true));
-            */
         }
         else {
             if (episode instanceof ReplayEpisode && episode === this._currentEpisode)
-                console.log(`*** Attempted to assign same episode to currentEpisode ***`);
+                console.log(`Attempted to assign same episode to currentEpisode`);
             else {
                 console.error(`Could NOT assign ${episode} to currentEpisode`);
+                // Remove 'currently-playing' class from previously played episode
+                if (this.currentEpisode) this.currentEpisode.episodeSection.classList.remove('currently-playing');
                 // Assign value of undefined
                 this._currentEpisode = undefined;
                 // Remove episode info from around video player
                 this.removeCurrentEpisodeInfo();
-                /*
-                // Remove episode info below video player
-                while (this.currentEpisodeInfoElement.firstChild) {
-                    this.currentEpisodeInfoElement
-                        .removeChild(this.currentEpisodeInfoElement.firstChild);
-                }
-                */
             }
         }
     },
@@ -280,8 +276,15 @@ var replayEpisodeCollection = {
  
 // init(replayEpisodeArray)
 replayEpisodeCollection.init = function (replayEpisodeArray) {
-    
+
+    // Clone episode section template to use for episode data
+    // Initialize each replay episode object by sending this template
+    // as an argument to ReplayEpisode constructor
+    const episodeTemplate = document.querySelector('section.episode')
+        .cloneNode(true);
+
     // Initialize object properties
+
     // Set value of input elements based on sort/filter properties
     //console.log(`Properties - \nSortType: ${this.sortTypeString}(${this.sortType}) \nAscending: ${this.ascending} \nMaxDisplayed: ${this.maxDisplayedEpisodes}`);
     //console.log(`Element Values - \nSortType: ${this.sortTypeElement.value}(${this.sortType}) \nAscending: ${this.sortDirectionElement.value} \nMaxDisplayed: ${this.maxDisplayedElement.value}`);
@@ -293,15 +296,10 @@ replayEpisodeCollection.init = function (replayEpisodeArray) {
     // Set filter
     // Set search
 
-    // Clone episode section template to use for episode data
-    // Initialize each replay episode object by sending this template
-    // as an argument to ReplayEpisode constructor
-    this.episodeTemplate = document.querySelector('section.episode')
-        .cloneNode(true);
-
     // Populate replay episode object array in episode collection object
-    this.populateEpisodeObjectArray(replayEpisodeArray);
-    // Empty replayEpisodeArray
+    this.populateEpisodeObjectArray(replayEpisodeArray, episodeTemplate);
+
+    // Empty replayEpisodeArray. No longer needed.
     replayEpisodeArray = [];
 
     // Initialize selected episodes array to same order of base episode object array
@@ -312,11 +310,6 @@ replayEpisodeCollection.init = function (replayEpisodeArray) {
 
     // Populate main element with initialized selected episodes array
     this.updateDisplayedEpisodes();
-    
-    // Cue playlist of first 200 selected episodes
-    //console.log('Init before');
-    //this.cueEpisodePlaylist();
-    //console.log('Init after');
 
     // Add stats
     this.populateStats();
@@ -326,11 +319,11 @@ replayEpisodeCollection.init = function (replayEpisodeArray) {
 };
 
 // populateEpisodeObjectArray()
-replayEpisodeCollection.populateEpisodeObjectArray = function (replayEpisodeArray) {
+replayEpisodeCollection.populateEpisodeObjectArray = function (replayEpisodeArray, episodeTemplate) {
     let replayEpisodeObject;
     for (const replayEpisode of replayEpisodeArray) {
         // Create ReplayEpisode object
-        replayEpisodeObject = new ReplayEpisode(replayEpisode, this.episodeTemplate);
+        replayEpisodeObject = new ReplayEpisode(replayEpisode, episodeTemplate);
         // Append episode object to array
         this.replayEpisodeObjectArray.push(replayEpisodeObject);
 
@@ -351,12 +344,8 @@ replayEpisodeCollection.clearMainElement = function () {
     }
 }
 
-/* updateDisplayedEpisodes(begin, end)
- * Populate main HTML element with episode HTML from displayed episodes array
- * A negative index can be used, indicating an offset from the end of the sequence. 
- * If end is omitted, extracts through the end of the sequence(arr.length).
- * If end is greater than the length of the sequence, extracts through to the end of the sequence(arr.length).
-*/
+// updateDisplayedEpisodes()
+// Populate main HTML element with episode HTML from displayed episodes array
 replayEpisodeCollection.updateDisplayedEpisodes = function () {
     // Variables
     const selectedEpisodesLength = this.selectedEpisodes.length;
@@ -392,46 +381,16 @@ replayEpisodeCollection.updateDisplayedEpisodes = function () {
     this.updatePageNumberAdv('bottom', true);
 };
 
-// updateSelectedEpisodes(searchBool, filterBool, sortBool)
-// Starts with default selectedEpisodes and changes it based on
-// search, filter, sort, etc.
-// IN PROGRESS
-replayEpisodeCollection.updateSelectedEpisodes = function (setFirstPage = true) {
+// updateSelectedEpisodes()
+replayEpisodeCollection.updateSelectedEpisodes = function () {
+    // Reset current page displayed
+    this.currentPageDisplayed = 1;
     // Sort selected episodes
     this.sortByType();
-    // Reset current page displayed
-    if (setFirstPage) this.currentPageDisplayed = 1;
     // Populate main element with updated selectedEpisodes
     this.updateDisplayedEpisodes();
-
     // Cue playlist of first 200 selected episodes
     this.cueEpisodePlaylist();
-};
-
-// --------------------------
-// ---------- Misc ----------
-// --------------------------
-
-// getEpisodeByNumber(num)
-// TODO: NOT being used
-replayEpisodeCollection.getEpisodeByNumber = function (num) {
-    for (const episode of this.replayEpisodeObjectArray) {
-        if (episode.episodeNumber === num)
-            return episode;
-    }
-    // If for loop finishes without return, could NOT find episode,
-    // return undefined
-    console.error(`Could NOT find episode with number: ${num}`);
-};
-
-// getEpisodeByVideoID(youtubeVideoID)
-replayEpisodeCollection.getEpisodeByVideoID = function (youtubeVideoID) {
-    for (const episode of this.replayEpisodeObjectArray) {
-        if (episode.hasOwnProperty('youtubeVideoID') && episode.youtubeVideoID === youtubeVideoID)
-            return episode;
-    }
-    // If for loop finishes without return, could NOT find episode, return undefined
-    console.error(`Could NOT find episode with youtubeVideoID: ${youtubeVideoID}`);
 };
 
 // -----------------------------
@@ -440,7 +399,7 @@ replayEpisodeCollection.getEpisodeByVideoID = function (youtubeVideoID) {
 
 // shuffleArray(arr)
 // Accepts array as argument to shuffle
-// TODO: Make static function
+// TODO: Make static function or just add to shuffleSelectedEpisodes()
 replayEpisodeCollection.shuffleArray = function (arr) {
 
     for (let i = arr.length - 1; i > 0; i--) {
@@ -461,10 +420,20 @@ replayEpisodeCollection.shuffleSelectedEpisodes = function () {
     this.sortType = sort.none;
     // Shuffle selectedEpisodes
     this.shuffleArray(this.selectedEpisodes);
-    // Update displayed episodes
-    //this.updateDisplayedEpisodes();
+    // Update selected episodes
     this.updateSelectedEpisodes();
 };
+/*
+// getShuffledOrder
+// Array of episode numbers in shuffled order
+// TODO: Use to save shuffled order to local/session storage
+replayEpisodeCollection.getShuffleOrder = function () {
+    const shuffledOrder = [];
+    for (let i = 0; i < this.selectedEpisodes.length; i++)
+        shuffledOrder.push(this.selectedEpisodes[i].episodeNumber);
+    return shuffledOrder;
+};
+*/
 
 // -----------------------------------
 // ---------- Filter/Search ----------
@@ -490,27 +459,6 @@ replayEpisodeCollection.updateFilterObj = function () {
             else // Else add filterObj as property and add value as first element
                 tempObj[input.name] = [input.value];
         }
-        /*
-        switch (input.name) {
-            case 'giCrew':
-                if (input.checked) {
-                    // If filterObj already has input.name as a property, add value to property array
-                    if (tempObj.hasOwnProperty(input.name))
-                        tempObj[input.name].push(input.value);
-                    else // Else add filterObj as property and add value as first element
-                        tempObj[input.name] = [input.value];
-                }
-                break;
-            default:
-                if (!input.checked) {
-                    // If filterObj already has input.name as a property, add value to property array
-                    if (tempObj.hasOwnProperty(input.name))
-                        tempObj[input.name].push(input.value);
-                    else // Else add filterObj as property and add value as first element
-                        tempObj[input.name] = [input.value];
-                }
-        }
-        */
     }
     // Assign to filterObj. Setter filters selectedEpisodes
     this.filterObj = tempObj;
@@ -550,7 +498,6 @@ replayEpisodeCollection.filterBySearch = function (searchTerms = '') {
                 return re.test(episode.episodeSection
                     .textContent.toLowerCase());
             });
-        this.updateSelectedEpisodes();
     } else { // Else show all episodes applying filter and sort
         // TODO
         //console.log('No search text');
@@ -560,9 +507,9 @@ replayEpisodeCollection.filterBySearch = function (searchTerms = '') {
 // filterBySeason(seasons)
 // Filters the current array of filtered episodes by season
 // Argument can be number or array of numbers
-replayEpisodeCollection.filterBySeason = function (seasonToFilter) {
+replayEpisodeCollection.filterBySeason = function (seasonsToFilter) {
     // Make sure that each value is a number
-    seasonToFilter.forEach(function (value, index, arr) {
+    seasonsToFilter.forEach(function (value, index, arr) {
         // If value is NOT a number, remove array element
         if (isNaN(value))
             arr.splice(index, 1);
@@ -571,14 +518,14 @@ replayEpisodeCollection.filterBySeason = function (seasonToFilter) {
             arr[index] = parseInt(value, 10);
     });
 
-    if (typeof seasonToFilter == 'number') {
+    if (typeof seasonsToFilter == 'number') {
         this.selectedEpisodes = this.selectedEpisodes.filter(
-            episode => (episode.getReplaySeason()[0] === seasonToFilter)
+            episode => (episode.getReplaySeason()[0] === seasonsToFilter)
         );
     }
-    else if (Array.isArray(seasonToFilter)) {
+    else if (Array.isArray(seasonsToFilter)) {
         this.selectedEpisodes = this.selectedEpisodes.filter(
-            episode => seasonToFilter.includes(episode.getReplaySeason()[0])
+            episode => seasonsToFilter.includes(episode.getReplaySeason()[0])
         );
     }
 };
@@ -646,8 +593,7 @@ replayEpisodeCollection.populateFilterForm = function () {
     let i = 0;
     const currentYear = new Date().getFullYear();
 
-    // TODO: Create array of references to each gi crew object
-    // and sort alphabetically
+    // Create array of names for each gi crew and sort alphabetically
     getGICrew()[2].forEach(personObj => {
         if (personObj.count > 1)
             sortedGICrewObjArr.push(personObj);
@@ -811,11 +757,33 @@ replayEpisodeCollection.sortByType = function () {
                     return -1;
             });
             break;
+        // Like Ratio
+        case sort.likeRatio:
+            this.selectedEpisodes.sort(function (first, second) {
+                if (first.hasOwnProperty('likes') && second.hasOwnProperty('likes'))
+                    return first.likeRatio - second.likeRatio;
+                else if (first.hasOwnProperty('likes'))
+                    return 1;
+                else if (second.hasOwnProperty('likes'))
+                    return -1;
+            });
+            break;
+        // Dislikes
+        case sort.dislikes:
+            this.selectedEpisodes.sort(function (first, second) {
+                if (first.hasOwnProperty('dislikes') && second.hasOwnProperty('dislikes'))
+                    return first.dislikes - second.dislikes;
+                else if (first.hasOwnProperty('dislikes'))
+                    return 1;
+                else if (second.hasOwnProperty('dislikes'))
+                    return -1;
+            });
+            break;
         // Air Date (Default)
         case sort.airdate:
         default:
-            this.selectedEpisodes.sort(function (firstEl, secondEl) {
-                return firstEl.airdate - secondEl.airdate;
+            this.selectedEpisodes.sort(function (first, second) {
+                return first.airdate - second.airdate;
             });
     }
 
@@ -839,9 +807,6 @@ replayEpisodeCollection.resetSelectedEpisodes = function () {
     this.ascending = false;
     this.searchInputElement.value = '';
     this.filterFormElement.reset();
-
-    // Reset current page displayed
-    //this.currentPageDisplayed = 1;
 
     this.updateSelectedEpisodes();
 };
@@ -872,25 +837,24 @@ replayEpisodeCollection.createNumberedButton = function (buttonValue, buttonStr,
 replayEpisodeCollection.updatePageNumberAdv = function (positionStr, scrollToTop = false) {
     // Variables
     const pageNumberContainer = document.getElementById(`page-number-container${(positionStr) ? '-' + positionStr : ''}`);
+    const pageNumberList = pageNumberContainer.querySelector('.page-number-list');
+
     // Hide page container if total pages is less than 2
     pageNumberContainer.style.display = (this.totalPages < 2) ? 'none' : null;
-    const prevButton = pageNumberContainer.querySelector('button[value="prev"]');
-    const firstButton = pageNumberContainer.querySelector('button[value="first"]');
-    const pageNumberList = pageNumberContainer.querySelector('.page-number-list');
-    const lastButton = pageNumberContainer.querySelector('button[value="last"]');
-    const nextButton = pageNumberContainer.querySelector('button[value="next"]');
 
     // Remove all page number buttons
     pageNumberContainer.querySelectorAll('.page-number-list .custom-button')
         .forEach(node => node.remove());
 
     // Disable 'PREV' if current page is equal to 1
-    prevButton.disabled = (this.currentPageDisplayed === 1);
+    pageNumberContainer.querySelector('button[value="prev"]')
+        .disabled = (this.currentPageDisplayed === 1);
 
     // Disable 'FIRST' if totalPages is less than or equal to maxDisplayedButtons
     // OR current page is near beginning of list
-    firstButton.disabled = (this.totalPages <= this.maxDisplayedButtons
-        || this.currentPageDisplayed <= this.maxDisplayedButtons
+    pageNumberContainer.querySelector('button[value="first"]')
+        .disabled = (this.totalPages <= this.maxDisplayedButtons
+            || this.currentPageDisplayed <= this.maxDisplayedButtons
     );
 
     // Page number list
@@ -928,12 +892,14 @@ replayEpisodeCollection.updatePageNumberAdv = function (positionStr, scrollToTop
 
     // Disable 'LAST' if totalPages is less than or equal to maxDisplayedButtons
     // OR current page is near end of list
-    lastButton.disabled = (this.totalPages <= this.maxDisplayedButtons
-        || (this.currentPageDisplayed > this.totalPages - this.maxDisplayedButtons)
+    pageNumberContainer.querySelector('button[value="last"]')
+        .disabled = (this.totalPages <= this.maxDisplayedButtons
+            || (this.currentPageDisplayed > this.totalPages - this.maxDisplayedButtons)
     );
 
     // Disable 'NEXT' if current page is equal to last page (totalPages)
-    nextButton.disabled = (this.currentPageDisplayed === this.totalPages);
+    pageNumberContainer.querySelector('button[value="next"]')
+        .disabled = (this.currentPageDisplayed === this.totalPages);
 };
 
 // TODO: 
@@ -963,11 +929,12 @@ replayEpisodeCollection.setPageNumber = function (input, scrollToTop = false) {
             document.getElementById('top-page').scrollIntoView({behavior: "smooth"});
     }
 };
-
+/*
 // TODO
 replayEpisodeCollection.getPageNumberOfEpisode = function (replayEpisode) {
 
 };
+*/
 
 // ------------------------------------------------
 // ---------- Video Player - YouTube API ----------
@@ -982,8 +949,9 @@ replayEpisodeCollection.cueEpisodePlaylist = function (replayEpisode) {
 
     // If argument is undefined, cue playlist of first 200 selected episodes
     if (typeof replayEpisode === 'undefined') {
+        console.log(`CuePlaylist: First 200 videos cued`);
         if (this.selectedEpisodes.length) {
-            this.videoPlayer.cuePlaylist({ playlist: this.selectedVideoIdArray.slice(0, 200) });
+            this.videoPlayer.cuePlaylist(this.selectedVideoIdArray.slice(0, 200));
             //this.currentEpisode = this.getEpisodeByVideoID(this.selectedVideoIdArray[0]);
         }
         else { // Else no selected episodes, cue Replay highlights video
@@ -1063,7 +1031,7 @@ replayEpisodeCollection.onPlayerStateChange = function (event) {
                 if (this.getPageOfEpisode(this.currentEpisode) !== this.currentPageDisplayed) {
                     this.setPageNumber(this.getPageOfEpisode(this.currentEpisode));
                 }
-                str += `\nPlaylist Index: ${this.videoPlayer.getPlaylistIndex()} - Episode At Index: ${this.currentEpisode.episodeNumber}`;
+                //str += `\nPlaylist Index: ${this.videoPlayer.getPlaylistIndex()} - Episode At Index: ${this.currentEpisode.episodeNumber}`;
             }
             break;
         case 0:
@@ -1102,34 +1070,12 @@ replayEpisodeCollection.onPlayerError = function (event) {
 
 // playEpisode(replayEpisode)
 replayEpisodeCollection.playEpisode = function (replayEpisode) {
-    // Remove 'currently-playing' class from previously played episode
-    if (this.currentEpisode) this.currentEpisode.episodeSection.classList.remove('currently-playing');
-
-    // Set episodeSection of selected replayEpisode to class 'currently-playing'
-    replayEpisode.episodeSection.classList.add('currently-playing');
-
-    // Move video player before selected replay episode
-    // TODO: Instead, move episode sections before video player
-    //replayEpisode.episodeSection.before(this.videoPlayerContainer);
-
     // Scroll to top of video player
     this.videoPlayerContainer.scrollIntoView();
-
+    // Cue playlist
     this.cueEpisodePlaylist(replayEpisode);
-
-    // Play video of episode
-    //this.videoPlayer.cueVideoById(replayEpisode.youtubeVideoID);
-
-    /* EXAMPLE:
-     * index = n (episodeIndex, end, newIndex)
-     * index = 100 (0, 199, 100)
-     * index = 250 (200, 399, 50)
-     * 
-     * Use previous episode to play to check if need to cue new playlist
-     * or just play current playlist at certain index.
-    */
 };
-
+/*
 // playNextEpisode()
 replayEpisodeCollection.playNextEpisode = function () {
 
@@ -1139,6 +1085,7 @@ replayEpisodeCollection.playNextEpisode = function () {
 replayEpisodeCollection.playPrevEpisode = function () {
 
 };
+*/
 
 // -------------------------------------
 // ---------- Current Episode ----------
@@ -1206,6 +1153,30 @@ replayEpisodeCollection.toggleCurrentEpisodeInfo = function () {
 // --------------------------
 // ---------- Misc ----------
 // --------------------------
+/*
+// getEpisodeByNumber(num)
+// TODO: NOT being used
+// TODO: Create binary search function since replayEpisodeObjectArray is sorted
+replayEpisodeCollection.getEpisodeByNumber = function (num) {
+    for (const episode of this.replayEpisodeObjectArray) {
+        if (episode.episodeNumber === num)
+            return episode;
+    }
+    // If for loop finishes without return, could NOT find episode,
+    // return undefined
+    console.error(`Could NOT find episode with number: ${num}`);
+};
+*/
+
+// getEpisodeByVideoID(youtubeVideoID)
+replayEpisodeCollection.getEpisodeByVideoID = function (youtubeVideoID) {
+    for (const episode of this.replayEpisodeObjectArray) {
+        if (episode.hasOwnProperty('youtubeVideoID') && episode.youtubeVideoID === youtubeVideoID)
+            return episode;
+    }
+    // If for loop finishes without return, could NOT find episode, return undefined
+    console.error(`Could NOT find episode with youtubeVideoID: ${youtubeVideoID}`);
+};
 
 // getPageOfEpisode(replayEpisode)
 // Search for index of replayEpisode in selectedEpisodes and calculate page number
@@ -1256,15 +1227,20 @@ replayEpisodeCollection.populateStats = function () {
     // Total Time
     this.showTotalTime();
     // Total Views, Total Likes
-    let totalViews = 0, totalLikes = 0;
+    let totalViews = 0, totalLikes = 0, totalDislikes = 0;
     this.replayEpisodeObjectArray.forEach(function (episode) {
         if (episode.hasOwnProperty('views'))
             totalViews += episode.views;
         if (episode.hasOwnProperty('likes'))
             totalLikes += episode.likes;
+        if (episode.hasOwnProperty('dislikes'))
+            totalDislikes += episode.dislikes;
     });
     document.getElementById('stats-total-views').insertAdjacentText('beforeend', ReplayEpisode.addCommasToNumber(totalViews));
-    document.getElementById('stats-total-likes').insertAdjacentText('beforeend', ReplayEpisode.addCommasToNumber(totalLikes));
+    document.getElementById('stats-total-likes').insertAdjacentText(
+        'beforeend',
+        `${ReplayEpisode.addCommasToNumber(totalLikes)} (${((totalLikes * 100) / (totalLikes + totalDislikes)).toFixed(1)}%)`
+    );
 };
 
 // showTotalTime()
@@ -1372,7 +1348,7 @@ function getGICrew() {
 
     return [tempHostArr, tempGuestArr, tempTotalAppearancesArr, noHostEpisodes, noGuestEpisodes];
 }
-
+/*
 // Get all extra headings from details property
 function getEpisodeHeadings() {
     let extraHeadingsArr = [];
@@ -1407,19 +1383,21 @@ function getEpisodeHeadings() {
 
     return extraHeadingsArr;
 }
-
-function getMiddleSegments() {
-    let middleSegmentArr = [];
+*/
+function getSegments() {
+    let segmentArr = [];
     let isIncluded = false;
+    let tempSegment;
     replayEpisodeCollection.replayEpisodeObjectArray.forEach(function (episode) {
+        // Middle Segment
         if (episode.hasOwnProperty('middleSegment') || episode.hasOwnProperty('middleSegmentContent')) {
-            let tempMiddleSegment = episode.middleSegment || episode.middleSegmentContent;
+            tempSegment = episode.middleSegment || episode.middleSegmentContent;
             // Check if Ad (string.endsWith())
-            if (tempMiddleSegment.endsWith('Ad'))
-                tempMiddleSegment = 'Ad';
+            if (tempSegment.endsWith('Ad'))
+                tempSegment = 'Ad';
             isIncluded = false;
-            for (const segment of middleSegmentArr) {
-                if (segment.name === tempMiddleSegment) {
+            for (const segment of segmentArr) {
+                if (segment.name === tempSegment) {
                     isIncluded = true;
                     segment.count++;
                     break;
@@ -1427,18 +1405,42 @@ function getMiddleSegments() {
             }
             // If NOT included, add to list
             if (!isIncluded) {
-                middleSegmentArr.push({
-                    name: tempMiddleSegment,
+                segmentArr.push({
+                    name: tempSegment,
+                    count: 1
+                });
+            }
+        }
+        // Second Segment
+        if (episode.hasOwnProperty('secondSegment')) {
+            tempSegment = episode.secondSegment;
+            isIncluded = false;
+            for (const segment of segmentArr) {
+                if (segment.name === tempSegment) {
+                    isIncluded = true;
+                    segment.count++;
+                    break;
+                }
+            }
+            // If NOT included, add to list
+            if (!isIncluded) {
+                segmentArr.push({
+                    name: tempSegment,
                     count: 1
                 });
             }
         }
     });
 
+    // Convert segment names from abbreviation
+    segmentArr.forEach(function (segment) {
+        segment.name = ReplayEpisode.getSegmentTitle(segment.name);
+    });
+
     // Sort array by count in descending order
-    middleSegmentArr.sort(function (first, second) {
+    segmentArr.sort(function (first, second) {
         return second.count - first.count;
     });
 
-    return middleSegmentArr;
+    return segmentArr;
 }

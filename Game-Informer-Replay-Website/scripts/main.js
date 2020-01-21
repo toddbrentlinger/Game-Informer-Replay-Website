@@ -149,9 +149,9 @@ document.getElementById('lastModifiedDate').innerHTML = new Date(document.lastMo
 //document.getElementById('lastModifiedReplayList').innerHTML = lastModifiedReplayList;
 
 // Media Queries
-// TODO: Change function to check each mediaQueryList in mediaQueriesArr
-// for a match and assign correct maxDisplayedButtons
+/*
 function setMaxDisplayedButtonsByMediaQuery(mediaQueryObj) {
+    console.log(`setMaxDisplayedButtonsByMediaQuery started with paramter: media(${mediaQueryObj.media}) - matches(${mediaQueryObj.matches})`);
     const prevValue = replayEpisodeCollection.maxDisplayedButtons;
     replayEpisodeCollection.maxDisplayedButtons = 
         (mediaQueryObj.matches) ? 5 : 7;
@@ -161,14 +161,37 @@ function setMaxDisplayedButtonsByMediaQuery(mediaQueryObj) {
         replayEpisodeCollection.updatePageNumberAdv('bottom', true);
     }
 }
-var maxWidthForFiveNumberButtons = window.matchMedia("(max-width: 750px)"); // 550
-var maxWidthForThreeNumberButtons = window.matchMedia("(max-width: 480px)");
-var mediaQueriesArr = [ maxWidthForFiveNumberButtons, maxWidthForThreeNumberButtons ];
+const maxWidthForFiveNumberButtons = window.matchMedia("(max-width: 750px)"); // 550
 
 // Call listener function at run time
 setMaxDisplayedButtonsByMediaQuery(maxWidthForFiveNumberButtons);
 // Attach listener function on state changes
 maxWidthForFiveNumberButtons.addListener(setMaxDisplayedButtonsByMediaQuery);
+*/
+const mediaQueriesArr = [
+    window.matchMedia("(max-width: 750px)"),
+    window.matchMedia("(max-width: 480px)")
+];
+
+function mediaQueryResponse() {
+    const prevValue = replayEpisodeCollection.maxDisplayedButtons;
+    if (mediaQueriesArr[1].matches)
+        replayEpisodeCollection.maxDisplayedButtons = 3;
+    else if (mediaQueriesArr[0].matches)
+        replayEpisodeCollection.maxDisplayedButtons = 5;
+    else
+        replayEpisodeCollection.maxDisplayedButtons = 7;
+    // Update page number containers
+    if (replayEpisodeCollection.maxDisplayedButtons !== prevValue) {
+        replayEpisodeCollection.updatePageNumberAdv('top');
+        replayEpisodeCollection.updatePageNumberAdv('bottom', true);
+    }
+}
+
+for (let i = 0; i < mediaQueriesArr.length; i++)
+    mediaQueriesArr[i].addListener(mediaQueryResponse) // attach listener function to listen in on state changes
+// call listener function explicitly at run time
+mediaQueryResponse(mediaQueriesArr[0])
 
 /* JSON
 let requestURL = 'https://github.com/toddbrentlinger/Game-Informer-Scraper/blob/master/Game%20Informer%20Scraper/gameInformerReplayFandomWikiData.json';

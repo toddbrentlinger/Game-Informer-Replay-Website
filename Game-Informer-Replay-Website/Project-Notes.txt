@@ -1,6 +1,12 @@
 ﻿TO-DO:
 
-1/14/19
+1/18/20
+
+- Change episode 'See Also' links to play episode that link is referring to.
+Compare each episode external links to match the fandom url in the 'See Also' link.
+Function: getEpisodeByFandomLink(fandomLink) return ReplayEpisode
+
+1/14/20
 
 - Add overlay on current episode in list such as "Cued/Playing/Ended".
 The play button overlay should be disabled.

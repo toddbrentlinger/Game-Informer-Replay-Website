@@ -2,6 +2,87 @@
 
 const replayEpisodeArray = [
     {
+        "episodeNumber": 522,
+        "episodeTitle": "Replay: Grand Theft Auto IV: The Lost And Damned",
+        "fandomWikiURL": "/wiki/Replay:_Grand_Theft_Auto_IV:_The_Lost_And_Damned",
+        "mainSegmentGamesAdv": [
+            {
+                "title": "Grand Theft Auto IV: The Lost And Damned",
+                "system": "Xbox 360",
+                "yearReleased": "2009"
+            }
+        ],
+        "airDate": "1/17/20",
+        "videoLength": "1:04:16",
+        "secondSegment": "",
+        "secondSegmentGames": [],
+        "season": 6,
+        "details": {
+            "description": [
+                "Grand Theft Auto IV: The Lost And Damned is the featured game in the 522nd episode of Replay. This episode is hosted by Andrew Reiner and features Ben Reeves and Alex Stadnik. "
+            ],
+            "see_also": [
+                {
+                    "href": "/wiki/Replay:_Grand_Theft_Auto_IV",
+                    "title": "Grand Theft Auto IV"
+                }
+            ],
+            "external_links": [
+                {
+                    "href": "https://www.gameinformer.com/replay/replay/2020/01/17/replay-grand-theft-auto-iv-the-lost-and-damned",
+                    "title": "Replay: Grand Theft Auto IV: The Lost And Damned"
+                },
+                {
+                    "href": "https://www.youtube.com/watch?v=rQFEiqgirNc",
+                    "title": "Replay: Grand Theft Auto IV: The Lost And Damned"
+                },
+                {
+                    "href": "https://en.wikipedia.org/wiki/Grand_Theft_Auto_IV:_The_Lost_and_Damned",
+                    "title": "Grand Theft Auto IV: The Lost And Damned"
+                }
+            ],
+            "image": {
+                "width": "300",
+                "height": "169",
+                "srcset": [
+                    "https://vignette.wikia.nocookie.net/replay/images/7/75/Damned.jpg/revision/latest/scale-to-width-down/310?cb=20200118040251",
+                    "1x",
+                    "https://vignette.wikia.nocookie.net/replay/images/7/75/Damned.jpg/revision/latest/scale-to-width-down/619?cb=20200118040251",
+                    "2x"
+                ]
+            },
+            "system": [
+                "Xbox 360"
+            ],
+            "gamedate": [
+                "February 17, 2009"
+            ],
+            "airdate": "January 17, 2020",
+            "runtime": "1:04:16",
+            "host": [
+                "Andrew Reiner"
+            ],
+            "featuring": [
+                "Alex Stadnik",
+                "Ben Reeves"
+            ]
+        },
+        "article": {
+            "title": "Replay \u2013 Grand Theft Auto IV: The Lost And Damned",
+            "author": "Alex Stadnik",
+            "date": " on Jan 17, 2020 at 02:31 PM",
+            "content": [
+                "For years, fans have been clamoring for new single-player DLC to come to Grand Theft Auto V, unfortunately to no avail. Even though this may not be exactly the remedy the GTA fan base needs, allow us to soothe some of your pain by taking you back to a time when Rockstar was releasing\u00a0some of the finest DLC on the market. Join Andrew Reiner, Ben Reeves, and I as we take up the mantle of Johnny Klebitz of The Lost Motor Club and cause some chaos in Grand Theft Auto IV: The Lost and\u00a0Damned.",
+                "If you liked this week's show, be sure to tune in each Friday at 2 p.m.\u00a0CT for a new episode of Replay. Be sure to also subscribe on\u00a0YouTube,\u00a0Twitch,\u00a0Mixer,\u00a0Twitter, or\u00a0Facebook\u00a0to get notified when we go live each week! Thanks and enjoy the show!"
+            ]
+        },
+        "youtube": {
+            "views": 5731,
+            "likes": 159,
+            "dislikes": 11
+        }
+    },
+    {
         "episodeNumber": 521,
         "episodeTitle": "Replay: Dragon's Dogma: Dark Arisen",
         "fandomWikiURL": "/wiki/Replay:_Dragon%27s_Dogma:_Dark_Arisen",
@@ -3727,7 +3808,7 @@ const replayEpisodeArray = [
             "featuring": [
                 "Joe Juba",
                 "Ben Reeves",
-                "Zach Pligge"
+                "Zachary Pligge"
             ]
         },
         "article": {

@@ -364,20 +364,6 @@ main { margin: 0 .8em; }
     display: table;
 }
 
-/* Views/Likes */
-.views-likes-container {
-    display: flex;
-    justify-content: center;
-    padding: .3em 0;
-    font-size: .9em;
-}
-.views-likes-container > * {
-    padding-left: 1em;
-}
-.views-likes-container .fa {
-    margin-right: .5em;
-}
-
 /* Episode Length */
 
 .episodeLength {
@@ -397,11 +383,35 @@ main { margin: 0 .8em; }
 .episodeDetails {
     float: right;
     width: 55%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
     padding: 0 1em;
     font-size: .9em;
 }
-.episodeAirDate, .gi-crew > *, .segments > * { padding: .4em 0; }
-/*.episodeDetails > * { padding: .4em 0; }*/
+.episodeAirDate, .gi-crew > *, .segments > *, .views-likes-container { padding: .4em 0; }
+.episodeAirDate { padding-right: 1em; }
+.gi-crew { width: 100%; }
+/* Views/Likes */
+.views-likes-container {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+    /*flex: 1;*/
+    /*justify-content: center;*/
+    /*padding: .3em 0;*/
+    /*font-size: .9em;*/
+}
+
+.views-likes-container .likes {
+    padding-left: 1em;
+}
+
+.views-likes-container .fa {
+    margin-right: .5em;
+}
+
+/*.episodeDetails > * { padding: .4em 0; } //
 .episodeDetails .views, .episodeDetails .likes {
     float: left;
     width: 50%;
@@ -411,7 +421,7 @@ main { margin: 0 .8em; }
     clear: both;
     display: table;
 }
-
+*/
 /* ---------- Episode More Info (w/ dropdown display) ---------- */
 
 .episodeMoreInfo {
@@ -1099,7 +1109,7 @@ input:checked + .slider:before {
     - mobile ( <= 480px )
 */
 
-@media (max-width: 550px) {
+@media (max-width: 650px) { /* 550px */
     :root { background-image: none; }
 
     body { width: 100%; }

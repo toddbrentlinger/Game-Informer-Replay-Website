@@ -45,7 +45,7 @@ var replayEpisodeCollection = {
 
     // Max Displayed Episodes - Increments [10, 25, 50, 100, 200]
     // Value of 0 shows all episodes
-    _maxDisplayedEpisodes: window.sessionStorage.getItem('maxDisplayedEpisodes') || 25,
+    _maxDisplayedEpisodes: window.sessionStorage.getItem('maxDisplayedEpisodes') || 10,
     get maxDisplayedEpisodes() { return this._maxDisplayedEpisodes; },
     set maxDisplayedEpisodes(num) {
         //console.log(`Argument num: ${num} (${typeof num}) - Max Displayed: ${this.maxDisplayedEpisodes}`);
@@ -62,6 +62,7 @@ var replayEpisodeCollection = {
     },
 
     // Page Selection
+    maxDisplayedButtons: 7,
     _currentPageDisplayed: parseInt(window.sessionStorage.getItem('currentPageDisplayed'), 10) || 1, // Page number of selected episodes list depending on maxDisplayedEpisodes
     get currentPageDisplayed() { return this._currentPageDisplayed; },
     set currentPageDisplayed(num) {
@@ -78,9 +79,6 @@ var replayEpisodeCollection = {
             ? Math.ceil(this.selectedEpisodes.length / this.maxDisplayedEpisodes)
             : 1;
     },
-
-    // Page Select
-    maxDisplayedButtons: 7,
 
     // Sort
     _sortType: parseInt(window.sessionStorage.getItem('sortType'), 10) || sort.airdate,
@@ -231,6 +229,8 @@ var replayEpisodeCollection = {
 
     _currentEpisode: undefined, // reference to ReplayEpisode object
     get currentEpisode() { return this._currentEpisode; },
+    // TODO: Add current episode number to local/session storage. When page loads,
+    // find episode reference with number using binary search function getEpisodeByNumber(num)
     set currentEpisode(episode) {
         if (episode instanceof ReplayEpisode && episode !== this._currentEpisode) {
             console.log(`set currentEpisode = ${episode.episodeNumber}`);
@@ -300,7 +300,7 @@ replayEpisodeCollection.init = function (replayEpisodeArray) {
     this.populateEpisodeObjectArray(replayEpisodeArray, episodeTemplate);
 
     // Empty replayEpisodeArray. No longer needed.
-    replayEpisodeArray = [];
+    replayEpisodeArray = undefined;
 
     // Initialize selected episodes array to same order of base episode object array
     this.replayEpisodeObjectArray.forEach(episode => this.selectedEpisodes.push(episode));
@@ -1153,20 +1153,31 @@ replayEpisodeCollection.toggleCurrentEpisodeInfo = function () {
 // --------------------------
 // ---------- Misc ----------
 // --------------------------
-/*
+
 // getEpisodeByNumber(num)
 // TODO: NOT being used
-// TODO: Create binary search function since replayEpisodeObjectArray is sorted
+// Binary Search function since replayEpisodeObjectArray is sorted
+// by episode number in descending order
 replayEpisodeCollection.getEpisodeByNumber = function (num) {
-    for (const episode of this.replayEpisodeObjectArray) {
-        if (episode.episodeNumber === num)
-            return episode;
+    let midIndex,
+        leftIndex = 0,
+        rightIndex = this.replayEpisodeObjectArray.length - 1;
+    while (leftIndex <= rightIndex) {
+        midIndex = Math.ceil(leftIndex + (rightIndex - leftIndex) / 2);
+        // Check if num matches episode number at midIndex
+        if (this.replayEpisodeObjectArray[midIndex].episodeNumber == num)
+            return this.replayEpisodeObjectArray[midIndex];
+        // If num is greater than episode number, ignore right half
+        if (this.replayEpisodeObjectArray[midIndex].episodeNumber < num)
+            rightIndex = midIndex - 1;
+        // Else num is smaller than episode number, ignore left half
+        else
+            leftIndex = midIndex + 1;
     }
     // If for loop finishes without return, could NOT find episode,
-    // return undefined
+    return undefined
     console.error(`Could NOT find episode with number: ${num}`);
 };
-*/
 
 // getEpisodeByVideoID(youtubeVideoID)
 replayEpisodeCollection.getEpisodeByVideoID = function (youtubeVideoID) {

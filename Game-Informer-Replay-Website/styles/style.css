@@ -33,7 +33,7 @@ Softrobo Pro Font on fonts.com
     background-color: var(--main-bg-color);
     background-image: url("../images/replay_bg_gi_blue(3).png");
     background-repeat: no-repeat;
-    background-attachment: fixed;
+    background-attachment: fixed; /* browser issues */
     background-position: center top;
     background-size: cover;
 }
@@ -403,8 +403,8 @@ main { margin: 0 .8em; }
     /*font-size: .9em;*/
 }
 
-.views-likes-container .likes {
-    padding-left: 1em;
+.views-likes-container .views {
+    padding-right: 1em;
 }
 
 .views-likes-container .fa {
@@ -566,7 +566,7 @@ ul.link-list {
 
 #current-episode-info {
     max-height: 0;
-    overflow: hidden;
+    overflow: auto; /* hidden */
     transition: max-height 0.2s ease-out;
 }
 

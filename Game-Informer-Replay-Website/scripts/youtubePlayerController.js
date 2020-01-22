@@ -25,8 +25,8 @@ window.onYouTubePlayerAPIReady = function () {
             iv_load_policy: 3, // video annotations (default: 1)
             modestbranding: 1,
             enablejsapi: 1,
-            loop: 0,
-            origin: 'https://toddbrentlinger.github.io/Game-Informer-Replay-Website/Game-Informer-Replay-Website/'
+            loop: 1,
+            //origin: 'https://toddbrentlinger.github.io/Game-Informer-Replay-Website/Game-Informer-Replay-Website/'
         },
         events: {
             onReady: replayEpisodeCollection.onPlayerReady.bind(replayEpisodeCollection),

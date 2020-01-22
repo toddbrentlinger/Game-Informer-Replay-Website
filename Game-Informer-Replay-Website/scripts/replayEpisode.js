@@ -380,6 +380,7 @@ class ReplayEpisode {
                         childNode = childNode.appendChild(document.createElement('a'));
                         childNode.setAttribute('href', image.link);
                         childNode.setAttribute('target', '_blank');
+                        childNode.setAttribute('rel', 'noopener');
                         // Add image to figure
                         childNode = childNode.appendChild(document.createElement('img'));
                         childNode.setAttribute('src', image.src);
@@ -667,6 +668,7 @@ class ReplayEpisode {
                 (urlPrepend ? urlPrepend + linkObj.href : linkObj.href)
             );
             anchorElement.setAttribute('target', '_blank');
+            anchorElement.setAttribute('rel', 'noopener');
             // Add text listing source of link
             linkSource = '';
             // Find matching link source

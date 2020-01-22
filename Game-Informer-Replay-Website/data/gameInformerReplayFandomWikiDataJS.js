@@ -37318,8 +37318,7 @@ const replayEpisodeArray = [
         "videoLength": "50:24",
         "secondSegment": "RR",
         "secondSegmentGames": [
-            "Metal Gear Solid 2: Sons of Liberty",
-            "(demo)"
+            "Metal Gear Solid 2: Sons of Liberty (demo)"
         ],
         "season": 1,
         "details": {

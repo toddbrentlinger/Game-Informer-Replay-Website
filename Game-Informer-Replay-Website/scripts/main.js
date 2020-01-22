@@ -1,4 +1,7 @@
-﻿
+﻿// Import
+//import ReplayEpisode from 'replayEpisode';
+//import replayEpisodeCollection from 'replayEpisodeCollection';
+
 // Replay Episode Collection
 replayEpisodeCollection.init(replayEpisodeArray);
 
@@ -44,9 +47,8 @@ document.getElementById('filter-toggle-select-button')
         const bMoreCheckedInputs = (replayEpisodeCollection.filterFormElement.querySelectorAll('input[type="checkbox"]:checked').length
             > .5 * inputArr.length);
 
-        inputArr.forEach(function (inputNode) {
+        for (const inputNode of inputArr)
             inputNode.checked = !bMoreCheckedInputs;
-        });
 
         replayEpisodeCollection.updateFilterObj();
     }, false);

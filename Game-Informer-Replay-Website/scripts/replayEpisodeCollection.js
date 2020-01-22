@@ -181,8 +181,11 @@ var replayEpisodeCollection = {
         */
         // Reset selectedEpisodes to show all episodes from base episode object array
         // If newObject is empty, filter will NOT change selectedEpisodes listing all episodes
+        this.selectedEpisodes = this.replayEpisodeObjectArray.slice();
+        /*
         this.selectedEpisodes = [];
         this.replayEpisodeObjectArray.forEach(episode => this.selectedEpisodes.push(episode));
+        */
 
         // Go through each property of newObject
         for (const filterType in newObject) {
@@ -233,7 +236,7 @@ var replayEpisodeCollection = {
     // find episode reference with number using binary search function getEpisodeByNumber(num)
     set currentEpisode(episode) {
         if (episode instanceof ReplayEpisode && episode !== this._currentEpisode) {
-            console.log(`set currentEpisode = ${episode.episodeNumber}`);
+            console.log(`set currentEpisode = ${episode.episodeNumber}\nselectedVideoIdArray indexOf: ${this.selectedVideoIdArray.indexOf(episode.youtubeVideoID)}`);
             // Remove 'currently-playing' class from previously played episode
             if (this.currentEpisode) this.currentEpisode.episodeSection.classList.remove('currently-playing');
             // Set episodeSection of selected replayEpisode to class 'currently-playing'
@@ -262,7 +265,7 @@ var replayEpisodeCollection = {
     },
     get selectedVideoIdArray() {
         const videoIdArray = [];
-        for (const episode of replayEpisodeCollection.selectedEpisodes) {
+        for (const episode of this.selectedEpisodes) {
             if (episode.youtubeVideoID)
                 videoIdArray.push(episode.youtubeVideoID);
         }
@@ -303,7 +306,8 @@ replayEpisodeCollection.init = function (replayEpisodeArray) {
     replayEpisodeArray = undefined;
 
     // Initialize selected episodes array to same order of base episode object array
-    this.replayEpisodeObjectArray.forEach(episode => this.selectedEpisodes.push(episode));
+    this.selectedEpisodes = this.replayEpisodeObjectArray.slice();
+    //this.replayEpisodeObjectArray.forEach(episode => this.selectedEpisodes.push(episode));
 
     // Sort selected episodes
     this.sortByType();
@@ -423,15 +427,17 @@ replayEpisodeCollection.shuffleSelectedEpisodes = function () {
     // Update selected episodes
     this.updateSelectedEpisodes();
 };
+
 /*
 // getShuffledOrder
 // Array of episode numbers in shuffled order
 // TODO: Use to save shuffled order to local/session storage
 replayEpisodeCollection.getShuffleOrder = function () {
-    const shuffledOrder = [];
-    for (let i = 0; i < this.selectedEpisodes.length; i++)
-        shuffledOrder.push(this.selectedEpisodes[i].episodeNumber);
-    return shuffledOrder;
+    const arrLength = this.selectedEpisodes.length;
+    const shuffledOrderArr = new Array(arrLength);
+    for (let i = 0; i < arrLength; i++)
+        shuffledOrderArr[i] = this.selectedEpisodes[i].episodeNumber;
+    return shuffledOrderArr;
 };
 */
 
@@ -481,8 +487,8 @@ replayEpisodeCollection.updateFilterObj = function () {
  * Searches all text for 'stealth' and game titles for exactly 'mario sunshine'
  * name:-ryckert game:splinter "metal gear"
  * Excludes host/featuring with 'ryckert' and searches game titles for 'splinter' AND exactly 'metal gear'
+ * Ignore spaces between 'property:' and next valid character
  * TODO: If two words are separated by spaces, return results that match both or either one, AND/OR?
- * NOTE: Ignore spaces between 'property:' and next valid character
  */
 replayEpisodeCollection.filterBySearch = function (searchTerms = '') {
     if (searchTerms) {
@@ -589,15 +595,20 @@ replayEpisodeCollection.filterByCrew = function (crewToFilter) {
 replayEpisodeCollection.populateFilterForm = function () {
     // Variables
     let parentElement;
-    let sortedGICrewObjArr = [];
     let i = 0;
+    const sortedGICrewObjArr = getGICrew()[2].filter(
+        personObj => (personObj.count > 1)
+    );
     const currentYear = new Date().getFullYear();
 
-    // Create array of names for each gi crew and sort alphabetically
+    // Create array of names for each gi crew filtered by more than 1 appearance 
+    // and sort alphabetically
+    /*
     getGICrew()[2].forEach(personObj => {
         if (personObj.count > 1)
             sortedGICrewObjArr.push(personObj);
     });
+    */
     sortedGICrewObjArr.sort(function (firstPerson, secondPerson) {
         if (firstPerson.name < secondPerson.name)
             return -1;
@@ -798,9 +809,11 @@ replayEpisodeCollection.sortByType = function () {
 
 replayEpisodeCollection.resetSelectedEpisodes = function () {
     // Fill selectedEpisodes with references to replayEpisodeObjectArray objects
+    this.selectedEpisodes = this.replayEpisodeObjectArray.slice();
+    /*
     this.selectedEpisodes = [];
     this.replayEpisodeObjectArray.forEach(episode => this.selectedEpisodes.push(episode));
-
+    */
     // Reset sort/filter/search
     // Change HTML select element values to default
     this.sortType = sort.airdate;
@@ -962,7 +975,7 @@ replayEpisodeCollection.cueEpisodePlaylist = function (replayEpisode) {
     }
     else { // Cue playlist starting with episodeIndex
         const episodeIndex = this.selectedVideoIdArray.indexOf(replayEpisode.youtubeVideoID);
-        console.log(`CuePlaylist: episodeIndex: ${episodeIndex} - videoID: ${replayEpisode.youtubeVideoID}`);
+        console.log(`CuePlaylist: episodeIndex: ${episodeIndex}\nepisodeNumber: ${replayEpisode.episodeNumber}`);
         // Check for errors
         if (episodeIndex === -1) {
             console.error('Requested video is NOT in selected episodes array');
@@ -1038,8 +1051,11 @@ replayEpisodeCollection.onPlayerStateChange = function (event) {
             str += 'Ended';
             if (this.videoPlayer.getPlaylist()) {
                 str += `\nPlaylist Index: ${this.videoPlayer.getPlaylistIndex()}`;
-                // If playlist index is zero
-                if (this.videoPlayer.getPlaylistIndex() === 0) {
+                const lastEpisodeVideoId = this.videoPlayer.getPlaylist()[
+                    this.videoPlayer.getPlaylist().length - 1
+                ];
+                // If current episode is last episode in youtube playlist
+                if (this.currentEpisode.youtubeVideoID === lastEpisodeVideoId) {
                     // Cue next 200 episodes
                     let episodeIndex = this.selectedVideoIdArray.indexOf(this.currentEpisode.youtubeVideoID);
                     this.cueEpisodePlaylist(this.getEpisodeByVideoID(this.selectedVideoIdArray[++episodeIndex]));
@@ -1123,6 +1139,13 @@ replayEpisodeCollection.addCurrentEpisodeInfo = function (keepOpen = false) {
         .appendChild(currentEpisodeSection.querySelector('.views-likes-container'));
     // Add episode info below video player
     this.currentEpisodeInfoElement.appendChild(currentEpisodeSection);
+    /*
+    // Change size of current episode info expanding container
+    if (this.currentEpisodeInfoElement.style.maxHeight) {
+        this.currentEpisodeInfoElement.style.maxHeight = this.currentEpisodeInfoElement.scrollHeight + 'px';
+
+    }
+    */
 };
 
 // toggleCurrentEpisodeInfo()
@@ -1221,11 +1244,11 @@ function isEmpty(obj) {
 // Find episode numbers with no provided YouTube URL
 function findEpisodesWithNoYouTubeURL(replayEpisodes) {
     let episodesFlagged = [];
-    replayEpisodes.forEach(function (episode) {
+    for (const episode of replayEpisodes) {
         if (!episode.hasOwnProperty('youtubeVideoID')
             || !episode.youtubeVideoID)
             episodesFlagged.push(episode.episodeNumber);
-    });
+    }
     console.log(episodesFlagged);
 }
 
@@ -1239,14 +1262,14 @@ replayEpisodeCollection.populateStats = function () {
     this.showTotalTime();
     // Total Views, Total Likes
     let totalViews = 0, totalLikes = 0, totalDislikes = 0;
-    this.replayEpisodeObjectArray.forEach(function (episode) {
+    for (const episode of this.replayEpisodeObjectArray) {
         if (episode.hasOwnProperty('views'))
             totalViews += episode.views;
         if (episode.hasOwnProperty('likes'))
             totalLikes += episode.likes;
         if (episode.hasOwnProperty('dislikes'))
             totalDislikes += episode.dislikes;
-    });
+    }
     document.getElementById('stats-total-views').insertAdjacentText('beforeend', ReplayEpisode.addCommasToNumber(totalViews));
     document.getElementById('stats-total-likes').insertAdjacentText(
         'beforeend',
@@ -1399,7 +1422,7 @@ function getSegments() {
     let segmentArr = [];
     let isIncluded = false;
     let tempSegment;
-    replayEpisodeCollection.replayEpisodeObjectArray.forEach(function (episode) {
+    for (const episode of replayEpisodeCollection.replayEpisodeObjectArray) {
         // Middle Segment
         if (episode.hasOwnProperty('middleSegment') || episode.hasOwnProperty('middleSegmentContent')) {
             tempSegment = episode.middleSegment || episode.middleSegmentContent;
@@ -1441,12 +1464,11 @@ function getSegments() {
                 });
             }
         }
-    });
+    }
 
     // Convert segment names from abbreviation
-    segmentArr.forEach(function (segment) {
+    for (const segment of segmentArr)
         segment.name = ReplayEpisode.getSegmentTitle(segment.name);
-    });
 
     // Sort array by count in descending order
     segmentArr.sort(function (first, second) {

@@ -1,5 +1,10 @@
 ﻿TO-DO:
 
+1/21/20
+
+- Bonus Replay - Crash Team Racing
+- Replay Versus - Super Street Fighter II
+
 1/18/20
 
 - Change episode 'See Also' links to play episode that link is referring to.

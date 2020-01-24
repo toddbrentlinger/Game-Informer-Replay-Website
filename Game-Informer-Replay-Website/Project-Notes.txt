@@ -1,9 +1,29 @@
 ﻿TO-DO:
 
+1/23/20
+
+- Add onchange event listener to Search field that checks if field is empty
+then filters selected episodes with no search field. Allows clearing by pressing X
+and deleting characters until empty will reset selected episodes.
+
+- Filtering by Replay Roulette returns all but one episode
+
+- Hide video player until user clicks on a video. Show when current episode is
+assigned and do NOT assign when first loads. OR use another bool to hold value or 
+switch function that will toggle value if argument is undefined and set value of
+argument if correct value is sent to the function.
+
 1/21/20
 
 - Bonus Replay - Crash Team Racing
 - Replay Versus - Super Street Fighter II
+
+- Stats: Total Number of Games Played
+Can only be approximated since some special episodes and segments don't list the games
+If !episode.hasOwnProperty('middleSegment') && episode.hasOwnProperty('middleSegmentContent')
+	If !episode.middleSegmentContent.endsWith('Ad')
+		middleSegmentContent is a game -4 exceptions
+		- skit, reel, buttz, pamphlet
 
 1/18/20
 
@@ -18,7 +38,7 @@ The play button overlay should be disabled.
 
 - Combine filterBySeason and filterByYear
 
-- Binary Search: Since base episode object array is sorted by episode number
+X Binary Search: Since base episode object array is sorted by episode number
 from high to low, write search function using binary search algorithm to find
 reference to episode when the episode number is known.
 
@@ -37,7 +57,7 @@ X Change default values of filter to unchecked
 
 - Fix CSS for current episode info to incorprate middle segments
 
-- If NO pages, add hide class to page selection container that changes
+X If NO pages, add hide class to page selection container that changes
 display to none.
 
 1/6/20
@@ -56,7 +76,7 @@ sort/filter/shuffle/reset
 
 - Whenever displayed episodes are updated, scroll to top of main
 
-- Use onclick event listener on 'jump to top page' instead of linking
+X Use onclick event listener on 'jump to top page' instead of linking
 to element id
 
 1/3/20
@@ -127,12 +147,10 @@ is scraped.
 
 - Ignore headings in More Info that have no content
 
-- Add MIT License. Review other license options.
-
 - Use element.hidden instead of display to hide Next and Prev
 buttons as well as episode template perhaps.
 
-- Sort Container: Put select elements inside label element
+X Sort Container: Put select elements inside label element
 and remove id and for attributes since they become unnecessary.
 
 12/12/19
@@ -152,7 +170,7 @@ date posted, array of strings for article content.
 - Web Scraper: Use JS YouTube API to get view count, likes, 
 dislikes.
 
-- Filter: Add fieldsets for each filter type and fill those with
+X Filter: Add fieldsets for each filter type and fill those with
 options found with functions (ex. host/featuring function that
 lists each host/guest and counts their appearances). Sort order
 of each fieldset is the number of appearances.
@@ -169,7 +187,7 @@ depending on maxDislayedEpisodes.
 
 12/8/19
 
-- ISSUE: Alex Kidd Enchanted Castle
+X ISSUE: Alex Kidd Enchanted Castle
 Editor Antics paragraph not added from web scrape
 
 X ISSUE: When changing maxDisplayedEpisodes, entire list is 
@@ -197,7 +215,7 @@ section of each episode. Right below is a button to expand the
 tab to reveal all the information available about the episode.
 Have option to expand/close all episode sections at once.
 
-- YouTube API:
+X YouTube API:
 As an extra security measure, you should also include the origin 
 parameter to the URL, specifying the URL scheme (http:// or https://) 
 and full domain of your host page as the parameter value. 

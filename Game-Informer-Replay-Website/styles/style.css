@@ -722,9 +722,8 @@ ul.link-list {
 #filterForm > fieldset {
     /*display: inline-block;*/
     padding: .4em;
-    border-top: none;
-    border-bottom: none;
     border-color: var(--main-bg-color);
+    border-radius: .5em;
     margin: 0 2px;
 }
 

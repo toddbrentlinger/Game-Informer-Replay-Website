@@ -209,6 +209,10 @@ var replayEpisodeCollection = {
                 case 'giCrew':
                     this.filterByCrew(newObject[filterType]);
                     break;
+                // Segment
+                case 'segment':
+                    this.filterBySegment(newObject[filterType]);
+                    break;
                 default:
             }
             // Assign property/value to _filterObj
@@ -446,7 +450,6 @@ replayEpisodeCollection.getShuffleOrder = function () {
 // -----------------------------------
 
 // updateFilterObj()
-// TODO: Add to updateSelectedEpisodes
 replayEpisodeCollection.updateFilterObj = function () {
     // Variables
     const tempObj = {};
@@ -591,34 +594,40 @@ replayEpisodeCollection.filterByCrew = function (crewToFilter) {
     });
 };
 
+// filterBySegment()
+replayEpisodeCollection.filterBySegment = function (segmentsToFilter) {
+    // Variables
+    let isMatched;
+    this.selectedEpisodes = this.selectedEpisodes.filter(function (episode) {
+        isMatched = false;
+        // Middle Segment
+        if (episode.hasOwnProperty('middleSegment') || episode.hasOwnProperty('middleSegmentContent')) {
+            if (episode.hasOwnProperty('middleSegment'))
+                isMatched = segmentsToFilter.includes(episode.middleSegment);
+            else { // Else episode has middleSegmentContent property
+                isMatched = segmentsToFilter.includes(
+                    (episode.middleSegmentContent.endsWith('Ad')) ?
+                        'Ad' :
+                        episode.middleSegmentContent
+                );
+            }
+        }
+
+        // Second Segment if NOT already matched
+        if (!isMatched && episode.hasOwnProperty('secondSegment'))
+            isMatched = segmentsToFilter.includes(episode.secondSegment);
+
+        return isMatched;
+    });
+};
+
 // populateFilterForm()
 replayEpisodeCollection.populateFilterForm = function () {
     // Variables
     let parentElement;
     let i = 0;
-    const sortedGICrewObjArr = getGICrew()[2].filter(
-        personObj => (personObj.count > 1)
-    );
+    let sortedObjArr = [];
     const currentYear = new Date().getFullYear();
-
-    // Create array of names for each gi crew filtered by more than 1 appearance 
-    // and sort alphabetically
-    /*
-    getGICrew()[2].forEach(personObj => {
-        if (personObj.count > 1)
-            sortedGICrewObjArr.push(personObj);
-    });
-    */
-    sortedGICrewObjArr.sort(function (firstPerson, secondPerson) {
-        if (firstPerson.name < secondPerson.name)
-            return -1;
-        else if (firstPerson.name > secondPerson.name)
-            return 1;
-        else
-            return 0;
-    });
-
-    // Season
 
     // Year
     parentElement = document.querySelector('#year-field ul');
@@ -629,20 +638,41 @@ replayEpisodeCollection.populateFilterForm = function () {
 
     // GI Crew
     parentElement = document.querySelector('#gi-crew-field ul');
-    // getGICrew() returns: 
-    // [tempHostArr, tempGuestArr, tempTotalAppearancesArr, noHostEpisodes, noGuestEpisodes]
-    //giCrewArr = getGICrew();
-    for (const person of sortedGICrewObjArr) {
+    // Create array of names for each gi crew filtered by more than 1 appearance 
+    // and sort alphabetically
+    sortedObjArr = getGICrew()[2].filter( personObj => (personObj.count > 1) );
+    sortedObjArr.sort(function (firstPerson, secondPerson) {
+        if (firstPerson.name < secondPerson.name)
+            return -1;
+        else if (firstPerson.name > secondPerson.name)
+            return 1;
+        else
+            return 0;
+    });
+    for (const person of sortedObjArr) {
         parentElement.appendChild(document.createElement('li'))
             .append(this.createFieldsetLabel('giCrew', person.name, `${person.name} (${person.count})`));
     }
-    /*
     // Segment
     parentElement = document.getElementById('segment-field');
-    for (const segment of getMiddleSegments()) {
-        parentElement.append(this.createFieldsetLabel('segment', segment.name, `${segment.name} (${segment.count})`));
+    // Create array of names for each segments filtered by more than 1 appearance 
+    // and sort alphabetically
+    sortedObjArr = getSegments().filter( personObj => (personObj.count > 1) );
+    sortedObjArr.sort(function (first, second) {
+        if (ReplayEpisode.getSegmentTitle(first.name) < ReplayEpisode.getSegmentTitle(second.name))
+            return -1;
+        else if (ReplayEpisode.getSegmentTitle(first.name) > ReplayEpisode.getSegmentTitle(second.name))
+            return 1;
+        else
+            return 0;
+    });
+    for (const segment of sortedObjArr) {
+        parentElement.append(this.createFieldsetLabel(
+            'segment',
+            segment.name,
+            `${ReplayEpisode.getSegmentTitle(segment.name)} (${segment.count})`
+        ));
     }
-    */
 };
 
 // createFieldsetLabel(nameStr, valueStr, labelStr)
@@ -942,12 +972,6 @@ replayEpisodeCollection.setPageNumber = function (input, scrollToTop = false) {
             document.getElementById('top-page').scrollIntoView({behavior: "smooth"});
     }
 };
-/*
-// TODO
-replayEpisodeCollection.getPageNumberOfEpisode = function (replayEpisode) {
-
-};
-*/
 
 // ------------------------------------------------
 // ---------- Video Player - YouTube API ----------
@@ -1069,7 +1093,7 @@ replayEpisodeCollection.onPlayerStateChange = function (event) {
         case 5: str += 'Cued'; break;
         default:
     }
-    console.log(str);
+    //console.log(str);
     /*
     if (event.data == YT.PlayerState.PLAYING && !done) {
         // done = true;
@@ -1143,7 +1167,6 @@ replayEpisodeCollection.addCurrentEpisodeInfo = function (keepOpen = false) {
     // Change size of current episode info expanding container
     if (this.currentEpisodeInfoElement.style.maxHeight) {
         this.currentEpisodeInfoElement.style.maxHeight = this.currentEpisodeInfoElement.scrollHeight + 'px';
-
     }
     */
 };
@@ -1466,14 +1489,16 @@ function getSegments() {
         }
     }
 
-    // Convert segment names from abbreviation
-    for (const segment of segmentArr)
-        segment.name = ReplayEpisode.getSegmentTitle(segment.name);
-
     // Sort array by count in descending order
     segmentArr.sort(function (first, second) {
         return second.count - first.count;
     });
+
+    /*
+    // Convert segment names from abbreviation
+    for (const segment of segmentArr)
+        segment.name = ReplayEpisode.getSegmentTitle(segment.name);
+    */
 
     return segmentArr;
 }

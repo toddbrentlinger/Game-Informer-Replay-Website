@@ -1,8 +1,4 @@
-﻿// Import
-//import ReplayEpisode from 'replayEpisode';
-//import replayEpisodeCollection from 'replayEpisodeCollection';
-
-// Replay Episode Collection
+﻿// Replay Episode Collection
 replayEpisodeCollection.init(replayEpisodeArray);
 
 // TODO: Add code from youtubePlayerController.js
@@ -43,6 +39,9 @@ document.getElementById('filterForm')
 // Filter - Select/Deselect All Toggle
 document.getElementById('filter-toggle-select-button')
     .addEventListener("click", function () {
+        replayEpisodeCollection.filterFormElement.reset();
+        replayEpisodeCollection.updateFilterObj();
+        /*
         const inputArr = replayEpisodeCollection.filterFormElement.querySelectorAll('input[type="checkbox"]');
         const bMoreCheckedInputs = (replayEpisodeCollection.filterFormElement.querySelectorAll('input[type="checkbox"]:checked').length
             > .5 * inputArr.length);
@@ -51,6 +50,7 @@ document.getElementById('filter-toggle-select-button')
             inputNode.checked = !bMoreCheckedInputs;
 
         replayEpisodeCollection.updateFilterObj();
+        */
     }, false);
 
 // Filter - Toggle display of filter form

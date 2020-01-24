@@ -240,7 +240,7 @@ var replayEpisodeCollection = {
     // find episode reference with number using binary search function getEpisodeByNumber(num)
     set currentEpisode(episode) {
         if (episode instanceof ReplayEpisode && episode !== this._currentEpisode) {
-            console.log(`set currentEpisode = ${episode.episodeNumber}\nselectedVideoIdArray indexOf: ${this.selectedVideoIdArray.indexOf(episode.youtubeVideoID)}`);
+            //console.log(`set currentEpisode = ${episode.episodeNumber}\nselectedVideoIdArray indexOf: ${this.selectedVideoIdArray.indexOf(episode.youtubeVideoID)}`);
             // Remove 'currently-playing' class from previously played episode
             if (this.currentEpisode) this.currentEpisode.episodeSection.classList.remove('currently-playing');
             // Set episodeSection of selected replayEpisode to class 'currently-playing'
@@ -254,8 +254,9 @@ var replayEpisodeCollection = {
             this.addCurrentEpisodeInfo();
         }
         else {
-            if (episode instanceof ReplayEpisode && episode === this._currentEpisode)
-                console.log(`Attempted to assign same episode to currentEpisode`);
+            if (episode instanceof ReplayEpisode && episode === this._currentEpisode) {
+                //console.log(`Attempted to assign same episode to currentEpisode`);
+            }
             else {
                 console.error(`Could NOT assign ${episode} to currentEpisode`);
                 // Remove 'currently-playing' class from previously played episode
@@ -986,7 +987,7 @@ replayEpisodeCollection.cueEpisodePlaylist = function (replayEpisode) {
 
     // If argument is undefined, cue playlist of first 200 selected episodes
     if (typeof replayEpisode === 'undefined') {
-        console.log(`CuePlaylist: First 200 videos cued`);
+        //console.log(`CuePlaylist: First 200 videos cued`);
         if (this.selectedEpisodes.length) {
             this.videoPlayer.cuePlaylist(this.selectedVideoIdArray.slice(0, 200));
             //this.currentEpisode = this.getEpisodeByVideoID(this.selectedVideoIdArray[0]);
@@ -999,7 +1000,7 @@ replayEpisodeCollection.cueEpisodePlaylist = function (replayEpisode) {
     }
     else { // Cue playlist starting with episodeIndex
         const episodeIndex = this.selectedVideoIdArray.indexOf(replayEpisode.youtubeVideoID);
-        console.log(`CuePlaylist: episodeIndex: ${episodeIndex}\nepisodeNumber: ${replayEpisode.episodeNumber}`);
+        //console.log(`CuePlaylist: episodeIndex: ${episodeIndex}\nepisodeNumber: ${replayEpisode.episodeNumber}`);
         // Check for errors
         if (episodeIndex === -1) {
             console.error('Requested video is NOT in selected episodes array');
@@ -1053,7 +1054,7 @@ replayEpisodeCollection.cueEpisodePlaylist = function (replayEpisode) {
 replayEpisodeCollection.onPlayerReady = function (event) {
     this.videoPlayer.addEventListener('onStateChange',
         this.onPlayerStateChange.bind(replayEpisodeCollection));
-    console.log('replayEpisodeCollection.onPlayerReady() finished');
+    console.log('Video Player is ready');
 };
 
 // onPlayerStateChange(event)
@@ -1083,7 +1084,7 @@ replayEpisodeCollection.onPlayerStateChange = function (event) {
                     // Cue next 200 episodes
                     let episodeIndex = this.selectedVideoIdArray.indexOf(this.currentEpisode.youtubeVideoID);
                     this.cueEpisodePlaylist(this.getEpisodeByVideoID(this.selectedVideoIdArray[++episodeIndex]));
-                    console.log(`Playlist ended with index: ${episodeIndex}`);
+                    //console.log(`Playlist ended with index: ${episodeIndex}`);
                 }
             }
             break;
@@ -1105,7 +1106,7 @@ replayEpisodeCollection.onPlayerStateChange = function (event) {
 
 // onPlayerError(event)
 replayEpisodeCollection.onPlayerError = function (event) {
-    console.log(`onPlayerError: ${event.data}`);
+    console.error(`Video Player onError: ${event.data}`);
 };
 
 // playEpisode(replayEpisode)
@@ -1499,6 +1500,62 @@ function getSegments() {
     for (const segment of segmentArr)
         segment.name = ReplayEpisode.getSegmentTitle(segment.name);
     */
+
+    return segmentArr;
+}
+
+function getGamesPlayed() {
+    let segmentArr = [];
+    let isIncluded = false;
+    let tempSegment;
+    for (const episode of replayEpisodeCollection.replayEpisodeObjectArray) {
+        // Middle Segment
+        if (episode.hasOwnProperty('middleSegment') || episode.hasOwnProperty('middleSegmentContent')) {
+            tempSegment = episode.middleSegment || episode.middleSegmentContent;
+            // Check if Ad (string.endsWith())
+            if (tempSegment.endsWith('Ad'))
+                tempSegment = 'Ad';
+            isIncluded = false;
+            for (const segment of segmentArr) {
+                if (segment.name === tempSegment) {
+                    isIncluded = true;
+                    segment.count++;
+                    break;
+                }
+            }
+            // If NOT included, add to list
+            if (!isIncluded) {
+                segmentArr.push({
+                    name: tempSegment,
+                    count: 1
+                });
+            }
+        }
+        // Second Segment
+        if (episode.hasOwnProperty('secondSegment')) {
+            tempSegment = episode.secondSegment;
+            isIncluded = false;
+            for (const segment of segmentArr) {
+                if (segment.name === tempSegment) {
+                    isIncluded = true;
+                    segment.count++;
+                    break;
+                }
+            }
+            // If NOT included, add to list
+            if (!isIncluded) {
+                segmentArr.push({
+                    name: tempSegment,
+                    count: 1
+                });
+            }
+        }
+    }
+
+    // Sort array by count in descending order
+    segmentArr.sort(function (first, second) {
+        return second.count - first.count;
+    });
 
     return segmentArr;
 }

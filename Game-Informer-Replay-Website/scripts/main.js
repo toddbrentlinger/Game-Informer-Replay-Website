@@ -1,4 +1,6 @@
-﻿// Replay Episode Collection
+﻿"use strict";
+
+// Replay Episode Collection
 replayEpisodeCollection.init(replayEpisodeArray);
 
 // TODO: Add code from youtubePlayerController.js

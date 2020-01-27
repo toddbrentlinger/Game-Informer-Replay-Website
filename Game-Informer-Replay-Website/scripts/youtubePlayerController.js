@@ -1,4 +1,6 @@
-﻿/* TODO:
+﻿"use strict";
+
+/* TODO:
  * - Max video count in playlist viewer is 200. Create function that 
  * will play an array of videos in 200 video increments. After 200th
  * episode ends, change playlist to view next 200 videos in array.

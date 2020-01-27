@@ -1,4 +1,6 @@
-﻿/* TODO:
+﻿"use strict";
+
+/* TODO:
  * - Create static array of FLAG objects that include episode number
  * and reason for FLAG (ex. air dates from two sources do NOT match)
  */
@@ -26,9 +28,6 @@ class ReplayEpisode {
 
         // Episode Title
         this.episodeTitle = replayEpisode.episodeTitle;
-
-        // Fandom Wiki URL
-        this.fandomWikiURL = replayEpisode.fandomWikiURL;
 
         // Main Segment Games
         this.mainSegmentGamesAdv = replayEpisode.mainSegmentGamesAdv;
@@ -409,6 +408,7 @@ class ReplayEpisode {
     }
 
     // Get replay season and season episode number
+    // TODO: Make getter of Replay Episode
     getReplaySeason() {
         //Constant array to hold episode numbers that each season begins with.
         // Episode numbers less than 1 are special unoffical episodes
@@ -438,6 +438,7 @@ class ReplayEpisode {
     }
 
     // getDateString
+    // Make global function with datetime parameter
     getDateString() {
         let months = ["January", "February", "March", "April", "May", "June", "July",
             "August", "September", "October", "November", "December"];

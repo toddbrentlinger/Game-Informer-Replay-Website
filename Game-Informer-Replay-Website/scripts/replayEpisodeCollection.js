@@ -1,4 +1,6 @@
-﻿// Filter enum
+﻿"use strict";
+
+// Filter enum
 const filter = Object.freeze({
     none: 0,
     search: 1,

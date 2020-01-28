@@ -1123,7 +1123,7 @@ input:checked + .slider:before {
 
     .episodeDetails { width: 100%; }
     .episodeMoreInfo { padding: 0 1em; }
-    ul.link-list, #gi-crew-field ul { column-count: 1; }
+    ul.link-list { column-count: 1; }
     #sort-main { flex-direction: column; }
     #number-displayed-container { margin-top: .6em; }
 }
@@ -1141,4 +1141,6 @@ input:checked + .slider:before {
         border-top-right-radius: 0;
         border-top: none;
     }
+    
+    #gi-crew-field ul { column-count: 1; }
 }

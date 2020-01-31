@@ -1,5 +1,20 @@
 ﻿"use strict";
 
+//import { ReplayEpisode } from './replayEpisode.js';
+
+// Sort enum
+const sort = Object.freeze({
+    none: 0,
+    number: 1,
+    airdate: 2,
+    views: 3,
+    likes: 4,
+    likeRatio: 5,
+    dislikes: 6,
+    length: 7
+});
+
+/*
 // Filter enum
 const filter = Object.freeze({
     none: 0,
@@ -13,18 +28,7 @@ const filter = Object.freeze({
     gamesystem: 8,
     releaseDateYear: 9
 });
-
-// Sort enum
-const sort = Object.freeze({
-    none: 0,
-    number: 1,
-    airdate: 2,
-    views: 3,
-    likes: 4,
-    likeRatio: 5,
-    dislikes: 6,
-    length: 7
-});
+*/
 
 // Object: Collection of all replay episodes
 var replayEpisodeCollection = {
@@ -286,7 +290,6 @@ var replayEpisodeCollection = {
  
 // init(replayEpisodeArray)
 replayEpisodeCollection.init = function (replayEpisodeArray) {
-
     // Clone episode section template to use for episode data
     // Initialize each replay episode object by sending this template
     // as an argument to ReplayEpisode constructor
@@ -657,7 +660,7 @@ replayEpisodeCollection.populateFilterForm = function () {
             .append(this.createFieldsetLabel('giCrew', person.name, `${person.name} (${person.count})`));
     }
     // Segment
-    parentElement = document.getElementById('segment-field');
+    parentElement = document.querySelector('#segment-field ul');
     // Create array of names for each segments filtered by more than 1 appearance 
     // and sort alphabetically
     sortedObjArr = getSegments().filter( personObj => (personObj.count > 1) );
@@ -670,11 +673,12 @@ replayEpisodeCollection.populateFilterForm = function () {
             return 0;
     });
     for (const segment of sortedObjArr) {
-        parentElement.append(this.createFieldsetLabel(
-            'segment',
-            segment.name,
-            `${ReplayEpisode.getSegmentTitle(segment.name)} (${segment.count})`
-        ));
+        parentElement.appendChild(document.createElement('li'))
+            .append(this.createFieldsetLabel(
+                'segment',
+                segment.name,
+                `${ReplayEpisode.getSegmentTitle(segment.name)} (${segment.count})`
+            ));
     }
 };
 
@@ -1249,35 +1253,6 @@ replayEpisodeCollection.getPageOfEpisode = function (replayEpisode) {
         return Math.ceil(++episodeIndexInSelectedEpisodes / this.maxDisplayedEpisodes);
 };
 
-// -------------------------------------------------
-// ---------- Utility Functions (Static?) ----------
-// -------------------------------------------------
-
-// isEmpty(obj)
-// Test if object is empty
-function isEmpty(obj) {
-    for (const key in obj) {
-        if (obj.hasOwnProperty(key))
-            return false;
-    }
-    return true;
-}
-
-// --------------------------------
-// ---------- Debug/Flag ----------
-// --------------------------------
-
-// Find episode numbers with no provided YouTube URL
-function findEpisodesWithNoYouTubeURL(replayEpisodes) {
-    let episodesFlagged = [];
-    for (const episode of replayEpisodes) {
-        if (!episode.hasOwnProperty('youtubeVideoID')
-            || !episode.youtubeVideoID)
-            episodesFlagged.push(episode.episodeNumber);
-    }
-    console.log(episodesFlagged);
-}
-
 // ---------------------------
 // ---------- Stats ----------
 // ---------------------------
@@ -1301,10 +1276,16 @@ replayEpisodeCollection.populateStats = function () {
         'beforeend',
         `${ReplayEpisode.addCommasToNumber(totalLikes)} (${((totalLikes * 100) / (totalLikes + totalDislikes)).toFixed(1)}%)`
     );
+    // Games Played (add 50 for games not listed from special episodes ex. Commodore Special)
+    document.getElementById('stats-games-played').insertAdjacentText(
+        'beforeend',
+        `${ReplayEpisode.addCommasToNumber(getGamesPlayed().length + 50)} (estimate)`
+    );
 };
 
 // showTotalTime()
 // TODO: Static utility function with parameter totalTimeSeconds
+// TODO: OR getter function
 replayEpisodeCollection.showTotalTime = function () {
     const days = Math.floor(this.totalTimeSeconds / 86400)
     const hours = Math.floor((this.totalTimeSeconds - days * 86400) / 3600);
@@ -1315,6 +1296,41 @@ replayEpisodeCollection.showTotalTime = function () {
     document.getElementById('stats-total-time').insertAdjacentText('beforeend', totalTimeStr);
 };
 
+// -------------------------------------------------
+// ---------- Utility Functions (Static?) ----------
+// -------------------------------------------------
+/*
+// isEmpty(obj)
+// Test if object is empty
+// TODO: NOT USED
+function isEmpty(obj) {
+    for (const key in obj) {
+        if (obj.hasOwnProperty(key))
+            return false;
+    }
+    return true;
+}
+*/
+
+// --------------------------------
+// ---------- Debug/Flag ----------
+// --------------------------------
+
+// Find episode numbers with no provided YouTube URL
+function findEpisodesWithNoYouTubeURL(replayEpisodes) {
+    let episodesFlagged = [];
+    for (const episode of replayEpisodes) {
+        if (!episode.hasOwnProperty('youtubeVideoID')
+            || !episode.youtubeVideoID)
+            episodesFlagged.push(episode.episodeNumber);
+    }
+    console.log(episodesFlagged);
+}
+
+// -----------------------------------------------
+// ---------- Get Crew, Segments, Games ----------
+// -----------------------------------------------
+
 // Get list of host/featuring with no duplicates
 function getGICrew() {
     let tempHostArr = [];
@@ -1322,58 +1338,40 @@ function getGICrew() {
     let tempTotalAppearancesArr = [];
     let noHostEpisodes = [];
     let noGuestEpisodes = [];
-    let isIncluded = false;
+    let isIncluded;
+
+    function addCrew(nameToAdd, personArr) {
+        // Check if nameToAdd is already in personArr
+        isIncluded = false;
+        for (const person of personArr) {
+            // If person matches nameToAdd, increment count
+            if (person.name == nameToAdd) {
+                isIncluded = true;
+                person.count++;
+                break;
+            }
+        }
+        // If nameToAdd is NOT included, add to list
+        if (!isIncluded) {
+            personArr.push({ name: nameToAdd, count: 1 });
+        }
+    }
 
     for (const episode of replayEpisodeCollection.replayEpisodeObjectArray) {
         // Host
         if (episode.hasOwnProperty('host')) {
             // For each host in episode host array
-            for (const host of episode.host) {
-                // Check if host already listed
-                isIncluded = false;
-                for (const hostObj of tempHostArr) {
-                    // If host matches, increment count, move to next host
-                    if (hostObj.name == host) {
-                        isIncluded = true;
-                        hostObj.count++;
-                        break;
-                    }
-                }
-                // If host is NOT included, add to list
-                if (!isIncluded) {
-                    tempHostArr.push({
-                        name: host,
-                        count: 1
-                    });
-                }
-            }
+            for (const host of episode.host)
+                addCrew(host, tempHostArr);
         } else // No hosts property, add flagged episode
             noHostEpisodes.push(episode.episodeNumber);
 
         // Featuring
         if (episode.hasOwnProperty('featuring')) {
             // For each guest in the episode featuring array
-            for (const guest of episode.featuring) {
-                // Check if guest already listed
-                isIncluded = false;
-                for (const guestObj of tempGuestArr) {
-                    // If guest matches, increment count, move to next guest
-                    if (guestObj.name == guest) {
-                        isIncluded = true;
-                        guestObj.count++;
-                        break;
-                    }
-                }
-                // If guest is NOT included, add to list
-                if (!isIncluded) {
-                    tempGuestArr.push({
-                        name: guest,
-                        count: 1
-                    });
-                }
-            }
-        }
-        else // No featuring property, add flagged episode
+            for (const guest of episode.featuring)
+                addCrew(guest, tempGuestArr);
+        } else // No featuring property, add flagged episode
             noGuestEpisodes.push(episode.episodeNumber);
     }
 
@@ -1396,15 +1394,9 @@ function getGICrew() {
     }
 
     // Sort arrays by count
-    tempHostArr.sort(function (first, second) {
-        return second.count - first.count;
-    });
-    tempGuestArr.sort(function (first, second) {
-        return second.count - first.count;
-    });
-    tempTotalAppearancesArr.sort(function (first, second) {
-        return second.count - first.count;
-    });
+    tempHostArr.sort((first, second) => second.count - first.count);
+    tempGuestArr.sort((first, second) => second.count - first.count);
+    tempTotalAppearancesArr.sort((first, second) => second.count - first.count);
 
     return [tempHostArr, tempGuestArr, tempTotalAppearancesArr, noHostEpisodes, noGuestEpisodes];
 }
@@ -1446,8 +1438,25 @@ function getEpisodeHeadings() {
 */
 function getSegments() {
     let segmentArr = [];
-    let isIncluded = false;
+    let isIncluded;
     let tempSegment;
+    function addSegment(segmentToAdd) {
+        isIncluded = false;
+        for (const segment of segmentArr) {
+            if (segment.name === segmentToAdd) {
+                isIncluded = true;
+                segment.count++;
+                break;
+            }
+        }
+        // If NOT included, add to list
+        if (!isIncluded) {
+            segmentArr.push({
+                name: segmentToAdd,
+                count: 1
+            });
+        }
+    }
     for (const episode of replayEpisodeCollection.replayEpisodeObjectArray) {
         // Middle Segment
         if (episode.hasOwnProperty('middleSegment') || episode.hasOwnProperty('middleSegmentContent')) {
@@ -1455,47 +1464,15 @@ function getSegments() {
             // Check if Ad (string.endsWith())
             if (tempSegment.endsWith('Ad'))
                 tempSegment = 'Ad';
-            isIncluded = false;
-            for (const segment of segmentArr) {
-                if (segment.name === tempSegment) {
-                    isIncluded = true;
-                    segment.count++;
-                    break;
-                }
-            }
-            // If NOT included, add to list
-            if (!isIncluded) {
-                segmentArr.push({
-                    name: tempSegment,
-                    count: 1
-                });
-            }
+            addSegment(tempSegment);
         }
         // Second Segment
-        if (episode.hasOwnProperty('secondSegment')) {
-            tempSegment = episode.secondSegment;
-            isIncluded = false;
-            for (const segment of segmentArr) {
-                if (segment.name === tempSegment) {
-                    isIncluded = true;
-                    segment.count++;
-                    break;
-                }
-            }
-            // If NOT included, add to list
-            if (!isIncluded) {
-                segmentArr.push({
-                    name: tempSegment,
-                    count: 1
-                });
-            }
-        }
+        if (episode.hasOwnProperty('secondSegment'))
+            addSegment(episode.secondSegment);
     }
 
     // Sort array by count in descending order
-    segmentArr.sort(function (first, second) {
-        return second.count - first.count;
-    });
+    segmentArr.sort((first, second) => second.count - first.count);
 
     /*
     // Convert segment names from abbreviation
@@ -1506,58 +1483,68 @@ function getSegments() {
     return segmentArr;
 }
 
-function getGamesPlayed() {
-    let segmentArr = [];
-    let isIncluded = false;
-    let tempSegment;
-    for (const episode of replayEpisodeCollection.replayEpisodeObjectArray) {
-        // Middle Segment
-        if (episode.hasOwnProperty('middleSegment') || episode.hasOwnProperty('middleSegmentContent')) {
-            tempSegment = episode.middleSegment || episode.middleSegmentContent;
-            // Check if Ad (string.endsWith())
-            if (tempSegment.endsWith('Ad'))
-                tempSegment = 'Ad';
-            isIncluded = false;
-            for (const segment of segmentArr) {
-                if (segment.name === tempSegment) {
-                    isIncluded = true;
-                    segment.count++;
-                    break;
-                }
+function getGamesPlayed(sortAlphabetical = false) {
+    let gameArr = [];
+    let isIncluded;
+    function checkGame(game) {
+        isIncluded = false;
+        for (const tempGame of gameArr) {
+            if (typeof game === 'object' && tempGame.title === game.title ||
+                typeof game === 'string' && tempGame.title === game) {
+                isIncluded = true;
+                tempGame.count++;
+                break;
             }
-            // If NOT included, add to list
-            if (!isIncluded) {
-                segmentArr.push({
-                    name: tempSegment,
-                    count: 1
-                });
+        }
+        // If NOT included, add to list
+        if (!isIncluded) {
+            gameArr.push({
+                title: (typeof game === 'object') ? game.title : game,
+                count: 1
+            });
+        }
+    }
+    for (const episode of replayEpisodeCollection.replayEpisodeObjectArray) {
+        // Main Segment
+        if (episode.hasOwnProperty('mainSegmentGamesAdv')) {
+            for (const game of episode.mainSegmentGamesAdv) {
+                checkGame(game);
             }
         }
         // Second Segment
-        if (episode.hasOwnProperty('secondSegment')) {
-            tempSegment = episode.secondSegment;
-            isIncluded = false;
-            for (const segment of segmentArr) {
-                if (segment.name === tempSegment) {
-                    isIncluded = true;
-                    segment.count++;
-                    break;
-                }
+        if (episode.hasOwnProperty('secondSegmentGames')) {
+            for (const game of episode.secondSegmentGames) {
+                checkGame(game);
             }
-            // If NOT included, add to list
-            if (!isIncluded) {
-                segmentArr.push({
-                    name: tempSegment,
-                    count: 1
-                });
-            }
+        }
+        // Middle Segment
+        if (episode.hasOwnProperty('middleSegmentContent')) {
+            const ignoreMiddleSegments = ['A Poor Retelling of Gaming History', 'Reflections', 'Embarassing Moments'];
+            const ignoreMiddleSegmentsContentEndingWith = [' Ad', ' Reel', ' Skit', ' Buttz', ' Pamphlet'];
+            let isGame = true;
+            // Check middleSegment type
+            if (episode.hasOwnProperty('middleSegment')
+                && ignoreMiddleSegments.includes(episode.middleSegment))
+                isGame = false;
+            // Check end of middleSegmentContent
+            if (isGame && ignoreMiddleSegmentsContentEndingWith
+                .some(str => episode.middleSegmentContent.endsWith(str)))
+                isGame = false;
+            // If isGame, add to game list
+            if (isGame)
+                checkGame(episode.middleSegmentContent);
         }
     }
 
-    // Sort array by count in descending order
-    segmentArr.sort(function (first, second) {
-        return second.count - first.count;
-    });
+    // Sort
+    if (sortAlphabetical) { // Sort array by alphabetical order
+        gameArr.sort((first, second) => (first.title < second.title) ? -1 :
+            (first.title > second.title) ? 1 :
+                0
+        );
+    } else { // Sort array by count in descending order
+        gameArr.sort((first, second) => second.count - first.count);
+    }
 
-    return segmentArr;
+    return gameArr;
 }

@@ -5,15 +5,6 @@
  * and reason for FLAG (ex. air dates from two sources do NOT match)
  */
 
-const linkSourceOptions = [
-    ['gameinformer', 'Game Informer'],
-    ['youtube', 'YouTube'],
-    ['fandom', 'Fandom'],
-    ['wikipedia', 'Wikipedia'],
-    ['gamespot', 'GameSpot'],
-    ['steampowered', 'Steam']
-];
-
 class ReplayEpisode {
     // -----------
     // Constructor
@@ -56,8 +47,9 @@ class ReplayEpisode {
 
         // Middle Segment (only 3rd season)
         if (replayEpisode.hasOwnProperty('middleSegment')
-            && replayEpisode.middleSegment.replace(/-/gi, '').length)
+            && replayEpisode.middleSegment.replace(/-/gi, '').length) {
             this.middleSegment = replayEpisode.middleSegment;
+        }
 
         // Middle Segment Content (only 3rd season)
         if (replayEpisode.hasOwnProperty('middleSegmentContent')
@@ -70,11 +62,14 @@ class ReplayEpisode {
         }
 
         // Second Segment
-        if (replayEpisode.secondSegment.replace(/-/gi, '').length)
+        if (replayEpisode.hasOwnProperty('secondSegment')
+            && replayEpisode.secondSegment.replace(/-/gi, '').length) {
             this.secondSegment = replayEpisode.secondSegment;
+        }
 
         // Second Segment Games
-        if (Array.isArray(replayEpisode.secondSegmentGames)
+        if (replayEpisode.hasOwnProperty('secondSegmentGames') 
+            && Array.isArray(replayEpisode.secondSegmentGames)
             && replayEpisode.secondSegmentGames.length
             && replayEpisode.secondSegmentGames[0].replace(/-/gi, '').length) {
             this.secondSegmentGames = replayEpisode.secondSegmentGames;
@@ -93,6 +88,16 @@ class ReplayEpisode {
                 this.dislikes = parseInt(replayEpisode.youtube.dislikes, 10);
         }
 
+        // Game Informer article
+        if (replayEpisode.hasOwnProperty('article')) {
+            this.replayArticle = {};
+            for (const prop in replayEpisode.article)
+                this.replayArticle[prop] = replayEpisode.article[prop];
+        }
+
+        // Details
+        //if (replayEpisode.hasOwnProperty('details')) {}
+
         // Description (array)
         // If description is empty, create custom description
         if (Array.isArray(replayEpisode.details.description) &&
@@ -110,15 +115,19 @@ class ReplayEpisode {
             this.featuring = replayEpisode.details.featuring;
 
         // External Links
+        this.external_links = [];
         // Add Fandom link as first element of external links list
-        this.external_links = [
-            { href: `https://replay.fandom.com${replayEpisode.fandomWikiURL}`, title: this.episodeTitle}
-        ];
+        if (replayEpisode.hasOwnProperty('fandomWikiURL') && replayEpisode.fandomWikiURL) {
+            this.external_links.push(
+                { href: `https://replay.fandom.com${replayEpisode.fandomWikiURL}`, title: this.episodeTitle }
+            );
+        }
         // Add other external links, if defined
         if (replayEpisode.details.hasOwnProperty('external_links'))
             this.external_links.push.apply(this.external_links,replayEpisode.details.external_links);
 
         // YouTube video ID
+        // TODO: Only create property if there is a YouTube url
         let tempVideoID = ''; // Default empty string if NO video ID is found
         if (replayEpisode.hasOwnProperty('details')
             && replayEpisode.details.hasOwnProperty('external_links')) {
@@ -150,13 +159,6 @@ class ReplayEpisode {
         // If tempHeadingsObj is NOT empty, assign to this.otherHeadingsObj
         if (!ReplayEpisode.isEmptyObject(tempHeadingsObj))
             this.otherHeadingsObj = tempHeadingsObj;
-        
-        // Game Informer article
-        if (replayEpisode.hasOwnProperty('article')) {
-            this.replayArticle = {};
-            for (const prop in replayEpisode.article)
-                this.replayArticle[prop] = replayEpisode.article[prop];
-        }
         
         // Create HTML element and add episode data
         this.populateEpisodeSection(episodeTemplate);
@@ -222,7 +224,6 @@ class ReplayEpisode {
 
         // Anchor link
         parentNode = this.episodeSection.querySelector('.episodeThumbnail > a');
-        //parentNode.setAttribute('href', 'https://www.youtube.com/watch?v=' + this.youtubeVideoID);
 
         // Add event listener that plays video of episode
         parentNode.addEventListener("click", function () {
@@ -652,6 +653,14 @@ class ReplayEpisode {
     // Add list of URL links
     static addListOfLinks(linksList, parentNode, headlineString, urlPrepend) {
         // Variables
+        const linkSourceOptions = [
+            ['gameinformer', 'Game Informer'],
+            ['youtube', 'YouTube'],
+            ['fandom', 'Fandom'],
+            ['wikipedia', 'Wikipedia'],
+            ['gamespot', 'GameSpot'],
+            ['steampowered', 'Steam']
+        ];
         let listElement, listItemElement, anchorElement, linkSource;
         // Add header for external links to episodeMoreInfo element
         parentNode.appendChild(ReplayEpisode.createElementAdv('h4', undefined, headlineString));

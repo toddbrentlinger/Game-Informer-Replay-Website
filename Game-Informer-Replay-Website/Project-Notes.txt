@@ -1,12 +1,32 @@
 ﻿TO-DO:
 
+1/30/20
+
+- Instead of saving node of each episode, build each displayed episode
+individually whenever displayed episodes are updated.
+
+1/29/20
+
+- When initializing the array of episode objects, assign new episode
+object to the same index of the original array instead of creating new
+array. Change replayEpisodeArray to replayEpisodeCollection.
+
+1/28/20
+
+- Add container around template episode html section and hide it from view.
+However, template will NOT be deleted.
+
+- For each srcset, add src with first url for browsers that do NOT
+support srcset
+
 1/23/20
 
 - Add onchange event listener to Search field that checks if field is empty
 then filters selected episodes with no search field. Allows clearing by pressing X
 and deleting characters until empty will reset selected episodes.
 
-- Filtering by Replay Roulette returns all but one episode
+X Filtering by Replay Roulette returns all but one episode
+SOLUTION: One episode has two Replay Roulette segments
 
 - Hide video player until user clicks on a video. Show when current episode is
 assigned and do NOT assign when first loads. OR use another bool to hold value or 

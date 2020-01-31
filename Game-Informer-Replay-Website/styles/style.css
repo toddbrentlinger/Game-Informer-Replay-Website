@@ -219,7 +219,7 @@ footer {
     height: 100%;
     font-size: 1rem; /* 16px: reset font-size after setting to zero in #topnav ul {} to
         prevent space between inline-block elements */
-    padding: 0.875em 1em; /* 14px 16px (1em=16px) */
+    padding: .5em; /* 14px 16px (1em=16px) */
     text-decoration: none;
     color: var(--main-text-color);
     -webkit-transition-duration: .2s;
@@ -809,7 +809,7 @@ ul.link-list {
 }
 
 /* Filter: gi-crew-field */
-#gi-crew-field ul { column-count: 2; }
+#gi-crew-field ul { column-count: 3; }
 
 /* Filter Form Buttons */
 #filterSubmitButton {
@@ -1107,6 +1107,10 @@ input:checked + .slider:before {
     - tablets ( <= 768px )
     - mobile ( <= 480px )
 */
+
+@media (max-width: 800px) {
+    #gi-crew-field ul { column-count: 2; }
+}
 
 @media (max-width: 650px) { /* 550px */
     :root { background-image: none; }

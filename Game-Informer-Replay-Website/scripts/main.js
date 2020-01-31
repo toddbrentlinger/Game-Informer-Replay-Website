@@ -1,9 +1,27 @@
 ﻿"use strict";
 
-// Replay Episode Collection
-replayEpisodeCollection.init(replayEpisodeArray);
+import { loadPlayerAPI } from "./youtubePlayerController.js";
 
-// TODO: Add code from youtubePlayerController.js
+// Replay Episode Collection
+// Using JS file
+replayEpisodeCollection.init(replayEpisodeArray);
+loadPlayerAPI();
+/* Using JSON file
+getReplayEpisodeArr();
+function getReplayEpisodeArr() {
+    // Use data from JSON file
+    let requestURL = 'data/gameInformerReplayFandomWikiData.json';
+    let request = new XMLHttpRequest();
+    request.open('GET', requestURL);
+    request.responseType = 'json';
+    request.send();
+    request.onload = function () {
+        replayEpisodeCollection.init(request.response);
+        loadPlayerAPI();
+    }
+    
+}
+*/
 
 // Current Episode Display Toggle
 replayEpisodeCollection.currentEpisodeInfoToggleButton
@@ -32,6 +50,7 @@ document.querySelector(
     false);
 
 // Filter - Event Listeners
+// TODO: Move to replayEpisodeCollection.populateFilterForm()
 document.getElementById('filterForm')
     .addEventListener("change",
         replayEpisodeCollection.updateFilterObj
@@ -196,40 +215,3 @@ for (let i = 0; i < mediaQueriesArr.length; i++)
     mediaQueriesArr[i].addListener(mediaQueryResponse) // attach listener function to listen in on state changes
 // call listener function explicitly at run time
 mediaQueryResponse(mediaQueriesArr[0])
-
-/* JSON
-let requestURL = 'https://github.com/toddbrentlinger/Game-Informer-Scraper/blob/master/Game%20Informer%20Scraper/gameInformerReplayFandomWikiData.json';
-let request = new XMLHttpRequest();
-request.open('GET', requestURL);
-request.responseType = 'json';
-request.send();
-request.onload = function () {
-    const replayEpisodeJSON = request.response;
-    populatePara(replayEpisodeJSON);
-}
-
-function populatePara(jsonObj) {
-    console.log("function populatePara runs");
-    const para = document.createElement('p');
-
-    for (let i = 0; i < jsonObj.length; i++) {
-        var replayEpisode = jsonObj[i];
-        para.textContent = "Episode: " + replayEpisode["episodeNumber"] + "\t    Title: " + replayEpisode["episodeTitle"] + "\n";
-    }
-
-    mainElement.appendChild(para);
-}
-*/
-/*
-$.getJSON("https://github.com/toddbrentlinger/Game-Informer-Scraper/blob/master/Game%20Informer%20Scraper/gameInformerReplayFandomWikiData.json",
-    function (replayEpisodeArray) {
-        const para = document.createElement('p');
-
-        for (let i = 0; i < jsonObj.length; i++) {
-            var replayEpisode = jsonObj[i];
-            para.textContent = "Episode: " + replayEpisode["episodeNumber"] + "\t    Title: " + replayEpisode["episodeTitle"] + "\n";
-        }
-
-        mainElement.appendChild(para);
-    });
-*/

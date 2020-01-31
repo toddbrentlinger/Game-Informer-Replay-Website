@@ -1,6 +1,6 @@
 ﻿const replayEpisodeArray = [
     {
-        "episodeNumber": .14,
+        "episodeNumber": ".14",
         "episodeTitle": "Replay Holiday Special 2015",
         "fandomWikiURL": "/wiki/Replay_Holiday_Special_2015",
         "mainSegmentGamesAdv": [
@@ -65,13 +65,13 @@
             ]
         },
         "youtube": {
-            "views": "12096",
-            "likes": "205",
-            "dislikes": "3"
+            "views": 12144,
+            "likes": 205,
+            "dislikes": 3
         }
     },
     {
-        "episodeNumber": .13,
+        "episodeNumber": ".13",
         "episodeTitle": "Replay Holiday Special 2014",
         "fandomWikiURL": "/wiki/Replay_Holiday_Special_2014",
         "mainSegmentGamesAdv": [
@@ -142,13 +142,13 @@
             ]
         },
         "youtube": {
-            "views": "8644",
-            "likes": "92",
-            "dislikes": "3"
+            "views": 8688,
+            "likes": 92,
+            "dislikes": 3
         }
     },
     {
-        "episodeNumber": .12,
+        "episodeNumber": ".12",
         "episodeTitle": "Bonus Replay: Strider",
         "fandomWikiURL": "",
         "mainSegmentGamesAdv": [
@@ -216,13 +216,13 @@
             ]
         },
         "youtube": {
-            "views": 5485,
+            "views": 5488,
             "likes": 59,
             "dislikes": 2
         }
     },
     {
-        "episodeNumber": .11,
+        "episodeNumber": ".11",
         "episodeTitle": "Replay: ToeJam & Earl 2 (feat. Riff Raff)",
         "fandomWikiURL": "",
         "mainSegmentGamesAdv": [
@@ -253,7 +253,7 @@
                 "width": "300",
                 "height": "169",
                 "srcset": [
-                    "https://www.gameinformer.com/s3/files/styles/body_default/s3/legacy-images/imagefeed/Replay%20–%20ToeJam%20%26%20Earl%202%20%28Special%20Guest%3A%20Riff%20Raff%29/Toejam610.jpg"
+                    "https://www.gameinformer.com/s3/files/styles/body_default/s3/legacy-images/imagefeed/Replay%20\u2013%20ToeJam%20%26%20Earl%202%20%28Special%20Guest%3A%20Riff%20Raff%29/Toejam610.jpg"
                 ]
             },
             "system": [
@@ -283,13 +283,13 @@
             ]
         },
         "youtube": {
-            "views": 33110,
+            "views": 33129,
             "likes": 451,
             "dislikes": 63
         }
     },
     {
-        "episodeNumber": .10,
+        "episodeNumber": ".10",
         "episodeTitle": "Replay Holiday Special 2013",
         "fandomWikiURL": "/wiki/Replay_Holiday_Special_2013",
         "mainSegmentGamesAdv": [
@@ -362,13 +362,13 @@
             ]
         },
         "youtube": {
-            "views": "20490",
-            "likes": "323",
-            "dislikes": "5"
+            "views": 20714,
+            "likes": 327,
+            "dislikes": 5
         }
     },
     {
-        "episodeNumber": .09,
+        "episodeNumber": ".09",
         "episodeTitle": "ScaReplay: Splatterhouse Series",
         "fandomWikiURL": "",
         "mainSegmentGamesAdv": [
@@ -391,7 +391,7 @@
                 "title": "Splatterhouse: Wanpaku Grafitti",
                 "system": "Famicom",
                 "yearReleased": "1989"
-            },
+            }
         ],
         "airDate": "10/31/13",
         "videoLength": "34:08",
@@ -447,13 +447,13 @@
             ]
         },
         "youtube": {
-            "views": 10790,
+            "views": 10830,
             "likes": 155,
             "dislikes": 5
         }
     },
     {
-        "episodeNumber": .08,
+        "episodeNumber": ".08",
         "episodeTitle": "Replay: Mutant League Football",
         "fandomWikiURL": "",
         "mainSegmentGamesAdv": [
@@ -484,7 +484,7 @@
                 "width": "300",
                 "height": "169",
                 "srcset": [
-                    "https://s3.amazonaws.com/prod-media.gameinformer.com/styles/body_default/s3/legacy-images/imagefeed/Replay%20–%20Mutant%20League%20Football/Replay_mutantleaguefootball_600.jpg"
+                    "https://s3.amazonaws.com/prod-media.gameinformer.com/styles/body_default/s3/legacy-images/imagefeed/Replay%20\u2013%20Mutant%20League%20Football/Replay_mutantleaguefootball_600.jpg"
                 ]
             },
             "system": [
@@ -511,22 +511,22 @@
             "date": " on Sep 10, 2013 at 07:00 AM",
             "content": [
                 "We take a look back at EA's grisly gridiron classic.",
-                "By now, you may have heard the news that Michael Mendheim, the creator of Mutant League Football, is launching a Kickstarter to create a spiritual successor to the Genesis-era cult classic. To celebrate, host Andy Reiner welcomes Matt Helgeson, Ben Reeves, Kim Wallace, and Jason Oestreicher to the Replay studio to see how the original holds up. The results are a bit ugly at times – to hilarious results. Also, without spoiling anything, in the Replay Roulette segment, Ben Reeves pulls off one of the most pathetic \"feats\" in Replay history, to Kim's chagrin."
+                "By now, you may have heard the news that Michael Mendheim, the creator of Mutant League Football, is launching a Kickstarter to create a spiritual successor to the Genesis-era cult classic. To celebrate, host Andy Reiner welcomes Matt Helgeson, Ben Reeves, Kim Wallace, and Jason Oestreicher to the Replay studio to see how the original holds up. The results are a bit ugly at times \u2013 to hilarious results. Also, without spoiling anything, in the Replay Roulette segment, Ben Reeves pulls off one of the most pathetic \"feats\" in Replay history, to Kim's chagrin."
             ]
         },
         "youtube": {
-            "views": 14269,
+            "views": 14284,
             "likes": 148,
             "dislikes": 14
         }
     },
     {
-        "episodeNumber": .07,
+        "episodeNumber": ".07",
         "episodeTitle": "Stress Test \u2013 Joe vs Tyson",
         "fandomWikiURL": "",
         "mainSegmentGamesAdv": [
             {
-                "title": "Punch Out!!",
+                "title": "Mike Tyson's Punch-Out!!",
                 "system": "NES",
                 "yearReleased": "1987"
             }
@@ -552,7 +552,7 @@
                 "width": "300",
                 "height": "169",
                 "srcset": [
-                    "https://s3.amazonaws.com/prod-media.gameinformer.com/styles/body_default/s3/legacy-images/imagefeed/Replay%20–%20Punch-Out%21%21%20Stress%20Test%3A%20Joe%20Vs.%20Tyson%20–%20Episode%202/joevtyson610.jpg"
+                    "https://s3.amazonaws.com/prod-media.gameinformer.com/styles/body_default/s3/legacy-images/imagefeed/Replay%20\u2013%20Punch-Out%21%21%20Stress%20Test%3A%20Joe%20Vs.%20Tyson%20\u2013%20Episode%202/joevtyson610.jpg"
                 ]
             },
             "system": [
@@ -584,18 +584,18 @@
             ]
         },
         "youtube": {
-            "views": 13476,
+            "views": 13502,
             "likes": 211,
             "dislikes": 6
         }
     },
     {
-        "episodeNumber": .05,
+        "episodeNumber": ".05",
         "episodeTitle": "Stress Test \u2013 Ryckert vs Tyson",
         "fandomWikiURL": "",
         "mainSegmentGamesAdv": [
             {
-                "title": "Punch Out!!",
+                "title": "Mike Tyson's Punch-Out!!",
                 "system": "NES",
                 "yearReleased": "1987"
             }
@@ -621,7 +621,7 @@
                 "width": "300",
                 "height": "169",
                 "srcset": [
-                    "https://s3.amazonaws.com/prod-media.gameinformer.com/styles/body_default/s3/legacy-images/imagefeed/Replay%20–%20Punch-Out%21%21%20Stress%20Test%3A%20Dan%20Vs.%20Tyson%20Part%20III/tyson610.jpg"
+                    "https://s3.amazonaws.com/prod-media.gameinformer.com/styles/body_default/s3/legacy-images/imagefeed/Replay%20\u2013%20Punch-Out%21%21%20Stress%20Test%3A%20Dan%20Vs.%20Tyson%20Part%20III/tyson610.jpg"
                 ]
             },
             "system": [
@@ -651,13 +651,13 @@
             ]
         },
         "youtube": {
-            "views": 18257,
+            "views": 18343,
             "likes": 257,
             "dislikes": 5
         }
     },
     {
-        "episodeNumber": .04,
+        "episodeNumber": ".04",
         "episodeTitle": "Replay Holiday Special 2012",
         "fandomWikiURL": "/wiki/Replay_Holiday_Special_2012",
         "mainSegmentGamesAdv": [
@@ -725,16 +725,17 @@
             "author": "Andrew Reiner",
             "date": " on Dec 24, 2012 at 08:52 AM",
             "content": [
-                "'Tis the season for crappy holiday gaming. Scattered within the thousands of games in Game Informer's vault, we found two that celebrate the holiday season. Now that Wii U is on store shelves, we can officially dive into Wii's library for Replay episodes. Outside of Tim breaking the rules of the spacetime continuum with his rogue Super Smash Bros. Brawl Replay episode, our first sanctioned Wii game is Santa Claus is Comin' to Town! Our Roulette is equally as season-appropriate. Enjoy the episode, folks! And happy holidays!"            ]
+                "'Tis the season for crappy holiday gaming. Scattered within the thousands of games in Game Informer's vault, we found two that celebrate the holiday season. Now that Wii U is on store shelves, we can officially dive into Wii's library for Replay episodes. Outside of Tim breaking the rules of the spacetime continuum with his rogue Super Smash Bros. Brawl Replay episode, our first sanctioned Wii game is Santa Claus is Comin' to Town! Our Roulette is equally as season-appropriate. Enjoy the episode, folks! And happy holidays!"
+            ]
         },
         "youtube": {
-            "views": "16697",
-            "likes": "190",
-            "dislikes": "4"
+            "views": 16820,
+            "likes": 192,
+            "dislikes": 4
         }
     },
     {
-        "episodeNumber": .03,
+        "episodeNumber": ".03",
         "episodeTitle": "Reevesplay: Silent Bomber",
         "fandomWikiURL": "/wiki/Reevesplay",
         "mainSegmentGamesAdv": [
@@ -794,13 +795,13 @@
             ]
         },
         "youtube": {
-            "views": "3974",
-            "likes": "160",
-            "dislikes": "9"
+            "views": 3998,
+            "likes": 160,
+            "dislikes": 9
         }
     },
     {
-        "episodeNumber": .02,
+        "episodeNumber": ".02",
         "episodeTitle": "Super Readplay: Gears of War: Anvil Gate",
         "fandomWikiURL": "/wiki/Super_Readplay",
         "mainSegmentGamesAdv": [
@@ -869,7 +870,7 @@
         }
     },
     {
-        "episodeNumber": .01,
+        "episodeNumber": ".01",
         "episodeTitle": "Winter Games",
         "fandomWikiURL": "/wiki/Replay:_Winter_Games",
         "mainSegmentGamesAdv": [],

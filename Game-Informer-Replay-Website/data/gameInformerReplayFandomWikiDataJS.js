@@ -1,6 +1,6 @@
 ﻿"use strict";
 
-const lastModifiedReplayList = document.lastModified;
+//const lastModifiedReplayList = document.lastModified;
 
 const replayEpisodeArray = [
     {
@@ -9,7 +9,7 @@ const replayEpisodeArray = [
         "fandomWikiURL": "/wiki/Replay:_Doctor_Hauzer_(Ten_Year_Anniversary_Special)",
         "mainSegmentGamesAdv": [
             {
-                "title": "Doctor Hauzer (Ten Year Anniversary Special)",
+                "title": "Doctor Hauzer",
                 "system": "3DO",
                 "yearReleased": "1994"
             }
@@ -5673,7 +5673,12 @@ const replayEpisodeArray = [
         "videoLength": "54:08",
         "secondSegment": "The Commodore 64 Spectacular: Part 3",
         "secondSegmentGames": [
-            "---"
+            "Super Cycle",
+            "Temple of Apshai Trilogy",
+            "The Arc of Yesod",
+            "Tower Toppler",
+            "West Bank",
+            "Zynaps"
         ],
         "season": 5,
         "details": {
@@ -6339,9 +6344,7 @@ const replayEpisodeArray = [
         "secondSegment": "RR",
         "secondSegmentGames": [
             "Overlord",
-            ",",
             "Last Action Hero",
-            ",",
             "Lethal Weapon"
         ],
         "season": 5,
@@ -6435,7 +6438,6 @@ const replayEpisodeArray = [
         "secondSegment": "RR",
         "secondSegmentGames": [
             "Family Guy Video Game!",
-            ",",
             "Disney's Dinosaur"
         ],
         "season": 5,
@@ -6524,9 +6526,7 @@ const replayEpisodeArray = [
         "secondSegment": "RR",
         "secondSegmentGames": [
             "Kao the Kangaroo",
-            ",",
             "Disney's Dinosaur",
-            ",",
             "Outtrigger"
         ],
         "season": 5,
@@ -8525,7 +8525,6 @@ const replayEpisodeArray = [
         "secondSegment": "RR",
         "secondSegmentGames": [
             "Tetris 2",
-            ",",
             "Flying Warriors"
         ],
         "season": 4,
@@ -10529,7 +10528,6 @@ const replayEpisodeArray = [
         "secondSegment": "RR",
         "secondSegmentGames": [
             "The Terminator: Dawn of Fate",
-            ",",
             "Death by Degrees"
         ],
         "season": 4,
@@ -11701,8 +11699,7 @@ const replayEpisodeArray = [
         "videoLength": "58:16",
         "secondSegment": "ST",
         "secondSegmentGames": [
-            "Crash Bandicoot",
-            "- The High Road level"
+            "Crash Bandicoot (The High Road level)"
         ],
         "season": 4,
         "details": {
@@ -18939,7 +18936,11 @@ const replayEpisodeArray = [
         "middleSegmentContent": "---",
         "secondSegment": "Developer Spotlight",
         "secondSegmentGames": [
-            "Rare Games: The Amazing Spider-Man, Beetlejuice, Battletoads in Ragnarok's World, Monster Max, Donkey Kong Land"
+            "Rare Games: The Amazing Spider-Man",
+            "Beetlejuice",
+            "Battletoads in Ragnarok's World",
+            "Monster Max",
+            "Donkey Kong Land"
         ],
         "season": 3,
         "details": {
@@ -21348,9 +21349,7 @@ const replayEpisodeArray = [
         "middleSegmentContent": "Skullmonkeys",
         "secondSegment": "Developer Spotlight",
         "secondSegmentGames": [
-            "Rare",
-            "Games:",
-            "Slalom",
+            "Rare Games: Slalom",
             "Wizards & Warriors",
             "R.C. Pro-Am",
             "Who Framed Roger Rabbit",
@@ -22232,7 +22231,6 @@ const replayEpisodeArray = [
         "videoLength": "59:27",
         "secondSegment": "RR",
         "secondSegmentGames": [
-            "X-Perts",
             "The Kore Gang"
         ],
         "season": 2,
@@ -22517,17 +22515,17 @@ const replayEpisodeArray = [
         "fandomWikiURL": "/wiki/Replay:_Star_Wars:_Rogue_Squadron_Spectacular",
         "mainSegmentGamesAdv": [
             {
-                "title": "Star Wars: Rogue Squadron Spectacular",
+                "title": "Star Wars: Rogue Squadron",
                 "system": "Nintendo 64",
                 "yearReleased": "1998"
             },
             {
-                "title": "Star Wars: Rogue Squadron Spectacular",
+                "title": "Star Wars: Rogue Squadron II \u2013 Rogue Leader",
                 "system": "GameCube",
                 "yearReleased": "2001"
             },
             {
-                "title": "Star Wars: Rogue Squadron Spectacular",
+                "title": "Star Wars: Rogue Squadron III \u2013 Rebel Strike",
                 "system": "GameCube",
                 "yearReleased": "2003"
             }
@@ -25333,8 +25331,7 @@ const replayEpisodeArray = [
         "videoLength": "46:00",
         "secondSegment": "RR",
         "secondSegmentGames": [
-            "V.I.P",
-            "."
+            "V.I.P."
         ],
         "season": 2,
         "details": {
@@ -25540,17 +25537,17 @@ const replayEpisodeArray = [
         "fandomWikiURL": "/wiki/Replay:_Gargoyle%27s_Quest_Series",
         "mainSegmentGamesAdv": [
             {
-                "title": "Gargoyle's Quest Series",
+                "title": "Gargoyle's Quest",
                 "system": "Game Boy",
                 "yearReleased": "1990"
             },
             {
-                "title": "Gargoyle's Quest Series",
+                "title": "Gargoyle's Quest II: The Demon Darkness",
                 "system": "NES",
                 "yearReleased": "1992"
             },
             {
-                "title": "Gargoyle's Quest Series",
+                "title": "Demon's Crest",
                 "system": "Super NES",
                 "yearReleased": "1994"
             }
@@ -31480,8 +31477,7 @@ const replayEpisodeArray = [
         "videoLength": "26:36",
         "secondSegment": "RR",
         "secondSegmentGames": [
-            "Planet of the Apes",
-            "(GBA)"
+            "Planet of the Apes (GBA)"
         ],
         "season": 2,
         "details": {
@@ -32382,8 +32378,7 @@ const replayEpisodeArray = [
         "videoLength": "26:56",
         "secondSegment": "RR",
         "secondSegmentGames": [
-            "Jurassic Park",
-            "(NES)"
+            "Jurassic Park (NES)"
         ],
         "season": 2,
         "details": {
@@ -33640,10 +33635,8 @@ const replayEpisodeArray = [
         ],
         "airDate": "1/21/12",
         "videoLength": "1:04:26",
-        "secondSegment": "RR",
-        "secondSegmentGames": [
-            "---"
-        ],
+        "secondSegment": "",
+        "secondSegmentGames": [],
         "season": 1,
         "details": {
             "description": [
@@ -37004,7 +36997,7 @@ const replayEpisodeArray = [
                     "title": "Replay: War of the Monsters"
                 },
                 {
-                    "href": "https://www.youtube.com/watch?v=xckirIft0iA",
+                    "href": "https://www.youtube.com/watch?v=dXH9vW6lEcw",
                     "title": "Replay: War of the Monsters"
                 },
                 {
@@ -40193,10 +40186,8 @@ const replayEpisodeArray = [
         ],
         "airDate": "9/18/10",
         "videoLength": "1:24:09",
-        "secondSegment": "RR",
-        "secondSegmentGames": [
-            "---"
-        ],
+        "secondSegment": "",
+        "secondSegmentGames": [],
         "season": 1,
         "details": {
             "description": [
@@ -40762,8 +40753,7 @@ const replayEpisodeArray = [
         "videoLength": "27:26",
         "secondSegment": "RR",
         "secondSegmentGames": [
-            "Paperboy",
-            "(N64)"
+            "Paperboy (N64)"
         ],
         "season": 1,
         "details": {
@@ -42214,8 +42204,7 @@ const replayEpisodeArray = [
         "videoLength": "19:12",
         "secondSegment": "RR",
         "secondSegmentGames": [
-            "Superman",
-            "(NES)"
+            "Superman (NES)"
         ],
         "season": 1,
         "details": {
@@ -44012,10 +44001,13 @@ const replayEpisodeArray = [
                 }
             ],
             "image": {
-                "width": "300",
-                "height": "169",
+                "width": "200",
+                "height": "179",
                 "srcset": [
-                    "https://www.gameinformer.com/s3/files/styles/body_default/s3/legacy-images/imagefeed/Bonus%20Replay%20%E2%80%93%20Strider%20%28Guests%3A%20Arj%20Barker%20And%20Louis%20Katz%29/striderreplay_610.jpg"
+                    "images/episode-thumbnails/striderreplay_200.jpg",
+                    "1x",
+                    "images/episode-thumbnails/striderreplay_610.jpg",
+                    "2x"
                 ]
             },
             "system": [
@@ -44084,7 +44076,10 @@ const replayEpisodeArray = [
                 "width": "300",
                 "height": "169",
                 "srcset": [
-                    "https://www.gameinformer.com/s3/files/styles/body_default/s3/legacy-images/imagefeed/Replay%20\u2013%20ToeJam%20%26%20Earl%202%20%28Special%20Guest%3A%20Riff%20Raff%29/Toejam610.jpg"
+                    "images/episode-thumbnails/Toejam300.jpg",
+                    "1x",
+                    "images/episode-thumbnails/Toejam610.jpg",
+                    "2x"
                 ]
             },
             "system": [
@@ -44245,7 +44240,10 @@ const replayEpisodeArray = [
                 "width": "300",
                 "height": "169",
                 "srcset": [
-                    "https://s3.amazonaws.com/prod-media.gameinformer.com/styles/body_default/s3/legacy-images/imagefeed/Replay%20Halloween%20Special%202013/Replay_splatterhouse_600.jpg"
+                    "images/episode-thumbnails/Replay_splatterhouse_300.jpg",
+                    "1x",
+                    "images/episode-thumbnails/Replay_splatterhouse_600.jpg",
+                    "2x"
                 ]
             },
             "system": [
@@ -44315,7 +44313,10 @@ const replayEpisodeArray = [
                 "width": "300",
                 "height": "169",
                 "srcset": [
-                    "https://s3.amazonaws.com/prod-media.gameinformer.com/styles/body_default/s3/legacy-images/imagefeed/Replay%20\u2013%20Mutant%20League%20Football/Replay_mutantleaguefootball_600.jpg"
+                    "images/episode-thumbnails/Replay_mutantleaguefootball_300.jpg",
+                    "1x",
+                    "images/episode-thumbnails/Replay_mutantleaguefootball_600.jpg",
+                    "2x"
                 ]
             },
             "system": [
@@ -44357,7 +44358,7 @@ const replayEpisodeArray = [
         "fandomWikiURL": "",
         "mainSegmentGamesAdv": [
             {
-                "title": "Punch Out!!",
+                "title": "Mike Tyson's Punch-Out!!",
                 "system": "NES",
                 "yearReleased": "1987"
             }
@@ -44383,7 +44384,10 @@ const replayEpisodeArray = [
                 "width": "300",
                 "height": "169",
                 "srcset": [
-                    "https://s3.amazonaws.com/prod-media.gameinformer.com/styles/body_default/s3/legacy-images/imagefeed/Replay%20\u2013%20Punch-Out%21%21%20Stress%20Test%3A%20Joe%20Vs.%20Tyson%20\u2013%20Episode%202/joevtyson610.jpg"
+                    "images/episode-thumbnails/joevtyson300.jpg",
+                    "1x",
+                    "images/episode-thumbnails/joevtyson610.jpg",
+                    "2x"
                 ]
             },
             "system": [
@@ -44426,7 +44430,7 @@ const replayEpisodeArray = [
         "fandomWikiURL": "",
         "mainSegmentGamesAdv": [
             {
-                "title": "Punch Out!!",
+                "title": "Mike Tyson's Punch-Out!!",
                 "system": "NES",
                 "yearReleased": "1987"
             }
@@ -44452,7 +44456,10 @@ const replayEpisodeArray = [
                 "width": "300",
                 "height": "169",
                 "srcset": [
-                    "https://s3.amazonaws.com/prod-media.gameinformer.com/styles/body_default/s3/legacy-images/imagefeed/Replay%20\u2013%20Punch-Out%21%21%20Stress%20Test%3A%20Dan%20Vs.%20Tyson%20Part%20III/tyson610.jpg"
+                    "images/episode-thumbnails/tyson300.jpg",
+                    "1x",
+                    "images/episode-thumbnails/tyson610.jpg",
+                    "2x"
                 ]
             },
             "system": [

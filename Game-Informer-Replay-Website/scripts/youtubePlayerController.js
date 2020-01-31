@@ -10,33 +10,35 @@
  */
 
 // Load the IFrame Player API code asynchronously.
-var tag = document.createElement('script');
-tag.src = "https://www.youtube.com/player_api";
-var firstScriptTag = document.getElementsByTagName('script')[0];
-firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+export function loadPlayerAPI() {
+    const tag = document.createElement('script');
+    tag.src = "https://www.youtube.com/player_api";
+    const firstScriptTag = document.getElementsByTagName('script')[0];
+    firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
 
-// This function creates an <iframe> (and YouTube player)
-// after the API code downloads.
-window.onYouTubePlayerAPIReady = function () {
-    replayEpisodeCollection.videoPlayer = new YT.Player('youtubePlayerPlaceholder', {
-        height: 360,
-        width: 640,
-        //videoId: '0ZtEkX8m6yg', // default video: Replay Highlights
-        playerVars: {
-            playlist: [replayEpisodeCollection.selectedVideoIdArray.slice(0, 200) || '0ZtEkX8m6yg'],
-            iv_load_policy: 3, // video annotations (default: 1)
-            modestbranding: 1,
-            enablejsapi: 1,
-            loop: 0,
-            origin: 'https://toddbrentlinger.github.io/Game-Informer-Replay-Website/Game-Informer-Replay-Website/'
-        },
-        events: {
-            onReady: replayEpisodeCollection.onPlayerReady.bind(replayEpisodeCollection),
-            //onStateChange: replayEpisodeCollection.onPlayerStateChange.bind(replayEpisodeCollection),
-            onError: replayEpisodeCollection.onPlayerError.bind(replayEpisodeCollection)
-        }
-    });
+    // This function creates an <iframe> (and YouTube player)
+    // after the API code downloads.
+    window.onYouTubePlayerAPIReady = function () {
+        replayEpisodeCollection.videoPlayer = new YT.Player('youtubePlayerPlaceholder', {
+            height: 360,
+            width: 640,
+            //videoId: '0ZtEkX8m6yg', // default video: Replay Highlights
+            playerVars: {
+                playlist: [replayEpisodeCollection.selectedVideoIdArray.slice(0, 200) || '0ZtEkX8m6yg'],
+                iv_load_policy: 3, // video annotations (default: 1)
+                modestbranding: 1,
+                enablejsapi: 1,
+                loop: 0,
+                origin: 'https://toddbrentlinger.github.io/Game-Informer-Replay-Website/Game-Informer-Replay-Website/'
+            },
+            events: {
+                onReady: replayEpisodeCollection.onPlayerReady.bind(replayEpisodeCollection),
+                //onStateChange: replayEpisodeCollection.onPlayerStateChange.bind(replayEpisodeCollection),
+                onError: replayEpisodeCollection.onPlayerError.bind(replayEpisodeCollection)
+            }
+        });
 
-    console.log('window.onYouTubePlayerAPIReady() has finished');
-};
+        //console.log('window.onYouTubePlayerAPIReady() has finished');
+    };
+}
 

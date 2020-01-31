@@ -6,7 +6,6 @@ if (currentTheme) {
 
 document.addEventListener("DOMContentLoaded", function () {
     const darkModeSwitch = document.getElementById('dark-mode-checkbox');
-    const darkModeSwitchLabel = document.querySelector('.switch-container em');
     if (currentTheme) {
         //document.documentElement.setAttribute('data-theme', currentTheme);
         if (currentTheme == 'dark')

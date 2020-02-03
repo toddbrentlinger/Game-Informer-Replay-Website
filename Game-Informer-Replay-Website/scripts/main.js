@@ -19,7 +19,6 @@ function getReplayEpisodeArr() {
         replayEpisodeCollection.init(request.response);
         loadPlayerAPI();
     }
-    
 }
 */
 

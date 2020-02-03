@@ -40,23 +40,26 @@
             <li><a href="https://replay.fandom.com/wiki/Category:Game_Informer_staff" target="_blank" rel="noopener"><span>GI Crew</span></a></li>
         </ul>
         <div class="switch-container">
-            <label class="switch" for="dark-mode-checkbox">
+            <label class="switch">
                 <input type="checkbox" id="dark-mode-checkbox" />
                 <span class="slider round"></span>
             </label>
-            <em>Dark Mode</em>
+            <em for="dark-mode-checkbox">Dark Mode</em>
         </div>
     </nav>
 
     <!-- Header -->
     <header>
         <h1>Game Informer Replay</h1>
-        <!--
-        <img src="images/Game_Informer_logo_(2010-present).png" alt="Game Informer Logo" width="2028" height="371" />
-        -->
     </header>
 
-    <img src="images/replay-logo-alpha(2).png" alt="Game Informer Replay Logo" width="610" height="214" />
+    <img srcset="images/replay-logo-alpha(2)_300.png 300w, 
+                 images/replay-logo-alpha(2).png 610w"
+         sizes="(max-width: 450px) 300px,
+                610px"
+         src="images/replay-logo-alpha(2).png" 
+         alt="Game Informer Replay Logo" 
+         width="610" height="214" />
 
     <!-- Video Player Container -->
     <div id="video-player-container">
@@ -81,7 +84,7 @@
                 <!-- Search -->
                 <div id="search-container">
                     <input type="text" placeholder="Search..." required />
-                    <button class="custom-button" type="button"><i class="fa fa-search"></i></button>
+                    <button class="custom-button" type="button" aria-label="search"><i class="fa fa-search"></i></button>
                 </div>
 
                 <!-- Filter Form -->

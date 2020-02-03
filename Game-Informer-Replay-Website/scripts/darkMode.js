@@ -1,5 +1,5 @@
 ﻿// Dark Mode Switch
-const currentTheme = window.localStorage.getItem('theme') ? localStorage.getItem('theme') : null;
+const currentTheme = window.localStorage.getItem('theme');
 if (currentTheme) {
     document.documentElement.setAttribute('data-theme', currentTheme);
 }

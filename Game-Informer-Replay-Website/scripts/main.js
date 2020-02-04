@@ -1,4 +1,5 @@
 ﻿"use strict";
+var startTime = new Date();
 
 import { loadPlayerAPI } from "./youtubePlayerController.js";
 
@@ -21,6 +22,11 @@ function getReplayEpisodeArr() {
     }
 }
 */
+
+window.addEventListener("load", function () {
+    const endTime = new Date();
+    console.log(`Window has finished loading in ${(endTime - startTime) / 1000} seconds`);
+});
 
 // Current Episode Display Toggle
 replayEpisodeCollection.currentEpisodeInfoToggleButton

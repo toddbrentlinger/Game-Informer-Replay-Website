@@ -1,16 +1,6 @@
 ﻿/* ---------------------------------------------------- */
 /* ---------- General Page Styles ---------- */
 /* ---------------------------------------------------- */
-/* 
-What's the font used for Game Informer logo?
-
-The closest font found for Game Informer logo is Softrobo Pro, which is a geometric sans serif font designed by Aliaksei Koval and published by Koval TF.
-
-Sources & Links:
-Softrobo Pro Font on myfonts.com
-Softrobo Pro Font on fonts.com
-
-*/
 
 /* ------------------------------- */
 /* ---------- Variables ---------- */
@@ -219,7 +209,7 @@ footer {
     height: 100%;
     font-size: 1rem; /* 16px: reset font-size after setting to zero in #topnav ul {} to
         prevent space between inline-block elements */
-    padding: .5em; /* 14px 16px (1em=16px) */
+    padding: .8em .5em; /* 14px 16px (1em=16px) */
     text-decoration: none;
     color: var(--main-text-color);
     -webkit-transition-duration: .2s;
@@ -271,16 +261,6 @@ main { margin: 0 .8em; }
 }
 
 /* Episode Main */
-
-.episodeMain {
-    /*
-    border-style: solid;
-    border-bottom: none;
-    border-width: .2em;
-    border-radius: 1em 1em 0 0;
-    border-color: var(--main-bg-color);
-    */
-}
 
 /* Episode Header */
 .episodeHeader {
@@ -397,10 +377,6 @@ main { margin: 0 .8em; }
     display: flex;
     justify-content: flex-end;
     flex-wrap: wrap;
-    /*flex: 1;*/
-    /*justify-content: center;*/
-    /*padding: .3em 0;*/
-    /*font-size: .9em;*/
 }
 
 .views-likes-container .views {
@@ -411,28 +387,11 @@ main { margin: 0 .8em; }
     margin-right: .5em;
 }
 
-/*.episodeDetails > * { padding: .4em 0; } //
-.episodeDetails .views, .episodeDetails .likes {
-    float: left;
-    width: 50%;
-}
-.episodeDetails:after {
-    content: "";
-    clear: both;
-    display: table;
-}
-*/
 /* ---------- Episode More Info (w/ dropdown display) ---------- */
 
 .episodeMoreInfo {
     padding: 0 1.5em;
-    font-size: .9em;
-    /*
-    border-style: none solid solid solid;
-    border-width: .2em;
-    border-color: var(--main-bg-color);
-    border-radius: 0 0 1em 1em;
-    */                         
+    font-size: .9em;                      
 }
 .episodeMoreInfo h4 {
     text-transform: capitalize;
@@ -502,13 +461,6 @@ ul.link-list {
     background-image: linear-gradient(to right, rgba(0,0,0,0), var(--main-bg-color) 20%, var(--main-bg-color) 80%, rgba(0,0,0,0));
     margin: 0 1em;
 }
-/*
-.episode > hr {
-    border: 0;
-    height: .8em;
-    box-shadow: inset 0 .8em .8em -.8em var(--main-bg-color);
-    background-image: none;
-}*/
 
 /* ------------------------------------ */
 /* ---------- YouTube Player ---------- */
@@ -546,13 +498,6 @@ ul.link-list {
     height: 100%;
     width: 100%;
     margin: 0 auto;
-    /*
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    */
 }
 
 /* ------------------------------------------ */
@@ -621,21 +566,6 @@ ul.link-list {
 }
 #current-episode-info-toggle-button.active { border-radius: 0; }
 
-/* Overlay /
-.currently-playing .playOverlay { 
-    display: unset;
-    z-index: 1;
-}
-.currently-playing .episodeThumbnail a::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    padding-top: 25%;
-    background-color: rgba(0,0,0,.75);
-}
-*/
 /* ---------------------------- */
 /* ---------- Search ---------- */
 /* ---------------------------- */
@@ -711,14 +641,7 @@ ul.link-list {
     overflow: hidden;
     transition: max-height 0.2s ease-out;
 }
-/*
-#filterForm:after {
-    content: ""; 
-    display: block;
-    height: 1em;
-    padding: .5em;
-}
-*/
+
 #filterForm > fieldset {
     /*display: inline-block;*/
     padding: .4em;
@@ -1004,7 +927,7 @@ ul.link-list {
 [data-theme="dark"] .views-likes-container .fa {
     color: var(--main-text-color);
 }
-[data-theme="dark"] #jump-top-page-container > a > i {
+[data-theme="dark"] #jump-top-page-container i {
     color: var(--main-text-color);
 }
 
@@ -1077,8 +1000,8 @@ input:checked + .slider:before {
 /* -------------------------- */
 
 /* Episode Anchor Links */
-.external-links a { color: #1f64e3; }
-.external-links a:visited { color: #ff008e; } /* #c10172 */
+.episodeMoreInfo a { color: #1f64e3; }
+.episodeMoreInfo a:visited { color: #ff008e; } /* #c10172 */
 
 /* ---------------------------------- */
 /* ---------- Misc Buttons ---------- */

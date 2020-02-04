@@ -236,6 +236,7 @@ var replayEpisodeCollection = {
     videoPlayer: undefined, // Assigned inside global onYouTubePlayerAPIReady()
 
     currentEpisodeHeaderElement: document.getElementById('current-episode-header'),
+    //currentEpisodeDetailsElement: document.getElementById('current-episode-details'),
     currentEpisodeInfoElement: document.getElementById('current-episode-info'),
     currentEpisodeInfoToggleButton: document.getElementById('current-episode-info-toggle-button'),
 
@@ -310,7 +311,8 @@ replayEpisodeCollection.init = function (replayEpisodeArray) {
     this.populateEpisodeObjectArray(replayEpisodeArray, episodeTemplate);
 
     // Empty replayEpisodeArray. No longer needed.
-    replayEpisodeArray = undefined;
+    //replayEpisodeArray = null;
+    //replayEpisodeArray.length = 0;
 
     // Initialize selected episodes array to same order of base episode object array
     this.selectedEpisodes = this.replayEpisodeObjectArray.slice();
@@ -337,9 +339,9 @@ replayEpisodeCollection.populateEpisodeObjectArray = function (replayEpisodeArra
         replayEpisodeObject = new ReplayEpisode(replayEpisode, episodeTemplate);
         // Append episode object to array
         this.replayEpisodeObjectArray.push(replayEpisodeObject);
-
         // Increase total time of episodes
         this.totalTimeSeconds += replayEpisodeObject.videoLengthInSeconds;
+        //console.log(`Finished episode number: ${replayEpisodeObject.episodeNumber}`);
     }
     // Success Message
     console.log('Finished replay episode assignment');
@@ -1120,12 +1122,12 @@ replayEpisodeCollection.playPrevEpisode = function () {
 
 // removeCurrentEpisodeInfo()
 replayEpisodeCollection.removeCurrentEpisodeInfo = function () {
-    // Remove episode header above video player
+    // Remove episode header
     while (this.currentEpisodeHeaderElement.firstChild) {
         this.currentEpisodeHeaderElement
             .removeChild(this.currentEpisodeHeaderElement.firstChild);
     }
-    // Remove episode info below video player
+    // Remove episode info
     while (this.currentEpisodeInfoElement.firstChild) {
         this.currentEpisodeInfoElement
             .removeChild(this.currentEpisodeInfoElement.firstChild);
@@ -1142,13 +1144,13 @@ replayEpisodeCollection.addCurrentEpisodeInfo = function (keepOpen = false) {
         this.currentEpisodeInfoElement.style.maxHeight = null;
     }
     */
-    // Add episode header above video player
+    // Add episode header
     this.currentEpisodeHeaderElement
         .appendChild(currentEpisodeSection.querySelector('.episodeHeader'));
     // Move views-likes-container to episodeDetails
     currentEpisodeSection.querySelector('.episodeDetails')
         .appendChild(currentEpisodeSection.querySelector('.views-likes-container'));
-    // Add episode info below video player
+    // Add episode info below
     this.currentEpisodeInfoElement.appendChild(currentEpisodeSection);
     /*
     // Change size of current episode info expanding container

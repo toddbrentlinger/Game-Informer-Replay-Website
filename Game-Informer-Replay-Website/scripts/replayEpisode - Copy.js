@@ -12,14 +12,20 @@ class ReplayEpisode {
 
     // Initialize data members from JSON object of episode data
     constructor(replayEpisode, episodeTemplate) {
+        // this.replayEpisode = replayEpisodeJSON;
+
         // Episode Number
         this.episodeNumber = replayEpisode.episodeNumber;
 
         // Episode Title
         this.episodeTitle = replayEpisode.episodeTitle;
 
-        // Main Segment Games
-        this.mainSegmentGamesAdv = replayEpisode.mainSegmentGamesAdv;
+        // *Main Segment Games
+        //this.mainSegmentGamesAdv = Object.assign({}, replayEpisode.mainSegmentGamesAdv);
+        this.mainSegmentGamesAdv = [];
+        replayEpisode.mainSegmentGamesAdv.forEach(game => {
+            this.mainSegmentGamesAdv.push(Object.assign({}, game))
+        });
 
         // Air Date
         const dateString = replayEpisode.details.airdate;
@@ -65,12 +71,12 @@ class ReplayEpisode {
             this.secondSegment = replayEpisode.secondSegment;
         }
 
-        // Second Segment Games
-        if (replayEpisode.hasOwnProperty('secondSegmentGames')
+        // *Second Segment Games
+        if (replayEpisode.hasOwnProperty('secondSegmentGames') 
             && Array.isArray(replayEpisode.secondSegmentGames)
             && replayEpisode.secondSegmentGames.length
             && replayEpisode.secondSegmentGames[0].replace(/-/gi, '').length) {
-            this.secondSegmentGames = replayEpisode.secondSegmentGames;
+            this.secondSegmentGames = replayEpisode.secondSegmentGames.slice();
         }
 
         // YouTube views/likes
@@ -86,40 +92,61 @@ class ReplayEpisode {
                 this.dislikes = parseInt(replayEpisode.youtube.dislikes, 10);
         }
 
-        // Game Informer article
+        // *Game Informer article
         if (replayEpisode.hasOwnProperty('article')) {
-            this.replayArticle = replayEpisode.article;
+            this.replayArticle = {};
+            for (const [key, value] of Object.entries(replayEpisode.article)) {
+                this.replayArticle[key] = (Array.isArray(value)) ? value.slice() : value;
+            }
+            /*
+            for (const prop in replayEpisode.article) {
+                if (Array.isArray(replayEpisode.article[prop]))
+                    this.replayArticle[prop] = replayEpisode.article[prop].slice();
+                else
+                    this.replayArticle[prop] = replayEpisode.article[prop];
+            }
+            */
         }
 
-        // Description (array)
+        // Details
+        //if (replayEpisode.hasOwnProperty('details')) {}
+
+        // *Description (array)
         // If description is empty, create custom description
         if (Array.isArray(replayEpisode.details.description) &&
             replayEpisode.details.description.length) {
-            this.description = replayEpisode.details.description;
-        } else //Else description is empty, create custom description
+            //this.description = replayEpisode.details.description.slice();
+            this.description = JSON.parse(JSON.stringify(replayEpisode.details.description))
+        }
+        else //Else description is empty, create custom description
             this.description = ReplayEpisode.createCustomDescription(this);
 
-        // Host(s)
+        // *Host(s)
         if (replayEpisode.details.hasOwnProperty('host'))
-            this.host = replayEpisode.details.host;
+            this.host = replayEpisode.details.host.slice();
 
-        // Featuring
+        // *Featuring
         if (replayEpisode.details.hasOwnProperty('featuring'))
-            this.featuring = replayEpisode.details.featuring;
+            this.featuring = replayEpisode.details.featuring.slice();
 
         // External Links
         this.external_links = [];
-        if (replayEpisode.details.hasOwnProperty('external_links')) {
-            this.external_links = replayEpisode.details.external_links;
-        }
         // Add Fandom link as first element of external links list
         if (replayEpisode.hasOwnProperty('fandomWikiURL') && replayEpisode.fandomWikiURL) {
-            this.external_links.unshift(
+            this.external_links.push(
                 { href: `https://replay.fandom.com${replayEpisode.fandomWikiURL}`, title: this.episodeTitle }
             );
         }
+        // *Add other external links, if defined
+        if (replayEpisode.details.hasOwnProperty('external_links')) {
+            //this.external_links.push.apply(this.external_links, replayEpisode.details.external_links);
+            replayEpisode.details.external_links.forEach(linkObj => {
+                this.external_links.push(Object.assign({}, linkObj));
+            });
+        }
 
         // YouTube video ID
+        // TODO: Only create property if there is a YouTube url
         let tempVideoID = ''; // Default empty string if NO video ID is found
         if (replayEpisode.hasOwnProperty('details')
             && replayEpisode.details.hasOwnProperty('external_links')) {
@@ -128,12 +155,12 @@ class ReplayEpisode {
             if (typeof youtubeLink != 'undefined')
                 tempVideoID = youtubeLink.href.split('=')[1].slice(0, 11);
         }
-        if (tempVideoID) this.youtubeVideoID = tempVideoID;
+        this.youtubeVideoID = tempVideoID;
 
-        // Image
-        this.image = replayEpisode.details.image;
+        // *Image
+        this.image = Object.assign({}, replayEpisode.details.image);
 
-        // Other Headings
+        // *Other Headings
         const propsToIgnore = [
             'description', 'external_links', 'image', 'system', 'gamedate', 'airdate', 'runtime', 'host', 'featuring'
         ];
@@ -144,12 +171,23 @@ class ReplayEpisode {
             // If property is array and array is empty, continue
             if (Array.isArray(value) && !value.length) continue;
             // Add to tempHeadingsObj
-            tempHeadingsObj[key] = value;
+            tempHeadingsObj[key] = JSON.parse(JSON.stringify(value));
         }
-        
+        /*
+        for (const prop in replayEpisode.details) {
+            // If prop is NOT in a prop to ignore
+            if (!propsToIgnore.includes(prop)) {
+                // If property is array and array is empty, continue
+                if (Array.isArray(replayEpisode.details[prop]) && !replayEpisode.details[prop].length)
+                    continue;
+                // Add to tempHeadingsObj
+                tempHeadingsObj[prop] = replayEpisode.details[prop];
+            }
+        }
+        */
         // If tempHeadingsObj is NOT empty, assign to this.otherHeadingsObj
         if (!ReplayEpisode.isEmptyObject(tempHeadingsObj))
-            this.otherHeadingsObj = tempHeadingsObj;
+            this.otherHeadingsObj = JSON.parse(JSON.stringify(tempHeadingsObj));
 
         // Create HTML element and add episode data
         this.populateEpisodeSection(episodeTemplate);
@@ -325,7 +363,7 @@ class ReplayEpisode {
 
         // Description
         ReplayEpisode.addContentArrToNode(parentNode, this.description);
-
+        
         // Article
         if (this.hasOwnProperty('replayArticle')) {
             // Add container for article heading to episodeMoreInfo element
@@ -547,8 +585,8 @@ class ReplayEpisode {
         if (replayEpisode.mainSegmentGamesAdv.length == 1) {
             descriptionArr.push(replayEpisode.mainSegmentGamesAdv[0].title + ' is the featured game in the '
                 + ((replayEpisode.episodeNumber < 1)
-                    ? this.numOrdinalSuffix(Math.floor(replayEpisode.episodeNumber * 100)) + ' unofficial'
-                    : this.numOrdinalSuffix(replayEpisode.episodeNumber))
+                ? this.numOrdinalSuffix(Math.floor(replayEpisode.episodeNumber * 100)) + ' unofficial'
+                : this.numOrdinalSuffix(replayEpisode.episodeNumber))
                 + ' episode of Replay.');
         }
         else { // Else more than one game in main segment
@@ -558,8 +596,8 @@ class ReplayEpisode {
             });
             descriptionArr.push('The '
                 + ((replayEpisode.episodeNumber < 1)
-                    ? this.numOrdinalSuffix(Math.floor(replayEpisode.episodeNumber * 100)) + ' unofficial'
-                    : this.numOrdinalSuffix(replayEpisode.episodeNumber))
+                ? this.numOrdinalSuffix(Math.floor(replayEpisode.episodeNumber * 100)) + ' unofficial'
+                : this.numOrdinalSuffix(replayEpisode.episodeNumber))
                 + ' episode of Replay is '
                 + replayEpisode.episodeTitle.replace('Replay: ', '') + ', featuring '
                 + this.listArrayAsString(mainSegmentGamesTitleArray) + '.');

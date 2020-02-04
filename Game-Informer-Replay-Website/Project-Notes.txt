@@ -218,6 +218,14 @@ and avoids potential problems from proposed solution.
 
 12/6/19
 
+What's the font used for Game Informer logo?
+The closest font found for Game Informer logo is Softrobo Pro, 
+which is a geometric sans serif font designed by Aliaksei Koval and 
+published by Koval TF.
+	Sources & Links:
+	Softrobo Pro Font on myfonts.com
+	Softrobo Pro Font on fonts.com
+
 - Display game titles in details with limit. For episodes with long
 lists of games played, show first number of characters in the game
 title list string ending with ellipsis. By clicking on the ellipsis,

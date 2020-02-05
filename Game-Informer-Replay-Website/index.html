@@ -16,8 +16,8 @@
     -->
     <!-- Favicon -->
     <link href="images/gi_logo_favicon_64x64.ico" rel="shortcut icon" type="image/x-icon" />
-    <!-- Apple Touch Icon (196x196)-->
-    <link rel="apple-touch-icon" href="images/gi_logo_196x196" />
+    <!-- Apple Touch Icon (196x196) -->
+    <link rel="apple-touch-icon" href="images/gi_logo_196x196.png" />
     <!-- Preconnect to required origins
     <link rel="preload" href="https://vignette.wikia.nocookie.net">
     -->
@@ -57,12 +57,12 @@
         <h1>Game Informer Replay</h1>
     </header>
 
-    <img srcset="images/replay-logo-alpha(2)_300.png 300w, 
+    <img srcset="images/replay-logo-alpha(2)_300.png 300w,
                  images/replay-logo-alpha(2).png 610w"
          sizes="(max-width: 450px) 300px,
                 610px"
-         src="images/replay-logo-alpha(2).png" 
-         alt="Game Informer Replay Logo" 
+         src="images/replay-logo-alpha(2).png"
+         alt="Game Informer Replay Logo"
          width="610" height="214" />
 
     <!-- Video Player Container -->
@@ -326,7 +326,14 @@
         <p>Replay list last modified on <time id="lastModifiedReplayList"></time></p>
         -->
     </footer>
-    
+
+    <!-- Load React. -->
+    <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
+    <!--
+    <script src="https://unpkg.com/react@16/umd/react.development.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js" crossorigin></script>
+    -->
+    <!-- Custom Scripts -->
     <script src="data/gameInformerReplayFandomWikiDataJS.js"></script>
     <script src="scripts/replayEpisode.js"></script>
     <script src="scripts/replayEpisodeCollection.js"></script>

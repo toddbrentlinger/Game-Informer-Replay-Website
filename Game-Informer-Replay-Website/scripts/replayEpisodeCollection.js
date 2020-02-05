@@ -248,9 +248,9 @@ var replayEpisodeCollection = {
         if (episode instanceof ReplayEpisode && episode !== this._currentEpisode) {
             //console.log(`set currentEpisode = ${episode.episodeNumber}\nselectedVideoIdArray indexOf: ${this.selectedVideoIdArray.indexOf(episode.youtubeVideoID)}`);
             // Remove 'currently-playing' class from previously played episode
-            if (this.currentEpisode) this.currentEpisode.episodeSection.classList.remove('currently-playing');
+            //if (this.currentEpisode) this.currentEpisode.episodeSection.classList.remove('currently-playing');
             // Set episodeSection of selected replayEpisode to class 'currently-playing'
-            episode.episodeSection.classList.add('currently-playing');
+            //episode.episodeSection.classList.add('currently-playing');
 
             // Assign currentEpisode
             this._currentEpisode = episode;
@@ -264,7 +264,7 @@ var replayEpisodeCollection = {
             } else {
                 console.error(`Could NOT assign ${episode} to currentEpisode`);
                 // Remove 'currently-playing' class from previously played episode
-                if (this.currentEpisode) this.currentEpisode.episodeSection.classList.remove('currently-playing');
+                //if (this.currentEpisode) this.currentEpisode.episodeSection.classList.remove('currently-playing');
                 // Assign value of undefined
                 this._currentEpisode = undefined;
                 // Remove episode info from around video player
@@ -376,8 +376,9 @@ replayEpisodeCollection.updateDisplayedEpisodes = function () {
     this.clearMainElement();
 
     // Fill main element with selected episodes array
-    for (let i = start; i < end; i++)
+    for (let i = start; i < end; i++) {
         this.mainElement.appendChild(this.selectedEpisodes[i].episodeSection);
+    }
 
     // Change current number of displayed episodes message string
     if (selectedEpisodesLength) {
@@ -469,7 +470,7 @@ replayEpisodeCollection.updateFilterObj = function () {
     for (const input of this.filterFormElement.querySelectorAll('input[type="checkbox"]')) {
         if (input.checked) {
             // If filterObj already has input.name as a property, add value to property array
-            if (tempObj.hasOwnProperty(input.name))
+            if (tempObj[input.name] !== undefined)
                 tempObj[input.name].push(input.value);
             else // Else add filterObj as property and add value as first element
                 tempObj[input.name] = [input.value];
@@ -577,7 +578,7 @@ replayEpisodeCollection.filterByCrew = function (crewToFilter) {
     // Filter by crew
     this.selectedEpisodes = this.selectedEpisodes.filter(function (episode) {
         // If no host and no featuring property, keep episode in list
-        if (!episode.hasOwnProperty('host') && !episode.hasOwnProperty('featuring'))
+        if (episode.host === undefined && episode.featuring === undefined)
             return true;
 
         // Assign crewPerEpisode
@@ -604,8 +605,8 @@ replayEpisodeCollection.filterBySegment = function (segmentsToFilter) {
     this.selectedEpisodes = this.selectedEpisodes.filter(function (episode) {
         isMatched = false;
         // Middle Segment
-        if (episode.hasOwnProperty('middleSegment') || episode.hasOwnProperty('middleSegmentContent')) {
-            if (episode.hasOwnProperty('middleSegment'))
+        if (episode.middleSegment !== undefined || episode.middleSegmentContent !== undefined) {
+            if (episode.middleSegment !== undefined)
                 isMatched = segmentsToFilter.includes(episode.middleSegment);
             else { // Else episode has middleSegmentContent property
                 isMatched = segmentsToFilter.includes(
@@ -617,7 +618,7 @@ replayEpisodeCollection.filterBySegment = function (segmentsToFilter) {
         }
 
         // Second Segment if NOT already matched
-        if (!isMatched && episode.hasOwnProperty('secondSegment'))
+        if (!isMatched && episode.secondSegment !== undefined)
             isMatched = segmentsToFilter.includes(episode.secondSegment);
 
         return isMatched;
@@ -773,44 +774,44 @@ replayEpisodeCollection.sortByType = function () {
         // Views
         case sort.views:
             this.selectedEpisodes.sort((first, second) => {
-                if (first.hasOwnProperty('views') && second.hasOwnProperty('views'))
+                if (first.views !== undefined && second.views !== undefined)
                     return first.views - second.views;
-                else if (first.hasOwnProperty('views'))
+                else if (first.views !== undefined)
                     return 1;
-                else if (second.hasOwnProperty('views'))
+                else if (second.views !== undefined)
                     return -1;
             });
             break;
         // Likes
         case sort.likes:
             this.selectedEpisodes.sort((first, second) => {
-                if (first.hasOwnProperty('likes') && second.hasOwnProperty('likes'))
+                if (first.likes !== undefined && second.likes !== undefined)
                     return first.likes - second.likes;
-                else if (first.hasOwnProperty('likes'))
+                else if (first.likes !== undefined)
                     return 1;
-                else if (second.hasOwnProperty('likes'))
+                else if (second.likes !== undefined)
                     return -1;
             });
             break;
         // Like Ratio
         case sort.likeRatio:
             this.selectedEpisodes.sort((first, second) => {
-                if (first.hasOwnProperty('likes') && second.hasOwnProperty('likes'))
+                if (first.likes !== undefined && second.likes !== undefined)
                     return first.likeRatio - second.likeRatio;
-                else if (first.hasOwnProperty('likes'))
+                else if (first.likes !== undefined)
                     return 1;
-                else if (second.hasOwnProperty('likes'))
+                else if (second.likes !== undefined)
                     return -1;
             });
             break;
         // Dislikes
         case sort.dislikes:
             this.selectedEpisodes.sort((first, second) => {
-                if (first.hasOwnProperty('dislikes') && second.hasOwnProperty('dislikes'))
+                if (first.dislikes !== undefined && second.dislikes !== undefined)
                     return first.dislikes - second.dislikes;
-                else if (first.hasOwnProperty('dislikes'))
+                else if (first.dislikes !== undefined)
                     return 1;
-                else if (second.hasOwnProperty('dislikes'))
+                else if (second.dislikes !== undefined)
                     return -1;
             });
             break;
@@ -1216,7 +1217,7 @@ replayEpisodeCollection.getEpisodeByNumber = function (num) {
 // getEpisodeByVideoID(youtubeVideoID)
 replayEpisodeCollection.getEpisodeByVideoID = function (youtubeVideoID) {
     for (const episode of this.replayEpisodeObjectArray) {
-        if (episode.hasOwnProperty('youtubeVideoID') && episode.youtubeVideoID === youtubeVideoID)
+        if (episode.youtubeVideoID !== undefined && episode.youtubeVideoID === youtubeVideoID)
             return episode;
     }
     // If for loop finishes without return, could NOT find episode, return undefined
@@ -1245,11 +1246,11 @@ replayEpisodeCollection.populateStats = function () {
     // Total Views, Total Likes
     let totalViews = 0, totalLikes = 0, totalDislikes = 0;
     for (const episode of this.replayEpisodeObjectArray) {
-        if (episode.hasOwnProperty('views'))
+        if (episode.views !== undefined)
             totalViews += episode.views;
-        if (episode.hasOwnProperty('likes'))
+        if (episode.likes !== undefined)
             totalLikes += episode.likes;
-        if (episode.hasOwnProperty('dislikes'))
+        if (episode.dislikes !== undefined)
             totalDislikes += episode.dislikes;
     }
     document.getElementById('stats-total-views').insertAdjacentText('beforeend', ReplayEpisode.addCommasToNumber(totalViews));
@@ -1277,22 +1278,6 @@ replayEpisodeCollection.showTotalTime = function () {
     document.getElementById('stats-total-time').insertAdjacentText('beforeend', totalTimeStr);
 };
 
-// -------------------------------------------------
-// ---------- Utility Functions (Static?) ----------
-// -------------------------------------------------
-/*
-// isEmpty(obj)
-// Test if object is empty
-// TODO: NOT USED
-function isEmpty(obj) {
-    for (const key in obj) {
-        if (obj.hasOwnProperty(key))
-            return false;
-    }
-    return true;
-}
-*/
-
 // --------------------------------
 // ---------- Debug/Flag ----------
 // --------------------------------
@@ -1301,7 +1286,7 @@ function isEmpty(obj) {
 function findEpisodesWithNoYouTubeURL(replayEpisodes) {
     let episodesFlagged = [];
     for (const episode of replayEpisodes) {
-        if (!episode.hasOwnProperty('youtubeVideoID')
+        if (!episode.youtubeVideoID !== undefined
             || !episode.youtubeVideoID)
             episodesFlagged.push(episode.episodeNumber);
     }
@@ -1340,7 +1325,7 @@ function getGICrew() {
 
     for (const episode of replayEpisodeCollection.replayEpisodeObjectArray) {
         // Host
-        if (episode.hasOwnProperty('host')) {
+        if (episode.host !== undefined) {
             // For each host in episode host array
             for (const host of episode.host)
                 addCrew(host, tempHostArr);
@@ -1348,7 +1333,7 @@ function getGICrew() {
             noHostEpisodes.push(episode.episodeNumber);
 
         // Featuring
-        if (episode.hasOwnProperty('featuring')) {
+        if (episode.featuring !== undefined) {
             // For each guest in the episode featuring array
             for (const guest of episode.featuring)
                 addCrew(guest, tempGuestArr);
@@ -1440,7 +1425,7 @@ function getSegments() {
     }
     for (const episode of replayEpisodeCollection.replayEpisodeObjectArray) {
         // Middle Segment
-        if (episode.hasOwnProperty('middleSegment') || episode.hasOwnProperty('middleSegmentContent')) {
+        if (episode.middleSegment !== undefined || episode.middleSegmentContent !== undefined) {
             tempSegment = episode.middleSegment || episode.middleSegmentContent;
             // Check if Ad (string.endsWith())
             if (tempSegment.endsWith('Ad'))
@@ -1448,7 +1433,7 @@ function getSegments() {
             addSegment(tempSegment);
         }
         // Second Segment
-        if (episode.hasOwnProperty('secondSegment'))
+        if (episode.secondSegment !== undefined)
             addSegment(episode.secondSegment);
     }
 
@@ -1487,24 +1472,24 @@ function getGamesPlayed(sortAlphabetical = false) {
     }
     for (const episode of replayEpisodeCollection.replayEpisodeObjectArray) {
         // Main Segment
-        if (episode.hasOwnProperty('mainSegmentGamesAdv')) {
+        if (episode.mainSegmentGamesAdv !== undefined) {
             for (const game of episode.mainSegmentGamesAdv) {
                 checkGame(game);
             }
         }
         // Second Segment
-        if (episode.hasOwnProperty('secondSegmentGames')) {
+        if (episode.secondSegmentGames !== undefined) {
             for (const game of episode.secondSegmentGames) {
                 checkGame(game);
             }
         }
         // Middle Segment
-        if (episode.hasOwnProperty('middleSegmentContent')) {
+        if (episode.middleSegmentContent !== undefined) {
             const ignoreMiddleSegments = ['A Poor Retelling of Gaming History', 'Reflections', 'Embarassing Moments'];
             const ignoreMiddleSegmentsContentEndingWith = [' Ad', ' Reel', ' Skit', ' Buttz', ' Pamphlet'];
             let isGame = true;
             // Check middleSegment type
-            if (episode.hasOwnProperty('middleSegment')
+            if (episode.middleSegment !== undefined
                 && ignoreMiddleSegments.includes(episode.middleSegment))
                 isGame = false;
             // Check end of middleSegmentContent

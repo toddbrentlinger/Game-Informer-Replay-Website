@@ -44,13 +44,13 @@ class ReplayEpisode {
         this.videoLength = replayEpisode.details.runtime;
 
         // Middle Segment (only 3rd season)
-        if (replayEpisode.hasOwnProperty('middleSegment')
+        if (replayEpisode.middleSegment !== undefined
             && replayEpisode.middleSegment.replace(/-/gi, '').length) {
             this.middleSegment = replayEpisode.middleSegment;
         }
 
         // Middle Segment Content (only 3rd season)
-        if (replayEpisode.hasOwnProperty('middleSegmentContent')
+        if (replayEpisode.middleSegmentContent !== undefined
             && replayEpisode.middleSegmentContent.replace(/-/gi, '').length) {
             // If content ends with 'Ad' and segment has no provided name, assign name of 'Ad'
             //if (replayEpisode.middleSegmentContent.endsWith('Ad') && !this.hasOwnProperty('middleSegment'))
@@ -60,13 +60,13 @@ class ReplayEpisode {
         }
 
         // Second Segment
-        if (replayEpisode.hasOwnProperty('secondSegment')
+        if (replayEpisode.secondSegment !== undefined
             && replayEpisode.secondSegment.replace(/-/gi, '').length) {
             this.secondSegment = replayEpisode.secondSegment;
         }
 
         // Second Segment Games
-        if (replayEpisode.hasOwnProperty('secondSegmentGames')
+        if (replayEpisode.secondSegmentGames !== undefined
             && Array.isArray(replayEpisode.secondSegmentGames)
             && replayEpisode.secondSegmentGames.length
             && replayEpisode.secondSegmentGames[0].replace(/-/gi, '').length) {
@@ -74,20 +74,20 @@ class ReplayEpisode {
         }
 
         // YouTube views/likes
-        if (replayEpisode.hasOwnProperty('youtube')) {
+        if (replayEpisode.youtube !== undefined) {
             // Views
-            if (replayEpisode.youtube.hasOwnProperty('views'))
+            if (replayEpisode.youtube.views !== undefined)
                 this.views = parseInt(replayEpisode.youtube.views, 10);
             // Likes
-            if (replayEpisode.youtube.hasOwnProperty('likes'))
+            if (replayEpisode.youtube.likes !== undefined)
                 this.likes = parseInt(replayEpisode.youtube.likes, 10);
             // Dislikes
-            if (replayEpisode.youtube.hasOwnProperty('dislikes'))
+            if (replayEpisode.youtube.dislikes !== undefined)
                 this.dislikes = parseInt(replayEpisode.youtube.dislikes, 10);
         }
 
         // Game Informer article
-        if (replayEpisode.hasOwnProperty('article')) {
+        if (replayEpisode.article !== undefined) {
             this.replayArticle = replayEpisode.article;
         }
 
@@ -100,20 +100,20 @@ class ReplayEpisode {
             this.description = ReplayEpisode.createCustomDescription(this);
 
         // Host(s)
-        if (replayEpisode.details.hasOwnProperty('host'))
+        if (replayEpisode.details.host !== undefined)
             this.host = replayEpisode.details.host;
 
         // Featuring
-        if (replayEpisode.details.hasOwnProperty('featuring'))
+        if (replayEpisode.details.featuring !== undefined)
             this.featuring = replayEpisode.details.featuring;
 
         // External Links
         this.external_links = [];
-        if (replayEpisode.details.hasOwnProperty('external_links')) {
+        if (replayEpisode.details.external_links !== undefined) {
             this.external_links = replayEpisode.details.external_links;
         }
         // Add Fandom link as first element of external links list
-        if (replayEpisode.hasOwnProperty('fandomWikiURL') && replayEpisode.fandomWikiURL) {
+        if (replayEpisode.fandomWikiURL) {
             this.external_links.unshift(
                 { href: `https://replay.fandom.com${replayEpisode.fandomWikiURL}`, title: this.episodeTitle }
             );
@@ -121,8 +121,8 @@ class ReplayEpisode {
 
         // YouTube video ID
         let tempVideoID = ''; // Default empty string if NO video ID is found
-        if (replayEpisode.hasOwnProperty('details')
-            && replayEpisode.details.hasOwnProperty('external_links')) {
+        if (replayEpisode.details !== undefined
+            && replayEpisode.details.external_links !== undefined) {
             let youtubeLink = replayEpisode.details.external_links
                 .find(element => element.href.includes('youtube'));
             if (typeof youtubeLink != 'undefined')
@@ -171,7 +171,7 @@ class ReplayEpisode {
     }
 
     get likeRatio() {
-        if (this.hasOwnProperty('likes') && this.hasOwnProperty('dislikes'))
+        if (this.likes !== undefined && this.dislikes !== undefined)
             return ((this.likes * 100) / (this.likes + this.dislikes)).toFixed(1);
     }
 
@@ -249,14 +249,14 @@ class ReplayEpisode {
             .insertAdjacentText('beforeend', this.getDateString());
 
         // Host
-        if (this.hasOwnProperty('host')) {
+        if (this.host !== undefined) {
             this.episodeSection.querySelector('.episodeHosts')
                 .insertAdjacentText('beforeend',
                     ReplayEpisode.listArrayAsString(this.host));
         }
 
         // Featuring
-        if (this.hasOwnProperty('featuring')) {
+        if (this.featuring !== undefined) {
             this.episodeSection.querySelector('.episodeFeaturing')
                 .insertAdjacentText('beforeend',
                     ReplayEpisode.listArrayAsString(this.featuring));
@@ -274,14 +274,14 @@ class ReplayEpisode {
             .insertAdjacentText('beforeend', ReplayEpisode.listArrayAsString(temp));
 
         // Middle Segment (3rd season only)
-        if (this.hasOwnProperty('middleSegment') || this.hasOwnProperty('middleSegmentContent')) {
+        if (this.middleSegment !== undefined || this.middleSegmentContent !== undefined) {
             this.episodeSection.querySelector('.middleSegment')
                 .insertAdjacentText('beforeend',
-                    (this.hasOwnProperty('middleSegment')
+                    (this.middleSegment !== undefined
                         ? ReplayEpisode.getSegmentTitle(this.middleSegment)
-                        + (this.hasOwnProperty('middleSegmentContent') ? ' - ' : '')
+                        + (this.middleSegmentContent !== undefined ? ' - ' : '')
                         : '')
-                    + (this.hasOwnProperty('middleSegmentContent')
+                    + (this.middleSegmentContent !== undefined
                         ? ReplayEpisode.listArrayAsString(this.middleSegmentContent)
                         : '')
                 );
@@ -289,14 +289,14 @@ class ReplayEpisode {
             this.episodeSection.querySelector('.middleSegment').remove();
 
         // Second Segment
-        if (this.hasOwnProperty('secondSegment') || this.hasOwnProperty('secondSegmentGames')) {
+        if (this.secondSegment !== undefined || this.secondSegmentGames !== undefined) {
             this.episodeSection.querySelector('.secondSegment')
                 .insertAdjacentText('beforeend',
-                    (this.hasOwnProperty('secondSegment')
+                    (this.secondSegment !== undefined
                         ? ReplayEpisode.getSegmentTitle(this.secondSegment)
-                        + (this.hasOwnProperty('secondSegmentGames') ? ' - ' : '')
+                        + (this.secondSegmentGames !== undefined ? ' - ' : '')
                         : '')
-                    + (this.hasOwnProperty('secondSegmentGames')
+                    + (this.secondSegmentGames !== undefined
                         ? ReplayEpisode.listArrayAsString(this.secondSegmentGames)
                         : '')
                 );
@@ -304,7 +304,7 @@ class ReplayEpisode {
             this.episodeSection.querySelector('.secondSegment').remove();
 
         // YouTube (views/likes)
-        if (this.hasOwnProperty('views')) {
+        if (this.views !== undefined) {
             // Views
             this.episodeSection.querySelector('.views')
                 .insertAdjacentText('beforeend', ReplayEpisode.addCommasToNumber(this.views));
@@ -327,7 +327,7 @@ class ReplayEpisode {
         ReplayEpisode.addContentArrToNode(parentNode, this.description);
 
         // Article
-        if (this.hasOwnProperty('replayArticle')) {
+        if (this.replayArticle !== undefined) {
             // Add container for article heading to episodeMoreInfo element
             parentNode = parentNode.appendChild(ReplayEpisode.createElementAdv('div', 'article-heading'));
             // Add title as header element to article heading element
@@ -339,7 +339,7 @@ class ReplayEpisode {
             // Reset parentNode to episodeMoreInfo element
             parentNode = this.episodeSection.querySelector('.episodeMoreInfo');
             // Add article content
-            if (this.replayArticle.hasOwnProperty('content')) {
+            if (this.replayArticle.content !== undefined) {
                 for (const para of this.replayArticle.content) {
                     if (para.replace(/\s/g, '').length)
                         parentNode.appendChild(ReplayEpisode.createElementAdv('p', undefined, para));
@@ -348,7 +348,7 @@ class ReplayEpisode {
         }
 
         // Other Headings (External Links should go last)
-        if (this.hasOwnProperty('otherHeadingsObj')) {
+        if (this.otherHeadingsObj !== undefined) {
             for (const heading in this.otherHeadingsObj) {
                 // If heading is 'See Also', add list of URL links
                 if (heading == 'see_also')
@@ -392,7 +392,7 @@ class ReplayEpisode {
         }
 
         // External Links (bottom of episodeMoreInfo)
-        if (this.hasOwnProperty('external_links'))
+        if (this.external_links !== undefined)
             ReplayEpisode.addListOfLinks(this.external_links, parentNode, 'external links');
 
         // Return episode section HTML
@@ -566,21 +566,21 @@ class ReplayEpisode {
         }
         // Middle Segment
         // If episode has segment name
-        if (replayEpisode.hasOwnProperty('middleSegment') && replayEpisode.middleSegment.length) {
+        if (replayEpisode.middleSegment !== undefined && replayEpisode.middleSegment.length) {
             let str = 'The middle segment is an installment of ' + this.getSegmentTitle(replayEpisode.middleSegment);
             // If episode has segment content
-            if (replayEpisode.hasOwnProperty('middleSegmentContent') && replayEpisode.middleSegmentContent.length)
+            if (replayEpisode.middleSegmentContent !== undefined && replayEpisode.middleSegmentContent.length)
                 str += ' featuring ' + this.listArrayAsString(replayEpisode.middleSegmentContent);
             descriptionArr.push(str + '.');
         }
         // Else If episode has segment content (should NOT have segment name)
-        else if (replayEpisode.hasOwnProperty('middleSegmentContent')) {
+        else if (replayEpisode.middleSegmentContent !== undefined) {
             descriptionArr.push('The middle segment features '
                 + this.listArrayAsString(replayEpisode.middleSegmentContent + '.'));
         }
 
         // Second Segment
-        if (replayEpisode.hasOwnProperty('secondSegment') && replayEpisode.secondSegment.length) {
+        if (replayEpisode.secondSegment !== undefined && replayEpisode.secondSegment.length) {
             if (replayEpisode.secondSegment == 'RR')
                 descriptionArr.push('The Replay Roulette for this episode features ' +
                     this.listArrayAsString(replayEpisode.secondSegmentGames) + '.');
@@ -591,7 +591,7 @@ class ReplayEpisode {
             }
         }
         // Host/Featuring
-        if (replayEpisode.hasOwnProperty('host')) {
+        if (replayEpisode.host !== undefined) {
             descriptionArr.push('This episode is hosted by ' + this.listArrayAsString(replayEpisode.host)
                 + ' and features ' + this.listArrayAsString(replayEpisode.featuring) + '.');
         }

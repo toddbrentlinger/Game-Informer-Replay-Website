@@ -96,16 +96,22 @@ class ReplayEpisode {
         if (Array.isArray(replayEpisode.details.description) &&
             replayEpisode.details.description.length) {
             this.description = replayEpisode.details.description;
-        } else //Else description is empty, create custom description
-            //this.description = ReplayEpisode.createCustomDescription(this);
+        }
+        /*
+        else { //Else description is empty, create custom description
+            this.description = ReplayEpisode.createCustomDescription(this);
+        }
+        */
 
         // Host(s)
-        if (replayEpisode.details.host !== undefined)
+        if (replayEpisode.details.host !== undefined) {
             this.host = replayEpisode.details.host;
+        }
 
         // Featuring
-        if (replayEpisode.details.featuring !== undefined)
+        if (replayEpisode.details.featuring !== undefined) {
             this.featuring = replayEpisode.details.featuring;
+        }
 
         // External Links
         this.external_links = [];

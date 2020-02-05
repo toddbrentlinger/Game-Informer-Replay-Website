@@ -1,5 +1,8 @@
 ﻿'use strict';
 
+import React from 'react';
+import ReactDOM from 'react-dom';
+
 class ReplayEpisodeDisplayer extends React.Component {
     constructor(props) {
         super(props);
@@ -17,6 +20,10 @@ class ReplayEpisodeDisplayer extends React.Component {
             'Like'
         );
     }
+
+    render() {
+        return (replayEpisodeSection);
+    }
 }
 
 ReactDOM.render(
@@ -24,16 +31,17 @@ ReactDOM.render(
     document.getElementById('main')
 );
 
-const replayEpisode = (
+temp = replayEpisode.getReplaySeason();
+const replayEpisodeSection = (
     <section className="episode">
         <div className="episodeMain">
             <div className="episodeHeader">
                 <h3 className="episodeTitle">{replayEpisode.episodeTitle}</h3>
-                <div className="episodeNumber"></div>
+                <div className="episodeNumber">{temp[0] ? `S${temp[0]}:E${temp[1]} (#${replayEpisode.episodeNumber})` : `Unofficial #${Math.floor(replayEpisode.episodeNumber * 100)}`}</div>
             </div>
             <div className="thumbnail-container">
                 <div className="episodeThumbnail">
-                    <a title="">
+                    <a onClick={replayEpisodeCollection.playEpisode(replayEpisode)} title="">
                         <img className="episodeImage"
                             alt="replay episode thumbnail"
                             width={replayEpisode.image.width}
@@ -59,7 +67,18 @@ const replayEpisode = (
                 </div>
                 <div className="segments">
                     <div className="mainSegment"><b>Main Segment: </b></div>
-                    <div className="middleSegment"><b>Middle Segment: </b></div>
+                    {
+                        (replayEpisode.middleSegment !== undefined || replayEpisode.middleSegmentContent !== undefined) &&
+                        <div className="middleSegment"><b>Middle Segment: </b>{
+                            (replayEpisode.middleSegment !== undefined
+                                ? ReplayEpisode.getSegmentTitle(replayEpisode.middleSegment)
+                                + (replayEpisode.middleSegmentContent !== undefined ? ' - ' : '')
+                                : '')
+                            + (replayEpisode.middleSegmentContent !== undefined
+                                ? ReplayEpisode.listArrayAsString(replayEpisode.middleSegmentContent)
+                                : '')
+                        }</div>
+                    }
                     <div className="secondSegment"><b>Second Segment: </b></div>
                 </div>
             </div>

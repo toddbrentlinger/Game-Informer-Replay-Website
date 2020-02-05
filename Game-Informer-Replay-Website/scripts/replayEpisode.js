@@ -97,7 +97,7 @@ class ReplayEpisode {
             replayEpisode.details.description.length) {
             this.description = replayEpisode.details.description;
         } else //Else description is empty, create custom description
-            this.description = ReplayEpisode.createCustomDescription(this);
+            //this.description = ReplayEpisode.createCustomDescription(this);
 
         // Host(s)
         if (replayEpisode.details.host !== undefined)
@@ -324,7 +324,8 @@ class ReplayEpisode {
         parentNode = this.episodeSection.querySelector('.episodeMoreInfo');
 
         // Description
-        ReplayEpisode.addContentArrToNode(parentNode, this.description);
+        if (this.description)
+            ReplayEpisode.addContentArrToNode(parentNode, this.description);
 
         // Article
         if (this.replayArticle !== undefined) {

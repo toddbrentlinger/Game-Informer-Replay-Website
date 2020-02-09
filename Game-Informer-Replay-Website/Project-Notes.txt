@@ -1,5 +1,21 @@
 ﻿TO-DO:
 
+2/7/20
+
+- Add getter for each primitive type value in each episode object.
+Objects are already referenced instead of copied.
+episodeNumber, episodeTitle, videoLength, middleSegment, middleSegmentContent, 
+secondSegment, views, likes, dislikes, youtubeVideoId, 
+
+2/5/20
+
+- Add list of filtered properties either on the filter button OR next to
+episodes displayed text.
+
+- Add CSS for currently-playing-episode that shows play button and darker
+opaque background. Only add class when video has started to play to prevent
+top episode image from being greyed out.
+
 1/30/20
 
 - Instead of saving node of each episode, build each displayed episode

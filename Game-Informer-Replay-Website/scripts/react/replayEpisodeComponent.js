@@ -1,8 +1,8 @@
 ﻿'use strict';
-
+/*
 import React from 'react';
 import ReactDOM from 'react-dom';
-
+*/
 class ReplayEpisodeDisplayer extends React.Component {
     constructor(props) {
         super(props);
@@ -27,10 +27,10 @@ class ReplayEpisodeDisplayer extends React.Component {
 }
 
 ReactDOM.render(
-    <ReplayEpisodeDisplayer replayEpisodeObj={replayEpisode} />,
+    <ReplayEpisodeDisplayer replayEpisode={replayEpisodeObj} />,
     document.getElementById('main')
 );
-
+// this.props.replayEpisode
 temp = replayEpisode.getReplaySeason();
 const replayEpisodeSection = (
     <section className="episode">

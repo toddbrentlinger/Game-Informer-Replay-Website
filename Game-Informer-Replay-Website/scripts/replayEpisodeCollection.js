@@ -187,10 +187,6 @@ var replayEpisodeCollection = {
         // Reset selectedEpisodes to show all episodes from base episode object array
         // If newObject is empty, filter will NOT change selectedEpisodes listing all episodes
         this.selectedEpisodes = this.replayEpisodeObjectArray.slice();
-        /*
-        this.selectedEpisodes = [];
-        this.replayEpisodeObjectArray.forEach(episode => this.selectedEpisodes.push(episode));
-        */
 
         // Go through each property of newObject
         for (const filterType in newObject) {
@@ -316,7 +312,6 @@ replayEpisodeCollection.init = function (replayEpisodeArray) {
 
     // Initialize selected episodes array to same order of base episode object array
     this.selectedEpisodes = this.replayEpisodeObjectArray.slice();
-    //this.replayEpisodeObjectArray.forEach(episode => this.selectedEpisodes.push(episode));
 
     // Sort selected episodes
     this.sortByType();
@@ -833,10 +828,7 @@ replayEpisodeCollection.sortByType = function () {
 replayEpisodeCollection.resetSelectedEpisodes = function () {
     // Fill selectedEpisodes with references to replayEpisodeObjectArray objects
     this.selectedEpisodes = this.replayEpisodeObjectArray.slice();
-    /*
-    this.selectedEpisodes = [];
-    this.replayEpisodeObjectArray.forEach(episode => this.selectedEpisodes.push(episode));
-    */
+
     // Reset sort/filter/search
     // Change HTML select element values to default
     this.sortType = sort.airdate;

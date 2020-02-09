@@ -274,8 +274,9 @@ class ReplayEpisode {
             this.episodeSection.querySelector('.mainSegment > b')
                 .innerHTML = 'Main Segment: ';
         // Add list of games as text node
-        temp = []; // Assign temp to empty array for game titles
-        this.mainSegmentGamesAdv.forEach(game => temp.push(game.title));
+        //temp = []; // Assign temp to empty array for game titles
+        //this.mainSegmentGamesAdv.forEach(game => temp.push(game.title));
+        temp = this.mainSegmentGamesAdv.map(game => game.title);
         this.episodeSection.querySelector('.mainSegment')
             .insertAdjacentText('beforeend', ReplayEpisode.listArrayAsString(temp));
 
@@ -559,10 +560,13 @@ class ReplayEpisode {
                 + ' episode of Replay.');
         }
         else { // Else more than one game in main segment
+            /*
             let mainSegmentGamesTitleArray = [];
-            replayEpisode.mainSegmentGamesAdv.forEach(function (item, index, arr) {
+            replayEpisode.mainSegmentGamesAdv.forEach(function (item) {
                 mainSegmentGamesTitleArray.push(item.title);
-            });
+            });*/
+            let mainSegmentGamesTitleArray = replayEpisode.mainSegmentGamesAdv
+                .map(game => game.title);
             descriptionArr.push('The '
                 + ((replayEpisode.episodeNumber < 1)
                     ? this.numOrdinalSuffix(Math.floor(replayEpisode.episodeNumber * 100)) + ' unofficial'
@@ -628,8 +632,8 @@ class ReplayEpisode {
          * The episodes second segment is 'Reported'.
          */
     }
-
-    static addEpisodeTotalTime(episode) {
+    /*
+    static addEpisodeTotalTime() {
         // Increase total time of episodes
         var timeArr = replayEpisode["videoLength"].split(':')
         timeArr.forEach(function (item, index, arr) {
@@ -638,7 +642,7 @@ class ReplayEpisode {
         totalTimeSeconds += timeArr[timeArr.length - 1] + timeArr[timeArr.length - 2] * 60
             + (timeArr.length == 3 ? timeArr[timeArr.length - 3] * 3600 : 0);
     }
-
+    */
     // Test if object is empty (supported by older browsers)
     static isEmptyObject(object) {
         for (const key in object) {

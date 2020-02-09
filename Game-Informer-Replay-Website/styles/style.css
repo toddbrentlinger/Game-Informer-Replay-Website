@@ -650,6 +650,8 @@ ul.link-list {
     margin: 0 2px;
 }
 
+#filterForm > fieldset:last-child { margin-bottom: 1em; }
+
 #filterForm > fieldset legend {
     /*cursor: pointer;*/
     margin: 0 auto;
@@ -737,7 +739,7 @@ ul.link-list {
 /* Filter Form Buttons */
 #filterSubmitButton {
     width: 100%;
-    padding: 1em 0;
+    padding: .5em 0;
 }
 #filterSubmitButton > button {
     display: block;

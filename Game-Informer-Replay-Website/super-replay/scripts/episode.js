@@ -11,7 +11,9 @@ class Episode {
         this.headlines = episodeDict.headlines;
 
         // ---------- Game Informer Article ----------
+        this.gameInformerArticle = new GameInformerArticle(episodeDict.gameInformerArticle)
 
         // ---------- YouTube Video ----------
+        this.youtubeVideo = new YouTubeVideo(episodeDict.youtubeVideo)
     }
 }

@@ -1,10 +1,140 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en-us">
 <head>
     <meta charset="utf-8" />
-    <title></title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <title>Game Informer Super Replay</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" type="text/css" href="./styles/style.css" />
+    <!-- Favicon -->
+    <link href="/images/gi_logo_favicon_64x64.ico" rel="shortcut icon" type="image/x-icon" />
+    <!-- Apple Touch Icon (196x196) -->
+    <link rel="apple-touch-icon" href="/images/gi_logo_196x196.png" />
+
+    <meta name="author" content="Todd Brentlinger" />
+    <!-- Note: Attribute name="description" is used for search engines. Include
+        keywords relating to the webpage to optimize Search Engine Optimization (SEO) -->
+    <meta name="description" content="Game Informer Super Replay" />
+    <meta name="keywords" content="game informer, replay, super replay" />
+
+    <!-- Dark Mode Script (script in header to assign class BEFORE document is drawn) -->
+    <script src="../scripts/darkMode.js"></script>
 </head>
 <body>
+    <!-- Top Navigation -->
+    <nav id="topnav">
+        <div class="counter-balance-switch-container"></div>
+        <ul>
+            <li><a href="https://replay.fandom.com/wiki/List_of_Replay_episodes" target="_blank" rel="noopener"><span>Replay</span></a></li>
+            <li><a href="https://replay.fandom.com/wiki/List_of_Super_Replay_installments" target="_blank" rel="noopener"><span>Super Replay</span></a></li>
+            <li><a href="https://www.gameinformer.com/index.php/covergallery" target="_blank" rel="noopener"><span>Magazine Covers</span></a></li>
+            <li><a href="https://replay.fandom.com/wiki/Category:Game_Informer_staff" target="_blank" rel="noopener"><span>GI Crew</span></a></li>
+        </ul>
+        <div class="switch-container">
+            <label class="switch">
+                <input type="checkbox" id="dark-mode-checkbox" />
+                <span class="slider round"></span>
+            </label>
+            <em for="dark-mode-checkbox">Dark Mode</em>
+        </div>
+    </nav>
 
+    <!-- Header -->
+    <header>
+        <h1>Game Informer Super Replay</h1>
+    </header>
+
+    <img srcset="../images/replay-logo-alpha(2)_300.png 300w,
+                 ../images/replay-logo-alpha(2).png 610w"
+         sizes="(max-width: 900px) 300px,
+                610px"
+         src="../images/replay-logo-alpha(2).png"
+         alt="Game Informer Replay Logo"
+         width="610" height="214" />
+
+    <!-- Video Player Container -->
+    <div id="video-player-container">
+        <!-- Header -->
+        <div id="current-episode-header"></div>
+        <!-- YouTube Video Player -->
+        <div style="display: block;" id="videoPlayer">
+            <div class="iframeWrapper">
+                <div id="youtubePlayerPlaceholder"></div>
+            </div>
+        </div>
+        <!-- Toggle Button to display episode info -->
+        <button class="custom-button" type="button" id="current-episode-info-toggle-button">Show Episode Details</button>
+        <!-- Current Episode Info -->
+        <div id="current-episode-info"></div>
+    </div>
+
+    <div class="row" id="top-page">
+        <!-- Left Column -->
+        <nav id="sidenav" class="column left">
+
+        </nav>
+        <!-- Middle Column -->
+        <main class="column middle">
+            <div id="main">
+                <div id="episode-template">
+                    <section class="super-replay-container">
+                        <div class="super-replay">
+
+                        </div>
+                        <div class="super-replay-episode-list">
+
+                        </div>
+                        <div class="super-replay-episode">
+                            <div class="episodeMain">
+                                <div class="episodeHeader">
+                                    <h3 class="episodeTitle"></h3>
+                                    <div class="episodeNumber"></div>
+                                </div>
+                                <div class="thumbnail-container">
+                                    <div class="episodeThumbnail">
+                                        <a title="">
+                                            <img class="episodeImage" alt="" width="300" height="169" src="" srcset="" />
+                                            <time class="episodeLength" datetime=""></time>
+                                            <div class="playOverlay">
+                                                <img alt="" width="256" height="256" src="../images/play-button-icon-gi(1)-256.png" />
+                                            </div>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="episodeDetails">
+                                <div class="episodeAirDate"><b>Air Date: </b><time datetime=""></time></div>
+                                <div class="views-likes-container">
+                                    <div class="views" title="Views"><b><i class="fa fa-eye" aria-hidden="true"></i></b></div>
+                                    <div class="likes" title="Likes (Like Ratio)"><b><i class="fa fa-thumbs-up" aria-hidden="true"></i></b></div>
+                                </div>
+                                <div class="gi-crew">
+                                    <div class="episodeHosts"><b>Host: </b></div>
+                                    <div class="episodeFeaturing"><b>Featuring: </b></div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="episodeMoreInfo"></div>
+                        </div>
+                    </section>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <p>
+            <small>
+                Source Code &copy; <time id="copyright-current-year">2019-2020</time> Todd Brentlinger, Santa Cruz, CA, USA. All Rights Reserved.
+            </small>
+        </p>
+        <p><small>Last modified on <time id="lastModifiedDate"></time></small></p>
+    </footer>
+
+    <!-- Scripts -->
+    <script src="./scripts/main.js" type="module"></script>
 </body>
 </html>

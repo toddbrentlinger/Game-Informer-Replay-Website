@@ -1,2 +1,481 @@
-﻿body {
+﻿/* ---------------------------------------------------- */
+/* ---------- General Page Styles ---------- */
+/* ---------------------------------------------------- */
+
+/* ------------------------------- */
+/* ---------- Variables ---------- */
+/* ------------------------------- */
+
+:root {
+    --main-text-color: #f6f6f6; /* nearly pure white */
+    --main-bg-color: #0077a2; /* gi blue hsl(196, 100%, 32%) */
+    --main-bg-hover-color: hsl(196, 100%, 24%); /* dark gi blue */
+    --main-bg-select-color: hsl(196, 100%, 16%); /* darker gi blue */
+    --main-bg-active-color: hsl(196, 100%, 10%); /* darkest gi blue */
+    --main-shadow-color: rgba(0,0,0,0.6); /* black */
+    --second-text-color: #0077a2; /* gi blue */
+    --second-bg-color: #f4f4f4; /* nearly pure white */
+    --third-text-color: #3a3a3a; /* nearly pure black */
+    --third-bg-color: #f6f6f6; /* nearly pure white */
+    background-color: var(--main-bg-color);
+    background-image: url("/images/replay_bg_gi_blue(3).jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed; /* browser issues */
+    background-position: center top;
+    background-size: cover;
+}
+
+*, *:before, *:after {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-family: Roboto, Arial, sans-serif; /* Helvetica */
+    /*font-size: 16px; /* 100%, 10px */
+    /*
+    Avoid problems with adjusted text size in older browser versions 
+    when using em/rem units for font-size in other html elements 
+    (1em/rem = 16px depending on parent element(em) or root element(rem)
+    size font
+    */
+    line-height: 1.3; /* 1.2 */
+    background-color: var(--main-bg-color);
+}
+
+body {
+    background-color: var(--second-bg-color);
+    color: var(--second-text-color);
+    max-width: 950px;
+    width: 88%;
+    margin: 0 auto; /* default: 8px */
+}
+
+/* Set default values for margin, padding, font-size */
+h1 {
+    font-size: 2em;
+    margin: 0.67em 0;
+}
+
+h2 {
+    font-size: 1.5em;
+    margin: 0.83em 0;
+}
+
+h3 {
+    font-size: 1.17em;
+    margin: 1em 0;
+}
+
+h4 {
+    font-size: 1em;
+    margin: 1.33em 0;
+}
+
+h5 {
+    font-size: .83em;
+    margin: 1.67em 0;
+}
+
+h6 {
+    font-size: .67em;
+    margin: 2.33em 0;
+}
+
+ol {
+    margin: 1em 0;
+    padding-left: 40px;
+}
+
+p { margin: 1em 0; }
+
+ul {
+    margin: 1em 0;
+    padding-left: 40px;
+}
+
+/* -------------------------- */
+/* ---------- Misc ---------- */
+/* -------------------------- */
+
+h1, h2, footer { text-align: center; }
+
+img {
+    border: 0; /* prevent IE9 (and earlier) from displaying a border around the edges */
+}
+
+/* ---------------------------- */
+/* ---------- Header ---------- */
+/* ---------------------------- */
+
+header {
+    background-image: url("/images/Game_Informer_logo_(2010-present)_1024.png");
+    background-color: var(--second-bg-color);
+    background-repeat: no-repeat;
+    background-position: center;
+    -webkit-background-size: 100%;
+    background-size: 100%;
+    width: 100%;
+    padding-top: 18.29%;
+}
+
+    header + img {
+        width: 50%;
+        height: auto;
+        display: block;
+        margin: 0 auto;
+    }
+
+    /* Hide h1 inside header but still accessible for readers */
+    header h1 { display: none; }
+
+/* ---------------------------- */
+/* ---------- Footer ---------- */
+/* ---------------------------- */
+
+footer {
+    padding: 1em 0;
+    font-size: .9em;
+}
+
+/* ----------------------------- */
+/* ---------- Top Nav ---------- */
+/* ----------------------------- */
+
+#topnav {
+    display: flex;
+    background-image: linear-gradient(to bottom, var(--main-bg-hover-color) 5%, var(--main-bg-color) 80%);
+    background-color: var(--main-bg-color);
+}
+
+    #topnav div:last-child {
+    }
+    /* Style the top navigation bar, unordered list */
+    #topnav ul {
+        flex: 1;
+        display: flex;
+        flex-wrap: wrap;
+        list-style-type: none;
+        padding: 0; /* remove default padding for ul elements */
+        margin: 0; /* remove default margin for ul elements */
+        font-size: 0; /* to prevent space between inline-block elements in li element;
+        Can also remove the closing </li> tags instead. Which is better? */
+    }
+        /* Style the top navigation list element */
+        #topnav ul li {
+            flex: 1;
+            text-align: center;
+        }
+    /* Style the top navigation links */
+    #topnav li a {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        font-size: 1rem; /* 16px: reset font-size after setting to zero in #topnav ul {} to
+        prevent space between inline-block elements */
+        padding: .8em .5em; /* 14px 16px (1em=16px) */
+        text-decoration: none;
+        color: var(--main-text-color);
+        -webkit-transition-duration: .2s;
+        transition-duration: .2s;
+    }
+    /* Set color on default link and active pseudo-classes */
+    #topnav a:link, #topnav a:visited {
+    }
+    /* Change the color on hover */
+    #topnav a:hover {
+        background-color: var(--main-bg-hover-color);
+    }
+    /* Change the color on active/select */
+    #topnav a:active {
+        background-color: var(--main-bg-select-color);
+    }
+
+/* ------------------------------ */
+/* ---------- Side Nav ---------- */
+/* ------------------------------ */
+
+#sidenav {
+    margin: 0 .8em;
+    padding-top: .5em;
+}
+
+#sidenav ul { list-style-type: none; }
+
+/* -------------------------- */
+/* ---------- Main ---------- */
+/* -------------------------- */
+
+main {  margin: 0 .8em; }
+
+/* ------------------------------------ */
+/* ---------- YouTube Player ---------- */
+/* ------------------------------------ */
+
+#video-player-container { 
+    margin: 0 .8em;
+    padding-top: .5em;
+}
+
+#videoPlayer {
+    /*position: fixed;
+    top: 0;
+    left: 0;*/
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    background-color: #000;
+    /*border: 5px solid black;*/
+    z-index: 100;
+}
+#videoPlayer .iframeWrapper {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%; /* calc(56.25vw) */
+    /*max-height: calc(-169px + 100vh);
+    min-height: 480px;
+    padding-top: 56.25%;
+    margin: 0 auto;
+    background: #000;*/
+}
+#videoPlayer .iframeWrapper iframe {
+    height: 100%;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* ----------------------------------------- */
+/* ---------- Jump To Top of Page ---------- */
+/* ----------------------------------------- */
+
+#jump-top-page-container {
+    position: fixed;
+    right: .5em;
+    bottom: .5em;
+    cursor: pointer;
+}
+#jump-top-page-container > div {
+    background-color: var(--second-bg-color);
+    border-radius: 50%;
+}
+#jump-top-page-container > div > i {
+    color: var(--second-text-color);
+    font-size: 2em;
+    padding: .05em .1em;
+}
+
+/* ------------------------------- */
+/* ---------- Dark Mode ---------- */
+/* ------------------------------- */
+
+@media (prefers-color-scheme: dark) {
+    :root {
+        --main-text-color: hsl(0, 0%, 90%);
+        --main-bg-color: hsl(0, 0%, 30%);
+        --main-bg-hover-color: hsl(0, 0%, 24%);
+        --main-bg-select-color: hsl(0, 0%, 18%);
+        --main-bg-active-color: hsl(0, 0%, 10%);
+        --main-shadow-color: rgba(255,255,255,0.6); /* white */
+
+        --second-text-color: hsl(0, 0%, 66%);
+        --second-bg-color: hsl(0, 0%, 10%);
+
+        --third-bg-color: hsl(0, 0%, 0%);
+
+        background-color: hsl(0, 0%, 20%);
+        background-image: url("/images/replay_bg.jpg");
+        background-repeat: no-repeat;
+        background-attachment: fixed;
+        background-position: center top;
+        background-size: cover;
+    }
+
+    header {
+        background-image: url("/images/Game_Informer_logo_(2010-present)_1024(dark_mode).png");
+    }
+
+    .episodeDetails b, .episodeMoreInfo h4, .views-likes-container .fa {
+        color: var(--main-text-color);
+    }
+
+    #jump-top-page-container > a > i {
+        color: var(--main-text-color);
+    }
+
+    .switch-container { display: none; }
+}
+
+[data-theme="dark"] {
+    --main-text-color: hsl(0, 0%, 90%);
+    --main-bg-color: hsl(0, 0%, 30%);
+    --main-bg-hover-color: hsl(0, 0%, 24%);
+    --main-bg-select-color: hsl(0, 0%, 18%);
+    --main-bg-active-color: hsl(0, 0%, 10%);
+    --main-shadow-color: rgba(255,255,255,0.6); /* white */
+
+    --second-text-color: hsl(0, 0%, 66%);
+    --second-bg-color: hsl(0, 0%, 10%);
+
+    --third-bg-color: hsl(0, 0%, 0%);
+
+    background-color: hsl(0, 0%, 20%); 
+    background-image: url("/images/replay_bg.jpg"); 
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center top;
+    background-size: cover;
+}
+[data-theme="dark"] header {
+    background-image: url("/images/Game_Informer_logo_(2010-present)_1024(dark_mode).png");
+}
+[data-theme="dark"] .episodeDetails b, 
+[data-theme="dark"] .episodeMoreInfo h4,
+[data-theme="dark"] .views-likes-container .fa {
+    color: var(--main-text-color);
+}
+[data-theme="dark"] #jump-top-page-container i {
+    color: var(--main-text-color);
+}
+
+/* ----------------------------------------------- */
+/* ---------- Dark Mode - Toggle Switch ---------- */
+/* ----------------------------------------------- */
+
+.switch-container {
+    color: var(--main-text-color);
+    font-size: 1rem; /* 16px: reset font-size after setting to zero in #topnav ul {} to
+        prevent space between inline-block elements */
+    padding: .3em;
+}
+
+.switch-container em { 
+    display: block; 
+    font-size: .9em;
+}
+
+.switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 34px;
+}
+
+.switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+            transition: .4s;
+}
+
+.slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: #fff;
+    -webkit-transition: .4s;
+            transition: .4s;
+}
+
+input:checked + .slider { background-color: var(--main-bg-select-color); }
+input:checked + .slider:before { 
+    -webkit-transform: translateX(26px);
+        -ms-transform: translateX(26px);
+            transform: translateX(26px); 
+
+}
+/* Rounded slider */
+.slider.round { border-radius: 34px; }
+.slider.round:before { border-radius: 50%; }
+
+/* ----------------------------------- */
+/* ---------- Media Queries ---------- */
+/* ----------------------------------- */
+
+/*
+    - desktop ( > 1600px )
+    - laptop ( <= 1600px )
+    - tablets in landscape orientation ( <= 1024px )
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {}
+    - tablets ( <= 768px )
+    - mobile ( <= 480px )
+*/
+
+@media (max-width: 1600px) {
+    :root {
+        background-image: url("/images/replay_bg_gi_blue(3)_1600w.jpg");
+    }
+    [data-theme="dark"] {
+        background-image: url("/images/replay_bg_1600w.jpg");
+    }
+}
+
+@media (max-width: 1024px) {
+    :root {
+        background-image: url("/images/replay_bg_gi_blue(3)_1024w.jpg");
+    }
+
+    [data-theme="dark"] {
+        background-image: url("/images/replay_bg_1024w.jpg");
+    }
+}
+
+@media (max-width: 800px) {
+    #gi-crew-field ul { column-count: 2; }
+}
+
+@media (max-width: 650px) { /* 550px */
+    :root { background-image: none; }
+
+    body { width: 100%; }
+
+    main, #sidenav, #video-player-container { margin: 0 .3em; }
+
+    .thumbnail-container {
+        float: none;
+        width: 100%;
+        margin: 0;
+    }
+
+    .episodeDetails { width: 100%; }
+    .episodeMoreInfo { padding: 0 1em; }
+    ul.link-list { column-count: 1; }
+    #sort-main { flex-direction: column; }
+    #number-displayed-container { margin-top: .6em; }
+}
+
+/* Mobile */
+@media (max-width: 480px) {
+    #search-container, #filter-display-toggle-button { width: 100%; }
+
+    #search-container { 
+        margin-bottom: .5em; 
+        order: initial;
+    }
+
+    #filter-display-toggle-button.active + form {
+        border-top-right-radius: 0;
+        border-top: none;
+    }
+    
+    #gi-crew-field ul { column-count: 1; }
 }

@@ -1,5 +1,34 @@
 ﻿TO-DO:
 
+5/26/20
+
+- IDEA: Display random quotes on right column that changes every
+few seconds. Left column would be the search/filter options. Both columns
+are absolute positoned and locked to each side as the middle is scrolled.
+
+5/24/20
+
+- Set dark mode default to ON and remove any variable saving to user
+local file via cookies.
+
+5/22/20
+
+- Put YouTube description in details section alongside airdate, host,
+featuring, etc since it has a character limit. Then put the fandom
+page descripton in the headlines section. OR use YouTube description only
+if fandom page description is NOT provided. ISSUE: What if YouTube description
+is better than fandom page description? OR list each description specifying
+where it came from using italic font.
+
+5/18/20
+
+- Add super replay episode title to json through python scraper. Should
+I use the title of the YouTube video instead?
+
+- Add more to YouTube scraper: description (use if no other description), 
+duration (use instead of runtime listed on wiki), airdate (use earliest date
+listed between YouTube and wiki), images, etc.
+
 2/7/20
 
 - Add getter for each primitive type value in each episode object.

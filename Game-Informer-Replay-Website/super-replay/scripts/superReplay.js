@@ -12,12 +12,13 @@ export class SuperReplay {
     constructor(superReplayDict) {
         this._superReplayJSON = superReplayDict;
 
-        //this.title = superReplayDict.title;
-        //this.number = superReplayDict.number;
-        //this.description = superReplayDict.content.description;
-        //this.externalLinks = superReplayDict.content.external_links;
+        // Properties that reference Objects in JSON (Array, Function, Object)
+        this.description = this._superReplayJSON.content.description;
+        this.externalLinks = this._superReplayJSON.content.external_links;
+        this.image = this._superReplayJSON.image;
 
         // ---------- Game(s) ----------
+        this.games = this._superReplayJSON.games;
         //this.games = new VideoGame(superReplayDict.games[0]);
 
         // ---------- GI Article(s) ----------
@@ -37,8 +38,7 @@ export class SuperReplay {
     // ---------- Getters ----------
     // -----------------------------
 
+    // Properties that reference primitive types in JSON (Boolean, null, undefined, String, Number)
     get title() { return this._superReplayJSON.title; }
     get number() { return this._superReplayJSON.number; }
-    get description() { return this._superReplayJSON.content.description; }
-    get externalLinks() { return this._superReplayJSON.content.external_links; }
 }

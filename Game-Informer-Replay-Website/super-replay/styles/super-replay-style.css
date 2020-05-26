@@ -1,0 +1,155 @@
+﻿
+/* Super Replay Details */
+
+.super-replay {
+    background-color: green;
+}
+
+/* Super Replay Episode List */
+
+.super-replay-episode-list {
+    background-color: yellow;
+}
+
+/* Super Replay Episode Details */
+
+.super-replay-episode {
+    /*box-shadow: 0px 0px 5px 0px var(--main-shadow-color);*/
+    box-shadow: inset 0 -3em 3em rgba(150,150,150,.1), 
+        0 .3em 1em -.1em rgba(0,0,0,.3);
+    overflow: hidden;
+    border: 2px solid var(--main-bg-color);
+    /*border-top: none;*/
+    border-radius: 0 0 1em 1em;
+}
+
+/* Thumbnail */
+.thumbnail-container {
+    float: left;
+    width: 45%;
+}
+
+/* Clear-fix */
+.episode-main::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.thumbnail {
+    width: 100%;
+    padding-top: 56.25%;
+    background-color: #000;
+    position: relative;
+}
+
+.thumbnail > a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* Thumbnail Image */
+.thumbnail img {
+    position: static;
+    height: 100%;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Play Video Overlay */
+.thumbnail .play-video-overlay {
+    position: absolute;
+    width: 20%;
+    top: 30%;
+    left: 40%;
+    display: none;
+}
+.thumbnail:hover .play-video-overlay { display: block; }
+.play-video-overlay img {
+    width: 100%;
+    height: auto;
+}
+
+/* Clear-fix */
+.thumbnail::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+/* Video length*/
+.video-length {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 4px;
+    padding: 2px 4px;
+    border-radius: 2px;
+    color: #fff;
+    background-color: rgba(0,0,0,0.8);
+    font-size: .8em;
+}
+
+/* ---------- Episode Details ---------- */
+
+.episode-details {
+    float: right;
+    width: 55%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    /*padding: 0 1em;*/
+    font-size: .9em;
+}
+
+.episode-header {
+    width: 100%;
+    background-image: linear-gradient(to bottom, var(--main-bg-hover-color) 5%, var(--main-bg-color) 80%);
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    /*padding: 1em;*/
+    display: flex;
+    justify-content: space-between;
+    /*border-radius: 1em 1em 0 0;*/
+}
+.episode-details > .episode-header { padding: .5em 1em; }
+
+.episode-title { margin: 0; }
+
+.episode-number {
+    padding-left: 1em;
+    text-align: right;
+}
+
+.episode-header, .episode-airdate, .gi-crew > *, .views-likes-container {
+    padding: .4em 1em;
+}
+
+.episode-airdate { padding-right: 1em; }
+.gi-crew { width: 100%; }
+
+/* Views/Likes */
+.views-likes-container {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+.views-likes-container .views { padding-right: 1em; }
+.views-likes-container .fa { margin-right: .5em; }
+
+/* ---------- Episode More Info ---------- */
+
+/* ---------- Thematic Break hr ---------- */
+
+.super-replay-episode hr {
+    border: 0;
+    height: 2px;
+    /*background-color: var(--main-bg-color);*/
+    background-image: linear-gradient(to right, rgba(0,0,0,0), var(--main-bg-color) 20%, var(--main-bg-color) 80%, rgba(0,0,0,0));
+    margin: 0 1em;
+}

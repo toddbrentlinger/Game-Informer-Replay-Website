@@ -8,6 +8,13 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="./styles/style.css" />
+    <link rel="stylesheet" type="text/css" href="./styles/super-replay-style.css" />
+
+    <!-- Font Awesome (choice of script or local files) -->
+    <link rel="stylesheet" href="/fonts/font-awesome-4.7.0/css/font-awesome.min.css" />
+    <!--
+    <script src="https://kit.fontawesome.com/f8c32451ce.js" crossorigin="anonymous"></script>
+    -->
     <!-- Favicon -->
     <link href="/images/gi_logo_favicon_64x64.ico" rel="shortcut icon" type="image/x-icon" />
     <!-- Apple Touch Icon (196x196) -->
@@ -27,8 +34,8 @@
     <nav id="topnav">
         <div class="counter-balance-switch-container"></div>
         <ul>
-            <li><a href="https://replay.fandom.com/wiki/List_of_Replay_episodes" target="_blank" rel="noopener"><span>Replay</span></a></li>
-            <li><a href="https://replay.fandom.com/wiki/List_of_Super_Replay_installments" target="_blank" rel="noopener"><span>Super Replay</span></a></li>
+            <li><a href="../index.html"><span>Replay</span></a></li>
+            <li class="selected-topnav"><a href="../super-replay/index.html"><span>Super Replay</span></a></li>
             <li><a href="https://www.gameinformer.com/index.php/covergallery" target="_blank" rel="noopener"><span>Magazine Covers</span></a></li>
             <li><a href="https://replay.fandom.com/wiki/Category:Game_Informer_staff" target="_blank" rel="noopener"><span>GI Crew</span></a></li>
         </ul>
@@ -46,13 +53,9 @@
         <h1>Game Informer Super Replay</h1>
     </header>
 
-    <img srcset="../images/replay-logo-alpha(2)_300.png 300w,
-                 ../images/replay-logo-alpha(2).png 610w"
-         sizes="(max-width: 900px) 300px,
-                610px"
-         src="../images/replay-logo-alpha(2).png"
+    <img src="../images/super-replay-logo-2.png"
          alt="Game Informer Replay Logo"
-         width="610" height="214" />
+         width="250" height="115" />
 
     <!-- Video Player Container -->
     <div id="video-player-container">
@@ -73,55 +76,135 @@
     <div class="row" id="top-page">
         <!-- Left Column -->
         <nav id="sidenav" class="column left">
+            <div id="search-filter-container">
+                <!-- Search -->
+                <div id="search-container">
+                    <input type="text" placeholder="Search..." required />
+                    <button class="custom-button" type="button" aria-label="search"><i class="fa fa-search"></i></button>
+                </div>
 
+                <!-- Filter Form -->
+                <button id="filter-display-toggle-button" class="custom-button collapsible"><i class="fa fa-sliders fa-lg" aria-hidden="true"></i> FILTER</button>
+                <form id="filterForm">
+                    <div id="filterSubmitButton">
+                        <!-- <button type="button" id="filter-button">Filter</button> -->
+                        <!-- <input type="reset" id="filter-reset-button" /> -->
+                        <button type="button" class="custom-button" id="filter-toggle-select-button">CLEAR ALL</button>
+                    </div>
+
+                    <fieldset form="filterForm" id="year-field">
+                        <legend>Year: </legend>
+                        <ul></ul>
+                    </fieldset>
+
+                    <fieldset form="filterForm" id="gi-crew-field">
+                        <legend>GI Crew: </legend>
+                        <ul></ul>
+                    </fieldset>
+                </form>
+            </div>
         </nav>
         <!-- Middle Column -->
         <main class="column middle">
-            <div id="main">
+            <div id="misc-buttons-container">
+                <!-- <button type="button" id="button-toggleVideoPlayer">Toggle YT Player</button> -->
+                <button class="custom-button" type="button" id="button-shuffle"><i class="fa fa-random fa-lg" aria-hidden="true"></i> SHUFFLE</button>
+                <button class="custom-button" type="button" id="button-reset-list"><i class="fa fa-refresh fa-lg" aria-hidden="true"></i> RESET LIST</button>
+            </div>
+
+            <!-- Top Page Number Selection -->
+            <div id="page-number-container-top" class="page-number-container">
+                <button class="custom-button" type="button" value="prev">PREV</button>
+                <button class="custom-button" type="button" value="first">FIRST</button>
+                <div class="page-number-list"></div>
+                <button class="custom-button" type="button" value="last">LAST</button>
+                <button class="custom-button" type="button" value="next">NEXT</button>
+            </div>
+
+            <div id="super-replay-list">
                 <div id="episode-template">
                     <section class="super-replay-container">
                         <div class="super-replay">
-
+                            Super Replay Details
                         </div>
                         <div class="super-replay-episode-list">
-
+                            Super Replay Episode List
                         </div>
                         <div class="super-replay-episode">
-                            <div class="episodeMain">
-                                <div class="episodeHeader">
-                                    <h3 class="episodeTitle"></h3>
-                                    <div class="episodeNumber"></div>
-                                </div>
+                            <div class="episode-main">
                                 <div class="thumbnail-container">
-                                    <div class="episodeThumbnail">
+                                    <div class="thumbnail">
                                         <a title="">
-                                            <img class="episodeImage" alt="" width="300" height="169" src="" srcset="" />
-                                            <time class="episodeLength" datetime=""></time>
-                                            <div class="playOverlay">
+                                            <img class="video-image" alt="" width="320" height="180" src="https://i.ytimg.com/vi/pj4aoTkDfNk/mqdefault.jpg" srcset="" />
+                                            <time class="video-length" datetime="">1:37:44</time>
+                                            <div class="play-video-overlay">
                                                 <img alt="" width="256" height="256" src="../images/play-button-icon-gi(1)-256.png" />
                                             </div>
                                         </a>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="episodeDetails">
-                                <div class="episodeAirDate"><b>Air Date: </b><time datetime=""></time></div>
-                                <div class="views-likes-container">
-                                    <div class="views" title="Views"><b><i class="fa fa-eye" aria-hidden="true"></i></b></div>
-                                    <div class="likes" title="Likes (Like Ratio)"><b><i class="fa fa-thumbs-up" aria-hidden="true"></i></b></div>
-                                </div>
-                                <div class="gi-crew">
-                                    <div class="episodeHosts"><b>Host: </b></div>
-                                    <div class="episodeFeaturing"><b>Featuring: </b></div>
+                                <div class="episode-details">
+                                    <div class="episode-header">
+                                        <h3 class="episode-title">OverBlood Part 1</h3>
+                                        <div class="episode-number">Ep. 1/6</div>
+                                    </div>
+                                    <div class="episode-airdate"><b>Air Date: </b><time datetime="">November 17, 2011</time></div>
+                                    <div class="views-likes-container">
+                                        <div class="views" title="Views"><b><i class="fa fa-eye" aria-hidden="true"></i></b>102,985</div>
+                                        <div class="likes" title="Likes (Like Ratio)"><b><i class="fa fa-thumbs-up" aria-hidden="true"></i></b>815 (96.1%)</div>
+                                    </div>
+                                    <div class="gi-crew">
+                                        <div class="episode-hosts"><b>Host: </b>Dan Ryckert and Tim Turi</div>
+                                        <div class="episode-featuring"><b>Featuring: </b>Matt Helgeson</div>
+                                    </div>
                                 </div>
                             </div>
                             <hr />
-                            <div class="episodeMoreInfo"></div>
+                            <div class="episode-more-info">
+                                <p>The first episode of the OverBlood Super Replay has Tim Turi at the controls with Dan Ryckert as host and guest Matt Helgeson. These three were on the original Replay of Revolution X where OverBlood first premiered.</p>
+                                <p>In each episode, Dan gives out a code word, to test if people actually watched the whole Super Replay. Because it proved to be funny, the code word was "Weinerless Steve". Matt was the creator of this phrase, as they did not hear Raz's name until later.</p>
+                                <h4>In This Episode</h4>
+                                <p>The main character, Raz Karcy (affectionately dubbed Weinerless Steve by the Replay crew), wakes up in a freezing room needing to turn up the heat so he doesn't die. After thoroughly trumping the first room (which proved so difficult during the Roulette of the Revolution X\u00a0Replay) in the first eight minutes, they lose 37 minutes of progress by taking an anti gravity device that holds up a statue. Upon removing it, the statue falls and kills Raz, sending the crew back to the beginning of the game. Tim learned to play a little more safely after this, being sure not to take an anti-gravity device from under a floating statue. The puzzle proved so difficult, that Ben Hanson gave Matt the solution as to what to do: push the statue over. They continue the playthrough, thwarting the deadly bust and making a significant amount of progress. The longer than usual episode ends with Tim still unable to find the Voice Recorder.</p>
+                                <h4>External Links</h4>
+                                <ul class="link-list">
+                                    <li>
+                                        <i>
+                                            <a href="" target="_blank" rel="noopener">Super Replay - Overblood Part 1</a>
+                                        </i> on Fandom
+                                    </li>
+                                </ul>
+                            </div>
                         </div>
                     </section>
                 </div>
             </div>
+
+            <!-- Bottom Page Number Selection -->
+            <div id="page-number-container-bottom" class="page-number-container">
+                <button class="custom-button" type="button" value="prev">PREV</button>
+                <button class="custom-button" type="button" value="first">FIRST</button>
+                <div class="page-number-list"></div>
+                <button class="custom-button" type="button" value="last">LAST</button>
+                <button class="custom-button" type="button" value="next">NEXT</button>
+            </div>
         </main>
+
+        <div id="stats">
+            <h2>Stats:</h2>
+            <!-- Total Time -->
+            <div id="stats-total-time"><b>Total time of all Super Replay episodes: </b></div>
+            <!-- Total Views -->
+            <div id="stats-total-views"><b>Total views of all Super Replay episodes: </b></div>
+            <!-- Total Likes -->
+            <div id="stats-total-likes"><b>Total likes of all Super Replay episodes: </b></div>
+        </div>
+    </div>
+
+    <!-- Jump To Top Of Page -->
+    <div id="jump-top-page-container" title="Jump To Top" style="display: none;">
+        <div>
+            <i class="fa fa-chevron-circle-up" aria-hidden="true"></i>
+        </div>
     </div>
 
     <!-- Footer -->

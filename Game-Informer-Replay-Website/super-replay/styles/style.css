@@ -13,10 +13,13 @@
     --main-bg-select-color: hsl(196, 100%, 16%); /* darker gi blue */
     --main-bg-active-color: hsl(196, 100%, 10%); /* darkest gi blue */
     --main-shadow-color: rgba(0,0,0,0.6); /* black */
+
     --second-text-color: #0077a2; /* gi blue */
     --second-bg-color: #f4f4f4; /* nearly pure white */
+
     --third-text-color: #3a3a3a; /* nearly pure black */
     --third-bg-color: #f6f6f6; /* nearly pure white */
+
     background-color: var(--main-bg-color);
     background-image: url("/images/replay_bg_gi_blue(3).jpg");
     background-repeat: no-repeat;
@@ -27,8 +30,8 @@
 
 *, *:before, *:after {
     -webkit-box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    box-sizing: border-box;
+       -moz-box-sizing: border-box;
+            box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
@@ -103,8 +106,38 @@ ul {
 
 h1, h2, footer { text-align: center; }
 
-img {
-    border: 0; /* prevent IE9 (and earlier) from displaying a border around the edges */
+/* prevent IE9 (and earlier) from displaying a border around the edge of img */
+img { border: 0; }
+
+/* ----------------------------------- */
+/* ---------- Custom Button ---------- */
+/* ----------------------------------- */
+
+.custom-button {
+    box-shadow: inset 0px 0px 1px 0px var(--main-shadow-color);
+    background-image: linear-gradient(to bottom, var(--main-bg-hover-color) 5%, var(--main-bg-color) 80%);
+    background-color: var(--main-bg-color);
+    border: none;
+    border-radius: .5em;
+    color: var(--main-text-color);
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    outline: none;
+    -webkit-transition-duration: .1s;
+    transition-duration: .1s;
+}
+
+.custom-button:hover {
+    background-image: linear-gradient(to bottom, var(--main-bg-hover-color) 5%, var(--main-bg-hover-color) 80%);
+    background-color: var(--main-bg-hover-color);
+}
+
+.custom-button:active {
+    background-image: linear-gradient(to bottom, var(--main-bg-select-color) 5%, var(--main-bg-select-color) 80%);
+    background-color: var(--main-bg-select-color);
+    position: relative;
+    top: 1px;
 }
 
 /* ---------------------------- */
@@ -117,20 +150,20 @@ header {
     background-repeat: no-repeat;
     background-position: center;
     -webkit-background-size: 100%;
-    background-size: 100%;
+            background-size: 100%;
     width: 100%;
     padding-top: 18.29%;
 }
 
-    header + img {
-        width: 50%;
-        height: auto;
-        display: block;
-        margin: 0 auto;
-    }
+header + img {
+    width: 50%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+}
 
-    /* Hide h1 inside header but still accessible for readers */
-    header h1 { display: none; }
+/* Hide h1 inside header but still accessible for readers */
+header h1 { display: none; }
 
 /* ---------------------------- */
 /* ---------- Footer ---------- */
@@ -151,49 +184,40 @@ footer {
     background-color: var(--main-bg-color);
 }
 
-    #topnav div:last-child {
-    }
-    /* Style the top navigation bar, unordered list */
-    #topnav ul {
-        flex: 1;
-        display: flex;
-        flex-wrap: wrap;
-        list-style-type: none;
-        padding: 0; /* remove default padding for ul elements */
-        margin: 0; /* remove default margin for ul elements */
-        font-size: 0; /* to prevent space between inline-block elements in li element;
+/* Style the top navigation bar, unordered list */
+#topnav ul {
+    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    list-style-type: none;
+    padding: 0; /* remove default padding for ul elements */
+    margin: 0; /* remove default margin for ul elements */
+    font-size: 0; /* to prevent space between inline-block elements in li element;
         Can also remove the closing </li> tags instead. Which is better? */
-    }
-        /* Style the top navigation list element */
-        #topnav ul li {
-            flex: 1;
-            text-align: center;
-        }
-    /* Style the top navigation links */
-    #topnav li a {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        font-size: 1rem; /* 16px: reset font-size after setting to zero in #topnav ul {} to
+}
+/* Style the top navigation list element */
+#topnav ul li {
+    flex: 1;
+    text-align: center;
+}
+/* Style the top navigation links */
+#topnav li a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    font-size: 1rem; /* 16px: reset font-size after setting to zero in #topnav ul {} to
         prevent space between inline-block elements */
-        padding: .8em .5em; /* 14px 16px (1em=16px) */
-        text-decoration: none;
-        color: var(--main-text-color);
-        -webkit-transition-duration: .2s;
-        transition-duration: .2s;
-    }
-    /* Set color on default link and active pseudo-classes */
-    #topnav a:link, #topnav a:visited {
-    }
-    /* Change the color on hover */
-    #topnav a:hover {
-        background-color: var(--main-bg-hover-color);
-    }
-    /* Change the color on active/select */
-    #topnav a:active {
-        background-color: var(--main-bg-select-color);
-    }
+    padding: .8em .5em; /* 14px 16px (1em=16px) */
+    text-decoration: none;
+    color: var(--main-text-color);
+    -webkit-transition-duration: .2s;
+            transition-duration: .2s;
+}
+/* Change the color on hover */
+#topnav a:hover { background-color: var(--main-bg-hover-color); }
+/* Change the color on active/select */
+#topnav a:active { background-color: var(--main-bg-select-color); }
 
 /* ------------------------------ */
 /* ---------- Side Nav ---------- */
@@ -249,6 +273,373 @@ main {  margin: 0 .8em; }
     width: 100%;
     margin: 0 auto;
 }
+
+/* ------------------------------------------ */
+/* ---------- Current Episode Info ---------- */
+/* ------------------------------------------ */
+
+#current-episode-header {
+    border-radius: 1em 1em 0 0;
+    overflow: hidden;
+}
+
+#current-episode-info {
+    max-height: 0;
+    overflow: auto; /* hidden */
+    transition: max-height 0.2s ease-out;
+}
+/*
+#current-episode-info .episode {
+    margin: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+}
+
+#current-episode-info .thumbnail-container {
+    float: none;
+    width: 100%;
+    margin: 0;
+}
+
+#current-episode-info .episodeThumbnail { display: none; }
+
+#current-episode-info .episodeDetails {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    padding-bottom: .4em;
+}
+
+#current-episode-info .episodeDetails > * {
+    width: 50%;
+    padding-bottom: 0;
+}
+
+#current-episode-info .gi-crew > *, #current-episode-info .segments > * {
+    padding-bottom: 0;
+}
+
+#current-episode-info .episodeMoreInfo { padding: 0 1em; }
+
+#current-episode-info .episodeAirDate { order: -2; }
+
+#current-episode-info .episodeAirDate, #current-episode-info .gi-crew {
+    padding-right: 1em;
+}
+
+#current-episode-info .views-likes-container {
+    order: -1;
+    font-size: unset;
+    justify-content: flex-end;
+}
+
+#current-episode-info .views-likes-container > * { width: unset; }
+*/
+/* Toggle button */
+#current-episode-info-toggle-button {
+    width: 100%;
+    padding: 1.2em;
+    border-radius: 0 0 1em 1em;
+    box-shadow: none;
+}
+
+#current-episode-info-toggle-button.active { border-radius: 0; }
+
+/* ---------------------------- */
+/* ---------- Search ---------- */
+/* ---------------------------- */
+
+#search-filter-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+#search-container {
+    order: 1;
+    width: 70%;
+    height: 80%;
+    display: flex;
+    font-size: 1em;
+    max-width: 28em;
+}
+
+#search-container input[type=text] {
+    flex: 4;
+    padding: .6em;
+    border: 2px solid var(--main-bg-color);
+    border-right: none;
+    border-radius: .5em 0 0 .5em;
+    background-color: var(--second-bg-color);
+    color: var(--second-text-color);
+}
+
+#search-container button {
+    flex: 1;
+    border-radius: 0 .5em .5em 0;
+}
+
+/* --------------------------------- */
+/* ---------- Filter Form ---------- */
+/* --------------------------------- */
+
+/* Filter Display Toggle Button */
+#filter-display-toggle-button {
+    width: 25%;
+    padding: 1em;
+    text-align: left;
+}
+
+#filter-display-toggle-button.active {
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+}
+
+#filter-display-toggle-button.active:after {
+    content: "\2212";
+}
+
+#filter-display-toggle-button:after {
+    content: '\002B';
+    color: var(--main-text-color);
+    font-weight: bold;
+    float: right;
+    margin-left: 5px;
+    font-size: 1.2em;
+}
+
+#filter-display-toggle-button > .fa {
+    margin-right: .3em;
+}
+
+#filter-display-toggle-button.active + form {
+    border: 2px solid var(--main-bg-color);
+    border-radius: 0 .5em .5em .5em;
+}
+
+#filterForm {
+    order: 2;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+    width: 100%;
+    padding: 0 1em;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.2s ease-out;
+}
+
+#filterForm > fieldset {
+    /*display: inline-block;*/
+    padding: .4em;
+    border-color: var(--main-bg-color);
+    border-radius: .5em;
+    margin: 0 2px;
+}
+
+#filterForm > fieldset:last-child {
+    margin-bottom: 1em;
+}
+
+#filterForm > fieldset legend {
+    /*cursor: pointer;*/
+    margin: 0 auto;
+}
+
+#filterForm fieldset ul {
+    list-style-type: none;
+    padding: 0; /* remove default padding for ul elements */
+    margin: 0; /* remove default margin for ul elements */
+    /*
+    max-height: 0;
+    overflow: hidden;
+    */
+}
+
+#filterForm fieldset ul.active { /*height: auto;*/ }
+
+/* Checkbox */
+/* Customize the label */
+#filterForm label {
+    display: block;
+    position: relative;
+    padding-right: 25px;
+    margin-bottom: 2px;
+    cursor: pointer;
+    font-size: 1em;
+    text-align: right;
+    -webkit-user-select: none;
+       -moz-user-select: none;
+        -ms-user-select: none;
+            user-select: none;
+}
+/* Hide the browser's default checkbox */
+#filterForm label input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+}
+/* Create a custom checkbox */
+.checkmark {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 20px;
+    width: 20px;
+    border-radius: 3px;
+    border: 2px solid var(--main-bg-color);
+    background-color: #eee;
+}
+/* On mouse-over, add a grey background color */
+#filterForm label:hover input ~ .checkmark {
+    background-color: #ccc;
+}
+/* When the checkbox is checked, add a blue background */
+#filterForm label input:checked ~ .checkmark {
+    background-color: var(--main-bg-color);
+}
+/* Create the checkmark/indicator (hidden when not checked) */
+.checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+}
+/* Show the checkmark when checked */
+#filterForm label input:checked ~ .checkmark:after {
+    display: block;
+}
+/* Style the checkmark/indicator */
+#filterForm label .checkmark:after {
+    left: 5px;
+    top: 1px;
+    width: 7px;
+    height: 12px;
+    border: solid var(--main-text-color);
+    border-width: 0 2px 2px 0;
+    -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+}
+
+/* Filter: gi-crew-field */
+#gi-crew-field ul { column-count: 3; }
+
+/* Filter Form Buttons */
+#filterSubmitButton {
+    width: 100%;
+    padding: .5em 0;
+}
+
+#filterSubmitButton > button {
+    display: block;
+    width: 50%;
+    margin: 0 auto;
+    padding: 1em;
+}
+
+
+/* -------------------------- */
+/* ---------- Sort ---------- */
+/* -------------------------- */
+#sort-main {
+    font-size: .9em;
+    display: flex;
+    flex-direction: row-reverse;
+}
+
+#sort-container {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    justify-content: flex-end;
+}
+
+#sort-container label {
+    padding: 0 .1em;
+}
+
+#sort-container label:last-child {
+    /*flex-basis:;*/
+}
+
+#sort-container label select {
+    display: block;
+    width: 100%;
+    background-color: var(--second-bg-color);
+    color: var(--second-text-color);
+    -webkit-appearance: none;
+       -moz-appearance: none;
+            appearance: none;
+}
+
+#number-displayed-container {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+}
+
+/* --------------------------------- */
+/* ---------- Page Select ---------- */
+/* --------------------------------- */
+
+.page-number-container {
+    display: flex;
+    margin: .6em 0;
+}
+
+.page-number-container > button {
+    flex: 1;
+    padding: 1em;
+}
+
+.page-number-container > button:disabled {
+    opacity: 0;
+    cursor: default;
+}
+
+.page-number-container > button[value="first"] {
+    border-radius: .5em 0 0 .5em;
+    margin-left: .5em;
+}
+
+.page-number-container > button[value="last"] {
+    border-radius: 0 .5em .5em 0;
+    margin-right: .5em;
+}
+
+.page-number-list {
+    flex: 6;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    border-left: 1px solid var(--second-bg-color);
+    border-right: 1px solid var(--second-bg-color);
+}
+
+.page-number-list button {
+    /*width: 10%;*/
+    flex: 1;
+    /*box-shadow: none;*/
+    border: 1px solid var(--second-bg-color);
+    border-radius: 0;
+    border-top: none;
+    border-bottom: none;
+}
+
+.page-number-list button.active {
+    background-image: none;
+    background-color: var(--main-bg-active-color);
+}
+
+/* --------------------------- */
+/* ---------- Stats ---------- */
+/* --------------------------- */
+
+#stats { margin: 0 1em; }
 
 /* ----------------------------------------- */
 /* ---------- Jump To Top of Page ---------- */
@@ -407,6 +798,23 @@ input:checked + .slider:before {
 .slider.round { border-radius: 34px; }
 .slider.round:before { border-radius: 50%; }
 
+/* ---------------------------------- */
+/* ---------- Misc Buttons ---------- */
+/* ---------------------------------- */
+
+#misc-buttons-container {
+    display: flex;
+    justify-content: space-between;
+    margin: .6em 0;
+}
+
+#misc-buttons-container button {
+    width: 49%;
+    padding: 1em;
+}
+
+#misc-buttons-container button .fa { margin-right: .3em; }
+
 /* ----------------------------------- */
 /* ---------- Media Queries ---------- */
 /* ----------------------------------- */
@@ -449,15 +857,16 @@ input:checked + .slider:before {
     body { width: 100%; }
 
     main, #sidenav, #video-player-container { margin: 0 .3em; }
-
+    /*
     .thumbnail-container {
         float: none;
         width: 100%;
         margin: 0;
     }
-
+    /*
     .episodeDetails { width: 100%; }
     .episodeMoreInfo { padding: 0 1em; }
+    */
     ul.link-list { column-count: 1; }
     #sort-main { flex-direction: column; }
     #number-displayed-container { margin-top: .6em; }

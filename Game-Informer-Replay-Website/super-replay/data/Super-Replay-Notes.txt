@@ -1,0 +1,13 @@
+﻿
+Super Replay Scrape Changes:
+
+31 - Dark Souls: Prepare to Die
+- Episode 21
+	X Move time from 'featuring' to 'runtime'
+
+23 - Mortal Kombat: Shaolin Monks
+X Add YouTube videos
+
+1 - Legend of Zelda: A Link To The Past
+- Remove all external links below wikipedia link
+- Remove "Part 5 (Guest: Ben Reeves)" from GI article

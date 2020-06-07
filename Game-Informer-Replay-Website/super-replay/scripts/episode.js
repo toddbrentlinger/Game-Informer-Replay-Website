@@ -38,7 +38,7 @@ export class Episode {
             this.description = undefined;
 
         // ---------- Airdate ----------
-        this.airdate = Episode.convertStringToDate(this._episodeJSON.airdate);
+        this.airdate = Episode.convertStringToDate(this._episodeJSON.airdate || this._episodeJSON.youtubeVideo.airdate);
 
     }
 
@@ -51,7 +51,7 @@ export class Episode {
      * copied with assignment like Number and String objects.
      */
 
-    get runtime() { return this._episodeJSON.runtime; }
+    get runtime() { return this._episodeJSON.runtime || this.youtubeVideo.runtime; }
     get host() { return this._episodeJSON.host; }
     get featuring() { return this._episodeJSON.featuring; }
     get externalLinks() { return this._episodeJSON.externalLinks; }
@@ -90,6 +90,47 @@ export class Episode {
     // ------------------------------------
     // ---------- Static Methods ----------
     // ------------------------------------
+
+    /**
+     * Create an HTML element with specified tag, class, and inner text.
+     * @param {String} elementTag
+     * @param {String} elementClass
+     * @param {String} elementInnerHTML
+     * 
+     * @return {Element}
+     */
+    static createElement(elementTag, elementClass, elementInnerHTML) {
+        // If only first argument is provided, recommend using document.createElement instead
+        if (typeof elementClass === 'undefined' && typeof elementInnerHTML === 'undefined')
+            console.log("Use document.createElement() instead");
+        let element = document.createElement(elementTag);
+        if (typeof elementClass !== 'undefined')
+            element.setAttribute('class', elementClass);
+        if (typeof elementInnerHTML !== 'undefined')
+            element.innerHTML = elementInnerHTML;
+        return element;
+    }
+
+    /**
+     * Add list to HTML element from array of String objects.
+     * @param {Element} parentNode
+     * @param {Array[String]} contentArr
+     */
+    static addContentArrToNode(parentNode, contentArr) {
+        let listElement;
+        for (const content of contentArr) {
+            // If content is an array, add ul list of values
+            if (Array.isArray(content)) {
+                // Create ul element and append as child to parentNode
+                listElement = parentNode.appendChild(document.createElement('ul'));
+                // Loop through each value of array of list values
+                for (const arrayValueText of content)
+                    // Create li element and append as child to ul element
+                    listElement.appendChild(Episode.createElement('li', undefined, arrayValueText));
+            } else // Else create p element and append as child to more info element
+                parentNode.appendChild(Episode.createElement('p', undefined, content));
+        }
+    }
 
     /**
      * Converts date string object to Date object
@@ -133,6 +174,83 @@ export class Episode {
             return num.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         } else // Else return the num as is
             return num;
+    }
+
+    /**
+     * Converts array of string values into a single string formatted in proper English.
+     * ex. "list00, list01, list02, and list03"
+     *     "list00 and list01"
+     * @param {any} stringArr Array of String values
+     */
+    static convertListArrayToEnglishString(stringArr) {
+        // Check if argument is array
+        if (!Array.isArray(stringArr))
+            return;
+
+        let tempStr = "", arrLength = stringArr.length;
+        stringArr.forEach((strValue, index) => {
+            tempStr += strValue;
+            // If array length is more than 1 and index is NOT the last element
+            // If array length is 2, only add " and "
+            // Else: If index is second to last element, add ", and " Else add ", "
+            if (arrLength > 1 && index != arrLength - 1) {
+                tempStr += (arrLength == 2) ? " and "
+                    : (index == arrLength - 2) ? ", and " : ", ";
+            }
+        });
+
+        return tempStr;
+    }
+
+    /**
+     * 
+     * @param {Array[]} linksList
+     * @param {Element} parentNode
+     * @param {String} headlineString
+     * @param {String} urlPrepend
+     */
+    static addListOfLinks(linksList, parentNode, headlineString, urlPrepend) {
+        // Variables
+        const linkSourceOptions = [
+            ['gameinformer', 'Game Informer'],
+            ['youtube', 'YouTube'],
+            ['fandom', 'Fandom'],
+            ['wikipedia', 'Wikipedia'],
+            ['gamespot', 'GameSpot'],
+            ['steampowered', 'Steam']
+        ];
+        let listElement, listItemElement, anchorElement, linkSource;
+        // Add header for external links to episodeMoreInfo element
+        parentNode.appendChild(Episode.createElement('h4', undefined, headlineString));
+        // Create ul element and append as child to episodeMoreInfo element
+        listElement = parentNode.appendChild(Episode.createElement('ul', 'link-list'));
+        // Loop through each value of array of list values
+        for (const linkObj of linksList) {
+            // Create li element and append as child to ul element
+            listItemElement = listElement.appendChild(document.createElement('li'));
+            // Create i element and append as child to li list element
+            // then create anchor element and append as child to i element
+            anchorElement = listItemElement.appendChild(document.createElement('i'))
+                .appendChild(Episode.createElement('a', undefined, linkObj.title));
+            anchorElement.setAttribute('href',
+                (urlPrepend ? urlPrepend + linkObj.href : linkObj.href)
+            );
+            anchorElement.setAttribute('target', '_blank');
+            anchorElement.setAttribute('rel', 'noopener');
+            // Add text listing source of link
+            linkSource = "";
+            // Find matching link source
+            for (let i = 0; i < linkSourceOptions.length; i++) {
+                if (linkObj.href.includes(linkSourceOptions[i][0])) {
+                    linkSource = linkSourceOptions[i][1];
+                    break;
+                }
+            }
+            // If match was found, add to end of link, else don't include anything
+            if (linkSource)
+                listItemElement.appendChild(document.createTextNode(' on '
+                    + linkSource));
+        }
     }
 
     /**

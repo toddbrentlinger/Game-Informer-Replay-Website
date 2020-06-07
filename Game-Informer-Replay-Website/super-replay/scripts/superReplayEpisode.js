@@ -6,8 +6,12 @@ import { Episode } from "./episode.js";
  * @author Todd Brentlinger
  */
 export class SuperReplayEpisode extends Episode {
-    /** @param {any} episodeDict */
-    constructor(episodeDict) {
+    /**
+     * 
+     * @param {Object} episodeDict
+     * @param {Element} nodeTemplate
+     */
+    constructor(episodeDict, nodeTemplate) {
         super(episodeDict);
     }
 
@@ -16,4 +20,18 @@ export class SuperReplayEpisode extends Episode {
     // -----------------------------
 
     get title() { return this.youtubeVideo.title; }
+
+    // ---------- Methods ----------
+
+    /**
+     * 
+     * @param {any} nodeTemplate
+     */
+    createSectionNode(nodeTemplate) {
+        // Variables (temp can be array, string, ...)
+        let parentNode, childNode, temp;
+
+        // Initialize section node to template clone
+        this.sectionNode = nodeTemplate.cloneNode(true);
+    }
 }

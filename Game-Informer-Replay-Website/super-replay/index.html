@@ -8,6 +8,7 @@
 
     <!-- Stylesheets -->
     <link rel="stylesheet" type="text/css" href="./styles/style.css" />
+    <link rel="stylesheet" type="text/css" href="./styles/episode-style.css" />
     <link rel="stylesheet" type="text/css" href="./styles/super-replay-style.css" />
 
     <!-- Font Awesome (choice of script or local files) -->
@@ -121,22 +122,22 @@
                 <button class="custom-button" type="button" value="next">NEXT</button>
             </div>
 
-            <div id="super-replay-list">
-                <div id="episode-template">
-                    <section class="super-replay-container">
-                        <div class="super-replay">
-                            Super Replay Details
-                        </div>
-                        <div class="super-replay-episode-list">
-                            Super Replay Episode List
-                        </div>
-                        <div class="super-replay-episode">
+            <!-- Super Replay Node Template -->
+            <div id="super-replay-template" style="display:none">
+                <section class="super-replay-container">
+                    <!-- Super Replay -->
+                    <div class="super-replay">
+                        <div class="episode">
                             <div class="episode-main">
+                                <div class="episode-header">
+                                    <h3 class="episode-title"></h3>
+                                    <div class="episode-number"></div>
+                                </div>
                                 <div class="thumbnail-container">
                                     <div class="thumbnail">
                                         <a title="">
-                                            <img class="video-image" alt="" width="320" height="180" src="https://i.ytimg.com/vi/pj4aoTkDfNk/mqdefault.jpg" srcset="" />
-                                            <time class="video-length" datetime="">1:37:44</time>
+                                            <img class="video-image" alt="" width="300" height="169" src="" srcset="" />
+                                            <time class="video-length" datetime=""></time>
                                             <div class="play-video-overlay">
                                                 <img alt="" width="256" height="256" src="../images/play-button-icon-gi(1)-256.png" />
                                             </div>
@@ -144,40 +145,208 @@
                                     </div>
                                 </div>
                                 <div class="episode-details">
-                                    <div class="episode-header">
-                                        <h3 class="episode-title">OverBlood Part 1</h3>
-                                        <div class="episode-number">Ep. 1/6</div>
-                                    </div>
-                                    <div class="episode-airdate"><b>Air Date: </b><time datetime="">November 17, 2011</time></div>
+                                    <div class="episode-airdate"><b>Air Date: </b><time datetime=""></time></div>
+                                    <div class="super-replay-total-episodes"><b>No. of Episodes: </b></div>
                                     <div class="views-likes-container">
-                                        <div class="views" title="Views"><b><i class="fa fa-eye" aria-hidden="true"></i></b>102,985</div>
-                                        <div class="likes" title="Likes (Like Ratio)"><b><i class="fa fa-thumbs-up" aria-hidden="true"></i></b>815 (96.1%)</div>
+                                        <div class="views" title="Average Views"><b><i class="fa fa-eye" aria-hidden="true"></i>(Avg) </b></div>
+                                        <div class="likes" title="Average Likes (Like Ratio)"><b><i class="fa fa-thumbs-up" aria-hidden="true"></i>(Avg) </b></div>
                                     </div>
                                     <div class="gi-crew">
-                                        <div class="episode-hosts"><b>Host: </b>Dan Ryckert and Tim Turi</div>
-                                        <div class="episode-featuring"><b>Featuring: </b>Matt Helgeson</div>
+                                        <div class="episode-hosts"><b>Host: </b></div>
+                                        <div class="episode-featuring"><b>Featuring: </b></div>
                                     </div>
                                 </div>
                             </div>
                             <hr />
-                            <div class="episode-more-info">
-                                <p>The first episode of the OverBlood Super Replay has Tim Turi at the controls with Dan Ryckert as host and guest Matt Helgeson. These three were on the original Replay of Revolution X where OverBlood first premiered.</p>
-                                <p>In each episode, Dan gives out a code word, to test if people actually watched the whole Super Replay. Because it proved to be funny, the code word was "Weinerless Steve". Matt was the creator of this phrase, as they did not hear Raz's name until later.</p>
-                                <h4>In This Episode</h4>
-                                <p>The main character, Raz Karcy (affectionately dubbed Weinerless Steve by the Replay crew), wakes up in a freezing room needing to turn up the heat so he doesn't die. After thoroughly trumping the first room (which proved so difficult during the Roulette of the Revolution X\u00a0Replay) in the first eight minutes, they lose 37 minutes of progress by taking an anti gravity device that holds up a statue. Upon removing it, the statue falls and kills Raz, sending the crew back to the beginning of the game. Tim learned to play a little more safely after this, being sure not to take an anti-gravity device from under a floating statue. The puzzle proved so difficult, that Ben Hanson gave Matt the solution as to what to do: push the statue over. They continue the playthrough, thwarting the deadly bust and making a significant amount of progress. The longer than usual episode ends with Tim still unable to find the Voice Recorder.</p>
-                                <h4>External Links</h4>
-                                <ul class="link-list">
-                                    <li>
-                                        <i>
-                                            <a href="" target="_blank" rel="noopener">Super Replay - Overblood Part 1</a>
-                                        </i> on Fandom
-                                    </li>
-                                </ul>
+                            <div class="episode-more-info"></div>
+                        </div>
+                    </div>
+                    <!-- Super Replay Episode List -->
+                    <div class="super-replay-episode-list-container">
+                        <div class="super-replay-episode-list-header">
+                            <h3>Episode List</h3>
+                        </div>
+                        <div class="super-replay-episode-list-button-container">
+                            <button class="prev-scroll-button custom-button" type="button" value="prev">&#10094;</button>
+                            <div class="super-replay-episode-list">
+                                <div class="super-replay-episode-number">01</div>
+                            </div>
+                            <button class="next-scroll-button custom-button" type="button" value="next">&#10095;</button>
+                        </div>
+                    </div>
+                    <!-- Super Replay Episode -->
+                    <div class="super-replay-episode episode">
+                        <div class="episode-main">
+                            <div class="thumbnail-container">
+                                <div class="thumbnail">
+                                    <a title="">
+                                        <img class="video-image" alt="" width="300" height="169" src="" srcset="" />
+                                        <time class="video-length" datetime=""></time>
+                                        <div class="play-video-overlay">
+                                            <img alt="" width="256" height="256" src="../images/play-button-icon-gi(1)-256.png" />
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="episode-details">
+                                <div class="episode-header">
+                                    <h3 class="episode-title"></h3>
+                                    <div class="episode-number"></div>
+                                </div>
+                                <div class="episode-airdate"><b>Air Date: </b><time datetime=""></time></div>
+                                <div class="views-likes-container">
+                                    <div class="views" title="Views"><b><i class="fa fa-eye" aria-hidden="true"></i></b></div>
+                                    <div class="likes" title="Likes (Like Ratio)"><b><i class="fa fa-thumbs-up" aria-hidden="true"></i></b></div>
+                                </div>
+                                <div class="gi-crew">
+                                    <div class="episode-hosts"><b>Host: </b></div>
+                                    <div class="episode-featuring"><b>Featuring: </b></div>
+                                </div>
                             </div>
                         </div>
-                    </section>
-                </div>
+                        <hr />
+                        <div class="episode-more-info"></div>
+                    </div>
+                </section>
             </div>
+
+            <!-- TEMP Super Replay Example -->
+            <section class="super-replay-container">
+                <!-- Super Replay -->
+                <div class="super-replay">
+                    <div class="episode">
+                        <div class="episode-main">
+                            <div class="episode-header">
+                                <h3 class="episode-title">Super Replay: OverBlood</h3>
+                                <div class="episode-number">SR #04</div>
+                            </div>
+                            <div class="thumbnail-container">
+                                <div class="thumbnail">
+                                    <a title="">
+                                        <img class="video-image" alt="" width="300" height="168" src="https://vignette.wikia.nocookie.net/replay/images/9/99/Over.jpg/revision/latest/scale-to-width-down/310?cb=20170819034627" srcset="https://vignette.wikia.nocookie.net/replay/images/9/99/Over.jpg/revision/latest/scale-to-width-down/310?cb=20170819034627 1x https://vignette.wikia.nocookie.net/replay/images/9/99/Over.jpg/revision/latest?cb=20170819034627 2x" />
+                                        <time class="video-length" datetime="">6:22:47</time>
+                                        <div class="play-video-overlay">
+                                            <img alt="" width="256" height="256" src="../images/play-button-icon-gi(1)-256.png" />
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="episode-details">
+                                <div class="episode-airdate"><b>Air Date: </b><time datetime="">December 31, 2010 - January 9, 2011</time></div>
+                                <div class="super-replay-total-episodes"><b>No. of Episodes: </b>6</div>
+                                <div class="views-likes-container">
+                                    <div class="views" title="Average Views"><b><i class="fa fa-eye" aria-hidden="true"></i>(Avg) </b>49,743</div>
+                                    <div class="likes" title="Average Likes (Like Ratio)"><b><i class="fa fa-thumbs-up" aria-hidden="true"></i>(Avg) </b>414 (97.1%)</div>
+                                </div>
+                                <div class="gi-crew">
+                                    <div class="episode-hosts"><b>Host: </b>Dan Ryckert (6) and Tim Turi (6)</div>
+                                    <div class="episode-featuring"><b>Featuring: </b>Andrew Reiner (4), Phill Kollar (2), Matt Helgeson (1), Jeff Cork (1), and Joe Juba (1)</div>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
+                        <div class="episode-more-info">
+                            <p>OverBlood is the featured game of the fourth installment of Super Replay. It premiered on December 31st, 2010 and ended on January 9th, 2011. It featured Dan Ryckert as host, with Tim Turi at the controls. Every episode also featured a third guest, rotating between Matt Helgeson, Andrew Reiner, Jeff Cork, Joe Juba, and Phil Kollar. It created the 12/31 tradition of playing terrible games. The tradition continued the following year with the sequel OverBlood 2.</p>
+                            <p>This particular installment is considered to be one of the most iconic and beloved installments of the Super Replay series, as well as one of great historical significance. According to Andrew Reiner, the original idea for Super Replay was to only play classic, critically-acclaimed games, but this was changed specifically because of how incredibly entertaining Overblood proved to be for all of its shortcomings. In Reiner's detailing the history of Super Replay, Super Replay History & Round-up , posted on July 01 2013, he stated:</p>
+                            <blockquote>"The first episode of Replay aired on January 27, 2010....Game Informer senior associate editor Dan Ryckert pitched me on the idea of playing the entirety of The Legend of Zelda: ALink to the Past...His initial pitch was that Super Replay would be reserved for only the greatest games of all time. Huge names like Zelda, Mario, and Resident Evil wouldn't be given justice with a 30-minute standard episode. Whilewe kept to that idea for several installments, our criteria for SuperReplay candidates changed when we discovered Overblood during a Replay Roulette segment. We even threw around ideas to brand it differently, with names like Super Deplay and Super S---play, but instead decided to loosen up the restrictions on what Super Replay meant."</blockquote>
+                            <p>In addition, the Overblood installment of Super Replay inspired a Facebook Group which has since been referenced many times in future Super Replay episodes (even outside of Overblood's installment), and Game Informer made several t-shirts featuring Pipo, a robot who appears in the game, who they now consider to be their unofficial mascot.</p>
+                            <div class="article-heading">
+                                <h4 class="article-title">Super Replay - Overblood</h4>
+                                <div class="article-author">by Dan Ryckert on Dec 31, 2010 at 04:37 AM</div>
+                            </div>
+                            <p>Here at Game Informer, we have a staff of experienced gamers that have played and defeated just about every game you can imagine. However, we were utterly defeated by one particular title last summer...1997's Overblood. I had the main game picked for our Revolution X episode of Replay, but I needed to grab something from the vault for our Roulette game. I scanned the Playstation section and spotted Overblood, an EA-published game that I had never even heard of. What followed was perhaps the most unsuccessful moment of our gaming careers, and it was all caught on tape. With Tim at the controls and Reiner, Matt Helgeson, and myself trying to figure out what to do, we froze to death in the very first room of the game.</p>
+                            <p>Well, we're back for revenge. We vow to play through the entirety of this completely forgettable survival horror title, and we're giving you lucky readers the chance to watch the drama unfold. Enjoy.</p>
+                            <p>"1/10 UPDATE: The password thing might have gotten messed up since people posted them in the comments, but our readers have put together a Facebook group for people that watched all six parts. Join and mourn the loss from Part 2 with others that know your pain.</p>
+                            <p>"1/12 UPDATE: Yeah, we got us some Pipo shirts.</p>
+                            <p>"Check out all our other Replays at our hub.</p>
+                            <h4>External Links</h4>
+                            <ul class="link-list">
+                                <li>
+                                    <i>
+                                        <a href="https://www.gameinformer.com/b/news/archive/2010/12/31/super-replay-overblood-part-1.aspx" target="_blank" rel="noopener">Super Replay: Overblood</a>
+                                    </i> on Game Informer
+                                </li>
+                                <li>
+                                    <i>
+                                        <a href="https://www.youtube.com/playlist?list=PL63E8E9356E867E63" target="_blank" rel="noopener">Super Replay: Overblood</a>
+                                    </i> on YouTube
+                                </li>
+                                <li>
+                                    <i>
+                                        <a href="https://en.wikipedia.org/wiki/OverBlood" target="_blank" rel="noopener">Overblood</a>
+                                    </i> on Wikipedia
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <!-- Super Replay Episode List -->
+                <div class="super-replay-episode-list-container">
+                    <div class="super-replay-episode-list-header">
+                        <h3>Episode List</h3>
+                    </div>
+                    <div class="super-replay-episode-list-button-container">
+                        <button class="prev-scroll-button custom-button" type="button" value="prev">&#10094;</button>
+                        <div class="super-replay-episode-list">
+                            <div class="super-replay-episode-number">01</div>
+                            <div class="super-replay-episode-number">02</div>
+                            <div class="super-replay-episode-number">03</div>
+                            <div class="super-replay-episode-number">04</div>
+                            <div class="super-replay-episode-number">05</div>
+                            <div class="super-replay-episode-number">06</div>
+                        </div>
+                        <button class="next-scroll-button custom-button" type="button" value="next">&#10095;</button>
+                    </div>
+                </div>
+                <!-- Super Replay Episode -->
+                <div class="super-replay-episode episode">
+                    <div class="episode-main">
+                        <div class="thumbnail-container">
+                            <div class="thumbnail">
+                                <a title="">
+                                    <img class="video-image" alt="" width="320" height="180" src="https://i.ytimg.com/vi/pj4aoTkDfNk/mqdefault.jpg" srcset="" />
+                                    <time class="video-length" datetime="">1:37:44</time>
+                                    <div class="play-video-overlay">
+                                        <img alt="" width="256" height="256" src="../images/play-button-icon-gi(1)-256.png" />
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="episode-details">
+                            <div class="episode-header">
+                                <h3 class="episode-title">OverBlood Part 1</h3>
+                                <div class="episode-number">Ep. 01/06</div>
+                            </div>
+                            <div class="episode-airdate"><b>Air Date: </b><time datetime="">December 31, 2010</time></div>
+                            <div class="views-likes-container">
+                                <div class="views" title="Views"><b><i class="fa fa-eye" aria-hidden="true"></i></b>102,985</div>
+                                <div class="likes" title="Likes (Like Ratio)"><b><i class="fa fa-thumbs-up" aria-hidden="true"></i></b>815 (96.1%)</div>
+                            </div>
+                            <div class="gi-crew">
+                                <div class="episode-hosts"><b>Host: </b>Dan Ryckert and Tim Turi</div>
+                                <div class="episode-featuring"><b>Featuring: </b>Matt Helgeson</div>
+                            </div>
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="episode-more-info">
+                        <p>The first episode of the OverBlood Super Replay has Tim Turi at the controls with Dan Ryckert as host and guest Matt Helgeson. These three were on the original Replay of Revolution X where OverBlood first premiered.</p>
+                        <p>In each episode, Dan gives out a code word, to test if people actually watched the whole Super Replay. Because it proved to be funny, the code word was "Weinerless Steve". Matt was the creator of this phrase, as they did not hear Raz's name until later.</p>
+                        <h4>In This Episode</h4>
+                        <p>The main character, Raz Karcy (affectionately dubbed Weinerless Steve by the Replay crew), wakes up in a freezing room needing to turn up the heat so he doesn't die. After thoroughly trumping the first room (which proved so difficult during the Roulette of the Revolution X\u00a0Replay) in the first eight minutes, they lose 37 minutes of progress by taking an anti gravity device that holds up a statue. Upon removing it, the statue falls and kills Raz, sending the crew back to the beginning of the game. Tim learned to play a little more safely after this, being sure not to take an anti-gravity device from under a floating statue. The puzzle proved so difficult, that Ben Hanson gave Matt the solution as to what to do: push the statue over. They continue the playthrough, thwarting the deadly bust and making a significant amount of progress. The longer than usual episode ends with Tim still unable to find the Voice Recorder.</p>
+                        <h4>External Links</h4>
+                        <ul class="link-list">
+                            <li>
+                                <i>
+                                    <a href="" target="_blank" rel="noopener">Super Replay - Overblood Part 1</a>
+                                </i> on Fandom
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <div id="super-replay-list"></div>
 
             <!-- Bottom Page Number Selection -->
             <div id="page-number-container-bottom" class="page-number-container">
@@ -218,6 +387,7 @@
     </footer>
 
     <!-- Scripts -->
+    <script src="./scripts/superReplayCollection.js" type="module"></script>
     <script src="./scripts/main.js" type="module"></script>
 </body>
 </html>

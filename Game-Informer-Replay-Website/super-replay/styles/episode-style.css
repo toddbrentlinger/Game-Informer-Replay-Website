@@ -1,0 +1,267 @@
+﻿
+/* ---------- Game Informer Episode Stylesheet ---------- */
+
+.episode {
+    margin: .6em 0;
+    /*box-shadow: 0px 0px 5px 0px var(--main-shadow-color);*/
+    box-shadow: inset 0 -3em 3em rgba(150,150,150,.1), 0 .3em 1em -.1em rgba(0,0,0,.3);
+    overflow: hidden;
+    border-radius: 1em;
+    border: 2px solid var(--main-bg-color);
+    border-top: none;
+}
+
+/* Episode Main */
+
+/* Episode Header */
+.episode-header {
+    background-image: linear-gradient(to bottom, var(--main-bg-hover-color) 5%, var(--main-bg-color) 80%);
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    padding: 1em;
+    display: flex;
+    justify-content: space-between;
+    /*border-radius: 1em 1em 0 0;*/
+}
+
+/* Episode Title */
+.episode-title { margin: 0; }
+
+/* Episode Number */
+.episode-number {
+    padding-left: 1em;
+    text-align: right;
+}
+
+/* Thumbnail */
+.thumbnail-container {
+    float: left;
+    width: 45%;
+}
+
+/* Clear-fix */
+.episode-main::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+.thumbnail {
+    width: 100%;
+    padding-top: 56.25%;
+    background-color: #000;
+    position: relative;
+}
+
+.thumbnail > a {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    cursor: pointer;
+}
+
+/* Thumbnail Image */
+.thumbnail img {
+    position: static;
+    height: 100%;
+    width: auto;
+    display: block;
+    margin: 0 auto;
+}
+
+/* Play Video Overlay */
+.thumbnail .play-video-overlay {
+    position: absolute;
+    width: 20%;
+    top: 30%;
+    left: 40%;
+    display: none;
+}
+
+.thumbnail:hover .play-video-overlay {
+    display: block;
+}
+
+.play-video-overlay img {
+    width: 100%;
+    height: auto;
+}
+
+/* Clear-fix */
+.thumbnail::after {
+    content: "";
+    clear: both;
+    display: table;
+}
+
+/* Video length */
+.video-length {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    margin: 4px;
+    padding: 2px 4px;
+    border-radius: 2px;
+    color: #fff;
+    background-color: rgba(0,0,0,0.8);
+    font-size: .8em;
+}
+
+/* ---------- Episode Details ---------- */
+
+.episode-details {
+    float: right;
+    width: 55%;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    /*padding: 0 1em;*/
+    font-size: .9em;
+}
+
+.episode-airdate, .gi-crew > *, .segments > *, .views-likes-container {
+    padding: .4em 1em;
+}
+
+.episode-airdate { padding-right: 1em; }
+
+.gi-crew { width: 100%; }
+
+/* Views/Likes */
+.views-likes-container {
+    display: flex;
+    justify-content: flex-end;
+    flex-wrap: wrap;
+}
+
+.views-likes-container .views {
+    padding-right: 1em;
+}
+
+.views-likes-container .fa {
+    margin-right: .5em;
+}
+
+/* ---------- Episode More Info ---------- */
+
+.episode-more-info {
+    padding: 0 1.5em;
+    font-size: .9em;
+}
+
+.episode-more-info h4 {
+    text-transform: capitalize;
+    font-size: 1.1em;
+}
+
+/* ---------- GI Article ---------- */
+
+.article-heading {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 1.33em 0;
+}
+
+.article-title {
+    margin: 0;
+    padding-right: .8em;
+}
+
+.article-author {
+    align-self: flex-end;
+    font-size: .9em;
+}
+
+/* ---------- Gallery ---------- */
+
+.gallery-container {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.gallery-item {
+    margin: .3em;
+    border-style: solid;
+    border-width: .2em;
+    border-color: var(--main-bg-color);
+    border-radius: .5em;
+    overflow: hidden;
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    box-shadow: 0 .3em 1em -.1em rgba(0,0,0,.3);
+}
+
+.gallery-item figure {
+    display: table;
+    margin: 0;
+}
+
+.gallery-item figure a {
+    display: block;
+}
+
+.gallery-item figcaption {
+    display: table-caption;
+    caption-side: bottom;
+    text-align: center;
+    padding: .3em;
+}
+
+/* ---------- Lists of Links ---------- */
+
+/* Episode Anchor Links */
+.episode-more-info a { color: #1f64e3; }
+.episode-more-info a:visited { color: #ff008e; } /* #c10172 */
+ul.link-list { column-count: 1; }
+
+/* ---------- Thematic Break hr ---------- */
+
+.episode hr {
+    border: 0;
+    height: 2px;
+    /*background-color: var(--main-bg-color);*/
+    background-image: linear-gradient(to right, rgba(0,0,0,0), var(--main-bg-color) 20%, var(--main-bg-color) 80%, rgba(0,0,0,0));
+    margin: 0 1em;
+}
+
+/* ------------------------------- */
+/* ---------- Dark Mode ---------- */
+/* ------------------------------- */
+
+@media (prefers-color-scheme: dark) {
+    .episode-details b, .episode-more-info h4, .views-likes-container .fa {
+        color: var(--main-text-color);
+    }
+}
+
+[data-theme="dark"] .episode-details b,
+[data-theme="dark"] .episode-more-info h4,
+[data-theme="dark"] .views-likes-container .fa {
+    color: var(--main-text-color);
+}
+
+/* ----------------------------------- */
+/* ---------- Media Queries ---------- */
+/* ----------------------------------- */
+
+/*
+    - desktop ( > 1600px )
+    - laptop ( <= 1600px )
+    - tablets in landscape orientation ( <= 1024px )
+    @media only screen and (min-width: 768px) and (max-width: 1024px) and (orientation: landscape) {}
+    - tablets ( <= 768px )
+    - mobile ( <= 480px )
+*/
+
+@media (max-width: 650px) { /* 550px */
+    /*
+    .episode-details { width: 100%; }
+    .episode-more-info { padding: 0 1em; }
+    */
+    ul.link-list {
+        column-count: 1;
+    }
+}

@@ -350,7 +350,7 @@ replayEpisodeCollection.clearMainElement = function () {
         while (episodeElements.length > 0)
             this.mainElement.removeChild(episodeElements[episodeElements.length - 1]);
     }
-}
+};
 
 // updateDisplayedEpisodes()
 // Populate main HTML element with episode HTML from displayed episodes array

@@ -1,31 +1,34 @@
 ﻿"use strict";
 
-import { SuperReplay } from "./superReplay.js";
-
 console.log("main.js has started");
 
+superReplayCollection.init();
 init();
 
-//var test = new TestClass();
-//console.log("TestClass instance number:", test.number);
+// -------------------------------
+// ---------- Functions ----------
+// -------------------------------
 
 function init() {
-    let requestURL = "data/gameInformerSuperReplayFandomWikiData.json";
-    let request = new XMLHttpRequest();
-    request.open('GET', requestURL);
+    // -------------------------------------
+    // ---------- Event Listeners ----------
+    // -------------------------------------
 
-    request.responseType = 'json';
-    request.send();
+    // Jump To Top Page
+    const jumpToTopPageElement = document.getElementById('jump-top-page-container');
+    const topPageElement = document.getElementById('top-page');
+    const mainElement = document.querySelector('main');
+    window.addEventListener("scroll", function () {
+        jumpToTopPageElement.style.display =
+            (mainElement.getBoundingClientRect().top < 0) ? "block" : "none";
+    }, false);
+    jumpToTopPageElement.addEventListener("click", function () {
+        topPageElement.scrollIntoView();
+    }, false);
 
-    request.onload = function () {
-        window.superReplaysJSON = request.response;
-        setUpSuperReplaysFromJSON();
-    }
-}
+    // Set date for copyright
+    document.getElementById('copyright-current-year').innerHTML = `2019-${new Date().getFullYear()}`;
 
-function setUpSuperReplaysFromJSON() {
-    window.superReplays = [];
-    window.superReplaysJSON.forEach(superReplayDict =>
-        window.superReplays.push(new SuperReplay(superReplayDict))
-    );
+    // Set date the document was last modified at the bottom of the page
+    document.getElementById('lastModifiedDate').innerHTML = new Date(document.lastModified).toDateString();
 }

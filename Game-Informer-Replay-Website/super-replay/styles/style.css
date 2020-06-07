@@ -1,6 +1,6 @@
-﻿/* ---------------------------------------------------- */
-/* ---------- General Page Styles ---------- */
-/* ---------------------------------------------------- */
+﻿/* ------------------------------------------------------ */
+/* ---------- Super Replay General Page Styles ---------- */
+/* ------------------------------------------------------ */
 
 /* ------------------------------- */
 /* ---------- Variables ---------- */
@@ -691,10 +691,6 @@ main {  margin: 0 .8em; }
         background-image: url("/images/Game_Informer_logo_(2010-present)_1024(dark_mode).png");
     }
 
-    .episodeDetails b, .episodeMoreInfo h4, .views-likes-container .fa {
-        color: var(--main-text-color);
-    }
-
     #jump-top-page-container > a > i {
         color: var(--main-text-color);
     }
@@ -724,11 +720,6 @@ main {  margin: 0 .8em; }
 }
 [data-theme="dark"] header {
     background-image: url("/images/Game_Informer_logo_(2010-present)_1024(dark_mode).png");
-}
-[data-theme="dark"] .episodeDetails b, 
-[data-theme="dark"] .episodeMoreInfo h4,
-[data-theme="dark"] .views-likes-container .fa {
-    color: var(--main-text-color);
 }
 [data-theme="dark"] #jump-top-page-container i {
     color: var(--main-text-color);
@@ -862,12 +853,7 @@ input:checked + .slider:before {
         float: none;
         width: 100%;
         margin: 0;
-    }
-    /*
-    .episodeDetails { width: 100%; }
-    .episodeMoreInfo { padding: 0 1em; }
-    */
-    ul.link-list { column-count: 1; }
+    }*/
     #sort-main { flex-direction: column; }
     #number-displayed-container { margin-top: .6em; }
 }

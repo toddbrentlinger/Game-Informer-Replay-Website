@@ -1,10 +1,78 @@
 ﻿TO-DO:
 
+5/29/20
+
+- ISSUE: How to start selected episode if changing episode list only changes
+the displayed info?
+SOLUTION 01: Put thumbnail back in 'episode-details' and just display episode
+numbers in episode list.
+SOLUTION 02: Clicking thumbnail of already selected episode will start the video.
+First episode is default selected and only need to click once to start video.
+If user wants to play a later episode, they must click the thumbnail once to select
+the video and display the episode info below. Then click the thumbnail again to
+play the video. Might NOT be intuitive unless told in note.
+
+- Add createNode() for SuperReplay and SuperReplayEpisode since each episode
+will need it's own node separate from the base SuperReplay node.
+
+- When video is has started to play, the thumbnail is greyed out with white
+text "NOW PLAYING". Reference YouTube.
+
+- Change PLAY overlay to single white triangle like YouTube while greyed out.
+
+- Reduce size of Game Informer header image
+
+5/28/20
+
+- Add 's' at the end of 'Host' if more than one name is listed as host.
+
+- Add tab to bottom right of 'more info' sections to give user option to 
+open/close the section for viewing.
+
+5/27/20
+
+- For paragraph elements in headlines, if it starts and ends with double quotes,
+assume it is a quote and apply special format such as being centered and more padding
+on the sides.
+
 5/26/20
 
 - IDEA: Display random quotes on right column that changes every
 few seconds. Left column would be the search/filter options. Both columns
 are absolute positoned and locked to each side as the middle is scrolled.
+
+- Add sliders to filter menu to only show episodes with a property within
+a specific range. Which properties would make sense to only filter
+within a range? Examples:
+	- like ratio
+		- best episodes: episodes with ratio between 95%-100%
+		- worst episodes: episodes with ratio between 0%-50% 
+		- Maybe provide "Misc Options" in Filter that include
+		  "Best Episodes" and "Worst Episodes"
+	- airdate (similar function in filter by choosing specific years or seasons)
+
+- Change 'super-replay-episode' css class to 'episode' and use the same
+stylesheet for Replay episodes and Super Replay episodes.
+
+- Maybe show the entire duration of the video playlist in the duration
+of the Super Replay thumbnail.
+
+- Make sure to prioritize the airdate listed on the Fandom wiki and NOT
+ the youtube airdate since it could have been uploaded much later.
+ (ex. Classic Replays and some early Super Replay episodes)
+
+ - For Super Replay list of host and featuring, list the names in order
+ of most appearances to least appearances. Include number in parentheses
+ after name for number of episodes they appeared in.
+
+ - Maybe remove thumbnail from Super Replay Episode, instead use the
+ highlighted thumbnail from the episode list carousel. If no thumbnail,
+ add YouTube description to episode details.
+
+ - Add episode number to the bottom left of each thumbnail in the super
+ replay episode list.
+
+ - Add button to show/hide more info for each episode.
 
 5/24/20
 

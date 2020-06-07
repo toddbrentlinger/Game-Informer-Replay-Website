@@ -1,155 +1,79 @@
 ﻿
-/* Super Replay Details */
+/* ---------- Super Replay ---------- */
 
-.super-replay {
-    background-color: green;
+.super-replay .episode {
+    margin-bottom: 0;
+    border-radius: 1em 1em 0 0;
+    border-bottom: none;
 }
 
-/* Super Replay Episode List */
+.super-replay-total-episodes { padding: .4em 1em; }
 
-.super-replay-episode-list {
-    background-color: yellow;
+/* ---------- Super Replay Episode List ---------- */
+
+.super-replay-episode-list-container {
+    border-right: 2px solid var(--main-bg-color);
+    border-left: 2px solid var(--main-bg-color);
 }
 
-/* Super Replay Episode Details */
-
-.super-replay-episode {
-    /*box-shadow: 0px 0px 5px 0px var(--main-shadow-color);*/
-    box-shadow: inset 0 -3em 3em rgba(150,150,150,.1), 
-        0 .3em 1em -.1em rgba(0,0,0,.3);
-    overflow: hidden;
-    border: 2px solid var(--main-bg-color);
-    /*border-top: none;*/
-    border-radius: 0 0 1em 1em;
-}
-
-/* Thumbnail */
-.thumbnail-container {
-    float: left;
-    width: 45%;
-}
-
-/* Clear-fix */
-.episode-main::after {
-    content: "";
-    clear: both;
-    display: table;
-}
-
-.thumbnail {
-    width: 100%;
-    padding-top: 56.25%;
-    background-color: #000;
-    position: relative;
-}
-
-.thumbnail > a {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-/* Thumbnail Image */
-.thumbnail img {
-    position: static;
-    height: 100%;
-    width: auto;
-    display: block;
-    margin: 0 auto;
-}
-
-/* Play Video Overlay */
-.thumbnail .play-video-overlay {
-    position: absolute;
-    width: 20%;
-    top: 30%;
-    left: 40%;
-    display: none;
-}
-.thumbnail:hover .play-video-overlay { display: block; }
-.play-video-overlay img {
-    width: 100%;
-    height: auto;
-}
-
-/* Clear-fix */
-.thumbnail::after {
-    content: "";
-    clear: both;
-    display: table;
-}
-/* Video length*/
-.video-length {
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    margin: 4px;
-    padding: 2px 4px;
-    border-radius: 2px;
-    color: #fff;
-    background-color: rgba(0,0,0,0.8);
-    font-size: .8em;
-}
-
-/* ---------- Episode Details ---------- */
-
-.episode-details {
-    float: right;
-    width: 55%;
-    display: flex;
-    justify-content: space-between;
-    flex-wrap: wrap;
-    /*padding: 0 1em;*/
-    font-size: .9em;
-}
-
-.episode-header {
-    width: 100%;
+.super-replay-episode-list-header {
     background-image: linear-gradient(to bottom, var(--main-bg-hover-color) 5%, var(--main-bg-color) 80%);
     background-color: var(--main-bg-color);
     color: var(--main-text-color);
-    /*padding: 1em;*/
+}
+.super-replay-episode-list-header h3 {
+    margin: 0;
+    padding: .5em 1.5em;
+    text-align: center;
+}
+
+.super-replay-episode-list-button-container {
     display: flex;
     justify-content: space-between;
-    /*border-radius: 1em 1em 0 0;*/
-}
-.episode-details > .episode-header { padding: .5em 1em; }
-
-.episode-title { margin: 0; }
-
-.episode-number {
-    padding-left: 1em;
-    text-align: right;
 }
 
-.episode-header, .episode-airdate, .gi-crew > *, .views-likes-container {
-    padding: .4em 1em;
+.super-replay-episode-list-button-container > button {
+    width: 10%;
+    border-radius: 0;
 }
+.super-replay-episode-list .prev-scroll-button { }
+.super-replay-episode-list .next-scroll-button { }
 
-.episode-airdate { padding-right: 1em; }
-.gi-crew { width: 100%; }
-
-/* Views/Likes */
-.views-likes-container {
+.super-replay-episode-list {
+    width: 80%;
     display: flex;
-    justify-content: flex-end;
-    flex-wrap: wrap;
+    justify-content: space-around;
+    overflow: scroll;
 }
-.views-likes-container .views { padding-right: 1em; }
-.views-likes-container .fa { margin-right: .5em; }
 
-/* ---------- Episode More Info ---------- */
+.super-replay-episode-number {
+    background-image: linear-gradient(to bottom, var(--main-bg-hover-color) 5%, var(--main-bg-color) 80%);
+    background-color: var(--main-bg-color);
+    color: var(--main-text-color);
+    padding: 1em;
+    margin: 2px 0;
+}
+.super-replay-episode-number:hover {
+    cursor: pointer;
+}
 
-/* ---------- Thematic Break hr ---------- */
+/* ---------- Super Replay Episode ---------- */
 
-.super-replay-episode hr {
-    border: 0;
-    height: 2px;
-    /*background-color: var(--main-bg-color);*/
-    background-image: linear-gradient(to right, rgba(0,0,0,0), var(--main-bg-color) 20%, var(--main-bg-color) 80%, rgba(0,0,0,0));
-    margin: 0 1em;
+.super-replay-episode.episode {
+    margin-top: 0;
+    border: 2px solid var(--main-bg-color);
+    border-radius: 0 0 1em 1em;
+    border-top: none;
+}
+
+.super-replay-episode .episode-details { /*padding: 0 1em;*/ }
+
+.super-replay-episode .episode-header { width: 100%; }
+.super-replay-episode .episode-header h3 { }
+
+.super-replay-episode .episode-airdate,
+.super-replay-episode .gi-crew > *,
+.super-replay-episode .segments > *,
+.super-replay-episode .views-likes-container {
+    /*padding: .4em 1.5em;*/
 }

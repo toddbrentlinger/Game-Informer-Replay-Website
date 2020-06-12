@@ -5,7 +5,7 @@
  * and reason for FLAG (ex. air dates from two sources do NOT match)
  */
 
-class ReplayEpisode {
+export class ReplayEpisode {
     // -----------
     // Constructor
     // -----------

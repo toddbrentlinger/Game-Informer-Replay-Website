@@ -18,7 +18,7 @@ window.sort = Object.freeze({
 /** @author Todd Brentlinger */
 window.superReplayCollection = {
     // Array to hold base list of SuperReplay objects
-    superReplayObjectArray: [],
+    _superReplayObjectArray: [],
     // Array to hold list of SuperReplay objects that reference the
     // base list but the length and order can be changed
     displayedSuperReplays: [],
@@ -29,10 +29,44 @@ window.superReplayCollection = {
         'ascending': false,
         'isShuffled': false
     },
-    // sort - Sort Type
+    // Sort - Sort Type
+    sortTypeElement: document.getElementById('sort-type-select'),
     get sortType() { return this._sortObj.type; },
     set sortType(input) {
+        let tempSortType; // Initialized to undefined
+        // If arg is a string type, compare to properties of sort enum
+        if (typeof input === 'string') {
+            switch (input) {
+                case 'views': tempSortType = sort.views; break;
+                case 'likes': tempSortType = sort.likes; break;
+                case 'like-ratio': tempSortType = sort.likeRatio; break;
+                case 'dislikes': tempSortType = sort.dislikes; break;
+                case 'video-length': tempSortType = sort.length; break;
+                case 'none': tempSortType = sort.none; break;
+                case 'number': tempSortType = sort.number; break;
+                case 'airdate':
+                default: tempSortType = sort.airdate;
+            }
+        }
+        // Else If arg is a number type, compare to values of sort enum
+        else if (typeof input === 'number') {
+            for (const property in sort) {
+                if (sort[property] == input) {
+                    tempSortType = input;
+                    break;
+                }
+            }
+        }
+        // Assign sortType
+        // If tempSortType is still undefined, do NOT assign sortType and throw error
+        if (typeof tempSortType === 'undefined') {
+            console.error('Could NOT assign sortType to value: ' + input);
+            this._sortObj.type = sort.none;
+        } else // Else assign tempSortType to sortType
+            this._sortObj.type = tempSortType;
 
+        // Check value of HTML select element for sort type
+        this.sortTypeElement.value = this.sortTypeAttribute;
     },
     get sortTypeAttribute() {
         switch (this.sortType) {
@@ -48,13 +82,25 @@ window.superReplayCollection = {
         }
     },
     // Sort - Ascending
+    sortDirectionElement: document.getElementById('sort-direction-select'),
     get ascending() { return this._sortObj.ascending; },
-    set ascending(bIsAscending) {
+    set ascending(bool) {
+        // If bool is string, convert to bool
+        if (typeof bool === 'string')
+            this._sortObj.ascending = (bool.toLowerCase() === 'true') ? true : false;
+        // Else If bool is boolean, assign as is
+        else if (typeof bool === 'boolean')
+            this._sortObj.ascending = bool;
+        // Else assign false for descending list by default
+        else
+            this._sortObj.ascending = false;
 
+        // Check value of HTML select element for ascending
+        this.sortDirectionElement.value = this.ascending ? 'ascending' : 'descending';
     },
     // Sort - Shuffle
     get isShuffled() { return this._sortObj.isShuffled; },
-    set isShuffled(bIsShuffled) {
+    set isShuffled(bool) {
 
     },
 
@@ -104,11 +150,11 @@ superReplayCollection.init = function (superReplayArray) {
 
         // Create SuperReplay object array
         request.response.forEach(superReplayDict =>
-            this.superReplayObjectArray.push(new SuperReplay(superReplayDict, nodeTemplate))
+            this._superReplayObjectArray.push(new SuperReplay(superReplayDict, nodeTemplate))
         );
 
         // Initialize array of displayed SuperReplay objects that can change
-        this.displayedSuperReplays = this.superReplayObjectArray.slice();
+        this.displayedSuperReplays = this._superReplayObjectArray.slice();
 
         // Populate document with initialized displayed Super Replays array
         this.updateSuperReplayListElement();
@@ -145,10 +191,11 @@ superReplayCollection.updateDisplayedSuperReplays = function () {
 };
 
 superReplayCollection.populateStats = function () {
-    let totalTime, totalViews, totalLikes, totalDislikes;
-    totalTime = totalViews = totalLikes = totalDislikes = 0;
+    let totalEpisodes, totalTime, totalViews, totalLikes, totalDislikes;
+    totalEpisodes = totalTime = totalViews = totalLikes = totalDislikes = 0;
 
-    this.superReplayObjectArray.forEach(superReplay => {
+    this._superReplayObjectArray.forEach(superReplay => {
+        totalEpisodes += superReplay.episodes.length;
         superReplay.episodes.forEach(episode => {
             totalTime += episode.runtimeInSeconds;
             totalViews += episode.youtubeVideo.views;
@@ -156,6 +203,9 @@ superReplayCollection.populateStats = function () {
             totalDislikes += episode.youtubeVideo.dislikes;
         });
     });
+
+    // Total Number of Episodes
+    document.getElementById('stats-total-episodes').insertAdjacentText('beforeend', totalEpisodes);
 
     // Total Time
     const days = Math.floor(totalTime / 86400)
@@ -177,7 +227,7 @@ superReplayCollection.populateStats = function () {
 };
 
 superReplayCollection.getSuperReplayByNumber = function (num) {
-    this.superReplayObjectArray.forEach(superReplay => {
+    this._superReplayObjectArray.forEach(superReplay => {
         if (superReplay.number === num) {
             console.log(superReplay);
             return superReplay;

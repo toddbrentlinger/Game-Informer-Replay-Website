@@ -1,31 +1,28 @@
 ﻿"use strict";
-console.time('window finished loading');
+//console.time('window finished loading');
 import { loadPlayerAPI } from "./youtubePlayerController.js";
 
-// Replay Episode Collection
-// Using JS file
-replayEpisodeCollection.init(replayEpisodeArray);
-loadPlayerAPI();
-/* Using JSON file
-getReplayEpisodeArr();
-function getReplayEpisodeArr() {
-    // Use data from JSON file
-    let requestURL = 'data/gameInformerReplayFandomWikiData.json';
-    let request = new XMLHttpRequest();
-    request.open('GET', requestURL);
-    request.responseType = 'json';
-    request.send();
-    request.onload = function () {
-        replayEpisodeCollection.init(request.response);
-        loadPlayerAPI();
-    }
-}
-*/
+let requestURL = "data/gameInformerReplayFandomWikiData.json";
+let request = new XMLHttpRequest();
+request.open('GET', requestURL);
 
+request.responseType = 'json';
+request.send();
+
+request.onload = function () {
+    replayEpisodeCollection.init(request.response);
+    loadPlayerAPI();
+};
+
+// Replay Episode Collection:
+// Using JS file
+//replayEpisodeCollection.init(replayEpisodeArray);
+//loadPlayerAPI();
+/*
 window.addEventListener("load", function () {
     console.timeEnd('window finished loading');
 });
-
+*/
 // Current Episode Display Toggle
 replayEpisodeCollection.currentEpisodeInfoToggleButton
     .addEventListener("click",

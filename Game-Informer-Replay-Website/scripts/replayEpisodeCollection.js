@@ -1,17 +1,17 @@
 ﻿"use strict";
 
-//import { ReplayEpisode } from './replayEpisode.js';
+import { ReplayEpisode } from './replayEpisode.js';
 
 // Sort enum
-const sort = Object.freeze({
-    none: 0,
-    number: 1,
-    airdate: 2,
-    views: 3,
-    likes: 4,
-    likeRatio: 5,
-    dislikes: 6,
-    length: 7
+window.sort = Object.freeze({
+    'none': 0,
+    'number': 1,
+    'airdate': 2,
+    'views': 3,
+    'likes': 4,
+    'likeRatio': 5,
+    'dislikes': 6,
+    'length': 7
 });
 
 /*
@@ -31,7 +31,7 @@ const filter = Object.freeze({
 */
 
 // Object: Collection of all replay episodes
-var replayEpisodeCollection = {
+window.replayEpisodeCollection = {
     // Properties
     totalTimeSeconds: 0,
     mainElement: document.getElementById('main'),

@@ -125,7 +125,9 @@ export class SuperReplay {
         // Airdate
         this.sectionNode.querySelector('.episode-airdate')
             .insertAdjacentText('beforeend',
-                `${this.episodes[0].airdateString} - ${this.episodes[this.episodes.length - 1].airdateString}`
+                this.episodes.length > 1 
+                    ? `${this.episodes[0].airdateString} - ${this.episodes[this.episodes.length - 1].airdateString}`
+                    : this.episodes[0].airdateString
             );
 
         // Total Episodes
@@ -203,10 +205,15 @@ export class SuperReplay {
                 'div', 'article-author', `by ${this.gameInformerArticle.author}${this.gameInformerArticle.date}`));
             // Add article content
             if (this.gameInformerArticle.content !== undefined) {
+                childNode = document.createElement('div');
+                childNode.innerHTML = this.gameInformerArticle.content;
+                parentNode.appendChild(childNode);
+                /*
                 for (const para of this.gameInformerArticle.content) {
                     if (para.replace(/\s/g, '').length)
                         parentNode.appendChild(Episode.createElement('p', undefined, para));
                 }
+                */
             }
         }
 

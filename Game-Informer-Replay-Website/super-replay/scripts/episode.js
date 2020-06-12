@@ -138,22 +138,26 @@ export class Episode {
      * @return {Date|String} The Date object if date string can be converted, else returns parameter String object unchanged
      */
     static convertStringToDate(dateString) {
-        // If air date does not exist, assign empty string
+        // If air date does not exist, return undefined
         if (!dateString || dateString.length == 0)
-            this.airdate = '';
-        else { // Else air date does exist
-            if (dateString.includes('/')) {
-                let newDateString = ((dateString[2] < 50) ? '20' : '') +
-                    dateString[2];
-                newDateString += '-' + dateString[0] + '-' +
-                    dateString[1];
-                return new Date(newDateString);
-            }
-            else if (dateString.includes(','))
-                return new Date(dateString);
-            else
-                return dateString;
+            return;
+        // Air date does exist
+        if (dateString.includes("/")) {
+            const dateArr = dateString.split("/"); // [Month, Day, Year]
+            const newDateStr = (dateArr[2] < 50 ? `20${dateArr[2]}` : `19${dateArr[2]}`) + `-${dateArr[0]}-${dateArr[1]}`;
+            return new Date(newDateStr);
+            /*
+            let newDateString = ((dateString[2] < 50) ? "20" : "") +
+                dateString[2];
+            newDateString += "-" + dateString[0] + "-" +
+                dateString[1];
+            return new Date(newDateString);
+            */
         }
+        else if (dateString.includes(","))
+            return new Date(dateString);
+        else
+            return;
     }
 
     /**

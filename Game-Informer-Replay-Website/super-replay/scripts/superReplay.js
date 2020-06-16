@@ -66,6 +66,37 @@ export class SuperReplay {
     // Properties that reference primitive types in JSON (Boolean, null, undefined, String, Number)
     get title() { return this._superReplayJSON.title; }
     get number() { return this._superReplayJSON.number; }
+    get playlistRuntime() {
+        return this.episodes.reduce(
+            (total, episode) => total + episode.runtimeInSeconds,
+            0);
+    }
+    get averageViews() {
+        const totalViews = this.episodes.reduce(
+            (total, episode) => total + episode.youtubeVideo.views,
+            0);
+        return totalViews / this.episodes.length;
+    }
+    get averageLikes() {
+        const totalLikes = this.episodes.reduce(
+            (total, episode) => total + episode.youtubeVideo.likes,
+            0);
+        return totalLikes / this.episodes.length;
+    }
+    get averageDislikes() {
+        const totalDislikes = this.episodes.reduce(
+            (total, episode) => total + episode.youtubeVideo.dislikes,
+            0);
+        return totalDislikes / this.episodes.length;
+    }
+    get averageLikeRatio() {
+        let totalLikes = 0, totalDislikes = 0;
+        this.episodes.forEach(episode => {
+            totalLikes += episode.youtubeVideo.likes;
+            totalDislikes += episode.youtubeVideo.dislikes;
+        });
+        return totalLikes / (totalLikes + totalDislikes);
+    }
 
     // ---------------------------------------
     // ---------- Methods/Functions ----------
@@ -118,7 +149,7 @@ export class SuperReplay {
 
         // Video Length
         this.sectionNode.querySelector('.super-replay .video-length')
-            .insertAdjacentText('afterbegin', this.getPlaylistRuntime());
+            .insertAdjacentText('afterbegin', this.getPlaylistRuntimeString());
 
         // ---------- Details ----------
 
@@ -282,18 +313,15 @@ export class SuperReplay {
         // ------------------------------------------
     }
 
-    /** Get total runtime of all episodes in Super Replay
+    /** Get total runtime as string of all episodes in Super Replay
      * */
-    getPlaylistRuntime() {
-        let timeInSeconds = 0;
-        this.episodes.forEach(episode => {
-            timeInSeconds += episode.runtimeInSeconds;
-        });
-        //return new Date(timeInSeconds * 1000).toISOString().substr(11, 8)
+    getPlaylistRuntimeString() {
+        const timeInSeconds = this.playlistRuntime;
 
         const hours = Math.floor(timeInSeconds / 3600);
         const minutes = Math.floor((timeInSeconds - hours * 3600) / 60);
         const seconds = timeInSeconds - hours * 3600 - minutes * 60;
+
         return `${hours ? hours + ":" : ""}${minutes < 10 ? "0" + minutes : minutes}:${seconds < 10 ? "0" + seconds : seconds}`;
     }
 

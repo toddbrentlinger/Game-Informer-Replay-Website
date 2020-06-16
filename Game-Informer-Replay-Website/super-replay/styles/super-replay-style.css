@@ -43,9 +43,24 @@
     /*width: 80%;*/
     display: flex;
     /*justify-content: space-around;*/
-    overflow-x: auto;
+    overflow-x: hidden;
     -webkit-overflow-scrolling: touch;
     -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+
+/* Scroll Animation */
+.scroll-left {
+    animation-name: scroll-left;
+    animation-duration: .5s;
+}
+
+@keyframes scroll-left {
+    from {
+
+    }
+    to {
+
+    }
 }
 
 .super-replay-episode-number {

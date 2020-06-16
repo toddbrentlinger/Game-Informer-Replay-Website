@@ -866,6 +866,7 @@ replayEpisodeCollection.updatePageNumberAdv = function (positionStr, scrollToTop
     // Variables
     const pageNumberContainer = document.getElementById(`page-number-container${(positionStr) ? '-' + positionStr : ''}`);
     const pageNumberList = pageNumberContainer.querySelector('.page-number-list');
+    const maxButtonsMidCeil = Math.ceil(this.maxDisplayedButtons / 2);
 
     // Hide page container if total pages is less than 2
     pageNumberContainer.style.display = (this.totalPages < 2) ? 'none' : null;
@@ -882,48 +883,40 @@ replayEpisodeCollection.updatePageNumberAdv = function (positionStr, scrollToTop
     // OR current page is near beginning of list
     pageNumberContainer.querySelector('button[value="first"]')
         .disabled = (this.totalPages <= this.maxDisplayedButtons
-            || this.currentPageDisplayed <= this.maxDisplayedButtons
-    );
+            || this.currentPageDisplayed <= maxButtonsMidCeil
+        );
 
     // Page number list
+    let start, end;
     // If totalPages is more than maxDisplayedButtons
     if (this.totalPages > this.maxDisplayedButtons) {
-        // If current page is near beginning of list
-        if (this.currentPageDisplayed <= this.maxDisplayedButtons) {
-            // Add maxDisplayedButtons buttons starting with 1
-            for (let i = 1; i <= this.maxDisplayedButtons; i++) {
-                pageNumberList.appendChild(this.createNumberedButton(i, i, scrollToTop));
-            }
-        } else if (this.currentPageDisplayed > this.totalPages - this.maxDisplayedButtons) {
-            // Add maxDisplayedButtons buttons ending with totalPages
-            for (let i = this.totalPages - this.maxDisplayedButtons + 1;
-                i <= this.totalPages; i++) {
-                pageNumberList.appendChild(this.createNumberedButton(i, i, scrollToTop));
-            }
-        } else { // Else current page is in middle of list
-            // Add currentPage as middle button
-            // Add(maxDisplayedButtons - 1) / 2 buttons to each side of currentPage
-            for (let i = this.currentPageDisplayed - .5 * (this.maxDisplayedButtons - 1);
-                i <= this.currentPageDisplayed + .5 * (this.maxDisplayedButtons - 1);
-                i++) {
-                pageNumberList.appendChild(this.createNumberedButton(i, i, scrollToTop));
-            }
+        if (this.currentPageDisplayed > this.totalPages - maxButtonsMidCeil) {
+            // Show last maxDisplayedButtons
+            start = this.totalPages - this.maxDisplayedButtons + 1;
+            end = this.totalPages;
+        } else if (this.currentPageDisplayed > maxButtonsMidCeil) {
+            // Show buttons with currentPageDisplayed in middle
+            start = this.currentPageDisplayed - maxButtonsMidCeil + 1;
+            end = this.currentPageDisplayed + maxButtonsMidCeil - 1;
+        } else {
+            // Show first maxDisplayedButtons
+            start = 1;
+            end = this.maxDisplayedButtons;
         }
     } else { // Else totalPages is less than or equal to maxDisplayedButtons
         // Add buttons ranging from 1 to totalPages
-        if (this.totalPages > 1) {
-            for (let i = 1; i <= this.totalPages; i++) {
-                pageNumberList.appendChild(this.createNumberedButton(i, i, scrollToTop));
-            }
-        }
+        start = 1;
+        end = this.totalPages;
     }
+    for (let i = start; i <= end; i++)
+        pageNumberList.appendChild(this.createNumberedButton(i, i, scrollToTop));
 
     // Disable 'LAST' if totalPages is less than or equal to maxDisplayedButtons
     // OR current page is near end of list
     pageNumberContainer.querySelector('button[value="last"]')
         .disabled = (this.totalPages <= this.maxDisplayedButtons
-            || (this.currentPageDisplayed > this.totalPages - this.maxDisplayedButtons)
-    );
+            || this.currentPageDisplayed >= this.totalPages - maxButtonsMidCeil + 1
+        );
 
     // Disable 'NEXT' if current page is equal to last page (totalPages)
     pageNumberContainer.querySelector('button[value="next"]')

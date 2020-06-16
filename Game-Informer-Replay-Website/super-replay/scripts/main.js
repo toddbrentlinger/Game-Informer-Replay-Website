@@ -14,7 +14,59 @@ function init() {
     // ---------- Event Listeners ----------
     // -------------------------------------
 
-    // Jump To Top Page
+    // ---------- Sort ----------
+
+    // Sort - Type
+    document.querySelector(
+        '#sort-container select[name = "sort-type"]')
+        .addEventListener("change",
+            superReplayCollection.setSortByEvent
+                .bind(superReplayCollection),
+        false);
+    // Sort - Direction
+    document.querySelector(
+        '#sort-container select[name = "sort-direction"]')
+        .addEventListener("change",
+            superReplayCollection.setSortByEvent
+                .bind(superReplayCollection),
+        false);
+    // Sort - Max Displayed
+    document.querySelector(
+        '#sort-container select[name = "max-displayed"]')
+        .addEventListener("change",
+            superReplayCollection.setSortByEvent
+                .bind(superReplayCollection),
+        false);
+
+    // ---------- Shuffle ----------
+
+    document.getElementById('button-shuffle')
+        .addEventListener("click",
+            superReplayCollection.shuffleSelectedSuperReplays
+                .bind(superReplayCollection),
+        false);
+
+    // ---------- Reset ----------
+
+    document.getElementById('button-reset-list')
+        .addEventListener("click",
+            superReplayCollection.resetSelectedSuperReplays
+                .bind(superReplayCollection),
+        false);
+
+    // ---------- Page Select ----------
+
+    document.querySelectorAll('.page-number-container > button')
+        .forEach(function (node) {
+            node.addEventListener("click", function () {
+                superReplayCollection
+                    .setPageNumber(this.getAttribute('value'),
+                        this.parentElement.id.includes('bottom'));
+            }, false);
+        });
+
+    // ---------- Jump To Top Page ----------
+
     const jumpToTopPageElement = document.getElementById('jump-top-page-container');
     const topPageElement = document.getElementById('top-page');
     const mainElement = document.querySelector('main');

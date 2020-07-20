@@ -237,7 +237,7 @@ export class ReplayEpisode {
         this.image.srcset.forEach(function (source, index, array) {
             temp += source;
             // Add characters between values in array
-            temp = (index === array.length - 1) ? ''
+            temp += (index === array.length - 1) ? ''
                 : (index === 1) ? ', ' : ' ';
         });
         parentNode.setAttribute('srcset', temp);

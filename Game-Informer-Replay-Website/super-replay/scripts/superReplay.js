@@ -4,7 +4,7 @@
 import { GameInformerArticle } from "./gameInformerArticle.js";
 import { Episode } from "./episode.js";
 import { SuperReplayEpisode } from "./superReplayEpisode.js";
-import { isEmptyObject } from "../../scripts/utility.js";
+import { isEmptyObject, createElement } from "../../scripts/utility.js";
 
 export class SuperReplay {
     // ---------------------------------
@@ -40,14 +40,13 @@ export class SuperReplay {
         //this.games = new VideoGame(superReplayDict.games[0]);
 
         // ---------- GI Article(s) ----------
-        if ('gameInformerArticle' in this._superReplayJSON)
-            this.gameInformerArticle = ('gameInformerArticle' in this._superReplayJSON)
-                ? new GameInformerArticle(this._superReplayJSON.gameInformerArticle)
-                : undefined;
+        this.gameInformerArticle = ('gameInformerArticle' in this._superReplayJSON)
+            ? new GameInformerArticle(this._superReplayJSON.gameInformerArticle)
+            : undefined;
 
         // ---------- Episodes ----------
         this.episodes = [];
-        const episodeNodeTemplate = nodeTemplate.querySelector('super-replay-episode');
+        const episodeNodeTemplate = nodeTemplate.querySelector('.super-replay-episode');
         this._superReplayJSON.episodeList.forEach(episodeDict =>
             this.episodes.push(new SuperReplayEpisode(episodeDict, episodeNodeTemplate))
         );
@@ -142,7 +141,7 @@ export class SuperReplay {
         this.image.srcset.forEach((source, index, arr) => {
             temp += source;
             // Add characters between values in array
-            temp = (index === arr.length - 1) ? ""
+            temp += (index === arr.length - 1) ? ""
                 : (index === 1) ? ", " : " ";
         });
         parentNode.setAttribute('srcset', temp);
@@ -227,12 +226,12 @@ export class SuperReplay {
         // Article
         if (this.gameInformerArticle !== undefined) {
             // Add container for article heading to more-info element
-            childNode = parentNode.appendChild(Episode.createElement('div', 'article-heading'));
+            childNode = parentNode.appendChild(createElement('div', 'article-heading'));
             // Add title as header element to article heading element
-            childNode.appendChild(Episode.createElement(
+            childNode.appendChild(createElement(
                 'h4', 'article-title', this.gameInformerArticle.title));
             // Add author and date posted
-            childNode.appendChild(Episode.createElement(
+            childNode.appendChild(createElement(
                 'div', 'article-author', `by ${this.gameInformerArticle.author}${this.gameInformerArticle.date}`));
             // Add article content
             if (this.gameInformerArticle.content !== undefined) {
@@ -242,7 +241,7 @@ export class SuperReplay {
                 /*
                 for (const para of this.gameInformerArticle.content) {
                     if (para.replace(/\s/g, '').length)
-                        parentNode.appendChild(Episode.createElement('p', undefined, para));
+                        parentNode.appendChild(createElement('p', undefined, para));
                 }
                 */
             }
@@ -257,17 +256,17 @@ export class SuperReplay {
                 // Else If heading is 'Gallery'
                 else if (heading == 'gallery') {
                     // Add header of 'Gallery' to episodeMoreInfo element
-                    parentNode.appendChild(Episode.createElement('h4', undefined, heading));
+                    parentNode.appendChild(createElement('h4', undefined, heading));
                     // Add gallery container to episodeMoreInfo element
-                    parentNode = parentNode.appendChild(Episode.createElement('div', 'gallery-container'));
+                    parentNode = parentNode.appendChild(createElement('div', 'gallery-container'));
                     // For each image in gallery property
                     for (const image of this.otherHeadingsObj[heading]) {
                         // Add gallery item to container
-                        childNode = parentNode.appendChild(Episode.createElement('div', 'gallery-item'));
+                        childNode = parentNode.appendChild(createElement('div', 'gallery-item'));
                         // Add figure element to gallery item
                         childNode = childNode.appendChild(document.createElement('figure'));
                         // Add caption to figure
-                        childNode.appendChild(Episode.createElement('figcaption', undefined, image.caption));
+                        childNode.appendChild(createElement('figcaption', undefined, image.caption));
                         // Add anchor to gallery item figure
                         childNode = childNode.appendChild(document.createElement('a'));
                         childNode.setAttribute('href', image.link);
@@ -285,7 +284,7 @@ export class SuperReplay {
                 }
                 else {
                     // Add heading as a header element to episodeMoreInfo element
-                    parentNode.appendChild(Episode.createElement(
+                    parentNode.appendChild(createElement(
                         'h4', undefined, heading.replace(/_/g, ' ')));
                     Episode.addContentArrToNode(parentNode, this.otherHeadingsObj[heading]);
                 }
@@ -311,6 +310,9 @@ export class SuperReplay {
         // ------------------------------------------
         // ---------- Super Replay Episode ----------
         // ------------------------------------------
+
+        parentNode = this.sectionNode.querySelector('.super-replay-episode');
+        parentNode.replaceWith(this.episodes[0].sectionNode);
     }
 
     /** Get total runtime as string of all episodes in Super Replay

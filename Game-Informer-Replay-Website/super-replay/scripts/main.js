@@ -84,3 +84,30 @@ function init() {
     // Set date the document was last modified at the bottom of the page
     document.getElementById('lastModifiedDate').innerHTML = new Date(document.lastModified).toDateString();
 }
+
+// ---------- Media Queries ----------
+
+const mediaQueriesArr = [
+    window.matchMedia("(max-width: 750px)"),
+    window.matchMedia("(max-width: 480px)")
+];
+
+function mediaQueryResponse() {
+    const prevValue = superReplayCollection.maxDisplayedButtons;
+    if (mediaQueriesArr[1].matches)
+        superReplayCollection.maxDisplayedButtons = 3;
+    else if (mediaQueriesArr[0].matches)
+        superReplayCollection.maxDisplayedButtons = 5;
+    else
+        superReplayCollection.maxDisplayedButtons = 7;
+    // Update page number containers
+    if (superReplayCollection.maxDisplayedButtons !== prevValue) {
+        superReplayCollection.updatePageNumber('top');
+        superReplayCollection.updatePageNumber('bottom', true);
+    }
+}
+
+for (let i = 0; i < mediaQueriesArr.length; i++)
+    mediaQueriesArr[i].addListener(mediaQueryResponse); // attach listener function to listen in on state changes
+// call listener function explicitly at run time
+mediaQueryResponse();

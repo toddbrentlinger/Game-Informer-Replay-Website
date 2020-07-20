@@ -210,11 +210,11 @@ superReplayCollection.updateDisplayedSuperReplays = function () {
     // Clear Super Replay list from document
     this.clearSuperReplayListElement();
 
-    // Fill Super Replay list element with displayed episodes
+    // Fill Super Replay list element with displayed super replays
     for (let i = start; i < end; i++)
         this.superReplayListElement.appendChild(this.selectedSuperReplays[i].sectionNode);
 
-    // Change current number of displayed episodes message string
+    // Change current number of displayed super replays message string
     if (selectedSuperReplaysLength) {
         this.currentDisplayedMessageElement.innerHTML = 'Showing ' +
             ((this.maxDisplayed > 0)

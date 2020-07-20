@@ -2,6 +2,7 @@
 
 //import { GameInformerArticle } from "./gameInformerArticle.js";
 import { YouTubeVideo } from "./youtubeVideo.js";
+import { createElement } from "../../scripts/utility.js";
 
 /* NOTES:
  * - Extend Episode class with ReplayEpisode and SuperReplayEpisode
@@ -21,10 +22,9 @@ export class Episode {
         this._episodeJSON = episodeDict;
 
         // ---------- YouTube Video ----------
-        if ('youtubeVideo' in this._episodeJSON)
-            this.youtubeVideo = new YouTubeVideo(this._episodeJSON.youtubeVideo);
-        else
-            this.youtubeVideo = undefined
+        this.youtubeVideo = ('youtubeVideo' in this._episodeJSON)
+            ? new YouTubeVideo(this._episodeJSON.youtubeVideo)
+            : undefined;
 
         // ---------- Description ----------
         // Check two sources for details and use YouTube description as last resort
@@ -92,26 +92,6 @@ export class Episode {
     // ------------------------------------
 
     /**
-     * Create an HTML element with specified tag, class, and inner text.
-     * @param {String} elementTag
-     * @param {String} elementClass
-     * @param {String} elementInnerHTML
-     * 
-     * @return {Element}
-     */
-    static createElement(elementTag, elementClass, elementInnerHTML) {
-        // If only first argument is provided, recommend using document.createElement instead
-        if (typeof elementClass === 'undefined' && typeof elementInnerHTML === 'undefined')
-            console.log("Use document.createElement() instead");
-        let element = document.createElement(elementTag);
-        if (typeof elementClass !== 'undefined')
-            element.setAttribute('class', elementClass);
-        if (typeof elementInnerHTML !== 'undefined')
-            element.innerHTML = elementInnerHTML;
-        return element;
-    }
-
-    /**
      * Add list to HTML element from array of String objects.
      * @param {Element} parentNode
      * @param {Array[String]} contentArr
@@ -126,9 +106,9 @@ export class Episode {
                 // Loop through each value of array of list values
                 for (const arrayValueText of content)
                     // Create li element and append as child to ul element
-                    listElement.appendChild(Episode.createElement('li', undefined, arrayValueText));
+                    listElement.appendChild(createElement('li', undefined, arrayValueText));
             } else // Else create p element and append as child to more info element
-                parentNode.appendChild(Episode.createElement('p', undefined, content));
+                parentNode.appendChild(createElement('p', undefined, content));
         }
     }
 
@@ -172,8 +152,7 @@ export class Episode {
         // If num is string and string contains number and more than 3 digits
         if (typeof num === 'string'
             && !isNaN(parseInt(num, 10))
-            && num.length > 3
-        ) {
+            && num.length > 3) {
             // Add comma after every 3rd index from end
             return num.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         } else // Else return the num as is
@@ -225,9 +204,9 @@ export class Episode {
         ];
         let listElement, listItemElement, anchorElement, linkSource;
         // Add header for external links to episodeMoreInfo element
-        parentNode.appendChild(Episode.createElement('h4', undefined, headlineString));
+        parentNode.appendChild(createElement('h4', undefined, headlineString));
         // Create ul element and append as child to episodeMoreInfo element
-        listElement = parentNode.appendChild(Episode.createElement('ul', 'link-list'));
+        listElement = parentNode.appendChild(createElement('ul', 'link-list'));
         // Loop through each value of array of list values
         for (const linkObj of linksList) {
             // Create li element and append as child to ul element
@@ -235,7 +214,7 @@ export class Episode {
             // Create i element and append as child to li list element
             // then create anchor element and append as child to i element
             anchorElement = listItemElement.appendChild(document.createElement('i'))
-                .appendChild(Episode.createElement('a', undefined, linkObj.title));
+                .appendChild(createElement('a', undefined, linkObj.title));
             anchorElement.setAttribute('href',
                 (urlPrepend ? urlPrepend + linkObj.href : linkObj.href)
             );

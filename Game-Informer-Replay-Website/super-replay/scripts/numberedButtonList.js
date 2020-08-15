@@ -3,18 +3,37 @@
 import { createElement } from "../../scripts/utility.js";
 
 export class NumberedButtonList {
+    // Changes depending on screen width
+    // If some browsers do NOT support class static properties, will have to
+    // use instance property and change each instance when screen width
+    // changes.
+    static maxDisplayedButtons = 7;
+
     // ---------------------------------
     // ---------- Constructor ----------
     // ---------------------------------
     /**
-     * 
-     * @param {Number} maxNumberedButtons
      * @param {Element} numberedButtonContainer
+     * @param {Number} totalNumberedButtons
      */
-    constructor(maxNumberedButtons = 1, numberedButtonContainer) {
+    constructor(buttonContainerElement, totalNumberedButtons = 1, eventListenerFunction) {
         this.currentSelectedButton = 1;
-        this.maxNumberedButtons = maxNumberedButtons;
-        this.numberedButtonContainer = numberedButtonContainer;
+        this.buttonContainerElement = buttonContainerElement;
+        this.totalNumberedButtons = totalNumberedButtons;
+        this.eventListenerFunction = eventListenerFunction;
+
+        // Set up PREV, FIRST, LAST, NEXT buttons
+        this.buttonContainerElement.querySelectorAll('button')
+            .forEach(function (node) {
+                node.addEventListener("click", function () {
+                    const buttonValue = node.getAttribute('value');
+                    this.setCurrentSelectedButton(buttonValue);
+                    this.eventListenerFunction(this.currentSelectedButton);
+                }.bind(this), false);
+            }, this);
+
+        // Set up numbered buttons
+        this.updateButtonContainerElement();
     }
 
     // ---------------------------------------
@@ -23,9 +42,8 @@ export class NumberedButtonList {
     /**
      * @param {Number} buttonValue
      * @param {String} buttonStr
-     * @param {Boolean} scrollToTop
      */
-    createNumberedButton(buttonValue, buttonStr, scrollToTop = false) {
+    createNumberedButton(buttonValue, buttonStr) {
         // Variables
         let tempNode;
         // If buttonStr is undefined, assign same value as buttonValue
@@ -38,102 +56,100 @@ export class NumberedButtonList {
         tempNode.setAttribute('type', 'button');
         tempNode.setAttribute('value', buttonValue);
         tempNode.addEventListener("click", function () {
-            this.setPageNumber(buttonValue, scrollToTop);
+            this.setCurrentSelectedButton(buttonValue);
+            this.eventListenerFunction(buttonValue);
         }.bind(this), false);
         // Return button
         return tempNode;
     }
 
-    updatePageNumber(positionStr, scrollToTop = false) {
+    /**
+     * */
+    updateButtonContainerElement() {
         // Variables
-        const pageNumberContainer = document.getElementById(`page-number-container${(positionStr) ? '-' + positionStr : ''}`);
-        const pageNumberList = pageNumberContainer.querySelector('.page-number-list');
-        const maxButtonsMidCeil = Math.ceil(this.maxDisplayedButtons / 2);
+        const pageNumberList = this.buttonContainerElement.querySelector('.page-number-list');
+        const maxButtonsMidCeil = Math.ceil(NumberedButtonList.maxDisplayedButtons / 2);
 
         // Hide page container if total pages is less than 2
-        pageNumberContainer.style.display = (this.totalPages < 2) ? 'none' : null;
+        this.buttonContainerElement.style.display = (this.totalNumberedButtons < 2) ? 'none' : null;
 
         // Remove all page number buttons
-        pageNumberContainer.querySelectorAll('.page-number-list .custom-button')
+        this.buttonContainerElement.querySelectorAll('.page-number-list .custom-button')
             .forEach(node => node.remove());
 
         // Disable 'PREV' if current page is equal to 1
-        pageNumberContainer.querySelector('button[value="prev"]')
-            .disabled = (this.currentPageDisplayed === 1);
+        this.buttonContainerElement.querySelector('button[value="prev"]')
+            .disabled = (this.currentSelectedButton === 1);
 
-        // Disable 'FIRST' if totalPages is less than or equal to maxDisplayedButtons
+        // Disable 'FIRST' if totalNumberedButtons is less than or equal to maxDisplayedButtons
         // OR current page is near beginning of list
-        pageNumberContainer.querySelector('button[value="first"]')
-            .disabled = (this.totalPages <= this.maxDisplayedButtons
-                || this.currentPageDisplayed <= maxButtonsMidCeil
+        this.buttonContainerElement.querySelector('button[value="first"]')
+            .disabled = (this.totalNumberedButtons <= NumberedButtonList.maxDisplayedButtons
+            || this.currentSelectedButton <= maxButtonsMidCeil
             );
 
         // Page number list
         let start, end;
-        // If totalPages is more than maxDisplayedButtons
-        if (this.totalPages > this.maxDisplayedButtons) {
-            if (this.currentPageDisplayed > this.totalPages - maxButtonsMidCeil) {
+        // If totalNumberedButtons is more than maxDisplayedButtons
+        if (this.totalNumberedButtons > NumberedButtonList.maxDisplayedButtons) {
+            if (this.currentSelectedButton > this.totalNumberedButtons - maxButtonsMidCeil) {
                 // Show last maxDisplayedButtons
-                start = this.totalPages - this.maxDisplayedButtons + 1;
-                end = this.totalPages;
-            } else if (this.currentPageDisplayed > maxButtonsMidCeil) {
-                // Show buttons with currentPageDisplayed in middle
-                start = this.currentPageDisplayed - maxButtonsMidCeil + 1;
-                end = this.currentPageDisplayed + maxButtonsMidCeil - 1;
+                start = this.totalNumberedButtons - NumberedButtonList.maxDisplayedButtons + 1;
+                end = this.totalNumberedButtons;
+            } else if (this.currentSelectedButton > maxButtonsMidCeil) {
+                // Show buttons with currentSelectedButton in middle
+                start = this.currentSelectedButton - maxButtonsMidCeil + 1;
+                end = this.currentSelectedButton + maxButtonsMidCeil - 1;
             } else {
                 // Show first maxDisplayedButtons
                 start = 1;
-                end = this.maxDisplayedButtons;
+                end = NumberedButtonList.maxDisplayedButtons;
             }
-        } else { // Else totalPages is less than or equal to maxDisplayedButtons
-            // Add buttons ranging from 1 to totalPages
+        } else { // Else totalNumberedButtons is less than or equal to maxDisplayedButtons
+            // Add buttons ranging from 1 to totalNumberedButtons
             start = 1;
-            end = this.totalPages;
+            end = this.totalNumberedButtons;
         }
         for (let i = start; i <= end; i++)
-            pageNumberList.appendChild(this.createNumberedButton(i, i, scrollToTop));
+            pageNumberList.appendChild(this.createNumberedButton(i, i));
 
-        // Disable 'LAST' if totalPages is less than or equal to maxDisplayedButtons
+        // Disable 'LAST' if totalNumberedButtons is less than or equal to maxDisplayedButtons
         // OR current page is near end of list
-        pageNumberContainer.querySelector('button[value="last"]')
-            .disabled = (this.totalPages <= this.maxDisplayedButtons
-                || this.currentPageDisplayed >= this.totalPages - maxButtonsMidCeil + 1
+        this.buttonContainerElement.querySelector('button[value="last"]')
+            .disabled = (this.totalNumberedButtons <= NumberedButtonList.maxDisplayedButtons
+            || this.currentSelectedButton >= this.totalNumberedButtons - maxButtonsMidCeil + 1
             );
 
-        // Disable 'NEXT' if current page is equal to last page (totalPages)
-        pageNumberContainer.querySelector('button[value="next"]')
-            .disabled = (this.currentPageDisplayed === this.totalPages);
+        // Disable 'NEXT' if current page is equal to last page (totalNumberedButtons)
+        this.buttonContainerElement.querySelector('button[value="next"]')
+            .disabled = (this.currentSelectedButton === this.totalNumberedButtons);
     }
 
     /**
      * 
      * @param {Number|String} input
-     * @param {Boolean} scrollToTop
      */
-    setPageNumber(input, scrollToTop = false) {
-        const prevPage = this.currentPageDisplayed;
+    setCurrentSelectedButton(input) {
+        const prevPage = this.currentSelectedButton;
         if (typeof input === 'number')
-            this.currentPageDisplayed = input;
+            this.currentSelectedButton = input;
         else if (typeof input === 'string') {
             // If input is 'next', increase page by 1
-            if (input == 'next') this.currentPageDisplayed++;
+            if (input == 'next') this.currentSelectedButton++;
             // Else If input is 'prev', decrease page by 1
-            else if (input == 'prev') this.currentPageDisplayed--;
+            else if (input == 'prev') this.currentSelectedButton--;
             // Else If input is 'first', set page to 1
-            else if (input == 'first') this.currentPageDisplayed = 1;
-            // Else If input is 'last', set page to totalPages
-            else if (input == 'last') this.currentPageDisplayed = this.totalPages;
+            else if (input == 'first') this.currentSelectedButton = 1;
+            // Else If input is 'last', set page to totalNumberedButtons
+            else if (input == 'last') this.currentSelectedButton = this.totalNumberedButtons;
             // Else If string is a number, assign number to page
             else if (!isNaN(parseInt(input, 10)))
-                this.currentPageDisplayed = parseInt(input, 10);
+                this.currentSelectedButton = parseInt(input, 10);
         }
-        // If currentPageDisplayed has changed value
-        if (prevPage != this.currentPageDisplayed) {
-            // Update displayed episodes
-            this.updateDisplayedSuperReplays();
-            // Scroll to top
-            if (scrollToTop)
-                document.getElementById('top-page').scrollIntoView({ behavior: "smooth" });
+
+        // If currentSelectedButton has changed value
+        if (prevPage != this.currentSelectedButton) {
+            this.updateButtonContainerElement();
         }
     }
 }

@@ -4,6 +4,7 @@
 import { GameInformerArticle } from "./gameInformerArticle.js";
 import { Episode } from "./episode.js";
 import { SuperReplayEpisode } from "./superReplayEpisode.js";
+import { NumberedButtonList } from "./numberedButtonList.js";
 import { isEmptyObject, createElement } from "../../scripts/utility.js";
 
 export class SuperReplay {
@@ -48,11 +49,18 @@ export class SuperReplay {
         this.episodes = [];
         const episodeNodeTemplate = nodeTemplate.querySelector('.super-replay-episode');
         this._superReplayJSON.episodeList.forEach(episodeDict =>
-            this.episodes.push(new SuperReplayEpisode(episodeDict, episodeNodeTemplate))
+            this.episodes.push(new SuperReplayEpisode(episodeDict, this.image, episodeNodeTemplate))
         );
+        this.currentEpisode = 1;
 
         // ---------- HTML Section Node ----------
         this.createSectionNode(nodeTemplate);
+
+        // ---------- Episode List ----------
+        this.numberedButtonList = new NumberedButtonList(
+            this.sectionNode.querySelector('.page-number-container'),
+            this.episodes.length,
+            this.setCurrentEpisode.bind(this));
 
         // Return reference to class instance
         return this;
@@ -299,6 +307,11 @@ export class SuperReplay {
         // ---------- Super Replay Episode List ----------
         // -----------------------------------------------
 
+        // NEW
+        //parentNode = this.sectionNode.querySelector('.page-number-container');
+        //this.numberedButtonList = new NumberedButtonList(parentNode, this.episodes.length);
+        /*
+        // OLD
         parentNode = this.sectionNode.querySelector('.super-replay-episode-list');
         childNode = parentNode.querySelector('.super-replay-episode-number');
         for (let i = 2, tempNode; i <= this.episodes.length; i++) {
@@ -306,6 +319,7 @@ export class SuperReplay {
             tempNode.innerHTML = (i < 10) ? `0${i}` : i.toString();
             parentNode.insertAdjacentElement('beforeend', tempNode);
         }
+        */
 
         // ------------------------------------------
         // ---------- Super Replay Episode ----------
@@ -313,6 +327,31 @@ export class SuperReplay {
 
         parentNode = this.sectionNode.querySelector('.super-replay-episode');
         parentNode.replaceWith(this.episodes[0].sectionNode);
+    }
+
+    /**
+     * 
+     * @param {Number|String} episodeNumber
+     */
+    setCurrentEpisode(episodeNumber) {
+        // If episodeNumber is string, convert to number
+        if (typeof episodeNumber === 'string')
+            episodeNumber = parseInt(episodeNumber, 10);
+
+        // Make sure episodeNumber is between 1 and total episodes
+        if (episodeNumber < 1)
+            episodeNumber = 1;
+        else if (episodeNumber > this.episodes.length)
+            episodeNumber = this.episodes.length;
+
+        if (episodeNumber !== this.currentEpisode) {
+            // Set currentEpisode
+            this.currentEpisode = episodeNumber;
+
+            // Display currentEpisode
+            this.sectionNode.querySelector('.super-replay-episode')
+                .replaceWith(this.episodes[this.currentEpisode-1].sectionNode);
+        }
     }
 
     /** Get total runtime as string of all episodes in Super Replay

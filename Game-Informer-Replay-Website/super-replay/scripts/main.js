@@ -38,6 +38,25 @@ function init() {
                 .bind(superReplayCollection),
         false);
 
+    // ---------- Filter/Search ----------
+
+    // Filter - Clear All
+    document.getElementById('filter-toggle-select-button')
+        .addEventListener('click', function () {
+            superReplayCollection.filterFormElement.reset();
+            superReplayCollection.filter();
+        }, false);
+
+    // Filter - Toggle display of filter form
+    document.getElementById('filter-display-toggle-button')
+        .addEventListener("click", function () {
+            this.classList.toggle('active');
+            superReplayCollection.filterFormElement.style.maxHeight =
+                (superReplayCollection.filterFormElement.style.maxHeight)
+                    ? null
+                    : superReplayCollection.filterFormElement.scrollHeight + 12 + 'px';
+        }, false);
+
     // ---------- Shuffle ----------
 
     document.getElementById('button-shuffle')

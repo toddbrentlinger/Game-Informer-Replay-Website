@@ -130,10 +130,25 @@ window.superReplayCollection = {
         this.maxDisplayedElement.value = this.maxDisplayed;
     },
 
-    // Filter
-    filterObj: {},
+    // Filter/Search
+    filterFormElement: document.getElementById('filterForm'),
+    searchInputElement: document.querySelector('#search-container input[type = "text"]'),
+    // NOTE: Do NOT need object parameter. Just add to updateFilterObj()
+    _filterObj: {}, // Initialized to empty object
+    get filterObj() { return this._filterObj; },
+    set filterObj(newObj) {
+        // Reset selectedSuperReplays to show all SRs from base SR object array
+        // If newObj is empty, filter will NOT change selectedSuperReplays listing all SRs
+        this.selectedSuperReplays = this._superReplayObjectArray.slice();
 
-    // Search
+        // Loop through each property of newObj
+        Object.keys(newObj).forEach(filterType => {
+
+        });
+        for (const filterType of Object.keys(newObj)) {
+
+        }
+    },
 
     // Page Selection
     maxDisplayedButtons: 7,
@@ -189,7 +204,7 @@ superReplayCollection.init = function () {
         this.populateStats();
 
         // Filter
-        //this.populateFilterForm();
+        this.populateFilterForm();
     }.bind(this);
 };
 
@@ -399,6 +414,189 @@ superReplayCollection.sortSelectedSuperReplays = function () {
         this.selectedSuperReplays.reverse();
 };
 
+// -----------------------------------
+// ---------- Filter/Search ----------
+// -----------------------------------
+
+superReplayCollection.filter = function () {
+    // Variables
+    let tempObj = {};
+
+    // Reset selectedSuperReplays to show all SRs from base SR object array
+    this.selectedSuperReplays = this._superReplayObjectArray.slice();
+
+    // Search
+    if (this.searchInputElement.value)
+        this.filterBySearch(this.searchInputElement.value);
+
+    // Filter Form: Year and Crew
+    // For each checkbox input element in the filter form
+    this.filterFormElement.querySelectorAll('input[type="checkbox"]')
+        .forEach(input => {
+            if (input.checked) {
+                // If tempObj already has input.name as property, push value to property array
+                if (tempObj[input.name] !== undefined)
+                    tempObj[input.name].push(input.value);
+                else // Else add input.name as property and assign array with input.value as first element
+                    tempObj[input.name] = [input.value];
+            }
+        });
+
+    // Loop through each property of tempObj
+    for (const [key, value] of Object.entries(tempObj)) {
+        switch (key) {
+            case 'year':
+                this.filterByYear(value);
+                break;
+            case 'giCrew':
+                this.filterByCrew(value);
+                break;
+            default:
+        }
+    }
+
+    // Update Super Replay list
+    this.updateSelectedSuperReplays();
+};
+
+/**
+ * Filter selectedSuperReplays by search terms in search box.
+ * @param {String} searchTerms
+ * 
+ * Search Operations:
+ * game:searchString - Search by game title(s)
+ * name:searchString - Search by gi crew name(s)
+ * "searchString" - Search exact match instead of separating each keyword between spaces
+ * -searchString - Ignore search term
+ * string01 OR string02 - Search if either string is matched. OR must be capitalized.
+ * string01 string02 - Search if both strings are matched
+ * Examples:
+ * stealth game:"mario sunshine"
+ * Searches all text for 'stealth' and game titles for exactly 'mario sunshine'
+ * name:-ryckert game:splinter "metal gear"
+ * Excludes host/featuring with 'ryckert' and searches game titles for 'splinter' AND exactly 'metal gear'
+ * Ignore spaces between 'property:' and next valid character
+ * TODO: If two words are separated by spaces, return results that match both or either one, AND/OR?
+ */
+superReplayCollection.filterBySearch = function (searchTerms = "") {
+
+};
+
+/**
+ * 
+ * @param {String[]} yearsToFilter
+ */
+superReplayCollection.filterByYear = function (yearsToFilter) {
+    // Make sure that each value is a number
+    yearsToFilter.forEach((value, index, arr) => {
+        // If value is NOT a number, remove array element
+        if (isNaN(value)) arr.splice(index, 1);
+        else { // Else value is a number
+            // If value is a string type, convert to number
+            if (typeof value === 'string')
+                arr[index] = parseInt(value, 10);
+        }
+    });
+
+    // Filter Super Replays
+    this.selectedSuperReplays = this.selectedSuperReplays.filter(
+        superReplay => {
+            return superReplay.episodes.some(episode => {
+                return (yearsToFilter.includes(episode.airdate.getFullYear()))
+            });
+        }
+    );
+};
+
+/**
+ * 
+ * @param {String[]} crewToFilter
+ */
+superReplayCollection.filterByCrew = function (crewToFilter) {
+    // Variables
+    let crewPerEpisode = [];
+
+    this.selectedSuperReplays = this.selectedSuperReplays.filter(
+        superReplay => {
+            return superReplay.episodes.some(episode => {
+                // If NO host and NO featuring, filter out super replay
+                if (episode.host === undefined && episode.featuring === undefined)
+                    return false;
+
+                // Combine episode host and featuring into single array
+                crewPerEpisode = (episode.host === undefined) ? episode.featuring
+                    : (episode.featuring === undefined) ? episode.host
+                        : episode.host.concat(episode.featuring);
+
+                return crewPerEpisode.some(
+                    name => crewToFilter.includes(name)
+                );
+            });
+        }
+    );
+};
+
+superReplayCollection.populateFilterForm = function () {
+    // Variables
+    let parentElement;
+    let i = 0; // Used in for loops
+    let sortedObjArr = [];
+    const currentYear = new Date().getFullYear();
+
+    // Year
+    parentElement = document.querySelector('#year-field ul');
+    for (i = 2010; i <= currentYear; i++) {
+        parentElement.appendChild(document.createElement('li'))
+            .append(this.createFieldsetLabel("year", i.toString()));
+    }
+
+    // GI Crew
+    parentElement = document.querySelector('#gi-crew-field ul');
+    // Create array of names for each gi crew
+    sortedObjArr = this.getGICrew();
+    // Add to filter form
+    for (const person of sortedObjArr) {
+        parentElement.appendChild(document.createElement('li'))
+            .append(this.createFieldsetLabel("giCrew", person.name, `${person.name} (${person.count})`));
+    }
+
+    // Add eventListener to filter form
+    this.filterFormElement.addEventListener('change',
+        this.filter.bind(this), false);
+};
+
+/**
+ * 
+ * @param {String} name
+ * @param {String} value
+ * @param {String} label
+ */
+superReplayCollection.createFieldsetLabel = function (name, value, label) {
+    // Variables
+    let labelElement;
+    let inputElement;
+
+    // If label is undefined, assign same value as value
+    if (typeof label === "undefined")
+        label = value;
+
+    // Create input element
+    inputElement = document.createElement('input');
+    inputElement.setAttribute('type', 'checkbox');
+    inputElement.setAttribute('name', name);
+    inputElement.setAttribute('value', value);
+
+    // Append input element to label
+    labelElement = createElement('label', undefined, label);
+    labelElement.appendChild(inputElement);
+
+    // Append span element for checkmark
+    labelElement.appendChild(createElement('span', 'checkmark'));
+
+    // Return label element to append to the fieldset
+    return labelElement;
+};
+
 // -----------------------------
 // ---------- Shuffle ----------
 // -----------------------------
@@ -425,8 +623,8 @@ superReplayCollection.resetSelectedSuperReplays = function () {
     // Change HTML select element values to default
     this.sortType = sort.airdate;
     this.ascending = false;
-    //this.searchInputElement.value = '';
-    //this.filterFormElement.reset();
+    this.searchInputElement.value = "";
+    this.filterFormElement.reset();
 
     this.updateSelectedSuperReplays();
 };
@@ -548,4 +746,54 @@ superReplayCollection.setPageNumber = function (input, scrollToTop = false) {
 
 superReplayCollection.cueSuperReplayPlaylist = function (superReplay, episodeIndex = 0) {
 
+};
+
+// ------------------------------
+// ---------- Get Crew ----------
+// ------------------------------
+
+/** Get list of GI crew members with number of appearances.
+ * @return {Object[]} Array of Dictionary objects with keys 'name' and 'count' sorted alphabetically.*/
+superReplayCollection.getGICrew = function () {
+    // Variables
+    let tempCrewArr = [];
+    let isIncluded = false;
+
+    // Function to add GI crew name if NOT in list or increment count
+    // if is in list.
+    function addCrew(nameToAdd) {
+        // Check if nameToAdd is already in tempCrewArr
+        isIncluded = false;
+        for (const person of tempCrewArr) {
+            if (person.name == nameToAdd) {
+                isIncluded = true;
+                person.count++;
+                break;
+            }
+        }
+        // If nameToAdd is NOT included, add to list
+        if (!isIncluded)
+            tempCrewArr.push({ name: nameToAdd, count: 1 });
+    }
+
+    for (const superReplay of this._superReplayObjectArray) {
+        for (const episode of superReplay.episodes) {
+            // Host
+            if (episode.host !== undefined)
+                episode.host.forEach(host => addCrew(host));
+
+            // Featuring
+            if (episode.featuring !== undefined)
+                episode.featuring.forEach(guest => addCrew(guest));
+        }
+    }
+
+    // Sort array alphabetically
+    tempCrewArr.sort((first, second) => {
+        return (first.name < second.name) ? -1 :
+            (first.name > second.name) ? 1 :
+                0;
+    });
+
+    return tempCrewArr;
 };

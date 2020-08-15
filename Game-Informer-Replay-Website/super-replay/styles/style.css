@@ -21,7 +21,7 @@
     --third-bg-color: #f6f6f6; /* nearly pure white */
 
     background-color: var(--main-bg-color);
-    background-image: url("/images/replay_bg_gi_blue(3).jpg");
+    background-image: url("../../images/replay_bg_gi_blue(3).jpg");
     background-repeat: no-repeat;
     background-attachment: fixed; /* browser issues */
     background-position: center top;
@@ -145,7 +145,7 @@ img { border: 0; }
 /* ---------------------------- */
 
 header {
-    background-image: url("/images/Game_Informer_logo_(2010-present)_1024.png");
+    background-image: url("../../images/Game_Informer_logo_(2010-present)_1024.png");
     background-color: var(--second-bg-color);
     background-repeat: no-repeat;
     background-position: center;
@@ -588,7 +588,7 @@ main {  margin: 0 .8em; }
 
 .page-number-container {
     display: flex;
-    margin: .6em 0;
+    padding: .6em 0;
 }
 
 .page-number-container > button {
@@ -680,7 +680,7 @@ main {  margin: 0 .8em; }
         --third-bg-color: hsl(0, 0%, 0%);
 
         background-color: hsl(0, 0%, 20%);
-        background-image: url("/images/replay_bg.jpg");
+        background-image: url("../../images/replay_bg.jpg");
         background-repeat: no-repeat;
         background-attachment: fixed;
         background-position: center top;
@@ -688,7 +688,7 @@ main {  margin: 0 .8em; }
     }
 
     header {
-        background-image: url("/images/Game_Informer_logo_(2010-present)_1024(dark_mode).png");
+        background-image: url("../../images/Game_Informer_logo_(2010-present)_1024(dark_mode).png");
     }
 
     #jump-top-page-container > a > i {
@@ -712,14 +712,14 @@ main {  margin: 0 .8em; }
     --third-bg-color: hsl(0, 0%, 0%);
 
     background-color: hsl(0, 0%, 20%); 
-    background-image: url("/images/replay_bg.jpg"); 
+    background-image: url("../../images/replay_bg.jpg"); 
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center top;
     background-size: cover;
 }
 [data-theme="dark"] header {
-    background-image: url("/images/Game_Informer_logo_(2010-present)_1024(dark_mode).png");
+    background-image: url("../../images/Game_Informer_logo_(2010-present)_1024(dark_mode).png");
 }
 [data-theme="dark"] #jump-top-page-container i {
     color: var(--main-text-color);
@@ -821,20 +821,20 @@ input:checked + .slider:before {
 
 @media (max-width: 1600px) {
     :root {
-        background-image: url("/images/replay_bg_gi_blue(3)_1600w.jpg");
+        background-image: url("../../images/replay_bg_gi_blue(3)_1600w.jpg");
     }
     [data-theme="dark"] {
-        background-image: url("/images/replay_bg_1600w.jpg");
+        background-image: url("../../images/replay_bg_1600w.jpg");
     }
 }
 
 @media (max-width: 1024px) {
     :root {
-        background-image: url("/images/replay_bg_gi_blue(3)_1024w.jpg");
+        background-image: url("../../images/replay_bg_gi_blue(3)_1024w.jpg");
     }
 
     [data-theme="dark"] {
-        background-image: url("/images/replay_bg_1024w.jpg");
+        background-image: url("../../images/replay_bg_1024w.jpg");
     }
 }
 

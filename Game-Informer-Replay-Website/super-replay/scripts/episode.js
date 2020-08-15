@@ -1,6 +1,6 @@
 ﻿"use strict";
 
-//import { GameInformerArticle } from "./gameInformerArticle.js";
+import { GameInformerArticle } from "./gameInformerArticle.js";
 import { YouTubeVideo } from "./youtubeVideo.js";
 import { createElement } from "../../scripts/utility.js";
 
@@ -40,6 +40,10 @@ export class Episode {
         // ---------- Airdate ----------
         this.airdate = Episode.convertStringToDate(this._episodeJSON.airdate || this._episodeJSON.youtubeVideo.airdate);
 
+        // ---------- GI Article(s) ----------
+        this.gameInformerArticle = ('gameInformerArticle' in this._episodeJSON)
+            ? new GameInformerArticle(this._episodeJSON.gameInformerArticle)
+            : undefined;
     }
 
     // -----------------------------

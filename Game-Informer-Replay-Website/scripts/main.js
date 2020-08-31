@@ -107,7 +107,7 @@ document.querySelectorAll('#filterForm fieldset').forEach(
     }
 );
 */
-// Seach - Event Listeners
+// Search - Event Listeners
 // Search is button is clicked
 document.querySelector('#search-container button')
     .addEventListener("click", function () {
@@ -168,8 +168,14 @@ jumpToTopPageElement.addEventListener("click", function () {
 document.getElementById('copyright-current-year').innerHTML = `2019-${new Date().getFullYear()}`;
 
 // Set date the document was last modified at the bottom of the page
-document.getElementById('lastModifiedDate').innerHTML = new Date(document.lastModified).toDateString();
+//document.getElementById('lastModifiedDate').innerHTML = new Date(document.lastModified).toDateString();
 //document.getElementById('lastModifiedReplayList').innerHTML = lastModifiedReplayList;
+let requestHeader = new XMLHttpRequest();
+requestHeader.open('HEAD', requestURL);
+requestHeader.onload = function () {
+    document.getElementById('lastModifiedDate').innerHTML = new Date(this.getResponseHeader("Last-Modified")).toDateString();
+};
+requestHeader.send();
 
 // Media Queries
 /*

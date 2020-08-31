@@ -13,11 +13,11 @@ export class SuperReplayEpisode extends Episode {
      * @param {Object} thumbnailDict
      * @param {Element} nodeTemplate
      */
-    constructor(episodeDict, thumbnailDict, nodeTemplate) {
+    constructor(episodeDict, thumbnailDict, nodeTemplate, videoPlayer, superReplay, episodeIndex) {
         super(episodeDict);
 
         // ---------- HTML Section Node ----------
-        this.createSectionNode(nodeTemplate, thumbnailDict);
+        this.createSectionNode(nodeTemplate, thumbnailDict, videoPlayer, superReplay, episodeIndex);
     }
 
     // -----------------------------
@@ -32,7 +32,7 @@ export class SuperReplayEpisode extends Episode {
      * 
      * @param {any} nodeTemplate
      */
-    createSectionNode(nodeTemplate, thumbnailDict) {
+    createSectionNode(nodeTemplate, thumbnailDict, videoPlayer, superReplay, episodeIndex) {
         // Variables (temp can be array, string, ...)
         let parentNode, childNode, temp;
 
@@ -43,9 +43,9 @@ export class SuperReplayEpisode extends Episode {
         // Reference to anchor link
         parentNode = this.sectionNode.querySelector('.episode-main .thumbnail > a');
 
-        // Add event listener that starts playlist of Super Replay beginning with first episode
+        // Add event listener that starts playlist of Super Replay beginning with this episode
         parentNode.addEventListener('click', function () {
-            // TODO
+            videoPlayer.cueVideoPlaylist(superReplay.playlistIDArray, episodeIndex, true);
         }.bind(this), false);
         
         // Image

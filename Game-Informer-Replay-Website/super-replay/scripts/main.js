@@ -38,7 +38,7 @@ function init() {
                 .bind(superReplayCollection),
         false);
 
-    // ---------- Filter/Search ----------
+    // ---------- Filter ----------
 
     // Filter - Clear All
     document.getElementById('filter-toggle-select-button')
@@ -49,12 +49,32 @@ function init() {
 
     // Filter - Toggle display of filter form
     document.getElementById('filter-display-toggle-button')
-        .addEventListener("click", function () {
+        .addEventListener('click', function () {
             this.classList.toggle('active');
             superReplayCollection.filterFormElement.style.maxHeight =
                 (superReplayCollection.filterFormElement.style.maxHeight)
                     ? null
                     : superReplayCollection.filterFormElement.scrollHeight + 12 + 'px';
+        }, false);
+
+    // ---------- Filter - Search ----------
+
+    // Search button is clicked
+    document.querySelector('#search-container button')
+        .addEventListener('click', function () {
+            superReplayCollection.filter();
+        }.bind(superReplayCollection),
+        false);
+
+    // Search if press ENTER inside input field by making button click
+    document.querySelector('#search-container input[type="text"]')
+        .addEventListener('keyup', function (event) { 
+            if (event.keyCode === 13) { // No. 13 is ENTER key
+                // Cancel default action, if needed
+                event.preventDefault();
+                // Trigger button element with a click
+                document.querySelector('#search-container button').click();
+            }
         }, false);
 
     // ---------- Shuffle ----------
@@ -97,11 +117,13 @@ function init() {
         topPageElement.scrollIntoView();
     }, false);
 
+    // ---------- Other/Misc ----------
+
     // Set date for copyright
     document.getElementById('copyright-current-year').innerHTML = `2019-${new Date().getFullYear()}`;
 
     // Set date the document was last modified at the bottom of the page
-    document.getElementById('lastModifiedDate').innerHTML = new Date(document.lastModified).toDateString();
+    //document.getElementById('lastModifiedDate').innerHTML = new Date(document.lastModified).toDateString();
 }
 
 // ---------- Media Queries ----------

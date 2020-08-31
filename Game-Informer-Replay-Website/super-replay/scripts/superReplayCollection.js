@@ -2,6 +2,7 @@
 
 import { SuperReplay } from "./superReplay.js";
 import { Episode } from "./episode.js";
+import { YouTubeVideoPlayer } from "./youtubeVideoPlayer.js";
 import { shuffleArray, createElement } from "../../scripts/utility.js";
 
 // TODO: Put in superReplayCollection._sortObj['sort']
@@ -134,6 +135,7 @@ window.superReplayCollection = {
     filterFormElement: document.getElementById('filterForm'),
     searchInputElement: document.querySelector('#search-container input[type = "text"]'),
     // NOTE: Do NOT need object parameter. Just add to updateFilterObj()
+    /*
     _filterObj: {}, // Initialized to empty object
     get filterObj() { return this._filterObj; },
     set filterObj(newObj) {
@@ -149,7 +151,7 @@ window.superReplayCollection = {
 
         }
     },
-
+    */
     // Page Selection
     maxDisplayedButtons: 7,
     currentDisplayedMessageElement: document.querySelector('#number-displayed-container div'),
@@ -166,7 +168,13 @@ window.superReplayCollection = {
         return (this.maxDisplayed && this.selectedSuperReplays.length)
             ? Math.ceil(this.selectedSuperReplays.length / this.maxDisplayed)
             : 1;
-    }
+    },
+
+    // YouTub Video Player
+    videoPlayer: new YouTubeVideoPlayer(document.getElementById('video-player-container')),
+
+    // Current Super Replay
+    //currentSuperReplay: undefined,
 };
 
 /**
@@ -191,11 +199,17 @@ superReplayCollection.init = function () {
 
         // Create SuperReplay object array
         request.response.forEach(superReplayDict =>
-            this._superReplayObjectArray.push(new SuperReplay(superReplayDict, nodeTemplate))
-        );
+            this._superReplayObjectArray.push(
+                new SuperReplay(superReplayDict,
+                nodeTemplate,
+                this.videoPlayer)
+            ));
 
         // Initialize array of selected SuperReplay objects that can change
         this.selectedSuperReplays = this._superReplayObjectArray.slice();
+
+        // Load YouTube Player API
+        this.videoPlayer.loadPlayerAPI();
 
         // Populate document with initialized displayed Super Replays array
         this.updateDisplayedSuperReplays();
@@ -203,9 +217,17 @@ superReplayCollection.init = function () {
         // Add statistics
         this.populateStats();
 
-        // Filter
+        // Populate filter form
         this.populateFilterForm();
     }.bind(this);
+
+    // Date Last Modified
+    let requestHeader = new XMLHttpRequest();
+    requestHeader.open('HEAD', requestURL);
+    requestHeader.onload = function () {
+        document.getElementById('lastModifiedDate').innerHTML = new Date(this.getResponseHeader("Last-Modified")).toDateString();
+    };
+    requestHeader.send();
 };
 
 /** Update Super Replays displayed on current page. */
@@ -264,7 +286,8 @@ superReplayCollection.updateSelectedSuperReplays = function () {
     // Populate main element with updated selected super replays
     this.updateDisplayedSuperReplays();
     // Cue playlist of first super replay
-    this.cueSuperReplayPlaylist();
+    //this.cueSuperReplayPlaylist();
+    this.videoPlayer.cueVideoPlaylist(this.selectedSuperReplays[0].playlistIDArray)
 };
 
 /** Populate Super Replay statistics on bottom on page. */
@@ -479,7 +502,17 @@ superReplayCollection.filter = function () {
  * TODO: If two words are separated by spaces, return results that match both or either one, AND/OR?
  */
 superReplayCollection.filterBySearch = function (searchTerms = "") {
-
+    if (searchTerms) {
+        // Set search terms to lower case before comparing
+        const re = new RegExp("\\b(?:" + searchTerms.toLowerCase() + ")\\b");
+        this.selectedSuperReplays = this.selectedSuperReplays.filter(
+            superReplay => {
+                return superReplay.episodes.some(episode => {
+                    return re.test(episode.sectionNode.textContent.toLowerCase());
+                });
+            }
+        );
+    }
 };
 
 /**
@@ -745,7 +778,12 @@ superReplayCollection.setPageNumber = function (input, scrollToTop = false) {
 // ------------------------------------------------
 
 superReplayCollection.cueSuperReplayPlaylist = function (superReplay, episodeIndex = 0) {
+    // If superReplay parameter is undefined, cue playlist of first SuperReplay in collection
+    if (typeof superReplay === 'undefined') {
+        this.videoPlayer.cueVideoPlaylist(this.selectedSuperReplays[0].playlistIDArray);
+    } else { // Else cue playlist with superReplay parameter and episodeIndex
 
+    }
 };
 
 // ------------------------------

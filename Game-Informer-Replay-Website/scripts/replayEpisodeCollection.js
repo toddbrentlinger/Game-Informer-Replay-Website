@@ -498,6 +498,7 @@ replayEpisodeCollection.updateFilterObj = function () {
 replayEpisodeCollection.filterBySearch = function (searchTerms = '') {
     if (searchTerms) {
         // Reset selectedEpisodes to show complete list
+        // TODO: NOT necessary. Already reset in updateFilterObj()
         this.selectedEpisodes = this.replayEpisodeObjectArray.slice();
 
         // Set search terms to lower case before comparing

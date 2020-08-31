@@ -12,7 +12,7 @@ export class SuperReplay {
     // ---------- Constructor ----------
     // ---------------------------------
 
-    constructor(superReplayDict, nodeTemplate) {
+    constructor(superReplayDict, nodeTemplate, videoPlayer) {
         this._superReplayJSON = superReplayDict;
 
         // Properties that reference Objects in JSON (Array, Function, Object)
@@ -48,13 +48,13 @@ export class SuperReplay {
         // ---------- Episodes ----------
         this.episodes = [];
         const episodeNodeTemplate = nodeTemplate.querySelector('.super-replay-episode');
-        this._superReplayJSON.episodeList.forEach(episodeDict =>
-            this.episodes.push(new SuperReplayEpisode(episodeDict, this.image, episodeNodeTemplate))
+        this._superReplayJSON.episodeList.forEach((episodeDict, index) =>
+            this.episodes.push(new SuperReplayEpisode(episodeDict, this.image, episodeNodeTemplate, videoPlayer, this, index))
         );
         this.currentEpisode = 1;
 
         // ---------- HTML Section Node ----------
-        this.createSectionNode(nodeTemplate);
+        this.createSectionNode(nodeTemplate, videoPlayer);
 
         // ---------- Episode List ----------
         this.numberedButtonList = new NumberedButtonList(
@@ -104,12 +104,15 @@ export class SuperReplay {
         });
         return totalLikes / (totalLikes + totalDislikes);
     }
+    get playlistIDArray() {
+        return this.episodes.map(episode => episode.youtubeVideo.id);
+    }
 
     // ---------------------------------------
     // ---------- Methods/Functions ----------
     // ---------------------------------------
 
-    createSectionNode(nodeTemplate) {
+    createSectionNode(nodeTemplate, videoPlayer) {
         // Variables (temp can be array, string, ...)
         let parentNode, childNode, temp;
 
@@ -136,7 +139,7 @@ export class SuperReplay {
 
         // Add event listener that starts playlist of Super Replay beginning with first episode
         parentNode.addEventListener('click', function () {
-            // TODO
+            videoPlayer.cueVideoPlaylist(this.playlistIDArray, 0, true);
         }.bind(this), false);
 
         // Image

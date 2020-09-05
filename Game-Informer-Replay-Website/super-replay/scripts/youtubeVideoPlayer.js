@@ -29,7 +29,7 @@ export class YouTubeVideoPlayer {
                     modestbranding: 1,
                     enablejsapi: 1,
                     loop: 0,
-                    origin: 'http://localhost:63201'
+                    origin: 'https://toddbrentlinger.github.io'
                 },
                 events: {
 

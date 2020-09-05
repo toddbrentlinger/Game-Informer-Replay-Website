@@ -1,6 +1,6 @@
 ﻿// Dark Mode Switch
 const currentTheme = window.localStorage.getItem('theme');
-if (currentTheme) {
+if (currentTheme || window.matchMedia('(prefers-color-scheme: dark)').matches) {
     document.documentElement.setAttribute('data-theme', currentTheme);
 }
 

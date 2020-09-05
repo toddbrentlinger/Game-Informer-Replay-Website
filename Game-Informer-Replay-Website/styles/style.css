@@ -1042,12 +1042,24 @@ input:checked + .slider:before {
     }
 }
 
+@media (prefers-color-scheme: dark) and (max-width: 1600px) {
+    :root {
+        background-image: url("../images/replay_bg_1600w.jpg");
+    }
+}
+
 @media (max-width: 1024px) {
     :root {
         background-image: url("../images/replay_bg_gi_blue(3)_1024w.jpg");
     }
 
     [data-theme="dark"] {
+        background-image: url("../images/replay_bg_1024w.jpg");
+    }
+}
+
+@media (prefers-color-scheme: dark) and (max-width: 1024px) {
+    :root {
         background-image: url("../images/replay_bg_1024w.jpg");
     }
 }

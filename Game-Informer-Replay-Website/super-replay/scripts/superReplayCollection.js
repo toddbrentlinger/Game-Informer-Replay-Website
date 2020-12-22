@@ -79,13 +79,13 @@ window.superReplayCollection = {
     },
     get sortTypeAttribute() {
         switch (this.sortType) {
-            case sort.airdate: return 'airdate'; break;
-            case sort.number: return 'number'; break;
-            case sort.views: return 'views'; break;
-            case sort.likes: return 'likes'; break;
-            case sort.likeRatio: return 'like-ratio'; break;
-            case sort.dislikes: return 'dislikes'; break;
-            case sort.length: return 'video-length'; break;
+            case sort.airdate: return 'airdate';
+            case sort.number: return 'number';
+            case sort.views: return 'views';
+            case sort.likes: return 'likes';
+            case sort.likeRatio: return 'like-ratio';
+            case sort.dislikes: return 'dislikes';
+            case sort.length: return 'video-length';
             case sort.none:
             default: return 'none';
         }
@@ -165,9 +165,9 @@ window.superReplayCollection = {
         this._currentPageDisplayed = (num < 1) ? 1 : ((num > this.totalPages) ? this.totalPages : num);
     },
     get totalPages() {
-        return (this.maxDisplayed && this.selectedSuperReplays.length)
-            ? Math.ceil(this.selectedSuperReplays.length / this.maxDisplayed)
-            : 1;
+        return (this.maxDisplayed && this.selectedSuperReplays.length ?
+            Math.ceil(this.selectedSuperReplays.length / this.maxDisplayed) :
+            1);
     },
 
     // YouTub Video Player
@@ -240,9 +240,9 @@ superReplayCollection.updateDisplayedSuperReplays = function () {
      * 2: 50-99 (second 50) start=50 end=100
      * 3: 100-119 (last 20) start=100 end=last */
     const start = (this.currentPageDisplayed - 1) * this.maxDisplayed;
-    const end = (this.maxDisplayed)
-        ? Math.min(this.currentPageDisplayed * this.maxDisplayed, selectedSuperReplaysLength)
-        : selectedSuperReplaysLength;
+    const end = (this.maxDisplayed ?
+        Math.min(this.currentPageDisplayed * this.maxDisplayed, selectedSuperReplaysLength) :
+        selectedSuperReplaysLength);
 
     // Clear Super Replay list from document
     this.clearSuperReplayListElement();
@@ -254,10 +254,8 @@ superReplayCollection.updateDisplayedSuperReplays = function () {
     // Change current number of displayed super replays message string
     if (selectedSuperReplaysLength) {
         this.currentDisplayedMessageElement.innerHTML = 'Showing ' +
-            ((this.maxDisplayed > 0)
-                ? `${start + 1} - ${end} of`
-                : 'all')
-            + ` ${selectedSuperReplaysLength} Super Replays`;
+            ((this.maxDisplayed > 0) ? `${start + 1} - ${end} of` : 'all') +
+            ` ${selectedSuperReplaysLength} Super Replays`;
     } else {
         this.currentDisplayedMessageElement.innerHTML = 'Showing no Super Replays';
     }
@@ -287,7 +285,7 @@ superReplayCollection.updateSelectedSuperReplays = function () {
     this.updateDisplayedSuperReplays();
     // Cue playlist of first super replay
     //this.cueSuperReplayPlaylist();
-    this.videoPlayer.cueVideoPlaylist(this.selectedSuperReplays[0].playlistIDArray)
+    this.videoPlayer.cueVideoPlaylist(this.selectedSuperReplays[0].playlistIDArray);
 };
 
 /** Populate Super Replay statistics on bottom on page. */
@@ -310,7 +308,7 @@ superReplayCollection.populateStats = function () {
         .insertAdjacentText('beforeend', totalEpisodes);
 
     // Total Time
-    const days = Math.floor(totalTime / 86400)
+    const days = Math.floor(totalTime / 86400);
     const hours = Math.floor((totalTime - days * 86400) / 3600);
     const minutes = Math.floor((totalTime - days * 86400 - hours * 3600) / 60);
     const seconds = totalTime - (days * 86400) - (hours * 3600) - (minutes * 60);
@@ -535,7 +533,7 @@ superReplayCollection.filterByYear = function (yearsToFilter) {
     this.selectedSuperReplays = this.selectedSuperReplays.filter(
         superReplay => {
             return superReplay.episodes.some(episode => {
-                return (yearsToFilter.includes(episode.airdate.getFullYear()))
+                return yearsToFilter.includes(episode.airdate.getFullYear());
             });
         }
     );
@@ -673,9 +671,9 @@ superReplayCollection.createNumberedButton = function (buttonValue, buttonStr, s
     if (typeof buttonStr === 'undefined')
         buttonStr = buttonValue;
     // Create button
-    tempNode = (buttonValue == this.currentPageDisplayed)
-        ? createElement('button', 'active custom-button', buttonStr)
-        : createElement('button', 'custom-button', buttonStr);
+    tempNode = ((buttonValue == this.currentPageDisplayed) ?
+        createElement('button', 'active custom-button', buttonStr) :
+        createElement('button', 'custom-button', buttonStr));
     tempNode.setAttribute('type', 'button');
     tempNode.setAttribute('value', buttonValue);
     tempNode.addEventListener("click", function () {
@@ -705,9 +703,8 @@ superReplayCollection.updatePageNumber = function (positionStr, scrollToTop = fa
     // Disable 'FIRST' if totalPages is less than or equal to maxDisplayedButtons
     // OR current page is near beginning of list
     pageNumberContainer.querySelector('button[value="first"]')
-        .disabled = (this.totalPages <= this.maxDisplayedButtons
-            || this.currentPageDisplayed <= maxButtonsMidCeil
-        );
+        .disabled = (this.totalPages <= this.maxDisplayedButtons ||
+            this.currentPageDisplayed <= maxButtonsMidCeil);
 
     // Page number list
     let start, end;
@@ -737,9 +734,8 @@ superReplayCollection.updatePageNumber = function (positionStr, scrollToTop = fa
     // Disable 'LAST' if totalPages is less than or equal to maxDisplayedButtons
     // OR current page is near end of list
     pageNumberContainer.querySelector('button[value="last"]')
-        .disabled = (this.totalPages <= this.maxDisplayedButtons
-            || this.currentPageDisplayed >= this.totalPages - maxButtonsMidCeil + 1
-        );
+        .disabled = (this.totalPages <= this.maxDisplayedButtons ||
+            this.currentPageDisplayed >= this.totalPages - maxButtonsMidCeil + 1);
 
     // Disable 'NEXT' if current page is equal to last page (totalPages)
     pageNumberContainer.querySelector('button[value="next"]')

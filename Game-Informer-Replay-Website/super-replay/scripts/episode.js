@@ -22,9 +22,9 @@ export class Episode {
         this._episodeJSON = episodeDict;
 
         // ---------- YouTube Video ----------
-        this.youtubeVideo = ('youtubeVideo' in this._episodeJSON)
-            ? new YouTubeVideo(this._episodeJSON.youtubeVideo)
-            : undefined;
+        this.youtubeVideo = ('youtubeVideo' in this._episodeJSON) ?
+            new YouTubeVideo(this._episodeJSON.youtubeVideo) :
+            undefined;
 
         // ---------- Description ----------
         // Check two sources for details and use YouTube description as last resort
@@ -41,9 +41,9 @@ export class Episode {
         this.airdate = Episode.convertStringToDate(this._episodeJSON.airdate || this._episodeJSON.youtubeVideo.airdate);
 
         // ---------- GI Article(s) ----------
-        this.gameInformerArticle = ('gameInformerArticle' in this._episodeJSON)
-            ? new GameInformerArticle(this._episodeJSON.gameInformerArticle)
-            : undefined;
+        this.gameInformerArticle = ('gameInformerArticle' in this._episodeJSON) ?
+            new GameInformerArticle(this._episodeJSON.gameInformerArticle) :
+            undefined;
     }
 
     // -----------------------------
@@ -86,9 +86,9 @@ export class Episode {
             arr[index] = parseInt(digit, 10);
         });
 
-        return timeArr[timeArr.length - 1]
-            + (timeArr.length > 1 ? timeArr[timeArr.length - 2] * 60 : 0)
-            + (timeArr.length > 2 ? timeArr[timeArr.length - 3] * 3600 : 0);
+        return timeArr[timeArr.length - 1] +
+            (timeArr.length > 1 ? timeArr[timeArr.length - 2] * 60 : 0) +
+            (timeArr.length > 2 ? timeArr[timeArr.length - 3] * 3600 : 0);
     }
 
     // ------------------------------------
@@ -154,9 +154,9 @@ export class Episode {
         if (typeof num === 'number')
             num = num.toString();
         // If num is string and string contains number and more than 3 digits
-        if (typeof num === 'string'
-            && !isNaN(parseInt(num, 10))
-            && num.length > 3) {
+        if (typeof num === 'string' &&
+            !isNaN(parseInt(num, 10)) &&
+            num.length > 3) {
             // Add comma after every 3rd index from end
             return num.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
         } else // Else return the num as is
@@ -235,8 +235,8 @@ export class Episode {
             }
             // If match was found, add to end of link, else don't include anything
             if (linkSource)
-                listItemElement.appendChild(document.createTextNode(' on '
-                    + linkSource));
+                listItemElement.appendChild(document.createTextNode(' on ' +
+                    linkSource));
         }
     }
 

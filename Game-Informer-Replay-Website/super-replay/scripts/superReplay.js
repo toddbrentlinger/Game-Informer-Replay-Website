@@ -41,9 +41,9 @@ export class SuperReplay {
         //this.games = new VideoGame(superReplayDict.games[0]);
 
         // ---------- GI Article(s) ----------
-        this.gameInformerArticle = ('gameInformerArticle' in this._superReplayJSON)
-            ? new GameInformerArticle(this._superReplayJSON.gameInformerArticle)
-            : undefined;
+        this.gameInformerArticle = (('gameInformerArticle' in this._superReplayJSON) ?
+            new GameInformerArticle(this._superReplayJSON.gameInformerArticle) :
+            undefined);
 
         // ---------- Episodes ----------
         this.episodes = [];
@@ -166,9 +166,9 @@ export class SuperReplay {
         // Airdate
         this.sectionNode.querySelector('.episode-airdate')
             .insertAdjacentText('beforeend',
-                this.episodes.length > 1 
-                    ? `${this.episodes[0].airdateString} - ${this.episodes[this.episodes.length - 1].airdateString}`
-                    : this.episodes[0].airdateString
+                (this.episodes.length > 1 ?
+                    `${this.episodes[0].airdateString} - ${this.episodes[this.episodes.length - 1].airdateString}` :
+                    this.episodes[0].airdateString)
             );
 
         // Total Episodes
@@ -378,7 +378,7 @@ export class SuperReplay {
         // Array of objects with 'name' and 'count' to be sorted
         let nameCountArr = [];
         for (let [key, value] of Object.entries(nameDict))
-            nameCountArr.push({ 'name': key, 'count': value })
+            nameCountArr.push({ 'name': key, 'count': value });
 
         // Sort array by 'count' in descending order
         nameCountArr.sort((a, b) => b.count - a.count);

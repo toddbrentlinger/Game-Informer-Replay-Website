@@ -81,9 +81,9 @@ window.replayEpisodeCollection = {
         window.sessionStorage.setItem('currentPageDisplayed', this.currentPageDisplayed);
     },
     get totalPages() {
-        return (this.maxDisplayedEpisodes && this.selectedEpisodes.length)
-            ? Math.ceil(this.selectedEpisodes.length / this.maxDisplayedEpisodes)
-            : 1;
+        return ((this.maxDisplayedEpisodes && this.selectedEpisodes.length) ?
+            Math.ceil(this.selectedEpisodes.length / this.maxDisplayedEpisodes) :
+            1);
     },
 
     // Sort
@@ -126,10 +126,9 @@ window.replayEpisodeCollection = {
         // If sortType is sort.none, assign default value of sort.airdate
         //console.log(`Sort Type: ${this.sortType} (${(this.sortType === sort.none) ? 'true' : 'false'})`);
         window.sessionStorage.setItem('sortType',
-            (this.sortType === sort.none)
-            ? sort.airdate
-            : this.sortType
-        );
+            (this.sortType === sort.none ?
+                sort.airdate :
+                this.sortType));
 
         // Check that HTML select element value is correct
         this.sortTypeElement.value = this.sortTypeString;
@@ -138,22 +137,22 @@ window.replayEpisodeCollection = {
     // Converts number type to string for value attribute of select option element
     get sortTypeString() {
         switch (this.sortType) {
-            case sort.airdate: return 'airdate'; break;
-            case sort.number: return 'number'; break;
-            case sort.views: return 'views'; break;
-            case sort.likes: return 'likes'; break;
-            case sort.likeRatio: return 'like-ratio'; break;
-            case sort.dislikes: return 'dislikes'; break;
-            case sort.length: return 'video-length'; break;
+            case sort.airdate: return 'airdate';
+            case sort.number: return 'number';
+            case sort.views: return 'views';
+            case sort.likes: return 'likes';
+            case sort.likeRatio: return 'like-ratio';
+            case sort.dislikes: return 'dislikes';
+            case sort.length: return 'video-length';
             case sort.none:
             default: return 'none';
         }
     },
 
     // Bool to sort in ascending/descending order
-    _ascending: ((window.sessionStorage.getItem('ascending'))
-        ? (window.sessionStorage.getItem('ascending') === 'false' ? false : true)
-        : false),
+    _ascending: ((window.sessionStorage.getItem('ascending')) ?
+        (window.sessionStorage.getItem('ascending') === 'false' ? false : true) :
+        false),
     get ascending() { return this._ascending; },
     set ascending(bool) {
         // If bool is string, convert to bool
@@ -363,9 +362,9 @@ replayEpisodeCollection.updateDisplayedEpisodes = function () {
      * 2: 50-99 (second 50) start=50 end=100
      * 3: 100-119 (last 20) start=100 end=last */
     const start = (this.currentPageDisplayed - 1) * this.maxDisplayedEpisodes;
-    const end = (this.maxDisplayedEpisodes)
-        ? Math.min(this.currentPageDisplayed * this.maxDisplayedEpisodes, selectedEpisodesLength)
-        : selectedEpisodesLength;
+    const end = ((this.maxDisplayedEpisodes) ?
+        Math.min(this.currentPageDisplayed * this.maxDisplayedEpisodes, selectedEpisodesLength) :
+        selectedEpisodesLength);
 
     // Clear main element of episode sections
     this.clearMainElement();
@@ -378,10 +377,8 @@ replayEpisodeCollection.updateDisplayedEpisodes = function () {
     // Change current number of displayed episodes message string
     if (selectedEpisodesLength) {
         this.currentDisplayedEpisodesMessageElement.innerHTML = 'Showing ' +
-            ((this.maxDisplayedEpisodes > 0)
-                ? `${start + 1} - ${end} of`
-                : 'all')
-            + ` ${selectedEpisodesLength} replay episodes`;
+            ((this.maxDisplayedEpisodes > 0) ? `${start + 1} - ${end} of` : 'all') +
+            ` ${selectedEpisodesLength} replay episodes`;
     } else {
         this.currentDisplayedEpisodesMessageElement.innerHTML = 'Showing no replay episodes';
     }
@@ -851,9 +848,9 @@ replayEpisodeCollection.createNumberedButton = function (buttonValue, buttonStr,
     if (typeof buttonStr === 'undefined')
         buttonStr = buttonValue;
     // Create button
-    tempNode = (buttonValue == this.currentPageDisplayed)
-        ? ReplayEpisode.createElementAdv('button', 'active custom-button', buttonStr)
-        : ReplayEpisode.createElementAdv('button', 'custom-button', buttonStr);
+    tempNode = ((buttonValue == this.currentPageDisplayed) ?
+        ReplayEpisode.createElementAdv('button', 'active custom-button', buttonStr) :
+        ReplayEpisode.createElementAdv('button', 'custom-button', buttonStr));
     tempNode.setAttribute('type', 'button');
     tempNode.setAttribute('value', buttonValue);
     tempNode.addEventListener("click", function () {
@@ -883,8 +880,8 @@ replayEpisodeCollection.updatePageNumberAdv = function (positionStr, scrollToTop
     // Disable 'FIRST' if totalPages is less than or equal to maxDisplayedButtons
     // OR current page is near beginning of list
     pageNumberContainer.querySelector('button[value="first"]')
-        .disabled = (this.totalPages <= this.maxDisplayedButtons
-            || this.currentPageDisplayed <= maxButtonsMidCeil
+        .disabled = (this.totalPages <= this.maxDisplayedButtons ||
+            this.currentPageDisplayed <= maxButtonsMidCeil
         );
 
     // Page number list
@@ -915,8 +912,8 @@ replayEpisodeCollection.updatePageNumberAdv = function (positionStr, scrollToTop
     // Disable 'LAST' if totalPages is less than or equal to maxDisplayedButtons
     // OR current page is near end of list
     pageNumberContainer.querySelector('button[value="last"]')
-        .disabled = (this.totalPages <= this.maxDisplayedButtons
-            || this.currentPageDisplayed >= this.totalPages - maxButtonsMidCeil + 1
+        .disabled = (this.totalPages <= this.maxDisplayedButtons ||
+            this.currentPageDisplayed >= this.totalPages - maxButtonsMidCeil + 1
         );
 
     // Disable 'NEXT' if current page is equal to last page (totalPages)
@@ -1160,7 +1157,7 @@ replayEpisodeCollection.toggleCurrentEpisodeInfo = function () {
         this.currentEpisodeInfoElement.style.maxHeight = this.currentEpisodeInfoElement.scrollHeight + 'px';
         this.currentEpisodeInfoToggleButton.textContent = 'Hide Episode Details';
     }
-}
+};
 
 // -------------------------------------------
 // ---------- Scroll Top Adjustment ----------
@@ -1196,8 +1193,8 @@ replayEpisodeCollection.getEpisodeByNumber = function (num) {
             leftIndex = midIndex + 1;
     }
     // If for loop finishes without return, could NOT find episode,
-    return undefined
     console.error(`Could NOT find episode with number: ${num}`);
+    return undefined;
 };
 
 // getEpisodeByVideoID(youtubeVideoID)
@@ -1255,7 +1252,7 @@ replayEpisodeCollection.populateStats = function () {
 // TODO: Static utility function with parameter totalTimeSeconds
 // TODO: OR getter function
 replayEpisodeCollection.showTotalTime = function () {
-    const days = Math.floor(this.totalTimeSeconds / 86400)
+    const days = Math.floor(this.totalTimeSeconds / 86400);
     const hours = Math.floor((this.totalTimeSeconds - days * 86400) / 3600);
     const minutes = Math.floor((this.totalTimeSeconds - days * 86400 - hours * 3600) / 60);
     const seconds = this.totalTimeSeconds - (days * 86400) - (hours * 3600) - (minutes * 60);
@@ -1272,8 +1269,7 @@ replayEpisodeCollection.showTotalTime = function () {
 function findEpisodesWithNoYouTubeURL(replayEpisodes) {
     let episodesFlagged = [];
     for (const episode of replayEpisodes) {
-        if (!episode.youtubeVideoID !== undefined
-            || !episode.youtubeVideoID)
+        if (episode.youtubeVideoID !== undefined || !episode.youtubeVideoID)
             episodesFlagged.push(episode.episodeNumber);
     }
     console.log(episodesFlagged);
@@ -1475,8 +1471,8 @@ function getGamesPlayed(sortAlphabetical = false) {
             const ignoreMiddleSegmentsContentEndingWith = [' Ad', ' Reel', ' Skit', ' Buttz', ' Pamphlet'];
             let isGame = true;
             // Check middleSegment type
-            if (episode.middleSegment !== undefined
-                && ignoreMiddleSegments.includes(episode.middleSegment))
+            if (episode.middleSegment !== undefined &&
+                ignoreMiddleSegments.includes(episode.middleSegment))
                 isGame = false;
             // Check end of middleSegmentContent
             if (isGame && ignoreMiddleSegmentsContentEndingWith

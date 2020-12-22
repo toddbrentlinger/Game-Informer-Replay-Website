@@ -44,14 +44,14 @@ export class ReplayEpisode {
         this.videoLength = replayEpisode.details.runtime;
 
         // Middle Segment (only 3rd season)
-        if (replayEpisode.middleSegment !== undefined
-            && replayEpisode.middleSegment.replace(/-/gi, '').length) {
+        if (replayEpisode.middleSegment !== undefined &&
+            replayEpisode.middleSegment.replace(/-/gi, '').length) {
             this.middleSegment = replayEpisode.middleSegment;
         }
 
         // Middle Segment Content (only 3rd season)
-        if (replayEpisode.middleSegmentContent !== undefined
-            && replayEpisode.middleSegmentContent.replace(/-/gi, '').length) {
+        if (replayEpisode.middleSegmentContent !== undefined &&
+            replayEpisode.middleSegmentContent.replace(/-/gi, '').length) {
             // If content ends with 'Ad' and segment has no provided name, assign name of 'Ad'
             //if (replayEpisode.middleSegmentContent.endsWith('Ad') && !this.hasOwnProperty('middleSegment'))
             //    this.middleSegment = 'Ad';
@@ -60,16 +60,16 @@ export class ReplayEpisode {
         }
 
         // Second Segment
-        if (replayEpisode.secondSegment !== undefined
-            && replayEpisode.secondSegment.replace(/-/gi, '').length) {
+        if (replayEpisode.secondSegment !== undefined &&
+            replayEpisode.secondSegment.replace(/-/gi, '').length) {
             this.secondSegment = replayEpisode.secondSegment;
         }
 
         // Second Segment Games
-        if (replayEpisode.secondSegmentGames !== undefined
-            && Array.isArray(replayEpisode.secondSegmentGames)
-            && replayEpisode.secondSegmentGames.length
-            && replayEpisode.secondSegmentGames[0].replace(/-/gi, '').length) {
+        if (replayEpisode.secondSegmentGames !== undefined &&
+            Array.isArray(replayEpisode.secondSegmentGames) &&
+            replayEpisode.secondSegmentGames.length &&
+            replayEpisode.secondSegmentGames[0].replace(/-/gi, '').length) {
             this.secondSegmentGames = replayEpisode.secondSegmentGames;
         }
 
@@ -127,8 +127,8 @@ export class ReplayEpisode {
 
         // YouTube video ID
         let tempVideoID = ''; // Default empty string if NO video ID is found
-        if (replayEpisode.details !== undefined
-            && replayEpisode.details.external_links !== undefined) {
+        if (replayEpisode.details !== undefined &&
+            replayEpisode.details.external_links !== undefined) {
             let youtubeLink = replayEpisode.details.external_links
                 .find(element => element.href.includes('youtube'));
             if (typeof youtubeLink != 'undefined')
@@ -171,9 +171,9 @@ export class ReplayEpisode {
             arr[index] = parseInt(digit, 10);
         });
 
-        return timeArr[timeArr.length - 1]
-            + (timeArr.length > 1 ? timeArr[timeArr.length - 2] * 60 : 0)
-            + (timeArr.length > 2 ? timeArr[timeArr.length - 3] * 3600 : 0);
+        return timeArr[timeArr.length - 1] +
+            (timeArr.length > 1 ? timeArr[timeArr.length - 2] * 60 : 0) +
+            (timeArr.length > 2 ? timeArr[timeArr.length - 3] * 3600 : 0);
     }
 
     get likeRatio() {
@@ -284,13 +284,13 @@ export class ReplayEpisode {
         if (this.middleSegment !== undefined || this.middleSegmentContent !== undefined) {
             this.episodeSection.querySelector('.middleSegment')
                 .insertAdjacentText('beforeend',
-                    (this.middleSegment !== undefined
-                        ? ReplayEpisode.getSegmentTitle(this.middleSegment)
-                        + (this.middleSegmentContent !== undefined ? ' - ' : '')
-                        : '')
-                    + (this.middleSegmentContent !== undefined
-                        ? ReplayEpisode.listArrayAsString(this.middleSegmentContent)
-                        : '')
+                    (this.middleSegment !== undefined ?
+                        ReplayEpisode.getSegmentTitle(this.middleSegment) +
+                        (this.middleSegmentContent !== undefined ? ' - ' : '') :
+                        '') +
+                    (this.middleSegmentContent !== undefined ?
+                        ReplayEpisode.listArrayAsString(this.middleSegmentContent) :
+                        '')
                 );
         } else // Else NO middle segment, remove middleSegment node
             this.episodeSection.querySelector('.middleSegment').remove();
@@ -299,13 +299,13 @@ export class ReplayEpisode {
         if (this.secondSegment !== undefined || this.secondSegmentGames !== undefined) {
             this.episodeSection.querySelector('.secondSegment')
                 .insertAdjacentText('beforeend',
-                    (this.secondSegment !== undefined
-                        ? ReplayEpisode.getSegmentTitle(this.secondSegment)
-                        + (this.secondSegmentGames !== undefined ? ' - ' : '')
-                        : '')
-                    + (this.secondSegmentGames !== undefined
-                        ? ReplayEpisode.listArrayAsString(this.secondSegmentGames)
-                        : '')
+                    (this.secondSegment !== undefined ?
+                        ReplayEpisode.getSegmentTitle(this.secondSegment) +
+                        (this.secondSegmentGames !== undefined ? ' - ' : '') :
+                        '') +
+                    (this.secondSegmentGames !== undefined ?
+                        ReplayEpisode.listArrayAsString(this.secondSegmentGames) :
+                        '')
                 );
         } else // Else NO second segment, remove secondSegment node
             this.episodeSection.querySelector('.secondSegment').remove();
@@ -429,9 +429,9 @@ export class ReplayEpisode {
         }
 
         // Season Episode
-        let seasonEpisode = (season > 1)
-            ? this.episodeNumber - replaySeasonStartEpisodes[season - 1] + 1
-            : this.episodeNumber;
+        let seasonEpisode = ((season > 1) ?
+            this.episodeNumber - replaySeasonStartEpisodes[season - 1] + 1 :
+            this.episodeNumber);
 
         // Return both season and seasonEpisode number
         return [season, seasonEpisode];
@@ -472,15 +472,15 @@ export class ReplayEpisode {
             return '';
         else { // Else there is a segment title to compare
             switch (segment) {
-                case 'RR': return 'Replay Roulette'; break;
-                case 'SRS': return 'Super Replay Showdown'; break;
-                case 'YDIW': return "You're Doing It Wrong"; break;
-                case 'ST': return 'Stress Test'; break;
-                case 'RP': return 'RePorted'; break;
-                case 'DP': return 'Developer Pick'; break;
-                case '2037': return 'Replay 2037'; break;
-                case 'HF': return 'Horror Fest'; break;
-                case 'RRL': return 'Replay Real Life'; break;
+                case 'RR': return 'Replay Roulette';
+                case 'SRS': return 'Super Replay Showdown';
+                case 'YDIW': return "You're Doing It Wrong";
+                case 'ST': return 'Stress Test';
+                case 'RP': return 'RePorted';
+                case 'DP': return 'Developer Pick';
+                case '2037': return 'Replay 2037';
+                case 'HF': return 'Horror Fest';
+                case 'RRL': return 'Replay Real Life';
                 default: return segment;
                 // Other Segments: GI Versus, Developer Spotlight, 
                 // Reevesplay, Moments
@@ -553,11 +553,11 @@ export class ReplayEpisode {
         // Main Segment
         // If only one game in main segment
         if (replayEpisode.mainSegmentGamesAdv.length == 1) {
-            descriptionArr.push(replayEpisode.mainSegmentGamesAdv[0].title + ' is the featured game in the '
-                + ((replayEpisode.episodeNumber < 1)
-                    ? this.numOrdinalSuffix(Math.floor(replayEpisode.episodeNumber * 100)) + ' unofficial'
-                    : this.numOrdinalSuffix(replayEpisode.episodeNumber))
-                + ' episode of Replay.');
+            descriptionArr.push(replayEpisode.mainSegmentGamesAdv[0].title + ' is the featured game in the ' +
+                ((replayEpisode.episodeNumber < 1) ?
+                    this.numOrdinalSuffix(Math.floor(replayEpisode.episodeNumber * 100)) + ' unofficial' :
+                    this.numOrdinalSuffix(replayEpisode.episodeNumber)) +
+                ' episode of Replay.');
         }
         else { // Else more than one game in main segment
             /*
@@ -567,13 +567,13 @@ export class ReplayEpisode {
             });*/
             let mainSegmentGamesTitleArray = replayEpisode.mainSegmentGamesAdv
                 .map(game => game.title);
-            descriptionArr.push('The '
-                + ((replayEpisode.episodeNumber < 1)
-                    ? this.numOrdinalSuffix(Math.floor(replayEpisode.episodeNumber * 100)) + ' unofficial'
-                    : this.numOrdinalSuffix(replayEpisode.episodeNumber))
-                + ' episode of Replay is '
-                + replayEpisode.episodeTitle.replace('Replay: ', '') + ', featuring '
-                + this.listArrayAsString(mainSegmentGamesTitleArray) + '.');
+            descriptionArr.push('The ' +
+                ((replayEpisode.episodeNumber < 1) ?
+                    this.numOrdinalSuffix(Math.floor(replayEpisode.episodeNumber * 100)) + ' unofficial' :
+                    this.numOrdinalSuffix(replayEpisode.episodeNumber)) +
+                ' episode of Replay is ' +
+                replayEpisode.episodeTitle.replace('Replay: ', '') + ', featuring ' +
+                this.listArrayAsString(mainSegmentGamesTitleArray) + '.');
         }
         // Middle Segment
         // If episode has segment name
@@ -586,8 +586,8 @@ export class ReplayEpisode {
         }
         // Else If episode has segment content (should NOT have segment name)
         else if (replayEpisode.middleSegmentContent !== undefined) {
-            descriptionArr.push('The middle segment features '
-                + this.listArrayAsString(replayEpisode.middleSegmentContent + '.'));
+            descriptionArr.push('The middle segment features ' +
+                this.listArrayAsString(replayEpisode.middleSegmentContent + '.'));
         }
 
         // Second Segment
@@ -603,8 +603,8 @@ export class ReplayEpisode {
         }
         // Host/Featuring
         if (replayEpisode.host !== undefined) {
-            descriptionArr.push('This episode is hosted by ' + this.listArrayAsString(replayEpisode.host)
-                + ' and features ' + this.listArrayAsString(replayEpisode.featuring) + '.');
+            descriptionArr.push('This episode is hosted by ' + this.listArrayAsString(replayEpisode.host) +
+                ' and features ' + this.listArrayAsString(replayEpisode.featuring) + '.');
         }
         // Return array of strings
         return descriptionArr;
@@ -692,8 +692,8 @@ export class ReplayEpisode {
             }
             // If match was found, add to end of link, else don't include anything
             if (linkSource)
-                listItemElement.appendChild(document.createTextNode(' on '
-                    + linkSource));
+                listItemElement.appendChild(document.createTextNode(' on ' +
+                    linkSource));
         }
     }
 
@@ -702,9 +702,9 @@ export class ReplayEpisode {
         if (typeof num === 'number')
             num = num.toString();
         // If num is string and string contains number and more than 3 digits
-        if (typeof num === 'string'
-            && !isNaN(parseInt(num, 10))
-            && num.length > 3
+        if (typeof num === 'string' &&
+            !isNaN(parseInt(num, 10)) &&
+            num.length > 3
         ) {
             // Add comma after every 3rd index from end
             return num.replace(/\B(?=(\d{3})+(?!\d))/g, ",");

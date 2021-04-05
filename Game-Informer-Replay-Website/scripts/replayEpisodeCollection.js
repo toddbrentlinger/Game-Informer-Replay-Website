@@ -496,19 +496,24 @@ replayEpisodeCollection.updateFilterObj = function () {
  */
 replayEpisodeCollection.filterBySearch = function (searchTerms = '') {
     if (searchTerms) {
+
+
         // Reset selectedEpisodes to show complete list
         // TODO: NOT necessary. Already reset in updateFilterObj()
         this.selectedEpisodes = this.replayEpisodeObjectArray.slice();
 
         // Set search terms to lower case before comparing
         // \b(?:searchTerms)\b
-        const re = new RegExp('\\b(?:' + searchTerms.toLowerCase() + ')\\b');
+        //const re = new RegExp('\\b(?:' + searchTerms.toLowerCase() + ')\\b');
         //searchTerms = searchTerms.toLowerCase();
+        //this.selectedEpisodes = this.selectedEpisodes.filter(
+        //    function (episode) {
+        //        return re.test(episode.episodeSection
+        //            .textContent.toLowerCase());
+        //    });
         this.selectedEpisodes = this.selectedEpisodes.filter(
-            function (episode) {
-                return re.test(episode.episodeSection
-                    .textContent.toLowerCase());
-            });
+            episode => episode.containsSearchTerm(searchTerms)
+        );
     } else { // Else show all episodes applying filter and sort
         // TODO
         //console.log('No search text');

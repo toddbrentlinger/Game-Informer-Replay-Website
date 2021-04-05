@@ -429,15 +429,34 @@ export class ReplayEpisode {
 
     /**
      * Returns true if episode data contains search terms, else false.
-     * @param {String} searchTerms
+     * @param {String} searchTerm
+     * @param {ReplayEpisode} obj
      */
-    isSearchTermInEpisode(searchTerms) {
-        if (this.episodeSection !== null) {
-            return searchTerms.test(this.episodeSection
-                .textContent.toLowerCase());
+    containsSearchTerm(searchTerm, obj = this) {
+        //if (this.episodeSection !== null) {
+        //    return searchTerm.test(this.episodeSection
+        //        .textContent.toLowerCase());
+        //}
+
+        // String
+        if (typeof obj === 'string') {
+            return obj.toLowerCase().includes(searchTerm.toLowerCase());
         }
-
-
+        // Number
+        if (typeof obj === 'number') {
+            return obj.toString().includes(searchTerm.toLowerCase());
+        }
+        // Array
+        if (Array.isArray(obj)) {
+            return obj.some(element => this.containsSearchTerm(searchTerm, element));
+        }
+        // Object
+        if (typeof obj === 'object' && obj !== null) {
+            return Array.from(Object.values(obj))
+                .some(value => this.containsSearchTerm(searchTerm, value));
+        }
+        // Other
+        return false;
     }
 
     // Get replay season and season episode number

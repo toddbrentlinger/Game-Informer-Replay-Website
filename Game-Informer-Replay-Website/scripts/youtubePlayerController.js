@@ -29,7 +29,7 @@ export function loadPlayerAPI() {
                 modestbranding: 1,
                 enablejsapi: 1,
                 loop: 0,
-                origin: 'https://toddbrentlinger.github.io/Game-Informer-Replay-Website/Game-Informer-Replay-Website/'
+                origin: 'https://toddbrentlinger.github.io'
             },
             events: {
                 onReady: replayEpisodeCollection.onPlayerReady.bind(replayEpisodeCollection),

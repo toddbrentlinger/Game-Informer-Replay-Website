@@ -137,7 +137,7 @@ export class ReplayEpisode {
         if (tempVideoID) this.youtubeVideoID = tempVideoID;
 
         // Image
-        this.image = replayEpisode.details.image;
+        this.image = replayEpisode.youtube.thumbnails;
 
         // Other Headings
         const propsToIgnore = [
@@ -158,7 +158,8 @@ export class ReplayEpisode {
             this.otherHeadingsObj = tempHeadingsObj;
 
         // Create HTML element and add episode data
-        this.populateEpisodeSection(episodeTemplate);
+        //this.populateEpisodeSection(episodeTemplate);
+        this.episodeSection = null;
     }
 
     // -----------------------------------
@@ -187,6 +188,10 @@ export class ReplayEpisode {
 
     // ReplayEpisode.populateEpisodeSection()
     populateEpisodeSection(episodeTemplateNode) {
+        // Return episodeSection if already created
+        if (this.episodeSection !== null)
+            return this.episodeSection;
+
         // Variables (temp can be array, string, ...)
         let parentNode, childNode, temp;
 
@@ -229,17 +234,32 @@ export class ReplayEpisode {
 
         // Image
         parentNode = this.episodeSection.querySelector('.episodeImage');
-        parentNode.setAttribute('width', this.image.width);
-        parentNode.setAttribute('height', this.image.height);
-        parentNode.setAttribute('src', this.image.srcset[0]);
+        //parentNode.setAttribute('width', this.image.width);
+        //parentNode.setAttribute('height', this.image.height);
+        //parentNode.setAttribute('src', this.image.srcset[0]);
+        //// Source Set (srcset)
+        //temp = ''; // Assign temp to empty string
+        //this.image.srcset.forEach(function (source, index, array) {
+        //    temp += source;
+        //    // Add characters between values in array
+        //    temp += (index === array.length - 1) ? ''
+        //        : (index === 1) ? ', ' : ' ';
+        //});
+        temp = this.image.hasOwnProperty('standard') ?
+            this.image.standard :
+            this.image.default;
+        parentNode.setAttribute('width', temp.width);
+        parentNode.setAttribute('height', temp.height);
+        parentNode.setAttribute('src', temp.url);
+        parentNode.setAttribute('sizes', "50vw");
         // Source Set (srcset)
-        temp = ''; // Assign temp to empty string
-        this.image.srcset.forEach(function (source, index, array) {
-            temp += source;
-            // Add characters between values in array
-            temp += (index === array.length - 1) ? ''
-                : (index === 1) ? ', ' : ' ';
-        });
+        temp = "";
+        Object.keys(this.image).
+            forEach((key, index, arr) => {
+                temp += `${this.image[key].url} ${this.image[key].width}w`;
+                if (index < arr.length - 1)
+                    temp += ", ";
+            });
         parentNode.setAttribute('srcset', temp);
 
         // Video Length
@@ -405,6 +425,19 @@ export class ReplayEpisode {
 
         // Return episode section HTML
         return this.episodeSection;
+    }
+
+    /**
+     * Returns true if episode data contains search terms, else false.
+     * @param {String} searchTerms
+     */
+    isSearchTermInEpisode(searchTerms) {
+        if (this.episodeSection !== null) {
+            return searchTerms.test(this.episodeSection
+                .textContent.toLowerCase());
+        }
+
+
     }
 
     // Get replay season and season episode number

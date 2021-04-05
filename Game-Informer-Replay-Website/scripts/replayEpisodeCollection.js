@@ -288,6 +288,7 @@ replayEpisodeCollection.init = function (replayEpisodeArray) {
     // as an argument to ReplayEpisode constructor
     const episodeTemplate = document.querySelector('section.episode')
         .cloneNode(true);
+    this.episodeTemplate = episodeTemplate;
 
     // Initialize object properties
 
@@ -371,7 +372,8 @@ replayEpisodeCollection.updateDisplayedEpisodes = function () {
 
     // Fill main element with selected episodes array
     for (let i = start; i < end; i++) {
-        this.mainElement.appendChild(this.selectedEpisodes[i].episodeSection);
+        //this.mainElement.appendChild(this.selectedEpisodes[i].episodeSection);
+        this.mainElement.appendChild(this.selectedEpisodes[i].populateEpisodeSection(this.episodeTemplate));
     }
 
     // Change current number of displayed episodes message string
@@ -955,16 +957,22 @@ replayEpisodeCollection.setPageNumber = function (input, scrollToTop = false) {
 
 // cueEpisodePlaylist(replayEpisode)
 replayEpisodeCollection.cueEpisodePlaylist = function (replayEpisode) {
+    //if (typeof replayEpisode === 'undefined')
+    //    console.log('Cue first 200 selected episodes');
+    //else
+    //    console.log(`Cue playlist starting with video ${replayEpisode.episodeTitle}`);
+
     if (!this.videoPlayer) {
         console.error('No reference to video player');
         return;
     }
 
+    const selectedVideoIdArray = this.selectedVideoIdArray;
     // If argument is undefined, cue playlist of first 200 selected episodes
     if (typeof replayEpisode === 'undefined') {
         //console.log(`CuePlaylist: First 200 videos cued`);
         if (this.selectedEpisodes.length) {
-            this.videoPlayer.cuePlaylist(this.selectedVideoIdArray.slice(0, 200));
+            this.videoPlayer.cuePlaylist(selectedVideoIdArray.slice(0, 200));
             //this.currentEpisode = this.getEpisodeByVideoID(this.selectedVideoIdArray[0]);
         } else { // Else no selected episodes, cue Replay highlights video
             this.videoPlayer.cueVideoById('0ZtEkX8m6yg');
@@ -972,7 +980,7 @@ replayEpisodeCollection.cueEpisodePlaylist = function (replayEpisode) {
             //this.currentEpisode = undefined;
         }
     } else { // Cue playlist starting with episodeIndex
-        const episodeIndex = this.selectedVideoIdArray.indexOf(replayEpisode.youtubeVideoID);
+        const episodeIndex = selectedVideoIdArray.indexOf(replayEpisode.youtubeVideoID);
         //console.log(`CuePlaylist: episodeIndex: ${episodeIndex}\nepisodeNumber: ${replayEpisode.episodeNumber}`);
         // Check for errors
         if (episodeIndex === -1) {
@@ -995,24 +1003,24 @@ replayEpisodeCollection.cueEpisodePlaylist = function (replayEpisode) {
         */
         let playlistStartIndex;
         // If more than 200 episodes in selected video array
-        if (this.selectedVideoIdArray.length > 200) {
+        if (selectedVideoIdArray.length > 200) {
             // If episodeIndex is within first 200 on selected video array
             if (episodeIndex < 200)
                 playlistStartIndex = 0;
             // Else If episodeIndex is within last 200 (more than 200 total videos)
             // 350 total(0-349) -- 350-200=150 -- 150-349(200 total)
-            else if (episodeIndex >= this.selectedVideoIdArray.length - 200)
-                playlistStartIndex = this.selectedVideoIdArray.length - 200;
+            else if (episodeIndex >= selectedVideoIdArray.length - 200)
+                playlistStartIndex = selectedVideoIdArray.length - 200;
             // Else (episodeIndex is larger than 200, and more than 400 total videos)
             else
                 playlistStartIndex = 200 * Math.floor(episodeIndex / 200);
             // Cue playlist using playlistStartIndex
-            this.videoPlayer.cuePlaylist(this.selectedVideoIdArray.slice(
+            this.videoPlayer.cuePlaylist(selectedVideoIdArray.slice(
                 playlistStartIndex,
                 playlistStartIndex + 200
             ), episodeIndex - playlistStartIndex);
         } else { // Else 200 or less episodes in selected episodes
-            this.videoPlayer.cuePlaylist(this.selectedVideoIdArray, episodeIndex);
+            this.videoPlayer.cuePlaylist(selectedVideoIdArray, episodeIndex);
         }
         // Assign new currently playing episode
         //this.currentEpisode = replayEpisode;
@@ -1054,8 +1062,9 @@ replayEpisodeCollection.onPlayerStateChange = function (event) {
                 // If current episode is last episode in youtube playlist
                 if (this.currentEpisode.youtubeVideoID === lastEpisodeVideoId) {
                     // Cue next 200 episodes
-                    let episodeIndex = this.selectedVideoIdArray.indexOf(this.currentEpisode.youtubeVideoID);
-                    this.cueEpisodePlaylist(this.getEpisodeByVideoID(this.selectedVideoIdArray[++episodeIndex]));
+                    const selectedVideoIdArray = this.selectedVideoIdArray;
+                    let episodeIndex = selectedVideoIdArray.indexOf(this.currentEpisode.youtubeVideoID);
+                    this.cueEpisodePlaylist(this.getEpisodeByVideoID(selectedVideoIdArray[++episodeIndex]));
                     //console.log(`Playlist ended with index: ${episodeIndex}`);
                 }
             }

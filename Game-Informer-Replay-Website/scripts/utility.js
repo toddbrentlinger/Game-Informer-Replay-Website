@@ -78,3 +78,26 @@ export function createFieldsetLabel(nameStr, valueStr, labelStr) {
     // Return label element to append to the fieldset
     return labelElement;
 }
+
+/**
+ * Populates image element with specified parameters.
+ * @param {Element} imgElement Reference to img element that is changed in-place
+ * @param {Object} thumbnailObj Each property is different image with it's own url, width, height
+ */
+export function populateImageElement(imgElement, thumbnailObj) {
+    let temp = thumbnailObj.hasOwnProperty('standard')
+        ? thumbnailObj.standard
+        : thumbnailObj.default;
+    imgElement.setAttribute('width', temp.width);
+    imgElement.setAttribute('height', temp.height);
+    imgElement.setAttribute('src', temp.url);
+    imgElement.setAttribute('sizes', '50vw');
+    // Source Set (srcset)
+    temp = ""
+    Object.keys(thumbnailObj).forEach((key, index, arr) => {
+        temp += `${thumbnailObj[key].url} ${thumbnailObj[key].width}w`;
+        if (index < arr.length - 1)
+            temp += ", ";
+    });
+    imgElement.setAttribute('srcset', temp);
+}

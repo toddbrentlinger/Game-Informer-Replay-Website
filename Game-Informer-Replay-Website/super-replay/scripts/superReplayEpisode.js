@@ -1,7 +1,7 @@
 ﻿"use strict";
 
 import { Episode } from "./episode.js";
-import { isEmptyObject, createElement } from "../../scripts/utility.js";
+import { isEmptyObject, createElement, populateImageElement } from "../../scripts/utility.js";
 
 /** SuperReplayEpisode representing a single episode of a Super Replay video series.
  * @author Todd Brentlinger
@@ -50,18 +50,19 @@ export class SuperReplayEpisode extends Episode {
         
         // Image
         parentNode = this.sectionNode.querySelector('.episode-main .video-image');
-        parentNode.setAttribute('width', thumbnailDict.width);
-        parentNode.setAttribute('height', thumbnailDict.height);
-        parentNode.setAttribute('src', thumbnailDict.srcset[0]);
-        // Image - Source Set
-        temp = "";
-        thumbnailDict.srcset.forEach((source, index, arr) => {
-            temp += source;
-            // Add characters between values in array
-            temp = (index === arr.length - 1) ? ""
-                : (index === 1) ? ", " : " ";
-        });
-        parentNode.setAttribute('srcset', temp);
+        //parentNode.setAttribute('width', thumbnailDict.width);
+        //parentNode.setAttribute('height', thumbnailDict.height);
+        //parentNode.setAttribute('src', thumbnailDict.srcset[0]);
+        //// Image - Source Set
+        //temp = "";
+        //thumbnailDict.srcset.forEach((source, index, arr) => {
+        //    temp += source;
+        //    // Add characters between values in array
+        //    temp = (index === arr.length - 1) ? ""
+        //        : (index === 1) ? ", " : " ";
+        //});
+        //parentNode.setAttribute('srcset', temp);
+        populateImageElement(parentNode, thumbnailDict);
         
         // Video Length
         this.sectionNode.querySelector('.episode-main .video-length')

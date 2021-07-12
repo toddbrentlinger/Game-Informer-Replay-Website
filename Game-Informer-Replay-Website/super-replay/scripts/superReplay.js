@@ -5,7 +5,7 @@ import { GameInformerArticle } from "./gameInformerArticle.js";
 import { Episode } from "./episode.js";
 import { SuperReplayEpisode } from "./superReplayEpisode.js";
 import { NumberedButtonList } from "./numberedButtonList.js";
-import { isEmptyObject, createElement } from "../../scripts/utility.js";
+import { isEmptyObject, createElement, populateImageElement } from "../../scripts/utility.js";
 
 export class SuperReplay {
     // ---------------------------------
@@ -18,7 +18,7 @@ export class SuperReplay {
         // Properties that reference Objects in JSON (Array, Function, Object)
         this.description = this._superReplayJSON.content.description;
         this.externalLinks = this._superReplayJSON.content.external_links;
-        this.image = this._superReplayJSON.image;
+        this.image = this._superReplayJSON.thumbnails;
         // Other Headings
         const propsToIgnore = [
             'description', 'external_links', 'episodes', 'image', 'system', 'gamedate', 'airdate', 'runtime', 'host', 'featuring'
@@ -144,18 +144,19 @@ export class SuperReplay {
 
         // Image
         parentNode = this.sectionNode.querySelector('.super-replay .video-image');
-        parentNode.setAttribute('width', this.image.width);
-        parentNode.setAttribute('height', this.image.height);
-        parentNode.setAttribute('src', this.image.srcset[0]);
-        // Image - Source Set
-        temp = "";
-        this.image.srcset.forEach((source, index, arr) => {
-            temp += source;
-            // Add characters between values in array
-            temp += (index === arr.length - 1) ? ""
-                : (index === 1) ? ", " : " ";
-        });
-        parentNode.setAttribute('srcset', temp);
+        //parentNode.setAttribute('width', this.image.width);
+        //parentNode.setAttribute('height', this.image.height);
+        //parentNode.setAttribute('src', this.image.srcset[0]);
+        //// Image - Source Set
+        //temp = "";
+        //this.image.srcset.forEach((source, index, arr) => {
+        //    temp += source;
+        //    // Add characters between values in array
+        //    temp += (index === arr.length - 1) ? ""
+        //        : (index === 1) ? ", " : " ";
+        //});
+        //parentNode.setAttribute('srcset', temp);
+        populateImageElement(parentNode, this.image);
 
         // Video Length
         this.sectionNode.querySelector('.super-replay .video-length')

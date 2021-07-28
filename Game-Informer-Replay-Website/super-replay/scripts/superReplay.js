@@ -139,6 +139,7 @@ export class SuperReplay {
 
         // Add event listener that starts playlist of Super Replay beginning with first episode
         parentNode.addEventListener('click', function () {
+            debugger
             videoPlayer.cueVideoPlaylist(this.playlistIDArray, 0, true);
         }.bind(this), false);
 

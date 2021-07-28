@@ -157,8 +157,12 @@ const jumpToTopPageElement = document.getElementById('jump-top-page-container');
 const topPageElement = document.getElementById('top-page');
 const mainElement = document.querySelector('main');
 window.addEventListener("scroll", function () {
-    jumpToTopPageElement.style.display =
-        (mainElement.getBoundingClientRect().top < 0) ? "block" : "none";
+    if (mainElement.getBoundingClientRect().top < 0)
+        jumpToTopPageElement.classList.remove('hide');
+    else
+        jumpToTopPageElement.classList.add('hide');
+    //jumpToTopPageElement.style.display =
+    //    (mainElement.getBoundingClientRect().top < 0) ? "block" : "none";
 }, false);
 jumpToTopPageElement.addEventListener("click", function () {
     topPageElement.scrollIntoView();

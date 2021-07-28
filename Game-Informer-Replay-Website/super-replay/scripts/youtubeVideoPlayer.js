@@ -47,7 +47,7 @@ export class YouTubeVideoPlayer {
     cueVideoPlaylist(videoIDArray, startIndex = 0, scrollIntoView = false) {
         // TEMP
         //console.log(`cueVideoPlaylist(\n[${videoIDArray}], \n${startIndex})\nthis: ${this}(typeof ${typeof this})`);
-
+        
         // Check video player is NOT undefined
         if (!this._videoPlayer) {
             console.error("No reference to YT video player");
